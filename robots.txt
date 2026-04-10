@@ -1,0 +1,11 @@
+# Chiringuito Vias - robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://chiringuito-vias.fr/sitemap.xml
+
+# Bloquer les fichiers techniques Muse
+Disallow: /muse_manifest.xml
+Disallow: /scripts/
+Disallow: /save.html
