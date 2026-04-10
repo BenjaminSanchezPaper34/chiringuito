@@ -1,56 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- Page principale -->
   <url>
-    <loc>https://chiringuito-vias.fr/index.html</loc>
+    <loc>https://chiringuito-vias.fr/</loc>
     <lastmod>2026-04-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" media="only screen and (max-width: 370px)" href="https://chiringuito-vias.fr/phone/index.html"/>
     <image:image>
       <image:loc>https://chiringuito-vias.fr/images/og-chiringuito.jpg</image:loc>
-      <image:title>Chiringuito - Plage privée à Vias-Plage</image:title>
-      <image:caption>Restaurant de plage Chiringuito à Vias-Plage, Hérault</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://chiringuito-vias.fr/images/adobestock_264658860-crop-u278.jpg</image:loc>
-      <image:title>Ambiance plage privée Chiringuito</image:title>
-      <image:caption>Cocktails et cuisine estivale face à la mer Méditerranée</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://chiringuito-vias.fr/images/qrcode-15x15-chiringuito.jpg</image:loc>
-      <image:title>QR Code menu Chiringuito</image:title>
+      <image:title>Chiringuito - Plage privee Vias-Plage</image:title>
+      <image:caption>Restaurant de plage Chiringuito, plage privee a Vias-Plage, Herault</image:caption>
     </image:image>
   </url>
 
-  <!-- Version mobile -->
-  <url>
-    <loc>https://chiringuito-vias.fr/phone/index.html</loc>
-    <lastmod>2026-04-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Carte du restaurant (mobile) -->
-  <url>
-    <loc>https://chiringuito-vias.fr/phone/la-carte.html</loc>
-    <lastmod>2026-04-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Menu détaillé (mobile) -->
-  <url>
-    <loc>https://chiringuito-vias.fr/phone/la-carte-du-restaurant.html</loc>
-    <lastmod>2026-04-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Menu numérique PDF -->
   <url>
     <loc>https://chiringuito-vias.fr/assets/menunumerique-chiringuito.pdf</loc>
     <lastmod>2025-07-24</lastmod>
