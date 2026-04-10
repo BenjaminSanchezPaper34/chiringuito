@@ -143,6 +143,31 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
+    /* Hero logo glow */
+    @keyframes glow-pulse {
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(0,155,164,0)) drop-shadow(0 0 60px rgba(0,155,164,0)); }
+      50% { filter: drop-shadow(0 0 25px rgba(255,255,255,0.15)) drop-shadow(0 0 60px rgba(0,155,164,0.1)); }
+    }
+    #hero-logo { animation: glow-pulse 4s ease-in-out infinite; }
+
+    /* Split text animation */
+    .split-char { display: inline-block; opacity: 0; transform: translateY(20px); }
+    .split-char.visible { opacity: 1; transform: translateY(0); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+
+    /* Photo reveal clip-path */
+    .photo-reveal { clip-path: inset(100% 0 0 0); transition: clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .photo-reveal.revealed { clip-path: inset(0 0 0 0); }
+
+    /* Magnetic button */
+    .magnetic-btn { position: relative; transition: transform 0.2s ease; }
+
+    /* Menu item hover glow */
+    .menu-item { transition: all 0.3s ease; position: relative; }
+    .menu-item:hover { background: linear-gradient(90deg, transparent, rgba(0,155,164,0.04), transparent); padding-left: 8px; }
+
+    /* Counter animation */
+    .counter-value { transition: all 0.3s ease; }
+
     /* Custom cursor (desktop only) */
     @media (pointer: fine) {
       * { cursor: none !important; }
@@ -279,7 +304,7 @@
       <!-- Content -->
       <div id="hero-content" class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
         <img src="images/logo-blanc-chiringuito.svg" alt="Chiringuito - Plage privee Vias" class="w-48 md:w-72 lg:w-80 mb-8" id="hero-logo" width="320" height="200"/>
-        <p class="text-white/90 text-sm md:text-base tracking-[0.3em] uppercase font-light mb-12">Restaurant &middot; Bar &middot; Plage privee</p>
+        <p id="hero-tagline" class="text-white/90 text-sm md:text-base tracking-[0.3em] uppercase font-light mb-12" aria-label="Restaurant, Bar, Plage privee">Restaurant &middot; Bar &middot; Plage privee</p>
 
         <!-- Social icons -->
         <div class="flex items-center gap-5">
@@ -325,7 +350,7 @@
         <p class="text-sm md:text-base text-text-light tracking-wide mb-10 reveal">Decouvrez notre carte</p>
 
         <!-- CTA to open menu -->
-        <button id="menu-toggle" class="inline-flex items-center gap-3 bg-brand text-white px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand-dark hover:scale-[1.02] hover:shadow-lg transition-all duration-300 reveal" aria-expanded="false" aria-controls="menu-content">
+        <button id="menu-toggle" class="magnetic-btn inline-flex items-center gap-3 bg-brand text-white px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand-dark hover:scale-[1.02] hover:shadow-lg hover:shadow-brand/25 transition-all duration-300 reveal" aria-expanded="false" aria-controls="menu-content">
           <span id="menu-toggle-text">Decouvrir la carte</span>
           <svg id="menu-toggle-icon" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
@@ -518,12 +543,12 @@
           <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center border border-gray-100 reveal">
             <h3 class="text-lg font-semibold text-gray-900 mb-1">Transat</h3>
             <p class="text-sm text-text-light mb-4">Beach chair</p>
-            <p class="text-4xl font-bold text-brand">20<span class="text-xl">&euro;</span></p>
+            <p class="text-4xl font-bold text-brand"><span class="counter" data-target="20">0</span><span class="text-xl">&euro;</span></p>
           </div>
           <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center border border-gray-100 reveal">
             <h3 class="text-lg font-semibold text-gray-900 mb-1">Transat 1ere ligne</h3>
             <p class="text-sm text-text-light mb-4">First line beach chair</p>
-            <p class="text-4xl font-bold text-brand">25<span class="text-xl">&euro;</span></p>
+            <p class="text-4xl font-bold text-brand"><span class="counter" data-target="25">0</span><span class="text-xl">&euro;</span></p>
           </div>
         </div>
 
@@ -531,15 +556,15 @@
 
         <!-- Photo grid -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-          <div class="rounded-xl overflow-hidden reveal"><img src="images/adobestock_264658860-crop-u2207.webp" alt="Cocktail et cuisine estivale Chiringuito" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="144" height="250"/></div>
-          <div class="rounded-xl overflow-hidden reveal"><img src="images/adobestock_264658860-crop-u2238.webp" alt="Ambiance restaurant de plage" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="143" height="250"/></div>
-          <div class="rounded-xl overflow-hidden reveal"><img src="images/adobestock_264658860-crop-u2224.webp" alt="Plage et transats Chiringuito Vias" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="142" height="249"/></div>
-          <div class="rounded-xl overflow-hidden reveal"><img src="images/adobestock_264658860-crop-u278.webp" alt="Vue mer plage privee Vias" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="209" height="249"/></div>
+          <div class="rounded-xl overflow-hidden photo-reveal"><img src="images/adobestock_264658860-crop-u2207.webp" alt="Cocktail et cuisine estivale Chiringuito" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="144" height="250"/></div>
+          <div class="rounded-xl overflow-hidden photo-reveal"><img src="images/adobestock_264658860-crop-u2238.webp" alt="Ambiance restaurant de plage" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="143" height="250"/></div>
+          <div class="rounded-xl overflow-hidden photo-reveal"><img src="images/adobestock_264658860-crop-u2224.webp" alt="Plage et transats Chiringuito Vias" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="142" height="249"/></div>
+          <div class="rounded-xl overflow-hidden photo-reveal"><img src="images/adobestock_264658860-crop-u278.webp" alt="Vue mer plage privee Vias" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="209" height="249"/></div>
         </div>
 
         <!-- CTA -->
         <div class="text-center mt-12 reveal">
-          <a href="tel:+33674946221" class="inline-flex items-center gap-3 bg-brand text-white px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand-dark hover:scale-[1.02] hover:shadow-lg transition-all duration-300">
+          <a href="tel:+33674946221" class="magnetic-btn inline-flex items-center gap-3 bg-brand text-white px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand-dark hover:scale-[1.02] hover:shadow-lg hover:shadow-brand/25 transition-all duration-300">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
             Reserver
           </a>
@@ -872,6 +897,65 @@
         gsap.from('#avis .bg-white', {
           y: 40, opacity: 0, stagger: 0.15, duration: 0.6, ease: 'power2.out',
           scrollTrigger: { trigger: '#avis', start: 'top 70%' }
+        });
+
+        // Photo reveal (clip-path slide)
+        document.querySelectorAll('.photo-reveal').forEach((el, i) => {
+          ScrollTrigger.create({
+            trigger: el,
+            start: 'top 85%',
+            onEnter: () => {
+              setTimeout(() => el.classList.add('revealed'), i * 150);
+            }
+          });
+        });
+
+        // Counter animation on pricing cards
+        document.querySelectorAll('.counter').forEach(counter => {
+          ScrollTrigger.create({
+            trigger: counter,
+            start: 'top 85%',
+            onEnter: () => {
+              const target = parseInt(counter.dataset.target);
+              let current = 0;
+              const step = Math.ceil(target / 20);
+              const interval = setInterval(() => {
+                current += step;
+                if (current >= target) { current = target; clearInterval(interval); }
+                counter.textContent = current;
+              }, 40);
+            },
+            once: true
+          });
+        });
+
+        // Hero tagline split text animation
+        const tagline = document.getElementById('hero-tagline');
+        if (tagline) {
+          const text = tagline.textContent;
+          tagline.innerHTML = '';
+          text.split('').forEach((char, i) => {
+            const span = document.createElement('span');
+            span.classList.add('split-char');
+            span.textContent = char === ' ' ? '\u00A0' : char;
+            tagline.appendChild(span);
+            setTimeout(() => span.classList.add('visible'), 800 + i * 35);
+          });
+        }
+      }
+
+      // ---- Magnetic buttons (desktop) ----
+      if (window.matchMedia('(pointer: fine)').matches) {
+        document.querySelectorAll('.magnetic-btn').forEach(btn => {
+          btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) scale(1.02)`;
+          });
+          btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0, 0) scale(1)';
+          });
         });
       }
 
