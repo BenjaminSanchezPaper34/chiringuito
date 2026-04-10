@@ -158,15 +158,15 @@
     <div class="w-full h-12 md:h-14" style="background: transparent url('images/frise.svg') repeat-x center top; background-size: 167px 59px;"></div>
   </div>
 
-  <!-- Decorative parallax elements (hidden on mobile) -->
-  <div class="hidden lg:block fixed top-0 left-0 z-30 pointer-events-none" id="deco-left">
-    <img src="images/plantesgauche.webp" alt="" class="w-48 xl:w-64 opacity-90" width="351" height="532" aria-hidden="true"/>
+  <!-- Decorative parallax elements -->
+  <div class="fixed top-0 left-0 z-30 pointer-events-none" id="deco-left">
+    <img src="images/plantesgauche.webp" alt="" class="w-32 md:w-56 lg:w-64 xl:w-80 opacity-90" width="351" height="532" aria-hidden="true"/>
   </div>
-  <div class="hidden lg:block fixed top-0 right-0 z-30 pointer-events-none" id="deco-right">
-    <img src="images/plantesdroite.webp" alt="" class="w-48 xl:w-64 opacity-90" width="350" height="532" aria-hidden="true"/>
+  <div class="fixed top-0 right-0 z-30 pointer-events-none" id="deco-right">
+    <img src="images/plantesdroite.webp" alt="" class="w-32 md:w-56 lg:w-64 xl:w-80 opacity-90" width="350" height="532" aria-hidden="true"/>
   </div>
-  <div class="hidden lg:block fixed top-0 right-28 xl:right-36 z-30 pointer-events-none" id="deco-macrame">
-    <img src="images/macrame.webp" alt="" class="w-24 xl:w-28 opacity-80" width="141" height="348" aria-hidden="true"/>
+  <div class="fixed top-0 right-16 md:right-28 lg:right-36 xl:right-44 z-30 pointer-events-none" id="deco-macrame">
+    <img src="images/macrame.webp" alt="" class="w-16 md:w-24 lg:w-28 xl:w-32 opacity-80" width="141" height="348" aria-hidden="true"/>
   </div>
 
   <!-- Skip to content -->
@@ -547,7 +547,12 @@
   <!-- ============================================ -->
   <!-- FOOTER -->
   <!-- ============================================ -->
-  <footer id="contact" class="bg-gray-900 text-white py-16 md:py-20 px-6">
+  <!-- Frise transition vers footer -->
+  <div class="w-full pointer-events-none" aria-hidden="true" style="background-color: #009BA4;">
+    <div class="w-full h-12 md:h-14" style="background: white url('images/frise.svg') repeat-x center bottom; background-size: 167px 59px;"></div>
+  </div>
+
+  <footer id="contact" class="text-white py-16 md:py-20 px-6" style="background-color: #009BA4;">
     <div class="max-w-5xl mx-auto">
 
       <!-- Logo -->
@@ -560,7 +565,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 text-center md:text-left mb-12">
         <!-- Address -->
         <div>
-          <h3 class="text-xs font-semibold uppercase tracking-widest text-white/50 mb-4">Adresse</h3>
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-white/70 mb-4">Adresse</h3>
           <a href="http://maps.apple.com/?q=Chiringuito-vias-plage" class="text-white/80 hover:text-white transition-colors leading-relaxed block">
             Plage de Farinette<br/>34450 Vias-Plage
           </a>
@@ -568,7 +573,7 @@
 
         <!-- Hours & contact -->
         <div>
-          <h3 class="text-xs font-semibold uppercase tracking-widest text-white/50 mb-4">Horaires &amp; Contact</h3>
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-white/70 mb-4">Horaires &amp; Contact</h3>
           <p class="text-white/80 mb-2">Ouvert 7j/7 &middot; 08h00 - 01h00</p>
           <a href="tel:+33674946221" class="text-white/80 hover:text-white transition-colors block mb-1">06 74 94 62 21</a>
           <a href="mailto:contact@chiringuito-vias.fr" class="text-white/80 hover:text-white transition-colors block text-sm">contact@chiringuito-vias.fr</a>
@@ -576,12 +581,12 @@
 
         <!-- Social & partners -->
         <div>
-          <h3 class="text-xs font-semibold uppercase tracking-widest text-white/50 mb-4">Suivez-nous</h3>
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-white/70 mb-4">Suivez-nous</h3>
           <div class="flex items-center gap-4 justify-center md:justify-start mb-6">
-            <a href="https://www.facebook.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="images/facebook-bleu-chiringuito.svg" alt="Facebook" class="w-8 h-8 opacity-70 hover:opacity-100 transition-opacity" width="34" height="34" loading="lazy"/></a>
-            <a href="https://www.instagram.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="images/instagram-bleu-chiringuito.svg" alt="Instagram" class="w-8 h-8 opacity-70 hover:opacity-100 transition-opacity" width="34" height="34" loading="lazy"/></a>
-            <a href="https://www.tiktok.com/@chiringuitovias" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><img src="images/tiktok-bleu-chiringuito.svg" alt="TikTok" class="w-7 h-8 opacity-70 hover:opacity-100 transition-opacity" width="29" height="34" loading="lazy"/></a>
-            <a href="https://www.tripadvisor.fr/Restaurant_Review-g1080326-d10806143-Reviews-Chiringuito-Vias_Herault_Occitanie.html" target="_blank" rel="noopener noreferrer" aria-label="TripAdvisor"><img src="images/tripadvisor-bleu-chiringuito.svg" alt="TripAdvisor" class="w-8 h-8 opacity-70 hover:opacity-100 transition-opacity" width="34" height="34" loading="lazy"/></a>
+            <a href="https://www.facebook.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="images/facebook-chiringuito.svg" alt="Facebook" class="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity" width="34" height="34" loading="lazy"/></a>
+            <a href="https://www.instagram.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="images/instagram-chiringuito.svg" alt="Instagram" class="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity" width="34" height="34" loading="lazy"/></a>
+            <a href="https://www.tiktok.com/@chiringuitovias" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><img src="images/tiktok-blanc-chiringuito.svg" alt="TikTok" class="w-7 h-8 opacity-80 hover:opacity-100 transition-opacity" width="29" height="34" loading="lazy"/></a>
+            <a href="https://www.tripadvisor.fr/Restaurant_Review-g1080326-d10806143-Reviews-Chiringuito-Vias_Herault_Occitanie.html" target="_blank" rel="noopener noreferrer" aria-label="TripAdvisor"><img src="images/tripadvisor-chiringuito.svg" alt="TripAdvisor" class="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity" width="34" height="34" loading="lazy"/></a>
           </div>
           <div class="flex items-center gap-4 justify-center md:justify-start">
             <a href="https://www.petitfute.com/v19402-vias-34450/c1165-restaurants/c1248-specialites/c1235-restaurant-de-plage/1837186-le-chiringuito.html" target="_blank" rel="noopener noreferrer"><img src="images/logo-lepetitfute.webp" alt="Recommande par Le Petit Fute" class="h-7 opacity-60 hover:opacity-100 transition-opacity" loading="lazy" height="28"/></a>
@@ -591,7 +596,7 @@
       </div>
 
       <!-- Bottom bar -->
-      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/40">
+      <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/60">
         <p>CHIRINGUITO &copy; <script>document.write(new Date().getFullYear())</script> Tous droits reserves</p>
         <a href="http://paper34.fr" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-white/60 transition-colors">
           Realise par
