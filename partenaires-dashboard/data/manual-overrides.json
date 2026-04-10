@@ -1,0 +1,25 @@
+{
+  "kpis": {},
+  "physicalVisitors": {
+    "peakDailyVisitors": 1000,
+    "seasonStartMonth": "Mai",
+    "seasonEndMonth": "Septembre",
+    "seasonTotal": 104400,
+    "eventsTotal": 7500,
+    "monthlyData": [
+      { "month": "Mai",       "dailyAvg": 400,  "days": 31, "total": 12400 },
+      { "month": "Juin",      "dailyAvg": 500,  "days": 30, "total": 15000 },
+      { "month": "Juillet",   "dailyAvg": 1000, "days": 31, "total": 31000 },
+      { "month": "Août",      "dailyAvg": 1000, "days": 31, "total": 31000 },
+      { "month": "Septembre", "dailyAvg": 500,  "days": 30, "total": 15000 }
+    ],
+    "events": [
+      { "name": "Opening Party",   "emoji": "🌅", "period": "Début mai",       "visitors": 2500 },
+      { "name": "Coachella Party", "emoji": "🌴", "period": "Plein été",        "visitors": 2500 },
+      { "name": "Closing Party",   "emoji": "🌙", "period": "Fin septembre",    "visitors": 2500 }
+    ]
+  },
+  "platforms": {},
+  "history": {},
+  "notes": {}
+}

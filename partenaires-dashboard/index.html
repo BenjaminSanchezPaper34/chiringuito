@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Le Chiringuito — Dossier Partenaires 2026</title>
+  <link rel="stylesheet" href="assets/styles.css?v=4">
+</head>
+<body>
+
+<!-- Background layers -->
+<div class="bg-gradient" aria-hidden="true"></div>
+<div class="bg-layer bg-layer-left"  aria-hidden="true"></div>
+<div class="bg-layer bg-layer-right" aria-hidden="true"></div>
+
+<div class="dashboard">
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-brand">
+        <img
+          src="assets/logo-chiringuito.svg"
+          alt="Logo Le Chiringuito"
+          class="hero-logo"
+          width="300" height="54"
+        >
+        <div>
+          <p class="eyebrow">Dossier partenaires &amp; annonceurs</p>
+          <h1 class="hero-title">Le Chiringuito</h1>
+          <p class="hero-subtitle">
+            Restaurant · Bar · Plage Privée<br>
+            Vias Plage, Hérault 34 — Occitanie
+          </p>
+        </div>
+      </div>
+
+      <div class="hero-highlights">
+        <div class="highlight-pill">
+          <span class="highlight-value" id="hlReach">—</span>
+          <span class="highlight-label">touchpoints / an</span>
+        </div>
+        <div class="highlight-pill">
+          <span class="highlight-value" id="hlRating">—</span>
+          <span class="highlight-label">note moyenne</span>
+        </div>
+        <div class="highlight-pill">
+          <span class="highlight-value" id="hlReviews">—</span>
+          <span class="highlight-label">avis clients</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-meta">
+      <span id="generatedAt">Chargement…</span>
+      <span class="dot">·</span>
+      <span id="globalStatus">—</span>
+    </div>
+  </header>
+
+  <!-- Wave -->
+  <div class="wave-sep" aria-hidden="true">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 C300,40 900,0 1200,20 L1200,40 L0,40 Z" fill="var(--bg)"/>
+    </svg>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PHOTO MARQUEE (Instagram, auto-show)
+  ══════════════════════════════════════ -->
+  <div class="photo-marquee-section" id="photoMarqueeSection" style="display:none" aria-hidden="true">
+    <div class="photo-track" id="photoTrack"></div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       MEGA KPIs
+  ══════════════════════════════════════ -->
+  <section class="mega-kpis" aria-label="Indicateurs clés">
+    <div class="mega-card mega-card--physical">
+      <div class="mega-card-icon">🌊</div>
+      <p class="mega-value" id="mkpiSeasonVisitors">—</p>
+      <p class="mega-label">Visiteurs / saison</p>
+      <p class="mega-sub">Mai → Septembre 2025</p>
+    </div>
+    <div class="mega-card mega-card--social">
+      <div class="mega-card-icon">📱</div>
+      <p class="mega-value" id="mkpiSocial">—</p>
+      <p class="mega-label">Abonnés sociaux</p>
+      <p class="mega-sub">Instagram + Facebook</p>
+    </div>
+    <div class="mega-card mega-card--reviews">
+      <div class="mega-card-icon">⭐</div>
+      <p class="mega-value" id="mkpiReviews">—</p>
+      <p class="mega-label">Avis clients</p>
+      <p class="mega-sub">Google · TripAdvisor · Facebook</p>
+    </div>
+    <div class="mega-card mega-card--peak">
+      <div class="mega-card-icon">🏖️</div>
+      <p class="mega-value" id="mkpiPeak">1 000</p>
+      <p class="mega-label">Visiteurs / jour</p>
+      <p class="mega-sub">Pic Juillet &amp; Août</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SERVICES STRIP
+  ══════════════════════════════════════ -->
+  <div class="services-strip" aria-label="Nos services">
+    <div class="service-item"><span class="service-icon">🍽️</span><span>Restaurant en salle</span></div>
+    <div class="service-item"><span class="service-icon">🥂</span><span>Tapas &amp; snacking</span></div>
+    <div class="service-item"><span class="service-icon">🍹</span><span>Bar</span></div>
+    <div class="service-item"><span class="service-icon">☀️</span><span>Bain de soleil</span></div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       VISITEURS PHYSIQUES
+  ══════════════════════════════════════ -->
+  <section class="section-block" aria-label="Fréquentation physique">
+    <div class="section-header">
+      <h2 class="section-title"><span class="section-icon">🌊</span> Fréquentation physique</h2>
+      <div class="section-badges">
+        <span class="sbadge sbadge--teal">Saison 5 mois</span>
+        <span class="sbadge sbadge--sand">Données estimées</span>
+      </div>
+    </div>
+
+    <div class="physical-grid">
+      <!-- Monthly cards -->
+      <div class="monthly-cards" id="monthlyCards">
+        <!-- Rendered by app.js -->
+      </div>
+
+      <!-- Footfall bar chart -->
+      <div class="chart-card physical-chart-card">
+        <h3>Visiteurs par mois</h3>
+        <div class="chart-wrap">
+          <canvas id="footfallChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Season calendar strip -->
+    <div class="season-strip" id="seasonCalendar" aria-label="Calendrier saisonnier"></div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SOIRÉES & ÉVÉNEMENTS
+  ══════════════════════════════════════ -->
+  <section class="section-block" aria-label="Soirées événementielles">
+    <div class="section-header">
+      <h2 class="section-title"><span class="section-icon">🎉</span> Soirées &amp; événements</h2>
+      <div class="section-badges">
+        <span class="sbadge sbadge--teal">3 soirées / saison</span>
+        <span class="sbadge sbadge--sand" id="eventsTotalBadge">7 500 festivaliers</span>
+      </div>
+    </div>
+
+    <div class="events-grid">
+
+      <div class="event-card event-card--opening">
+        <div class="event-top">
+          <span class="event-tag">Début mai</span>
+          <span class="event-crowd"><span id="evOpening">2 500</span> pers.</span>
+        </div>
+        <div class="event-icon">🌅</div>
+        <h3 class="event-name">Opening Party</h3>
+        <p class="event-desc">Lancement de saison · DJ set live · Inauguration de la plage privée</p>
+      </div>
+
+      <div class="event-card event-card--coachella">
+        <div class="event-top">
+          <span class="event-tag">Plein été</span>
+          <span class="event-crowd"><span id="evCoachella">2 500</span> pers.</span>
+        </div>
+        <div class="event-icon">🌴</div>
+        <h3 class="event-name">Coachella Party</h3>
+        <p class="event-desc">Ambiance festival · Tenues colorées · Grand DJ set nocturne en bord de mer</p>
+      </div>
+
+      <div class="event-card event-card--closing">
+        <div class="event-top">
+          <span class="event-tag">Fin septembre</span>
+          <span class="event-crowd"><span id="evClosing">2 500</span> pers.</span>
+        </div>
+        <div class="event-icon">🌙</div>
+        <h3 class="event-name">Closing Party</h3>
+        <p class="event-desc">Clôture de saison · Nuit mémorable · Cocktails &amp; spectacle au coucher du soleil</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       RÉSEAUX SOCIAUX
+  ══════════════════════════════════════ -->
+  <section class="section-block" aria-label="Réseaux sociaux">
+    <div class="section-header">
+      <h2 class="section-title"><span class="section-icon">📱</span> Réseaux sociaux</h2>
+      <div class="section-badges">
+        <span class="sbadge sbadge--teal">Données live</span>
+      </div>
+    </div>
+
+    <div class="platform-grid platform-grid--2">
+
+      <!-- Instagram -->
+      <div class="platform-card platform-card--instagram">
+        <div class="platform-top">
+          <span class="platform-badge platform-badge--instagram">📸 Instagram</span>
+          <a href="https://www.instagram.com/chiringuitovias/" target="_blank" rel="noopener" class="platform-link">@chiringuitovias ↗</a>
+        </div>
+        <p class="platform-main" id="igFollowers">—</p>
+        <p class="platform-sub">Abonnés</p>
+        <div class="platform-stats-row">
+          <div class="pstat">
+            <span class="pstat-value" id="igPosts">—</span>
+            <span class="pstat-label">publications</span>
+          </div>
+          <div class="pstat">
+            <span class="pstat-value" id="igFollowing">—</span>
+            <span class="pstat-label">abonnements</span>
+          </div>
+          <div class="pstat" id="igEngagementWrap" style="display:none">
+            <span class="pstat-value" id="igEngagement">—</span>
+            <span class="pstat-label">engagement</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Facebook -->
+      <div class="platform-card platform-card--facebook">
+        <div class="platform-top">
+          <span class="platform-badge platform-badge--facebook">👍 Facebook</span>
+          <a href="https://www.facebook.com/chiringuitovias/" target="_blank" rel="noopener" class="platform-link">chiringuitovias ↗</a>
+        </div>
+        <p class="platform-main" id="fbLikes">—</p>
+        <p class="platform-sub">J'aime la page</p>
+        <div class="platform-stats-row">
+          <div class="pstat">
+            <span class="pstat-value" id="fbReviews">—</span>
+            <span class="pstat-label">avis</span>
+          </div>
+          <div class="pstat">
+            <span class="pstat-value" id="fbRating">—</span>
+            <span class="pstat-label">note</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       E-RÉPUTATION
+  ══════════════════════════════════════ -->
+  <section class="section-block" aria-label="E-réputation">
+    <div class="section-header">
+      <h2 class="section-title"><span class="section-icon">⭐</span> E-Réputation</h2>
+      <div class="section-badges">
+        <span class="sbadge sbadge--gold" id="totalReviewsBadge">— avis au total</span>
+        <span class="sbadge sbadge--teal" id="avgRatingBadge">— moyenne pondérée</span>
+      </div>
+    </div>
+
+    <div class="platform-grid platform-grid--3">
+
+      <!-- Google -->
+      <div class="platform-card platform-card--google">
+        <div class="platform-top">
+          <span class="platform-badge platform-badge--google">🔍 Google</span>
+        </div>
+        <p class="platform-main" id="googleRating">—</p>
+        <p class="platform-sub">Note Google Maps</p>
+        <p class="platform-extra" id="googleReviews">—</p>
+        <div class="stars-bar" id="googleStars" aria-label="Note étoiles Google"></div>
+      </div>
+
+      <!-- TripAdvisor -->
+      <div class="platform-card platform-card--tripadvisor">
+        <div class="platform-top">
+          <span class="platform-badge platform-badge--tripadvisor">🦉 TripAdvisor</span>
+        </div>
+        <p class="platform-main" id="taRating">—</p>
+        <p class="platform-sub">Note TripAdvisor</p>
+        <p class="platform-extra" id="taReviews">—</p>
+        <div class="stars-bar" id="taStars" aria-label="Note étoiles TripAdvisor"></div>
+      </div>
+
+      <!-- Facebook Avis -->
+      <div class="platform-card platform-card--facebook-rev">
+        <div class="platform-top">
+          <span class="platform-badge platform-badge--facebook">👍 Facebook Avis</span>
+        </div>
+        <p class="platform-main" id="fbRevRating">—</p>
+        <p class="platform-sub">Note Facebook</p>
+        <p class="platform-extra" id="fbRevCount">—</p>
+        <div class="stars-bar" id="fbStars" aria-label="Note étoiles Facebook"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SITE WEB
+  ══════════════════════════════════════ -->
+  <section class="section-block" aria-label="Site web">
+    <div class="section-header">
+      <h2 class="section-title"><span class="section-icon">🌐</span> Site web</h2>
+      <div class="section-badges">
+        <span class="sbadge sbadge--teal">chiringuito-vias.fr</span>
+      </div>
+    </div>
+
+    <div class="platform-grid platform-grid--web">
+
+      <!-- GA4 stats -->
+      <div class="platform-card platform-card--website" id="websiteAnalyticsCard">
+        <div class="platform-top">
+          <span class="platform-badge platform-badge--website">📊 Analytics (30 j)</span>
+          <a href="https://chiringuito-vias.fr" target="_blank" rel="noopener" class="platform-link">chiringuito-vias.fr ↗</a>
+        </div>
+        <p class="platform-main" id="webUsers">—</p>
+        <p class="platform-sub">Utilisateurs uniques</p>
+        <div class="platform-stats-row">
+          <div class="pstat">
+            <span class="pstat-value" id="webSessions">—</span>
+            <span class="pstat-label">sessions</span>
+          </div>
+          <div class="pstat">
+            <span class="pstat-value" id="webPageviews">—</span>
+            <span class="pstat-label">pages vues</span>
+          </div>
+        </div>
+        <p class="website-note" id="websiteNote"></p>
+      </div>
+
+      <!-- Total Reach -->
+      <div class="platform-card platform-card--reach">
+        <div class="platform-top">
+          <span class="platform-badge platform-badge--brand">🎯 Portée totale estimée</span>
+        </div>
+        <p class="platform-main reach-value" id="totalReach">—</p>
+        <p class="platform-sub">Touchpoints / an</p>
+        <div class="reach-breakdown" id="reachBreakdown"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CHARTS
+  ══════════════════════════════════════ -->
+  <div class="charts-grid">
+
+    <!-- Audience history -->
+    <article class="chart-card">
+      <h3>Évolution audience sociale</h3>
+      <div class="chart-wrap chart-wrap--sm">
+        <canvas id="audienceChart"></canvas>
+      </div>
+    </article>
+
+    <!-- Reviews breakdown -->
+    <article class="chart-card">
+      <h3>Répartition des avis</h3>
+      <div class="chart-wrap chart-wrap--sm">
+        <canvas id="proofChart"></canvas>
+      </div>
+    </article>
+
+    <!-- GA4 daily traffic (full width, shown only when data available) -->
+    <article class="chart-card chart-card--full">
+      <h3>Trafic site web — utilisateurs / jour (GA4)</h3>
+      <div class="chart-wrap" id="webChartWrap" style="display:none">
+        <canvas id="websiteChart"></canvas>
+      </div>
+      <p class="chart-pending" id="websiteChartNote"></p>
+    </article>
+
+  </div>
+
+  <!-- ══════════════════════════════════════
+       LOCALISATION
+  ══════════════════════════════════════ -->
+  <section class="section-block" aria-label="Localisation">
+    <div class="section-header">
+      <h2 class="section-title"><span class="section-icon">📍</span> Localisation</h2>
+      <div class="section-badges">
+        <span class="sbadge sbadge--teal">Vias Plage, 34450 Hérault</span>
+      </div>
+    </div>
+    <div class="map-wrap">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=3.3915%2C43.2748%2C3.4215%2C43.2948&layer=mapnik&marker=43.2848%2C3.4065"
+        width="100%"
+        height="380"
+        style="border:0"
+        loading="lazy"
+        title="Localisation Le Chiringuito Vias Plage"
+      ></iframe>
+      <a
+        href="https://www.openstreetmap.org/?mlat=43.2848&mlon=3.4065#map=15/43.2848/3.4065"
+        target="_blank"
+        rel="noopener"
+        style="display:block;text-align:right;font-size:.72rem;color:var(--muted);padding:6px 10px 0;opacity:.7"
+      >Voir sur OpenStreetMap ↗</a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SOURCE STATUS
+  ══════════════════════════════════════ -->
+  <div class="trust" aria-label="Statut des sources">
+    <h3>Statut des sources de données</h3>
+    <ul class="status-list" id="statusList">
+      <!-- Rendered by app.js -->
+    </ul>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       CONTACT / FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="contact-footer">
+    <div class="contact-inner">
+      <div>
+        <p class="contact-label">Partenariats &amp; Publicité</p>
+        <p class="contact-title">Travailler ensemble</p>
+        <p class="contact-sub">Visibilité premium · Audience qualifiée · Balnéaire Méditerranée</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:contact@chiringuito-vias.fr" class="contact-btn contact-btn--outline">✉ Nous contacter</a>
+        <a href="https://chiringuito-vias.fr" target="_blank" rel="noopener" class="contact-btn contact-btn--outline">🌐 Notre site</a>
+      </div>
+    </div>
+    <p class="contact-legal">
+      Document confidentiel — Chiringuito Vias · Mars 2026 · Données issues de sources publiques et estimations internes.
+    </p>
+  </footer>
+
+</div><!-- /.dashboard -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="data/metrics-inline.js?v=4"></script>
+<script src="assets/app.js?v=4"></script>
+</body>
+</html>

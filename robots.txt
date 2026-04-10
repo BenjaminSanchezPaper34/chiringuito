@@ -1,5 +1,6 @@
 # Chiringuito Vias - robots.txt
 User-agent: *
 Allow: /
+Disallow: /partenaires-dashboard/
 
 Sitemap: https://chiringuito-vias.fr/sitemap.xml
