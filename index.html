@@ -215,8 +215,9 @@
   <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- Bouton reserver flottant (mobile) -->
-  <a href="tel:+33674946221" id="floatingCta" class="fixed bottom-6 right-6 z-50 md:hidden bg-brand text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-brand-dark hover:scale-110 transition-all duration-300 opacity-0 translate-y-4" aria-label="Reserver par telephone" style="pointer-events: none;">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+  <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" id="floatingCta" class="fixed bottom-6 right-6 z-50 md:hidden bg-brand text-white h-14 px-5 rounded-full flex items-center justify-center gap-2 shadow-lg shadow-brand/30 hover:bg-brand-dark hover:scale-105 transition-all duration-300 opacity-0 translate-y-4" aria-label="Reserver une table" style="pointer-events: none;">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+    <span class="text-xs font-bold uppercase tracking-wider">Reserver</span>
   </a>
 
   <!-- Decorative parallax elements -->
@@ -257,6 +258,7 @@
         <a href="#plage" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Plage</a>
         <a href="#avis" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Avis</a>
         <a href="#contact" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Contact</a>
+        <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" id="nav-cta" class="ml-2 px-5 py-2 bg-white/20 backdrop-blur-sm text-white border border-white/30 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand hover:border-brand hover:text-white transition-all duration-300">Reserver</a>
       </div>
 
       <!-- Mobile hamburger -->
@@ -304,7 +306,19 @@
       <!-- Content -->
       <div id="hero-content" class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
         <img src="images/logo-blanc-chiringuito.svg" alt="Chiringuito - Plage privee Vias" class="w-48 md:w-72 lg:w-80 mb-8" id="hero-logo" width="320" height="200"/>
-        <p id="hero-tagline" class="text-white/90 text-sm md:text-base tracking-[0.3em] uppercase font-light mb-12" aria-label="Restaurant, Bar, Plage privee">Restaurant &middot; Bar &middot; Plage privee</p>
+        <p id="hero-tagline" class="text-white/90 text-sm md:text-base tracking-[0.3em] uppercase font-light mb-10" aria-label="Restaurant, Bar, Plage privee">Restaurant &middot; Bar &middot; Plage privee</p>
+
+        <!-- Reservation CTAs -->
+        <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-10">
+          <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-2 border-2 border-white text-white px-7 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-widest hover:bg-white hover:text-gray-900 transition-all duration-300">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Reserver votre table
+          </a>
+          <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-2 border-2 border-white/50 text-white/80 px-7 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-widest hover:bg-white hover:text-gray-900 hover:border-white transition-all duration-300">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            Reserver votre transat
+          </a>
+        </div>
 
         <!-- Social icons -->
         <div class="flex items-center gap-5">
@@ -564,10 +578,13 @@
 
         <!-- CTA -->
         <div class="text-center mt-12 reveal">
-          <a href="tel:+33674946221" class="magnetic-btn inline-flex items-center gap-3 bg-brand text-white px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand-dark hover:scale-[1.02] hover:shadow-lg hover:shadow-brand/25 transition-all duration-300">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-            Reserver
+          <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-3 bg-brand text-white px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand-dark hover:scale-[1.02] hover:shadow-lg hover:shadow-brand/25 transition-all duration-300">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            Reserver votre transat
           </a>
+          <p class="mt-4 text-sm text-text-light">
+            ou par telephone : <a href="tel:+33674946221" class="text-brand hover:text-brand-dark font-medium transition-colors">06 74 94 62 21</a>
+          </p>
         </div>
       </div>
     </section>
@@ -752,6 +769,7 @@
       const navLogoColor = document.getElementById('nav-logo-color');
       const navLinks = document.querySelectorAll('.nav-link');
       const hamburgerSpans = document.querySelectorAll('#hamburger span');
+      const navCta = document.getElementById('nav-cta');
 
       function updateNav() {
         const scrolled = window.scrollY > 100;
@@ -768,6 +786,14 @@
           span.classList.toggle('bg-white', !scrolled);
           span.classList.toggle('bg-gray-900', scrolled);
         });
+        if (navCta) {
+          navCta.classList.toggle('bg-white/20', !scrolled);
+          navCta.classList.toggle('border-white/30', !scrolled);
+          navCta.classList.toggle('text-white', !scrolled);
+          navCta.classList.toggle('bg-brand', scrolled);
+          navCta.classList.toggle('border-brand', scrolled);
+          navCta.classList.toggle('text-white', scrolled);
+        }
       }
       window.addEventListener('scroll', updateNav, { passive: true });
       updateNav();
