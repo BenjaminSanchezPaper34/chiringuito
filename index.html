@@ -242,8 +242,8 @@
   <!-- ============================================ -->
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" role="navigation" aria-label="Navigation principale">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <!-- Logo -->
-      <a href="#accueil" class="relative z-10">
+      <!-- Logo (hidden at top, appears on scroll) -->
+      <a href="#accueil" class="relative z-10" id="nav-logo-wrap" style="opacity: 0; pointer-events: none; transition: opacity 0.3s ease;">
         <img id="nav-logo-white" src="images/logo-blanc-chiringuito.svg" alt="Chiringuito Vias - Plage privee" class="h-10 md:h-12 transition-opacity duration-300" width="120" height="48"/>
         <img id="nav-logo-color" src="images/logo2-chiringuito.svg" alt="Chiringuito Vias - Plage privee" class="h-10 md:h-12 absolute inset-0 opacity-0 transition-opacity duration-300" width="120" height="48"/>
       </a>
@@ -290,15 +290,15 @@
     <!-- ============================================ -->
     <section id="accueil" class="relative h-screen overflow-hidden">
       <!-- Video background -->
-      <video id="hero-video" class="absolute inset-0 w-full h-full object-cover" playsinline autoplay loop muted preload="metadata" poster="images/og-chiringuito.jpg">
+      <video id="hero-video" class="absolute inset-0 w-full h-full object-cover" playsinline autoplay loop muted preload="metadata" style="background: white;">
         <source src="assets/mainvideomobile-chiringuito.mp4" type="video/mp4" media="(max-width: 768px)"/>
         <source src="assets/mainvideomobile-chiringuito.webm" type="video/webm" media="(max-width: 768px)"/>
         <source src="assets/mainvideo-chiringuito.mp4" type="video/mp4"/>
         <source src="assets/mainvideo-chiringuito.webm" type="video/webm"/>
       </video>
 
-      <!-- Overlay -->
-      <div class="absolute inset-0 bg-black/40"></div>
+      <!-- Gradient overlay : bleu brand en haut qui se dissout vers transparent -->
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,155,164,0.7) 0%, rgba(0,155,164,0.3) 30%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.3) 100%);"></div>
 
       <!-- Content -->
       <div id="hero-content" class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
@@ -307,12 +307,10 @@
 
         <!-- Reservation CTAs -->
         <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-10">
-          <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-2 border-2 border-white text-white px-7 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-widest hover:bg-white hover:text-gray-900 transition-all duration-300">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-2 border border-white/70 text-white px-7 py-3 rounded-full text-xs sm:text-sm font-medium uppercase tracking-widest hover:bg-white hover:text-gray-900 transition-all duration-300">
             R&eacute;server votre table
           </a>
-          <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-2 border-2 border-white/50 text-white/80 px-7 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-widest hover:bg-white hover:text-gray-900 hover:border-white transition-all duration-300">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-2 border border-white/70 text-white px-7 py-3 rounded-full text-xs sm:text-sm font-medium uppercase tracking-widest hover:bg-white hover:text-gray-900 transition-all duration-300">
             R&eacute;server votre transat
           </a>
         </div>
@@ -767,13 +765,19 @@
       const navLinks = document.querySelectorAll('.nav-link');
       const hamburgerSpans = document.querySelectorAll('#hamburger span');
       const navCta = document.getElementById('nav-cta');
+      const navLogoWrap = document.getElementById('nav-logo-wrap');
 
       function updateNav() {
         const scrolled = window.scrollY > 100;
         navbar.classList.toggle('bg-white/95', scrolled);
         navbar.classList.toggle('backdrop-blur-lg', scrolled);
         navbar.classList.toggle('shadow-sm', scrolled);
-        navLogoWhite.style.opacity = scrolled ? '0' : '1';
+        // Logo: hidden at top, visible after scroll
+        if (navLogoWrap) {
+          navLogoWrap.style.opacity = scrolled ? '1' : '0';
+          navLogoWrap.style.pointerEvents = scrolled ? 'auto' : 'none';
+        }
+        navLogoWhite.style.opacity = '0';
         navLogoColor.style.opacity = scrolled ? '1' : '0';
         navLinks.forEach(link => {
           link.classList.toggle('text-white', !scrolled);
