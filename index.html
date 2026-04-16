@@ -196,10 +196,10 @@
 
 
   <!-- Decorative parallax elements -->
-  <div class="fixed -top-2 -left-1 z-30 pointer-events-none" id="deco-left" style="transform: translateX(-100%); transform-origin: top left;">
+  <div class="fixed -top-2 -left-1 z-30 pointer-events-none" id="deco-left">
     <img src="images/plantesgauche.webp" alt="" class="w-36 md:w-56 lg:w-64 xl:w-80 opacity-90 drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]" width="351" height="532" aria-hidden="true"/>
   </div>
-  <div class="fixed -top-2 -right-1 z-30 pointer-events-none" id="deco-right" style="transform: translateX(100%); transform-origin: top right;">
+  <div class="fixed -top-2 -right-1 z-30 pointer-events-none" id="deco-right">
     <img src="images/plantesdroite.webp" alt="" class="w-36 md:w-56 lg:w-64 xl:w-80 opacity-90 drop-shadow-[-4px_4px_12px_rgba(0,0,0,0.15)]" width="350" height="532" aria-hidden="true"/>
   </div>
   <div class="fixed -top-2 right-16 md:right-28 lg:right-36 xl:right-44 z-30 pointer-events-none" id="deco-macrame">
@@ -907,19 +907,14 @@
           scrollTrigger: { trigger: '#accueil', start: '30% top', end: 'bottom top', scrub: true }
         });
 
-        // Decorative elements : slide in on load
-        gsap.to('#deco-left', { x: 0, duration: 1.2, delay: 0.3, ease: 'power3.out' });
-        gsap.to('#deco-right', { x: 0, duration: 1.2, delay: 0.5, ease: 'power3.out' });
-        // macrame : pas d'animation d'entree, juste parallaxe + sway
-
-        // Decorative elements : parallax on scroll (vitesses et axes differents)
+        // Decorative elements : visible au chargement, disparaissent au scroll
         gsap.to('#deco-left', {
-          y: -150, x: -20, rotation: -3,
-          scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 0.8 }
+          opacity: 0, y: -80,
+          scrollTrigger: { trigger: 'body', start: '15% top', end: '40% top', scrub: true }
         });
         gsap.to('#deco-right', {
-          y: -90, x: 15, rotation: 2,
-          scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.2 }
+          opacity: 0, y: -60,
+          scrollTrigger: { trigger: 'body', start: '15% top', end: '45% top', scrub: true }
         });
         gsap.to('#deco-macrame', {
           y: -50, rotation: 4,
