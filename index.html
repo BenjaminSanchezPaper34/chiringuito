@@ -907,14 +907,14 @@
           scrollTrigger: { trigger: '#accueil', start: '30% top', end: 'bottom top', scrub: true }
         });
 
-        // Decorative elements : visible au chargement, disparaissent au scroll
+        // Decorative elements : remontent et s'ecartent au scroll
         gsap.to('#deco-left', {
-          opacity: 0, y: -80,
-          scrollTrigger: { trigger: 'body', start: '15% top', end: '40% top', scrub: true }
+          y: -250, x: -80,
+          scrollTrigger: { trigger: 'body', start: 'top top', end: '50% top', scrub: 0.8 }
         });
         gsap.to('#deco-right', {
-          opacity: 0, y: -60,
-          scrollTrigger: { trigger: 'body', start: '15% top', end: '45% top', scrub: true }
+          y: -200, x: 80,
+          scrollTrigger: { trigger: 'body', start: 'top top', end: '50% top', scrub: 1 }
         });
         gsap.to('#deco-macrame', {
           y: -50, rotation: 4,
