@@ -239,7 +239,11 @@
     </div>
 
     <!-- Mobile overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-brand z-[65] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="mobile-menu" class="fixed inset-0 bg-brand z-[75] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+      <!-- Bouton fermer -->
+      <button id="menu-close-mobile" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center" aria-label="Fermer le menu">
+        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
       <div class="flex flex-col items-center gap-8">
         <a href="#accueil" class="mobile-nav-link text-2xl font-medium tracking-widest uppercase text-white">Accueil</a>
         <a href="#menu" class="mobile-nav-link text-2xl font-medium tracking-widest uppercase text-white">Menu</a>
@@ -824,16 +828,16 @@
         if (menuOpen) hamburgerSpans.forEach(s => { s.classList.remove('bg-gray-900'); s.classList.add('bg-white'); });
       });
 
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          menuOpen = false;
-          hamburger.classList.remove('hamburger-active');
-          hamburger.setAttribute('aria-expanded', 'false');
-          mobileMenu.classList.add('opacity-0', 'pointer-events-none');
-          document.body.classList.remove('overflow-hidden');
-          updateNav();
-        });
-      });
+      function closeMobileMenu() {
+        menuOpen = false;
+        hamburger.classList.remove('hamburger-active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+        document.body.classList.remove('overflow-hidden');
+      }
+
+      mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+      document.getElementById('menu-close-mobile').addEventListener('click', closeMobileMenu);
 
       // ---- Menu toggle (show/hide the carte) ----
       const menuToggle = document.getElementById('menu-toggle');
