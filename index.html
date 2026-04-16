@@ -215,7 +215,7 @@
   <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- Bouton reserver flottant (mobile) -->
-  <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" id="floatingCta" class="fixed bottom-5 right-5 z-50 md:hidden bg-brand text-white h-11 px-4 rounded-full flex items-center justify-center gap-2 shadow-md shadow-brand/20 hover:bg-brand-dark hover:scale-105 transition-all duration-300 opacity-0 translate-y-4" aria-label="R&eacute;server une table" style="pointer-events: none;">
+  <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" id="floatingCta" class="fixed bottom-5 right-5 z-50 md:hidden bg-brand/90 backdrop-blur-md text-white h-11 px-4 rounded-full flex items-center justify-center gap-2 shadow-md shadow-brand/20 hover:bg-brand hover:scale-105 transition-all duration-300 opacity-0 translate-y-4" aria-label="R&eacute;server une table" style="pointer-events: none;">
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
     <span class="text-xs font-semibold uppercase tracking-wider">R&eacute;server</span>
   </a>
@@ -248,15 +248,17 @@
         <img id="nav-logo-color" src="images/logo2-chiringuito.svg" alt="Chiringuito Vias - Plage privee" class="h-10 md:h-12 absolute inset-0 opacity-0 transition-opacity duration-300" width="120" height="48"/>
       </a>
 
-      <!-- Desktop links -->
-      <div class="hidden md:flex items-center gap-8">
+      <!-- Desktop links (centered) -->
+      <div class="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
         <a href="#accueil" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Accueil</a>
         <a href="#menu" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Menu</a>
         <a href="#plage" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Plage</a>
         <a href="#avis" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Avis</a>
         <a href="#contact" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Contact</a>
-        <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" id="nav-cta" class="ml-2 px-5 py-2 bg-white/20 backdrop-blur-sm text-white border border-white/30 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand hover:border-brand hover:text-white transition-all duration-300">R&eacute;server</a>
       </div>
+
+      <!-- CTA Reserver (right) -->
+      <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" id="nav-cta" class="hidden md:inline-flex px-5 py-2 bg-white/15 backdrop-blur-md text-white border border-white/25 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-white/25 hover:border-white/40 transition-all duration-300">R&eacute;server</a>
 
       <!-- Mobile hamburger -->
       <button id="hamburger" class="md:hidden relative z-10 w-8 h-6 flex flex-col justify-between" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -307,10 +309,10 @@
 
         <!-- Reservation CTAs -->
         <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-10">
-          <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-2 border border-white/70 text-white px-7 py-3 rounded-full text-xs sm:text-sm font-medium uppercase tracking-widest hover:bg-white hover:text-gray-900 transition-all duration-300">
+          <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 text-white px-7 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-widest hover:bg-white/25 hover:border-white/40 transition-all duration-300">
             R&eacute;server votre table
           </a>
-          <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-2 border border-white/70 text-white px-7 py-3 rounded-full text-xs sm:text-sm font-medium uppercase tracking-widest hover:bg-white hover:text-gray-900 transition-all duration-300">
+          <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 text-white px-7 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-widest hover:bg-white/25 hover:border-white/40 transition-all duration-300">
             R&eacute;server votre transat
           </a>
         </div>
@@ -334,26 +336,18 @@
     <!-- BIENVENUE -->
     <!-- ============================================ -->
     <section id="bienvenue" class="py-16 md:py-24 px-6">
-      <div class="max-w-5xl mx-auto">
+      <div class="max-w-3xl mx-auto text-center">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <img src="images/frise.svg" alt="" class="w-24 mx-auto mb-4 opacity-15 reveal" width="167" height="59" aria-hidden="true"/>
+        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-brand mb-4 tracking-tight reveal">Bienvenue</h2>
+        <p class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand/5 backdrop-blur-sm border border-brand/10 text-brand text-xs font-semibold uppercase tracking-widest mb-8 reveal">
+          <span>&#9734;</span> 11&egrave;me saison &middot; 2026
+        </p>
 
-          <!-- Left: title + badge -->
-          <div class="text-center md:text-left reveal">
-            <img src="images/frise.svg" alt="" class="w-24 mx-auto md:mx-0 mb-4 opacity-15" width="167" height="59" aria-hidden="true"/>
-            <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-brand mb-4 tracking-tight">Bienvenue</h2>
-            <p class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand/10 text-brand text-xs font-semibold uppercase tracking-widest">
-              <span>&#9734;</span> 11&egrave;me saison &middot; 2026
-            </p>
-          </div>
-
-          <!-- Right: text -->
-          <div class="text-sm md:text-base text-text leading-relaxed tracking-wide reveal">
-            <p class="mb-4">Depuis 2015, le Chiringuito est devenu le rendez-vous incontournable de Vias-Plage. Pour cette <strong class="text-brand font-semibold">11&egrave;me saison</strong>, toute l'&eacute;quipe vous retrouve avec la m&ecirc;me passion : vous offrir un moment d'exception les pieds dans le sable.</p>
-            <p class="mb-4">Une cuisine m&eacute;diterran&eacute;enne g&eacute;n&eacute;reuse, port&eacute;e par des produits frais et de saison. Des vins r&eacute;gionaux soigneusement s&eacute;lectionn&eacute;s. Des desserts enti&egrave;rement faits maison.</p>
-            <p class="text-text-light">D&eacute;tente absolue sur nos bains de soleil en bois naturel, face &agrave; la M&eacute;diterran&eacute;e. En famille, entre amis, ou en amoureux &mdash; ici, le temps s'arr&ecirc;te.</p>
-          </div>
-
+        <div class="text-sm md:text-base text-text leading-relaxed tracking-wide reveal">
+          <p class="mb-4">Depuis 2015, le Chiringuito est devenu le rendez-vous incontournable de Vias-Plage. Pour cette <strong class="text-brand font-semibold">11&egrave;me saison</strong>, toute l'&eacute;quipe vous retrouve avec la m&ecirc;me passion : vous offrir un moment d'exception les pieds dans le sable.</p>
+          <p class="mb-4">Une cuisine m&eacute;diterran&eacute;enne g&eacute;n&eacute;reuse, port&eacute;e par des produits frais et de saison. Des vins r&eacute;gionaux soigneusement s&eacute;lectionn&eacute;s. Des desserts enti&egrave;rement faits maison.</p>
+          <p class="text-text-light">D&eacute;tente absolue sur nos bains de soleil en bois naturel, face &agrave; la M&eacute;diterran&eacute;e. En famille, entre amis, ou en amoureux &mdash; ici, le temps s'arr&ecirc;te.</p>
         </div>
 
       </div>
@@ -368,7 +362,7 @@
         <p class="text-sm md:text-base text-text-light tracking-wide mb-10 reveal">D&eacute;couvrez notre carte</p>
 
         <!-- CTA to open menu -->
-        <button id="menu-toggle" class="magnetic-btn inline-flex items-center gap-3 bg-brand text-white px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand-dark hover:scale-[1.02] hover:shadow-lg hover:shadow-brand/25 transition-all duration-300 reveal" aria-expanded="false" aria-controls="menu-content">
+        <button id="menu-toggle" class="magnetic-btn inline-flex items-center gap-3 bg-brand/90 backdrop-blur-md text-white px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand hover:scale-[1.02] hover:shadow-lg hover:shadow-brand/25 transition-all duration-300 reveal" aria-expanded="false" aria-controls="menu-content">
           <span id="menu-toggle-text">D&eacute;couvrir la carte</span>
           <svg id="menu-toggle-icon" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
@@ -558,12 +552,12 @@
 
         <!-- Pricing cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-16">
-          <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center border border-gray-100 reveal">
+          <div class="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center border border-white/50 reveal">
             <h3 class="text-lg font-semibold text-gray-900 mb-1">Transat</h3>
             <p class="text-sm text-text-light mb-4">Beach chair</p>
             <p class="text-4xl font-bold text-brand"><span class="counter" data-target="20">0</span><span class="text-xl">&euro;</span></p>
           </div>
-          <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center border border-gray-100 reveal">
+          <div class="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center border border-white/50 reveal">
             <h3 class="text-lg font-semibold text-gray-900 mb-1">Transat 1&egrave;re ligne</h3>
             <p class="text-sm text-text-light mb-4">First line beach chair</p>
             <p class="text-4xl font-bold text-brand"><span class="counter" data-target="25">0</span><span class="text-xl">&euro;</span></p>
@@ -582,7 +576,7 @@
 
         <!-- CTA -->
         <div class="text-center mt-12 reveal">
-          <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-3 bg-brand text-white px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand-dark hover:scale-[1.02] hover:shadow-lg hover:shadow-brand/25 transition-all duration-300">
+          <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-3 bg-brand/90 backdrop-blur-md text-white px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand hover:scale-[1.02] hover:shadow-lg hover:shadow-brand/25 transition-all duration-300">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
             R&eacute;server votre transat
           </a>
