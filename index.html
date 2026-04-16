@@ -791,12 +791,11 @@
           span.classList.toggle('bg-gray-900', scrolled);
         });
         if (navCta) {
-          navCta.classList.toggle('bg-white/20', !scrolled);
-          navCta.classList.toggle('border-white/30', !scrolled);
-          navCta.classList.toggle('text-white', !scrolled);
-          navCta.classList.toggle('bg-brand', scrolled);
-          navCta.classList.toggle('border-brand', scrolled);
-          navCta.classList.toggle('text-white', scrolled);
+          if (scrolled) {
+            navCta.className = 'hidden md:inline-flex px-5 py-2 bg-brand/90 backdrop-blur-md text-white border border-brand rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand hover:scale-[1.02] transition-all duration-300';
+          } else {
+            navCta.className = 'hidden md:inline-flex px-5 py-2 bg-white/15 backdrop-blur-md text-white border border-white/25 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-white/25 hover:border-white/40 transition-all duration-300';
+          }
         }
       }
       window.addEventListener('scroll', updateNav, { passive: true });
