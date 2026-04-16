@@ -214,7 +214,7 @@
   <!-- ============================================ -->
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" role="navigation" aria-label="Navigation principale">
     <!-- Backdrop blur progressif -->
-    <div class="absolute inset-0 backdrop-blur-md pointer-events-none" style="-webkit-mask-image: linear-gradient(to bottom, black 0%, black 30%, transparent 100%); mask-image: linear-gradient(to bottom, black 0%, black 30%, transparent 100%);"></div>
+    <div id="nav-blur" class="absolute inset-0 backdrop-blur-md pointer-events-none opacity-0 transition-opacity duration-500" style="-webkit-mask-image: linear-gradient(to bottom, black 0%, black 30%, transparent 100%); mask-image: linear-gradient(to bottom, black 0%, black 30%, transparent 100%);"></div>
     <div class="relative max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
       <!-- Logo banniere (hidden at top, appears on scroll) -->
       <a href="#accueil" class="relative z-10 flex items-center" id="nav-logo-wrap" style="opacity: 0; pointer-events: none; transition: opacity 0.3s ease;">
@@ -800,10 +800,14 @@
 
       function updateNav() {
         const scrolled = window.scrollY > 100;
-        // Logo banniere : hidden at top, visible after scroll
+        // Logo banniere + blur : hidden at top, visible after scroll
+        const navBlur = document.getElementById('nav-blur');
         if (navLogoWrap) {
           navLogoWrap.style.opacity = scrolled ? '1' : '0';
           navLogoWrap.style.pointerEvents = scrolled ? 'auto' : 'none';
+        }
+        if (navBlur) {
+          navBlur.style.opacity = scrolled ? '1' : '0';
         }
         // Liens et hamburger restent toujours blancs
         // CTA toujours en glass blanc (le fond est toujours le gradient bleu)
