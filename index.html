@@ -240,19 +240,34 @@
     </div>
 
     <!-- Mobile overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-brand z-[75] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
-      <div class="flex flex-col items-center gap-8">
-        <a href="#accueil" class="mobile-nav-link text-2xl font-medium tracking-widest uppercase text-white">Accueil</a>
-        <a href="#menu" class="mobile-nav-link text-2xl font-medium tracking-widest uppercase text-white">Menu</a>
-        <a href="#plage" class="mobile-nav-link text-2xl font-medium tracking-widest uppercase text-white">Plage</a>
-        <a href="#avis" class="mobile-nav-link text-2xl font-medium tracking-widest uppercase text-white">Avis</a>
-        <a href="#contact" class="mobile-nav-link text-2xl font-medium tracking-widest uppercase text-white">Contact</a>
-        <div class="flex items-center gap-6 mt-8">
-          <a href="https://www.facebook.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="images/facebook-chiringuito.svg" alt="Facebook" class="w-7 h-7" width="28" height="28"/></a>
-          <a href="https://www.instagram.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="images/instagram-chiringuito.svg" alt="Instagram" class="w-7 h-7" width="28" height="28"/></a>
-          <a href="https://www.tiktok.com/@chiringuitovias" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><img src="images/tiktok-blanc-chiringuito.svg" alt="TikTok" class="w-6 h-7" width="24" height="28"/></a>
+    <div id="mobile-menu" class="fixed inset-0 z-[75] flex flex-col items-center justify-between py-24 px-8 opacity-0 pointer-events-none transition-opacity duration-300" style="background: linear-gradient(165deg, #009BA4 0%, #007A82 50%, #005F66 100%);">
+
+      <!-- Logo -->
+      <img src="images/logo-blanc-chiringuito.svg" alt="Chiringuito" class="h-16 opacity-80" width="160" height="64"/>
+
+      <!-- Navigation -->
+      <nav class="flex flex-col items-center gap-6">
+        <a href="#accueil" class="mobile-nav-link text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Accueil</a>
+        <a href="#menu" class="mobile-nav-link text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Menu</a>
+        <a href="#plage" class="mobile-nav-link text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Plage</a>
+        <a href="#avis" class="mobile-nav-link text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Avis</a>
+        <a href="#contact" class="mobile-nav-link text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Contact</a>
+      </nav>
+
+      <!-- Bottom : CTA + socials + infos -->
+      <div class="flex flex-col items-center gap-5">
+        <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" class="mobile-nav-link inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 text-white px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-white/25 transition-all duration-300">
+          R&eacute;server une table
+        </a>
+        <div class="flex items-center gap-5">
+          <a href="https://www.facebook.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" class="opacity-50 hover:opacity-100 transition-opacity" aria-label="Facebook"><img src="images/facebook-chiringuito.svg" alt="Facebook" class="w-5 h-5" width="20" height="20"/></a>
+          <a href="https://www.instagram.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" class="opacity-50 hover:opacity-100 transition-opacity" aria-label="Instagram"><img src="images/instagram-chiringuito.svg" alt="Instagram" class="w-5 h-5" width="20" height="20"/></a>
+          <a href="https://www.tiktok.com/@chiringuitovias" target="_blank" rel="noopener noreferrer" class="opacity-50 hover:opacity-100 transition-opacity" aria-label="TikTok"><img src="images/tiktok-blanc-chiringuito.svg" alt="TikTok" class="w-4 h-5" width="16" height="20"/></a>
+          <a href="https://www.tripadvisor.fr/Restaurant_Review-g1080326-d10806143-Reviews-Chiringuito-Vias_Herault_Occitanie.html" target="_blank" rel="noopener noreferrer" class="opacity-50 hover:opacity-100 transition-opacity" aria-label="TripAdvisor"><img src="images/tripadvisor-chiringuito.svg" alt="TripAdvisor" class="w-5 h-5" width="20" height="20"/></a>
         </div>
+        <p class="text-white/30 text-xs tracking-wider">06 74 94 62 21 &middot; Vias-Plage</p>
       </div>
+
     </div>
   </nav>
 
@@ -701,10 +716,6 @@
         <a href="https://www.instagram.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" class="opacity-60 hover:opacity-100 hover:-translate-y-1 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.4)] transition-all duration-300" aria-label="Instagram"><img src="images/instagram-chiringuito.svg" alt="Instagram" class="w-6 h-6" width="24" height="24" loading="lazy"/></a>
         <a href="https://www.tiktok.com/@chiringuitovias" target="_blank" rel="noopener noreferrer" class="opacity-60 hover:opacity-100 hover:-translate-y-1 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.4)] transition-all duration-300" aria-label="TikTok"><img src="images/tiktok-blanc-chiringuito.svg" alt="TikTok" class="w-5 h-6" width="20" height="24" loading="lazy"/></a>
         <a href="https://www.tripadvisor.fr/Restaurant_Review-g1080326-d10806143-Reviews-Chiringuito-Vias_Herault_Occitanie.html" target="_blank" rel="noopener noreferrer" class="opacity-60 hover:opacity-100 hover:-translate-y-1 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.4)] transition-all duration-300" aria-label="TripAdvisor"><img src="images/tripadvisor-chiringuito.svg" alt="TripAdvisor" class="w-6 h-6" width="24" height="24" loading="lazy"/></a>
-      </div>
-      <div class="flex items-center justify-center gap-5">
-        <a href="https://www.petitfute.com/v19402-vias-34450/c1165-restaurants/c1248-specialites/c1235-restaurant-de-plage/1837186-le-chiringuito.html" target="_blank" rel="noopener noreferrer"><img src="images/logo-lepetitfute.webp" alt="Le Petit Fut&eacute;" class="h-6 opacity-40 hover:opacity-80 transition-opacity" loading="lazy" height="24"/></a>
-        <a href="https://www.epaillote.com/plages-privees/france/34-herault/vias-plage/chiringuito-vias" target="_blank" rel="noopener noreferrer"><img src="images/epaillote.webp" alt="ePaillote" class="h-6 opacity-40 hover:opacity-80 transition-opacity" loading="lazy" height="24"/></a>
       </div>
     </div>
 
