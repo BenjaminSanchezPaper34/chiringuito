@@ -183,6 +183,13 @@
 
 <body class="bg-white text-text font-sans antialiased overflow-x-hidden">
 
+  <!-- Mobile hamburger (hors nav pour etre au dessus de tout) -->
+  <button id="hamburger" class="md:hidden fixed top-6 right-6 z-[80] w-8 h-6 flex flex-col justify-between" aria-label="Ouvrir le menu" aria-expanded="false">
+    <span class="block w-full h-0.5 bg-white transition-all duration-300 origin-center"></span>
+    <span class="block w-full h-0.5 bg-white transition-all duration-300"></span>
+    <span class="block w-full h-0.5 bg-white transition-all duration-300 origin-center"></span>
+  </button>
+
   <!-- Scroll progress bar -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -230,12 +237,6 @@
         <a href="#contact" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Contact</a>
       </div>
 
-      <!-- Mobile hamburger -->
-      <button id="hamburger" class="md:hidden fixed top-6 right-6 z-[80] w-8 h-6 flex flex-col justify-between" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span class="block w-full h-0.5 bg-white transition-all duration-300 origin-center"></span>
-        <span class="block w-full h-0.5 bg-white transition-all duration-300"></span>
-        <span class="block w-full h-0.5 bg-white transition-all duration-300 origin-center"></span>
-      </button>
     </div>
 
     <!-- Mobile overlay -->
