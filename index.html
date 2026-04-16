@@ -158,8 +158,8 @@
     .photo-reveal { clip-path: inset(100% 0 0 0); transition: clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     .photo-reveal.revealed { clip-path: inset(0 0 0 0); }
 
-    /* Magnetic button */
-    .magnetic-btn { position: relative; transition: transform 0.2s ease; }
+    /* Bounce-up button */
+    .magnetic-btn { position: relative; }
 
     /* Menu item hover glow */
     .menu-item { transition: all 0.3s ease; position: relative; }
@@ -289,6 +289,8 @@
           </a>
         </div>
 
+        <p class="text-white/50 text-xs tracking-wide mb-8">Ouverture des r&eacute;servations d&egrave;s le 16 mai</p>
+
         <!-- Social icons -->
         <div class="flex items-center gap-5">
           <a href="https://www.facebook.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" class="opacity-80 hover:opacity-100 transition-opacity" aria-label="Facebook Chiringuito"><img src="images/facebook-chiringuito.svg" alt="Facebook" class="w-7 h-7" width="28" height="28"/></a>
@@ -346,13 +348,17 @@
         <p class="text-sm md:text-base text-text-light tracking-wide mb-10 reveal">D&eacute;couvrez notre carte</p>
 
         <!-- CTA to open menu -->
-        <button id="menu-toggle" class="magnetic-btn inline-flex items-center gap-3 bg-brand/15 backdrop-blur-md text-brand border border-brand/25 px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand/25 hover:border-brand/40 hover:scale-[1.02] transition-all duration-300 reveal" aria-expanded="false" aria-controls="menu-content">
-          <span id="menu-toggle-text">D&eacute;couvrir la carte</span>
-          <svg id="menu-toggle-icon" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        <button id="menu-toggle" class="inline-flex items-center gap-3 bg-brand/15 backdrop-blur-md text-brand border border-brand/25 px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand/25 hover:border-brand/40 hover:-translate-y-1 transition-all duration-300 reveal" aria-expanded="false" aria-controls="menu-content">
+          D&eacute;couvrir la carte
         </button>
 
         <!-- Menu content (hidden by default) -->
-        <div id="menu-content" class="hidden mt-12">
+        <div id="menu-content" class="hidden mt-12 relative">
+
+          <!-- Close button -->
+          <button id="menu-close" class="absolute -top-2 right-0 md:right-4 w-10 h-10 flex items-center justify-center rounded-full bg-brand/10 text-brand hover:bg-brand/20 transition-all duration-300" aria-label="Fermer la carte">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
 
           <!-- Category tabs -->
           <div class="flex items-center justify-center gap-2 md:gap-3 flex-wrap mb-12" role="tablist" aria-label="Categories du menu">
@@ -560,7 +566,7 @@
 
         <!-- CTA -->
         <div class="text-center mt-12 reveal">
-          <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-3 bg-brand/15 backdrop-blur-md text-brand border border-brand/25 px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand/25 hover:border-brand/40 hover:scale-[1.02] transition-all duration-300">
+          <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-3 bg-brand/15 backdrop-blur-md text-brand border border-brand/25 px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand/25 hover:border-brand/40 transition-all duration-300">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
             R&eacute;server votre transat
           </a>
@@ -799,24 +805,25 @@
       // ---- Menu toggle (show/hide the carte) ----
       const menuToggle = document.getElementById('menu-toggle');
       const menuContent = document.getElementById('menu-content');
-      const menuToggleText = document.getElementById('menu-toggle-text');
-      const menuToggleIcon = document.getElementById('menu-toggle-icon');
+      const menuClose = document.getElementById('menu-close');
 
-      menuToggle.addEventListener('click', () => {
-        const isOpen = !menuContent.classList.contains('hidden');
-        menuContent.classList.toggle('hidden');
-        menuToggle.setAttribute('aria-expanded', !isOpen);
-        menuToggleText.textContent = isOpen ? 'D&eacute;couvrir la carte' : 'Fermer la carte';
-        menuToggleIcon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
-
-        if (!isOpen) {
-          // Animate menu items in
-          const activeCategory = document.querySelector('.menu-category:not(.hidden)');
-          if (activeCategory) {
-            gsap.fromTo(activeCategory.querySelectorAll('.menu-item'), { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, duration: 0.4, ease: 'power2.out' });
-          }
+      function openMenu() {
+        menuContent.classList.remove('hidden');
+        menuToggle.classList.add('hidden');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        const activeCategory = document.querySelector('.menu-category:not(.hidden)');
+        if (activeCategory) {
+          gsap.fromTo(activeCategory.querySelectorAll('.menu-item'), { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, duration: 0.4, ease: 'power2.out' });
         }
-      });
+      }
+      function closeMenu() {
+        menuContent.classList.add('hidden');
+        menuToggle.classList.remove('hidden');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+
+      menuToggle.addEventListener('click', openMenu);
+      menuClose.addEventListener('click', closeMenu);
 
       // ---- Menu tab filtering ----
       const tabs = document.querySelectorAll('.menu-tab');
@@ -930,17 +937,14 @@
         gsap.from('#hero-tagline', { opacity: 0, y: 15, duration: 1, delay: 0.6, ease: 'power2.out' });
       }
 
-      // ---- Magnetic buttons (desktop) ----
+      // ---- Bounce-up buttons (desktop) ----
       if (window.matchMedia('(pointer: fine)').matches) {
         document.querySelectorAll('.magnetic-btn').forEach(btn => {
-          btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) scale(1.02)`;
+          btn.addEventListener('mouseenter', () => {
+            gsap.to(btn, { y: -4, duration: 0.25, ease: 'back.out(2)' });
           });
           btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'translate(0, 0) scale(1)';
+            gsap.to(btn, { y: 0, duration: 0.3, ease: 'power2.out' });
           });
         });
       }
