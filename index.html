@@ -168,29 +168,6 @@
     /* Counter animation */
     .counter-value { transition: all 0.3s ease; }
 
-    /* Custom cursor (desktop only) */
-    @media (pointer: fine) {
-      * { cursor: none !important; }
-      .custom-cursor {
-        position: fixed; top: 0; left: 0; z-index: 9999;
-        width: 12px; height: 12px;
-        background: #009BA4;
-        border-radius: 50%;
-        pointer-events: none;
-        transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
-        mix-blend-mode: difference;
-        opacity: 0;
-      }
-      .custom-cursor.visible { opacity: 1; }
-      .custom-cursor.hovering {
-        transform: scale(3.5);
-        background: white;
-      }
-    }
-    @media (pointer: coarse) {
-      .custom-cursor { display: none !important; }
-    }
-
     /* Progress bar */
     .scroll-progress {
       position: fixed; top: 0; left: 0; height: 3px; z-index: 60;
@@ -201,21 +178,16 @@
     /* Prefers reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-      .custom-cursor { display: none !important; }
-    }
   </style>
 </head>
 
 <body class="bg-white text-text font-sans antialiased overflow-x-hidden">
 
-  <!-- Custom cursor -->
-  <div class="custom-cursor" id="customCursor"></div>
-
   <!-- Scroll progress bar -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- Bouton reserver flottant (mobile) -->
-  <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" id="floatingCta" class="fixed bottom-5 right-5 z-50 md:hidden bg-brand/90 backdrop-blur-md text-white h-11 px-4 rounded-full flex items-center justify-center gap-2 shadow-md shadow-brand/20 hover:bg-brand hover:scale-105 transition-all duration-300 opacity-0 translate-y-4" aria-label="R&eacute;server une table" style="pointer-events: none;">
+  <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" id="floatingCta" class="fixed bottom-5 right-5 z-50 md:hidden bg-brand/15 backdrop-blur-md text-brand border border-brand/25 h-11 px-4 rounded-full flex items-center justify-center gap-2 shadow-md shadow-brand/10 hover:bg-brand/25 hover:scale-105 transition-all duration-300 opacity-0 translate-y-4" aria-label="R&eacute;server une table" style="pointer-events: none;">
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
     <span class="text-xs font-semibold uppercase tracking-wider">R&eacute;server</span>
   </a>
@@ -362,7 +334,7 @@
         <p class="text-sm md:text-base text-text-light tracking-wide mb-10 reveal">D&eacute;couvrez notre carte</p>
 
         <!-- CTA to open menu -->
-        <button id="menu-toggle" class="magnetic-btn inline-flex items-center gap-3 bg-brand/90 backdrop-blur-md text-white px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand hover:scale-[1.02] hover:shadow-lg hover:shadow-brand/25 transition-all duration-300 reveal" aria-expanded="false" aria-controls="menu-content">
+        <button id="menu-toggle" class="magnetic-btn inline-flex items-center gap-3 bg-brand/15 backdrop-blur-md text-brand border border-brand/25 px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand/25 hover:border-brand/40 hover:scale-[1.02] transition-all duration-300 reveal" aria-expanded="false" aria-controls="menu-content">
           <span id="menu-toggle-text">D&eacute;couvrir la carte</span>
           <svg id="menu-toggle-icon" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
@@ -576,7 +548,7 @@
 
         <!-- CTA -->
         <div class="text-center mt-12 reveal">
-          <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-3 bg-brand/90 backdrop-blur-md text-white px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand hover:scale-[1.02] hover:shadow-lg hover:shadow-brand/25 transition-all duration-300">
+          <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-3 bg-brand/15 backdrop-blur-md text-brand border border-brand/25 px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand/25 hover:border-brand/40 hover:scale-[1.02] transition-all duration-300">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
             R&eacute;server votre transat
           </a>
@@ -721,23 +693,6 @@
       gsap.ticker.add((time) => { lenis.raf(time * 1000); });
       gsap.ticker.lagSmoothing(0);
 
-      // ---- Custom Cursor (desktop only) ----
-      const cursor = document.getElementById('customCursor');
-      if (cursor && window.matchMedia('(pointer: fine)').matches) {
-        document.addEventListener('mousemove', (e) => {
-          cursor.style.left = e.clientX - 6 + 'px';
-          cursor.style.top = e.clientY - 6 + 'px';
-          cursor.classList.add('visible');
-        });
-        document.addEventListener('mouseleave', () => cursor.classList.remove('visible'));
-
-        const hoverTargets = document.querySelectorAll('a, button, [role="tab"], .menu-tab, input, textarea, iframe');
-        hoverTargets.forEach(el => {
-          el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-          el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-        });
-      }
-
       // ---- Scroll Progress Bar ----
       const progressBar = document.getElementById('scrollProgress');
       window.addEventListener('scroll', () => {
@@ -792,7 +747,7 @@
         });
         if (navCta) {
           if (scrolled) {
-            navCta.className = 'hidden md:inline-flex px-5 py-2 bg-brand/90 backdrop-blur-md text-white border border-brand rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand hover:scale-[1.02] transition-all duration-300';
+            navCta.className = 'hidden md:inline-flex px-5 py-2 bg-brand/15 backdrop-blur-md text-brand border border-brand/25 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand/25 hover:border-brand/40 transition-all duration-300';
           } else {
             navCta.className = 'hidden md:inline-flex px-5 py-2 bg-white/15 backdrop-blur-md text-white border border-white/25 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-white/25 hover:border-white/40 transition-all duration-300';
           }
