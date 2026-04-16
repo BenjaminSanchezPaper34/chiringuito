@@ -231,7 +231,7 @@
       </div>
 
       <!-- Mobile hamburger -->
-      <button id="hamburger" class="md:hidden relative z-[70] w-8 h-6 flex flex-col justify-between" aria-label="Ouvrir le menu" aria-expanded="false">
+      <button id="hamburger" class="md:hidden fixed top-6 right-6 z-[80] w-8 h-6 flex flex-col justify-between" aria-label="Ouvrir le menu" aria-expanded="false">
         <span class="block w-full h-0.5 bg-white transition-all duration-300 origin-center"></span>
         <span class="block w-full h-0.5 bg-white transition-all duration-300"></span>
         <span class="block w-full h-0.5 bg-white transition-all duration-300 origin-center"></span>
@@ -240,10 +240,6 @@
 
     <!-- Mobile overlay -->
     <div id="mobile-menu" class="fixed inset-0 bg-brand z-[75] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
-      <!-- Bouton fermer -->
-      <button id="menu-close-mobile" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center" aria-label="Fermer le menu">
-        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
       <div class="flex flex-col items-center gap-8">
         <a href="#accueil" class="mobile-nav-link text-2xl font-medium tracking-widest uppercase text-white">Accueil</a>
         <a href="#menu" class="mobile-nav-link text-2xl font-medium tracking-widest uppercase text-white">Menu</a>
@@ -837,7 +833,6 @@
       }
 
       mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
-      document.getElementById('menu-close-mobile').addEventListener('click', closeMobileMenu);
 
       // ---- Menu toggle (show/hide the carte) ----
       const menuToggle = document.getElementById('menu-toggle');
