@@ -203,15 +203,6 @@
 
 
   <!-- Decorative parallax elements -->
-  <div class="fixed -top-2 -left-1 z-[55] pointer-events-none" id="deco-left">
-    <img src="images/plantesgauche.webp" alt="" class="hidden md:block md:w-56 lg:w-64 xl:w-80 opacity-90 drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]" width="351" height="532" aria-hidden="true"/>
-  </div>
-  <div class="fixed -top-2 -right-1 z-[55] pointer-events-none" id="deco-right">
-    <img src="images/plantesdroite.webp" alt="" class="hidden md:block md:w-56 lg:w-64 xl:w-80 opacity-90 drop-shadow-[-4px_4px_12px_rgba(0,0,0,0.15)]" width="350" height="532" aria-hidden="true"/>
-  </div>
-  <div class="hidden md:block fixed -top-2 right-28 lg:right-36 xl:right-44 z-[55] pointer-events-none" id="deco-macrame">
-    <img src="images/macrame.webp" alt="" class="md:w-24 lg:w-28 xl:w-32 opacity-80 drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]" width="141" height="348" aria-hidden="true"/>
-  </div>
 
   <!-- Skip to content -->
   <a href="#bienvenue" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-brand focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">Aller au contenu</a>
@@ -325,8 +316,19 @@
     <!-- ============================================ -->
     <!-- BIENVENUE -->
     <!-- ============================================ -->
-    <section id="bienvenue" class="py-16 md:py-24 px-6">
-      <div class="max-w-3xl mx-auto text-center">
+    <section id="bienvenue" class="py-16 md:py-24 px-6 relative overflow-hidden">
+      <!-- Plantes decoratives -->
+      <div class="absolute -top-4 -left-2 pointer-events-none" id="deco-left" aria-hidden="true">
+        <img src="images/plantesgauche.webp" alt="" class="w-28 md:w-48 lg:w-56 xl:w-64 opacity-90 drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]" width="351" height="532"/>
+      </div>
+      <div class="absolute -top-4 -right-2 pointer-events-none" id="deco-right" aria-hidden="true">
+        <img src="images/plantesdroite.webp" alt="" class="w-28 md:w-48 lg:w-56 xl:w-64 opacity-90 drop-shadow-[-4px_4px_12px_rgba(0,0,0,0.15)]" width="350" height="532"/>
+      </div>
+      <div class="hidden md:block absolute -top-4 right-20 lg:right-28 xl:right-36 pointer-events-none" id="deco-macrame" aria-hidden="true">
+        <img src="images/macrame.webp" alt="" class="w-20 lg:w-24 xl:w-28 opacity-80 drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]" width="141" height="348"/>
+      </div>
+
+      <div class="relative z-10 max-w-3xl mx-auto text-center">
 
         <img src="images/frise.svg" alt="" class="w-24 mx-auto mb-4 opacity-15 reveal" width="167" height="59" aria-hidden="true"/>
         <h2 class="font-display text-5xl md:text-6xl lg:text-7xl text-brand mb-4 tracking-tight reveal">Bienvenue</h2>
@@ -925,20 +927,6 @@
         gsap.to('#hero-content', {
           y: -80, opacity: 0,
           scrollTrigger: { trigger: '#accueil', start: '30% top', end: 'bottom top', scrub: true }
-        });
-
-        // Decorative elements : remontent et s'ecartent au scroll
-        gsap.to('#deco-left', {
-          y: -250, x: -80,
-          scrollTrigger: { trigger: 'body', start: 'top top', end: '50% top', scrub: 0.8 }
-        });
-        gsap.to('#deco-right', {
-          y: -200, x: 80,
-          scrollTrigger: { trigger: 'body', start: 'top top', end: '50% top', scrub: 1 }
-        });
-        gsap.to('#deco-macrame', {
-          y: -50, rotation: 4,
-          scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.5 }
         });
 
         // Decorative elements : gentle sway (wind effect)
