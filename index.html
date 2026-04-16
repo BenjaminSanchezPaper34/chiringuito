@@ -242,7 +242,7 @@
     </div>
 
     <!-- Mobile overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-brand z-40 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="mobile-menu" class="fixed inset-0 bg-brand z-[65] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
       <div class="flex flex-col items-center gap-8">
         <a href="#accueil" class="mobile-nav-link text-2xl font-medium tracking-widest uppercase text-white">Accueil</a>
         <a href="#menu" class="mobile-nav-link text-2xl font-medium tracking-widest uppercase text-white">Menu</a>
@@ -730,10 +730,6 @@
       </div>
     </div>
 
-    <!-- Poisson decoratif footer -->
-    <div class="absolute bottom-20 right-8 opacity-5 pointer-events-none" aria-hidden="true">
-      <img src="images/poisson-chiringuito.svg" alt="" class="w-32" width="113" height="59"/>
-    </div>
 
   </footer>
 
@@ -945,11 +941,15 @@
           duration: 4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1
         });
 
-        // Poisson decoratif : nage doucement
-        gsap.to('#poisson-deco', {
-          x: 8, y: -3, rotation: 5,
-          duration: 2.5, ease: 'sine.inOut', yoyo: true, repeat: -1
-        });
+        // Poisson decoratif : mouvement de nage (plongee + remontee)
+        const poissonTl = gsap.timeline({ repeat: -1 });
+        poissonTl
+          .to('#poisson-deco', { y: 6, rotation: 8, x: 10, duration: 1.2, ease: 'sine.inOut' })
+          .to('#poisson-deco', { y: 12, rotation: 3, x: 18, duration: 1, ease: 'sine.in' })
+          .to('#poisson-deco', { y: 4, rotation: -5, x: 24, duration: 1.2, ease: 'sine.out' })
+          .to('#poisson-deco', { y: -4, rotation: -8, x: 16, duration: 1, ease: 'sine.inOut' })
+          .to('#poisson-deco', { y: -2, rotation: -3, x: 8, duration: 1.2, ease: 'sine.in' })
+          .to('#poisson-deco', { y: 0, rotation: 0, x: 0, duration: 1, ease: 'sine.out' });
 
         // Reveal animations for all .reveal elements
         document.querySelectorAll('.reveal').forEach(el => {
