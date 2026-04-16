@@ -228,8 +228,8 @@
         <img id="nav-logo-white" src="images/logo-banniere-chiringuito.svg" alt="Chiringuito Vias" class="h-9 md:h-10 transition-opacity duration-300" width="140" height="40"/>
       </a>
 
-      <!-- CTA Reserver mobile (apparait au scroll avec le logo) -->
-      <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" id="nav-cta-mobile" class="md:hidden px-4 py-1.5 bg-white/15 backdrop-blur-md text-white border border-white/25 rounded-full text-[10px] font-semibold uppercase tracking-widest hover:bg-white/25 transition-all duration-300" style="opacity: 0; pointer-events: none; transition: opacity 0.3s ease;">R&eacute;server</a>
+      <!-- CTA Reserver desktop (apparait au scroll avec le logo) -->
+      <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" id="nav-cta-desktop" class="hidden md:inline-flex relative z-10 px-5 py-2 bg-white/15 backdrop-blur-md text-white border border-white/25 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-white/25 hover:border-white/40 transition-all duration-300" style="opacity: 0; pointer-events: none; transition: opacity 0.3s ease;">R&eacute;server</a>
 
       <!-- Desktop links (centered) -->
       <div class="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
@@ -815,10 +815,10 @@
         if (navBlur) {
           navBlur.style.opacity = scrolled ? '1' : '0';
         }
-        const navCtaMobile = document.getElementById('nav-cta-mobile');
-        if (navCtaMobile) {
-          navCtaMobile.style.opacity = scrolled ? '1' : '0';
-          navCtaMobile.style.pointerEvents = scrolled ? 'auto' : 'none';
+        const navCtaDesktop = document.getElementById('nav-cta-desktop');
+        if (navCtaDesktop) {
+          navCtaDesktop.style.opacity = scrolled ? '1' : '0';
+          navCtaDesktop.style.pointerEvents = scrolled ? 'auto' : 'none';
         }
         // Liens et hamburger restent toujours blancs
         // CTA toujours en glass blanc (le fond est toujours le gradient bleu)
