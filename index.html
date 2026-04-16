@@ -196,14 +196,14 @@
 
 
   <!-- Decorative parallax elements -->
-  <div class="fixed -top-2 -left-1 z-[55] pointer-events-none" id="deco-left">
-    <img src="images/plantesgauche.webp" alt="" class="w-36 md:w-56 lg:w-64 xl:w-80 opacity-90 drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]" width="351" height="532" aria-hidden="true"/>
+  <div class="hidden md:block fixed -top-2 -left-1 z-[55] pointer-events-none" id="deco-left">
+    <img src="images/plantesgauche.webp" alt="" class="md:w-56 lg:w-64 xl:w-80 opacity-90 drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]" width="351" height="532" aria-hidden="true"/>
   </div>
-  <div class="fixed -top-2 -right-1 z-[55] pointer-events-none" id="deco-right">
-    <img src="images/plantesdroite.webp" alt="" class="w-36 md:w-56 lg:w-64 xl:w-80 opacity-90 drop-shadow-[-4px_4px_12px_rgba(0,0,0,0.15)]" width="350" height="532" aria-hidden="true"/>
+  <div class="hidden md:block fixed -top-2 -right-1 z-[55] pointer-events-none" id="deco-right">
+    <img src="images/plantesdroite.webp" alt="" class="md:w-56 lg:w-64 xl:w-80 opacity-90 drop-shadow-[-4px_4px_12px_rgba(0,0,0,0.15)]" width="350" height="532" aria-hidden="true"/>
   </div>
-  <div class="fixed -top-2 right-16 md:right-28 lg:right-36 xl:right-44 z-[55] pointer-events-none" id="deco-macrame">
-    <img src="images/macrame.webp" alt="" class="w-20 md:w-24 lg:w-28 xl:w-32 opacity-80 drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]" width="141" height="348" aria-hidden="true"/>
+  <div class="hidden md:block fixed -top-2 right-28 lg:right-36 xl:right-44 z-[55] pointer-events-none" id="deco-macrame">
+    <img src="images/macrame.webp" alt="" class="md:w-24 lg:w-28 xl:w-32 opacity-80 drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]" width="141" height="348" aria-hidden="true"/>
   </div>
 
   <!-- Skip to content -->
@@ -941,11 +941,11 @@
         // Poisson decoratif : mouvement de nage (plongee + remontee)
         const poissonTl = gsap.timeline({ repeat: -1 });
         poissonTl
-          .to('#poisson-deco', { y: 6, rotation: 8, x: 10, duration: 1.2, ease: 'sine.inOut' })
-          .to('#poisson-deco', { y: 12, rotation: 3, x: 18, duration: 1, ease: 'sine.in' })
-          .to('#poisson-deco', { y: 4, rotation: -5, x: 24, duration: 1.2, ease: 'sine.out' })
-          .to('#poisson-deco', { y: -4, rotation: -8, x: 16, duration: 1, ease: 'sine.inOut' })
-          .to('#poisson-deco', { y: -2, rotation: -3, x: 8, duration: 1.2, ease: 'sine.in' })
+          .to('#poisson-deco', { y: 6, rotation: 6, x: 5, duration: 1.2, ease: 'sine.inOut' })
+          .to('#poisson-deco', { y: 10, rotation: 2, x: 0, duration: 1, ease: 'sine.in' })
+          .to('#poisson-deco', { y: 4, rotation: -4, x: -5, duration: 1.2, ease: 'sine.out' })
+          .to('#poisson-deco', { y: -4, rotation: -6, x: 0, duration: 1, ease: 'sine.inOut' })
+          .to('#poisson-deco', { y: -2, rotation: -2, x: 5, duration: 1.2, ease: 'sine.in' })
           .to('#poisson-deco', { y: 0, rotation: 0, x: 0, duration: 1, ease: 'sine.out' });
 
         // Reveal animations for all .reveal elements
