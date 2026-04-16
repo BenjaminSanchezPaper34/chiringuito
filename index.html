@@ -196,14 +196,14 @@
 
 
   <!-- Decorative parallax elements -->
-  <div class="fixed top-0 left-0 z-30 pointer-events-none" id="deco-left">
-    <img src="images/plantesgauche.webp" alt="" class="w-32 md:w-56 lg:w-64 xl:w-80 opacity-90" width="351" height="532" aria-hidden="true"/>
+  <div class="fixed top-0 left-0 z-30 pointer-events-none" id="deco-left" style="transform: translateX(-100%); transform-origin: top left;">
+    <img src="images/plantesgauche.webp" alt="" class="w-32 md:w-56 lg:w-64 xl:w-80 opacity-90 drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]" width="351" height="532" aria-hidden="true"/>
   </div>
-  <div class="fixed top-0 right-0 z-30 pointer-events-none" id="deco-right">
-    <img src="images/plantesdroite.webp" alt="" class="w-32 md:w-56 lg:w-64 xl:w-80 opacity-90" width="350" height="532" aria-hidden="true"/>
+  <div class="fixed top-0 right-0 z-30 pointer-events-none" id="deco-right" style="transform: translateX(100%); transform-origin: top right;">
+    <img src="images/plantesdroite.webp" alt="" class="w-32 md:w-56 lg:w-64 xl:w-80 opacity-90 drop-shadow-[-4px_4px_12px_rgba(0,0,0,0.15)]" width="350" height="532" aria-hidden="true"/>
   </div>
-  <div class="fixed top-0 right-16 md:right-28 lg:right-36 xl:right-44 z-30 pointer-events-none" id="deco-macrame">
-    <img src="images/macrame.webp" alt="" class="w-16 md:w-24 lg:w-28 xl:w-32 opacity-80" width="141" height="348" aria-hidden="true"/>
+  <div class="fixed top-0 right-16 md:right-28 lg:right-36 xl:right-44 z-30 pointer-events-none" id="deco-macrame" style="transform: translateY(-100%); transform-origin: top center;">
+    <img src="images/macrame.webp" alt="" class="w-16 md:w-24 lg:w-28 xl:w-32 opacity-80 drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]" width="141" height="348" aria-hidden="true"/>
   </div>
 
   <!-- Skip to content -->
@@ -905,7 +905,12 @@
           scrollTrigger: { trigger: '#accueil', start: '30% top', end: 'bottom top', scrub: true }
         });
 
-        // Decorative elements parallax
+        // Decorative elements : slide in on load
+        gsap.to('#deco-left', { x: 0, duration: 1.2, delay: 0.3, ease: 'power3.out' });
+        gsap.to('#deco-right', { x: 0, duration: 1.2, delay: 0.5, ease: 'power3.out' });
+        gsap.to('#deco-macrame', { y: 0, duration: 1.5, delay: 0.7, ease: 'elastic.out(1, 0.5)' });
+
+        // Decorative elements : parallax on scroll
         gsap.to('#deco-left', {
           y: -120,
           scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1 }
@@ -917,6 +922,20 @@
         gsap.to('#deco-macrame', {
           y: -200,
           scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1 }
+        });
+
+        // Decorative elements : gentle sway (wind effect)
+        gsap.to('#deco-left img', {
+          rotation: 1.5, transformOrigin: 'top left',
+          duration: 3, ease: 'sine.inOut', yoyo: true, repeat: -1
+        });
+        gsap.to('#deco-right img', {
+          rotation: -1.5, transformOrigin: 'top right',
+          duration: 3.5, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 0.5
+        });
+        gsap.to('#deco-macrame img', {
+          rotation: 2, x: 3, transformOrigin: 'top center',
+          duration: 4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1
         });
 
         // Reveal animations for all .reveal elements
