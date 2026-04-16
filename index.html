@@ -214,10 +214,9 @@
   <!-- ============================================ -->
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" role="navigation" aria-label="Navigation principale">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <!-- Logo (hidden at top, appears on scroll) -->
+      <!-- Logo banniere (hidden at top, appears on scroll) -->
       <a href="#accueil" class="relative z-10" id="nav-logo-wrap" style="opacity: 0; pointer-events: none; transition: opacity 0.3s ease;">
-        <img id="nav-logo-white" src="images/logo-blanc-chiringuito.svg" alt="Chiringuito Vias - Plage privee" class="h-10 md:h-12 transition-opacity duration-300" width="120" height="48"/>
-        <img id="nav-logo-color" src="images/logo2-chiringuito.svg" alt="Chiringuito Vias - Plage privee" class="h-10 md:h-12 absolute inset-0 opacity-0 transition-opacity duration-300" width="120" height="48"/>
+        <img id="nav-logo-white" src="images/logo-banniere-chiringuito.svg" alt="Chiringuito Vias" class="h-8 md:h-10 transition-opacity duration-300" width="140" height="40"/>
       </a>
 
       <!-- Desktop links (centered) -->
@@ -325,6 +324,11 @@
 
       </div>
     </section>
+
+    <!-- Poisson decoratif -->
+    <div class="text-center py-4 reveal" aria-hidden="true">
+      <img src="images/poisson-chiringuito.svg" alt="" class="w-16 md:w-20 mx-auto opacity-15" width="113" height="59" style="filter: brightness(0) saturate(100%) invert(45%) sepia(85%) saturate(400%) hue-rotate(145deg);"/>
+    </div>
 
     <!-- ============================================ -->
     <!-- BANDEAU INFO SAISON -->
@@ -767,7 +771,6 @@
       // ---- Navigation scroll state ----
       const navbar = document.getElementById('navbar');
       const navLogoWhite = document.getElementById('nav-logo-white');
-      const navLogoColor = document.getElementById('nav-logo-color');
       const navLinks = document.querySelectorAll('.nav-link');
       const hamburgerSpans = document.querySelectorAll('#hamburger span');
       const navCta = document.getElementById('nav-cta');
@@ -775,16 +778,15 @@
 
       function updateNav() {
         const scrolled = window.scrollY > 100;
-        navbar.classList.toggle('bg-white/95', scrolled);
-        navbar.classList.toggle('backdrop-blur-lg', scrolled);
+        // Fond : blur semi-transparent au lieu de blanc opaque
+        navbar.classList.toggle('bg-white/70', scrolled);
+        navbar.classList.toggle('backdrop-blur-xl', scrolled);
         navbar.classList.toggle('shadow-sm', scrolled);
-        // Logo: hidden at top, visible after scroll
+        // Logo banniere : hidden at top, visible after scroll
         if (navLogoWrap) {
           navLogoWrap.style.opacity = scrolled ? '1' : '0';
           navLogoWrap.style.pointerEvents = scrolled ? 'auto' : 'none';
         }
-        navLogoWhite.style.opacity = '0';
-        navLogoColor.style.opacity = scrolled ? '1' : '0';
         navLinks.forEach(link => {
           link.classList.toggle('text-white', !scrolled);
           link.classList.toggle('text-text', scrolled);
