@@ -324,13 +324,13 @@
           <p class="text-text-light">D&eacute;tente absolue sur nos bains de soleil en bois naturel, face &agrave; la M&eacute;diterran&eacute;e. En famille, entre amis ou en amoureux. Ici, le temps s'arr&ecirc;te.</p>
         </div>
 
+        <!-- Poisson decoratif anime -->
+        <div class="mt-6 reveal" aria-hidden="true">
+          <img id="poisson-deco" src="images/poisson-chiringuito.svg" alt="" class="w-14 md:w-16 mx-auto" width="113" height="59" style="filter: brightness(0) saturate(100%) invert(45%) sepia(85%) saturate(400%) hue-rotate(145deg);"/>
+        </div>
+
       </div>
     </section>
-
-    <!-- Poisson decoratif -->
-    <div class="text-center py-4 reveal" aria-hidden="true">
-      <img src="images/poisson-chiringuito.svg" alt="" class="w-16 md:w-20 mx-auto opacity-15" width="113" height="59" style="filter: brightness(0) saturate(100%) invert(45%) sepia(85%) saturate(400%) hue-rotate(145deg);"/>
-    </div>
 
     <!-- ============================================ -->
     <!-- BANDEAU INFO SAISON -->
@@ -656,68 +656,83 @@
   <!-- FOOTER -->
   <!-- ============================================ -->
   <!-- Frise transition vers footer -->
-  <div class="w-full pointer-events-none overflow-hidden" aria-hidden="true" style="background-color: #009BA4;">
-    <div class="w-full" style="height: 60px; background: white url('images/frise.svg') repeat-x center bottom; background-size: 180px 60px;"></div>
-    <div class="w-full" style="height: 60px; background: #009BA4 url('images/frise.svg') repeat-x center top; background-size: 180px 60px; opacity: 0.15;"></div>
+  <div class="w-full pointer-events-none overflow-hidden" aria-hidden="true" style="background-color: #007A82;">
+    <div class="w-full" style="height: 50px; background: white url('images/frise.svg') repeat-x center bottom; background-size: 167px 50px;"></div>
   </div>
 
-  <footer id="contact" class="text-white py-16 md:py-20 px-6" style="background-color: #009BA4;">
-    <div class="max-w-5xl mx-auto">
+  <footer id="contact" class="text-white relative overflow-hidden" style="background: linear-gradient(165deg, #009BA4 0%, #007A82 50%, #005F66 100%);">
 
-      <!-- Logo -->
-      <div class="text-center mb-12">
-        <img src="images/logo-blanc-chiringuito.svg" alt="Chiringuito Vias" class="h-16 mx-auto mb-6" width="200" height="64" loading="lazy"/>
-        <img src="images/frise.svg" alt="" class="w-32 mx-auto opacity-20" width="167" height="59" aria-hidden="true" loading="lazy"/>
+    <!-- Logo + tagline -->
+    <div class="text-center pt-16 md:pt-20 pb-12 px-6">
+      <img src="images/logo-blanc-chiringuito.svg" alt="Chiringuito Vias" class="h-20 md:h-24 mx-auto mb-4" width="200" height="96" loading="lazy"/>
+      <p class="text-white/50 text-xs tracking-[0.3em] uppercase">Plage priv&eacute;e &middot; Vias-Plage</p>
+    </div>
+
+    <!-- Info cards -->
+    <div class="max-w-5xl mx-auto px-6 pb-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <!-- Address card -->
+        <a href="http://maps.apple.com/?q=Chiringuito-vias-plage" class="block bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/15 transition-all duration-300 group">
+          <div class="text-2xl mb-3">&#128205;</div>
+          <p class="text-white font-medium mb-1">Plage de Farinette</p>
+          <p class="text-white/60 text-sm">34450 Vias-Plage</p>
+        </a>
+
+        <!-- Hours card -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
+          <div class="text-2xl mb-3">&#9788;</div>
+          <p class="text-white font-medium mb-1">Ouvert 7j/7</p>
+          <p class="text-white/60 text-sm">08h00 - 01h00</p>
+        </div>
+
+        <!-- Contact card -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
+          <div class="text-2xl mb-3">&#9742;</div>
+          <a href="tel:+33674946221" class="text-white font-medium block mb-1 hover:text-white/80 transition-colors">06 74 94 62 21</a>
+          <a href="mailto:contact@chiringuito-vias.fr" class="text-white/60 text-sm hover:text-white transition-colors">contact@chiringuito-vias.fr</a>
+        </div>
+
       </div>
+    </div>
 
-      <!-- Info grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 text-center md:text-left mb-12">
-        <!-- Address -->
-        <div>
-          <h3 class="text-xs font-semibold uppercase tracking-widest text-white/70 mb-4">Adresse</h3>
-          <a href="http://maps.apple.com/?q=Chiringuito-vias-plage" class="text-white/80 hover:text-white transition-colors leading-relaxed block">
-            Plage de Farinette<br/>34450 Vias-Plage
-          </a>
-        </div>
-
-        <!-- Hours & contact -->
-        <div>
-          <h3 class="text-xs font-semibold uppercase tracking-widest text-white/70 mb-4">Horaires &amp; Contact</h3>
-          <p class="text-white/80 mb-2">Ouvert 7j/7 &middot; 08h00 - 01h00</p>
-          <a href="tel:+33674946221" class="text-white/80 hover:text-white transition-colors block mb-1">06 74 94 62 21</a>
-          <a href="mailto:contact@chiringuito-vias.fr" class="text-white/80 hover:text-white transition-colors block text-sm">contact@chiringuito-vias.fr</a>
-        </div>
-
-        <!-- Social & partners -->
-        <div>
-          <h3 class="text-xs font-semibold uppercase tracking-widest text-white/70 mb-4">Suivez-nous</h3>
-          <div class="flex items-center gap-4 justify-center md:justify-start mb-6">
-            <a href="https://www.facebook.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="images/facebook-chiringuito.svg" alt="Facebook" class="w-6 h-6 opacity-70 hover:opacity-100 transition-opacity" width="24" height="24" loading="lazy"/></a>
-            <a href="https://www.instagram.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="images/instagram-chiringuito.svg" alt="Instagram" class="w-6 h-6 opacity-70 hover:opacity-100 transition-opacity" width="24" height="24" loading="lazy"/></a>
-            <a href="https://www.tiktok.com/@chiringuitovias" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><img src="images/tiktok-blanc-chiringuito.svg" alt="TikTok" class="w-5 h-6 opacity-70 hover:opacity-100 transition-opacity" width="20" height="24" loading="lazy"/></a>
-            <a href="https://www.tripadvisor.fr/Restaurant_Review-g1080326-d10806143-Reviews-Chiringuito-Vias_Herault_Occitanie.html" target="_blank" rel="noopener noreferrer" aria-label="TripAdvisor"><img src="images/tripadvisor-chiringuito.svg" alt="TripAdvisor" class="w-6 h-6 opacity-70 hover:opacity-100 transition-opacity" width="24" height="24" loading="lazy"/></a>
-          </div>
-          <div class="flex items-center gap-4 justify-center md:justify-start">
-            <a href="https://www.petitfute.com/v19402-vias-34450/c1165-restaurants/c1248-specialites/c1235-restaurant-de-plage/1837186-le-chiringuito.html" target="_blank" rel="noopener noreferrer"><img src="images/logo-lepetitfute.webp" alt="Recommand&eacute; par Le Petit Fut&eacute;" class="h-7 opacity-60 hover:opacity-100 transition-opacity" loading="lazy" height="28"/></a>
-            <a href="https://www.epaillote.com/plages-privees/france/34-herault/vias-plage/chiringuito-vias" target="_blank" rel="noopener noreferrer"><img src="images/epaillote.webp" alt="Chiringuito sur ePaillote" class="h-7 opacity-60 hover:opacity-100 transition-opacity" loading="lazy" height="28"/></a>
-          </div>
-        </div>
+    <!-- Social icons -->
+    <div class="text-center pb-10 px-6">
+      <div class="flex items-center justify-center gap-6 mb-6">
+        <a href="https://www.facebook.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:-translate-y-1 transition-all duration-300" aria-label="Facebook"><img src="images/facebook-chiringuito.svg" alt="Facebook" class="w-5 h-5" width="20" height="20" loading="lazy"/></a>
+        <a href="https://www.instagram.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:-translate-y-1 transition-all duration-300" aria-label="Instagram"><img src="images/instagram-chiringuito.svg" alt="Instagram" class="w-5 h-5" width="20" height="20" loading="lazy"/></a>
+        <a href="https://www.tiktok.com/@chiringuitovias" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:-translate-y-1 transition-all duration-300" aria-label="TikTok"><img src="images/tiktok-blanc-chiringuito.svg" alt="TikTok" class="w-4 h-5" width="16" height="20" loading="lazy"/></a>
+        <a href="https://www.tripadvisor.fr/Restaurant_Review-g1080326-d10806143-Reviews-Chiringuito-Vias_Herault_Occitanie.html" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:-translate-y-1 transition-all duration-300" aria-label="TripAdvisor"><img src="images/tripadvisor-chiringuito.svg" alt="TripAdvisor" class="w-5 h-5" width="20" height="20" loading="lazy"/></a>
       </div>
+      <div class="flex items-center justify-center gap-5">
+        <a href="https://www.petitfute.com/v19402-vias-34450/c1165-restaurants/c1248-specialites/c1235-restaurant-de-plage/1837186-le-chiringuito.html" target="_blank" rel="noopener noreferrer"><img src="images/logo-lepetitfute.webp" alt="Le Petit Fut&eacute;" class="h-6 opacity-40 hover:opacity-80 transition-opacity" loading="lazy" height="24"/></a>
+        <a href="https://www.epaillote.com/plages-privees/france/34-herault/vias-plage/chiringuito-vias" target="_blank" rel="noopener noreferrer"><img src="images/epaillote.webp" alt="ePaillote" class="h-6 opacity-40 hover:opacity-80 transition-opacity" loading="lazy" height="24"/></a>
+      </div>
+    </div>
 
-      <!-- Google Maps -->
-      <div class="mb-12 rounded-2xl overflow-hidden shadow-lg" style="height: 220px;">
+    <!-- Google Maps -->
+    <div class="max-w-5xl mx-auto px-6 pb-10">
+      <div class="rounded-2xl overflow-hidden shadow-lg border border-white/10" style="height: 200px;">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2898.5!2d3.4065!3d43.2848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b135e7e7e7e7e7%3A0x0!2sChiringuito!5e0!3m2!1sfr!2sfr!4v1" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localisation Chiringuito Vias-Plage"></iframe>
       </div>
+    </div>
 
-      <!-- Bottom bar -->
-      <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/60">
+    <!-- Bottom bar -->
+    <div class="border-t border-white/10 py-6 px-6">
+      <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/40">
         <p>CHIRINGUITO &copy; <script>document.write(new Date().getFullYear())</script> Tous droits r&eacute;serv&eacute;s</p>
         <a href="http://paper34.fr" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-white/60 transition-colors">
           R&eacute;alis&eacute; par
-          <img src="images/logoblanc-paper34.svg" alt="Paper34" class="h-3 opacity-50" width="64" height="12" loading="lazy"/>
+          <img src="images/logoblanc-paper34.svg" alt="Paper34" class="h-3 opacity-40" width="64" height="12" loading="lazy"/>
         </a>
       </div>
     </div>
+
+    <!-- Poisson decoratif footer -->
+    <div class="absolute bottom-20 right-8 opacity-5 pointer-events-none" aria-hidden="true">
+      <img src="images/poisson-chiringuito.svg" alt="" class="w-32" width="113" height="59"/>
+    </div>
+
   </footer>
 
   <!-- ============================================ -->
@@ -922,6 +937,12 @@
         gsap.to('#deco-macrame img', {
           rotation: 2, x: 3, transformOrigin: 'top center',
           duration: 4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1
+        });
+
+        // Poisson decoratif : nage doucement
+        gsap.to('#poisson-deco', {
+          x: 8, y: -3, rotation: 5,
+          duration: 2.5, ease: 'sine.inOut', yoyo: true, repeat: -1
         });
 
         // Reveal animations for all .reveal elements
