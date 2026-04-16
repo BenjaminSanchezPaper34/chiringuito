@@ -778,32 +778,19 @@
       const navCta = document.getElementById('nav-cta');
       const navLogoWrap = document.getElementById('nav-logo-wrap');
 
+      // Apply permanent gradient on navbar
+      navbar.style.background = 'linear-gradient(to bottom, rgba(0,80,85,0.6) 0%, rgba(0,100,105,0.3) 40%, transparent 100%)';
+
       function updateNav() {
         const scrolled = window.scrollY > 100;
-        // Fond : blur semi-transparent au lieu de blanc opaque
-        navbar.classList.toggle('bg-white/70', scrolled);
-        navbar.classList.toggle('backdrop-blur-xl', scrolled);
-        navbar.classList.toggle('shadow-sm', scrolled);
         // Logo banniere : hidden at top, visible after scroll
         if (navLogoWrap) {
           navLogoWrap.style.opacity = scrolled ? '1' : '0';
           navLogoWrap.style.pointerEvents = scrolled ? 'auto' : 'none';
         }
-        navLinks.forEach(link => {
-          link.classList.toggle('text-white', !scrolled);
-          link.classList.toggle('text-text', scrolled);
-        });
-        hamburgerSpans.forEach(span => {
-          span.classList.toggle('bg-white', !scrolled);
-          span.classList.toggle('bg-gray-900', scrolled);
-        });
-        if (navCta) {
-          if (scrolled) {
-            navCta.className = 'hidden md:inline-flex px-5 py-2 bg-brand/15 backdrop-blur-md text-brand border border-brand/25 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand/25 hover:border-brand/40 transition-all duration-300';
-          } else {
-            navCta.className = 'hidden md:inline-flex px-5 py-2 bg-white/15 backdrop-blur-md text-white border border-white/25 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-white/25 hover:border-white/40 transition-all duration-300';
-          }
-        }
+        // Liens et hamburger restent toujours blancs
+        // CTA toujours en glass blanc (le fond est toujours le gradient bleu)
+
       }
       window.addEventListener('scroll', updateNav, { passive: true });
       updateNav();
