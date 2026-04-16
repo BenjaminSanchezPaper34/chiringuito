@@ -910,18 +910,18 @@
         gsap.to('#deco-right', { x: 0, duration: 1.2, delay: 0.5, ease: 'power3.out' });
         // macrame : pas d'animation d'entree, juste parallaxe + sway
 
-        // Decorative elements : parallax on scroll
+        // Decorative elements : parallax on scroll (vitesses et axes differents)
         gsap.to('#deco-left', {
-          y: -120,
-          scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1 }
+          y: -150, x: -20, rotation: -3,
+          scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 0.8 }
         });
         gsap.to('#deco-right', {
-          y: -80,
-          scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1 }
+          y: -90, x: 15, rotation: 2,
+          scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.2 }
         });
         gsap.to('#deco-macrame', {
-          y: -60,
-          scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1 }
+          y: -50, rotation: 4,
+          scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.5 }
         });
 
         // Decorative elements : gentle sway (wind effect)
