@@ -221,10 +221,7 @@
   </a>
 
   <!-- Decorative parallax elements -->
-  <!-- Frise decorative top -->
-  <div class="fixed top-0 left-0 right-0 z-40 pointer-events-none" aria-hidden="true">
-    <div class="w-full h-12 md:h-14" style="background: transparent url('images/frise.svg') repeat-x center top; background-size: 167px 59px;"></div>
-  </div>
+
 
   <!-- Decorative parallax elements -->
   <div class="fixed top-0 left-0 z-30 pointer-events-none" id="deco-left">
@@ -338,10 +335,10 @@
     <!-- ============================================ -->
     <!-- BIENVENUE -->
     <!-- ============================================ -->
-    <section id="bienvenue" class="py-20 md:py-28 px-6">
+    <section id="bienvenue" class="py-12 md:py-16 px-6">
       <div class="max-w-3xl mx-auto text-center">
         <!-- Decorative frise -->
-        <img src="images/frise.svg" alt="" class="w-32 mx-auto mb-6 opacity-15 reveal" width="167" height="59" aria-hidden="true"/>
+        <img src="images/frise.svg" alt="" class="w-28 mx-auto mb-4 opacity-15 reveal" width="167" height="59" aria-hidden="true"/>
 
         <h2 class="font-display italic text-3xl md:text-4xl lg:text-5xl text-brand mb-6 tracking-tight reveal">Bienvenue</h2>
 
@@ -351,14 +348,14 @@
           <p>Confort et d&eacute;tente r&egrave;gnent sur les larges bains de soleil en bois naturel.</p>
         </div>
 
-        <img src="images/frise.svg" alt="" class="w-32 mx-auto mt-6 opacity-15 rotate-180 reveal" width="167" height="59" aria-hidden="true"/>
+        <img src="images/frise.svg" alt="" class="w-28 mx-auto mt-4 opacity-15 rotate-180 reveal" width="167" height="59" aria-hidden="true"/>
       </div>
     </section>
 
     <!-- ============================================ -->
     <!-- MENU -->
     <!-- ============================================ -->
-    <section id="menu" class="py-20 md:py-28 px-6 bg-gray-50 relative noise">
+    <section id="menu" class="py-20 md:py-28 px-6 bg-gray-50 relative">
       <div class="max-w-5xl mx-auto text-center">
         <h2 class="font-display italic text-3xl md:text-4xl lg:text-5xl text-brand mb-3 tracking-tight reveal">Go&ucirc;tez</h2>
         <p class="text-sm md:text-base text-text-light tracking-wide mb-10 reveal">D&eacute;couvrez notre carte</p>
@@ -843,7 +840,7 @@
           // Animate menu items in
           const activeCategory = document.querySelector('.menu-category:not(.hidden)');
           if (activeCategory) {
-            gsap.from(activeCategory.querySelectorAll('.menu-item'), { y: 20, opacity: 0, stagger: 0.08, duration: 0.4, ease: 'power2.out' });
+            gsap.fromTo(activeCategory.querySelectorAll('.menu-item'), { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, duration: 0.4, ease: 'power2.out' });
           }
         }
       });
@@ -874,7 +871,7 @@
           // Animate visible items
           const visibleCat = document.querySelector(`.menu-category[data-category="${target}"]`);
           if (visibleCat) {
-            gsap.from(visibleCat.querySelectorAll('.menu-item'), { y: 20, opacity: 0, stagger: 0.08, duration: 0.4, ease: 'power2.out' });
+            gsap.fromTo(visibleCat.querySelectorAll('.menu-item'), { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, duration: 0.4, ease: 'power2.out' });
           }
         });
       });
