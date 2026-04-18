@@ -234,6 +234,17 @@
     <span class="block w-5 h-[1.5px] bg-white transition-all duration-300 origin-center"></span>
   </button>
 
+  <!-- Decorative parallax elements (desktop only, sur le hero) -->
+  <div class="hidden md:block fixed -top-2 -left-1 z-[55] pointer-events-none" id="deco-left-fixed" aria-hidden="true">
+    <img src="images/plantesgauche.webp" alt="" class="md:w-56 lg:w-64 xl:w-80 opacity-90 drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]" width="351" height="532"/>
+  </div>
+  <div class="hidden md:block fixed -top-2 -right-1 z-[55] pointer-events-none" id="deco-right-fixed" aria-hidden="true">
+    <img src="images/plantesdroite.webp" alt="" class="md:w-56 lg:w-64 xl:w-80 opacity-90 drop-shadow-[-4px_4px_12px_rgba(0,0,0,0.15)]" width="350" height="532"/>
+  </div>
+  <div class="hidden md:block fixed -top-2 right-28 lg:right-36 xl:right-44 z-[55] pointer-events-none" id="deco-macrame-fixed" aria-hidden="true">
+    <img src="images/macrame.webp" alt="" class="md:w-24 lg:w-28 xl:w-32 opacity-80 drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]" width="141" height="348"/>
+  </div>
+
   <!-- Scroll progress bar -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -362,15 +373,12 @@
     <!-- BIENVENUE -->
     <!-- ============================================ -->
     <section id="bienvenue" class="py-16 md:py-24 px-6 relative overflow-hidden">
-      <!-- Plantes decoratives -->
-      <div class="absolute -top-4 -left-2 pointer-events-none" id="deco-left" aria-hidden="true">
-        <img src="images/plantesgauche.webp" alt="" class="w-28 md:w-48 lg:w-56 xl:w-64 opacity-90 drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]" width="351" height="532"/>
+      <!-- Plantes decoratives mobile only -->
+      <div class="md:hidden absolute -top-4 -left-2 pointer-events-none" id="deco-left" aria-hidden="true">
+        <img src="images/plantesgauche.webp" alt="" class="w-28 opacity-90 drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]" width="351" height="532"/>
       </div>
-      <div class="absolute -top-4 -right-2 pointer-events-none" id="deco-right" aria-hidden="true">
-        <img src="images/plantesdroite.webp" alt="" class="w-28 md:w-48 lg:w-56 xl:w-64 opacity-90 drop-shadow-[-4px_4px_12px_rgba(0,0,0,0.15)]" width="350" height="532"/>
-      </div>
-      <div class="hidden md:block absolute -top-4 right-20 lg:right-28 xl:right-36 pointer-events-none" id="deco-macrame" aria-hidden="true">
-        <img src="images/macrame.webp" alt="" class="w-20 lg:w-24 xl:w-28 opacity-80 drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]" width="141" height="348"/>
+      <div class="md:hidden absolute -top-4 -right-2 pointer-events-none" id="deco-right" aria-hidden="true">
+        <img src="images/plantesdroite.webp" alt="" class="w-28 opacity-90 drop-shadow-[-4px_4px_12px_rgba(0,0,0,0.15)]" width="350" height="532"/>
       </div>
 
       <div class="relative z-10 max-w-3xl mx-auto text-center">
@@ -974,7 +982,7 @@
           scrollTrigger: { trigger: '#accueil', start: '30% top', end: 'bottom top', scrub: true }
         });
 
-        // Decorative elements : gentle sway (wind effect)
+        // Plantes Bienvenue (mobile) : balancement
         gsap.to('#deco-left img', {
           rotation: 1.5, transformOrigin: 'top left',
           duration: 3, ease: 'sine.inOut', yoyo: true, repeat: -1
@@ -983,10 +991,36 @@
           rotation: -1.5, transformOrigin: 'top right',
           duration: 3.5, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 0.5
         });
-        gsap.to('#deco-macrame img', {
-          rotation: 2, x: 3, transformOrigin: 'top center',
-          duration: 4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1
-        });
+
+        // Plantes hero fixed (desktop) : parallax au scroll + balancement
+        if (window.matchMedia('(min-width: 768px)').matches) {
+          gsap.to('#deco-left-fixed', {
+            y: -150, x: -20, rotation: -3,
+            scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 0.8 }
+          });
+          gsap.to('#deco-right-fixed', {
+            y: -90, x: 15, rotation: 2,
+            scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.2 }
+          });
+          gsap.to('#deco-macrame-fixed', {
+            y: -50, rotation: 4,
+            scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.5 }
+          });
+
+          // Balancement (vent)
+          gsap.to('#deco-left-fixed img', {
+            rotation: 1.5, transformOrigin: 'top left',
+            duration: 3, ease: 'sine.inOut', yoyo: true, repeat: -1
+          });
+          gsap.to('#deco-right-fixed img', {
+            rotation: -1.5, transformOrigin: 'top right',
+            duration: 3.5, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 0.5
+          });
+          gsap.to('#deco-macrame-fixed img', {
+            rotation: 2, x: 3, transformOrigin: 'top center',
+            duration: 4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1
+          });
+        }
 
         // Poisson decoratif : mouvement de nage (plongee + remontee)
         const poissonTl = gsap.timeline({ repeat: -1 });
