@@ -5,9 +5,10 @@
 
   <url>
     <loc>https://chiringuito-vias.fr/</loc>
-    <lastmod>2026-04-16</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+
     <image:image>
       <image:loc>https://chiringuito-vias.fr/images/og-chiringuito.jpg</image:loc>
       <image:title>Chiringuito - Plage priv&#233;e &#224; Vias-Plage</image:title>
@@ -18,13 +19,68 @@
       <image:loc>https://chiringuito-vias.fr/images/logo-blanc-chiringuito.svg</image:loc>
       <image:title>Logo Chiringuito Vias-Plage</image:title>
     </image:image>
+
+    <!-- Video Hero : ambiance plage -->
     <video:video>
       <video:thumbnail_loc>https://chiringuito-vias.fr/images/og-chiringuito.jpg</video:thumbnail_loc>
-      <video:title>Chiringuito Vias-Plage - Plage priv&#233;e</video:title>
-      <video:description>D&#233;couvrez le Chiringuito, plage priv&#233;e &#224; Vias-Plage. Restaurant, bar, transats face &#224; la M&#233;diterran&#233;e.</video:description>
+      <video:title>Chiringuito Vias-Plage - Ambiance plage priv&#233;e</video:title>
+      <video:description>D&#233;couvrez l'ambiance du Chiringuito, plage priv&#233;e &#224; Vias-Plage. Restaurant, bar, transats face &#224; la M&#233;diterran&#233;e.</video:description>
       <video:content_loc>https://chiringuito-vias.fr/assets/mainvideo-chiringuito.mp4</video:content_loc>
+      <video:duration>19</video:duration>
       <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+      <video:publication_date>2025-06-02T00:00:00+02:00</video:publication_date>
+      <video:tag>chiringuito</video:tag>
+      <video:tag>vias plage</video:tag>
+      <video:tag>plage privee</video:tag>
+      <video:tag>restaurant de plage</video:tag>
     </video:video>
+
+    <!-- Reel 1 -->
+    <video:video>
+      <video:thumbnail_loc>https://chiringuito-vias.fr/assets/reels/reel-1-thumb.jpg</video:thumbnail_loc>
+      <video:title>Chiringuito Vias - Moment d'&#233;t&#233;</video:title>
+      <video:description>Reel Chiringuito Vias-Plage : moments captur&#233;s au restaurant de plage face &#224; la M&#233;diterran&#233;e.</video:description>
+      <video:content_loc>https://chiringuito-vias.fr/assets/reels/reel-1.mp4</video:content_loc>
+      <video:duration>22</video:duration>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+      <video:publication_date>2025-08-09T00:00:00+02:00</video:publication_date>
+      <video:tag>chiringuito</video:tag>
+      <video:tag>vias plage</video:tag>
+      <video:tag>summer</video:tag>
+    </video:video>
+
+    <!-- Reel 2 -->
+    <video:video>
+      <video:thumbnail_loc>https://chiringuito-vias.fr/assets/reels/reel-2-thumb.jpg</video:thumbnail_loc>
+      <video:title>Chiringuito Vias - Cuisine &amp; cocktails</video:title>
+      <video:description>Reel Chiringuito Vias-Plage : la cuisine raffin&#233;e et les cocktails de notre restaurant de plage.</video:description>
+      <video:content_loc>https://chiringuito-vias.fr/assets/reels/reel-2.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+      <video:publication_date>2025-09-03T00:00:00+02:00</video:publication_date>
+      <video:tag>chiringuito</video:tag>
+      <video:tag>cuisine</video:tag>
+      <video:tag>cocktails</video:tag>
+    </video:video>
+
+    <!-- Reel 3 -->
+    <video:video>
+      <video:thumbnail_loc>https://chiringuito-vias.fr/assets/reels/reel-3-thumb.jpg</video:thumbnail_loc>
+      <video:title>Chiringuito Vias - Plage &amp; transats</video:title>
+      <video:description>Reel Chiringuito Vias-Plage : transats, plage priv&#233;e et atmosph&#232;re m&#233;diterran&#233;enne.</video:description>
+      <video:content_loc>https://chiringuito-vias.fr/assets/reels/reel-3.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+      <video:publication_date>2025-09-17T00:00:00+02:00</video:publication_date>
+      <video:tag>chiringuito</video:tag>
+      <video:tag>transats</video:tag>
+      <video:tag>plage privee</video:tag>
+    </video:video>
+
   </url>
 
   <url>
