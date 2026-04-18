@@ -1018,9 +1018,12 @@
             rotation: -1.5, transformOrigin: 'top right',
             duration: 3.5, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 0.5
           });
+          // Macrame : balancier de pot pendu (oscille gauche-droite depuis l'accroche)
+          gsap.set('#deco-macrame-fixed img', { transformOrigin: 'top center' });
           gsap.to('#deco-macrame-fixed img', {
-            rotation: 2, x: 3, transformOrigin: 'top center',
-            duration: 4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1
+            rotation: 4,
+            duration: 3, ease: 'sine.inOut', yoyo: true, repeat: -1, yoyoEase: 'sine.inOut',
+            startAt: { rotation: -4 }
           });
         }
 
