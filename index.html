@@ -684,11 +684,13 @@
           </a>
         </div>
 
-        <!-- CTA Voir la carte -->
-        <a href="/carte/" class="inline-flex items-center gap-2 text-white/90 hover:text-white text-xs sm:text-sm font-medium tracking-widest uppercase mb-10 underline decoration-white/30 underline-offset-4 hover:decoration-white/70 transition-all duration-300">
+        <!-- CTA Voir la carte (mobile uniquement) -->
+        <a href="/carte/" class="md:hidden inline-flex items-center gap-2 text-white/90 hover:text-white text-xs sm:text-sm font-medium tracking-widest uppercase mb-10 underline decoration-white/30 underline-offset-4 hover:decoration-white/70 transition-all duration-300">
           Voir la carte
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </a>
+        <!-- Espace mb-10 pour desktop -->
+        <div class="hidden md:block mb-6"></div>
 
         <!-- Social icons -->
         <div class="flex items-center gap-4">
