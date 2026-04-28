@@ -315,6 +315,20 @@
     "hasMenuSection": [
       {
         "@type": "MenuSection",
+        "name": "Tapas",
+        "hasMenuItem": [
+          {"@type": "MenuItem", "name": "Pan con tomate et Serrano", "offers": {"@type": "Offer", "price": "12.00", "priceCurrency": "EUR"}},
+          {"@type": "MenuItem", "name": "Gambas Black Tigers pan\u00e9es \u00e0 la noix de coco x6", "offers": {"@type": "Offer", "price": "13.00", "priceCurrency": "EUR"}},
+          {"@type": "MenuItem", "name": "P\u00e9pites d'encornets pan\u00e9es \u00e0 l'ail et persil", "offers": {"@type": "Offer", "price": "12.00", "priceCurrency": "EUR"}},
+          {"@type": "MenuItem", "name": "Croquetas au jambon x6", "offers": {"@type": "Offer", "price": "12.00", "priceCurrency": "EUR"}},
+          {"@type": "MenuItem", "name": "Croq' monsieur \u00e0 la truffe, jambon et Cantal", "offers": {"@type": "Offer", "price": "15.00", "priceCurrency": "EUR"}},
+          {"@type": "MenuItem", "name": "Patatas bravas", "offers": {"@type": "Offer", "price": "9.00", "priceCurrency": "EUR"}},
+          {"@type": "MenuItem", "name": "F\u00eata fouett\u00e9e", "description": "Miel et amandes concass\u00e9es, fruit confit et pain grill\u00e9", "offers": {"@type": "Offer", "price": "9.00", "priceCurrency": "EUR"}},
+          {"@type": "MenuItem", "name": "La Planche Chiringuito", "description": "Serrano, pan con tomate, encornets, f\u00eata fouett\u00e9e, gambas Black Tigers, patatas bravas", "offers": {"@type": "Offer", "price": "40.00", "priceCurrency": "EUR"}}
+        ]
+      },
+      {
+        "@type": "MenuSection",
         "name": "Pour D\u00e9marrer",
         "hasMenuItem": [
           {"@type": "MenuItem", "name": "Burrata enti\u00e8re", "description": "Tomates de notre potager, fruits de saison r\u00f4tis, miel, amandes grill\u00e9es, huile de basilic, sucrine", "offers": {"@type": "Offer", "price": "20.00", "priceCurrency": "EUR"}},
@@ -322,8 +336,14 @@
           {"@type": "MenuItem", "name": "Brick de ch\u00e8vre P\u00e9lardon fermier AOP", "description": "Miel et tomates s\u00e9ch\u00e9es, salade, tomates du potager, jambon Serrano, graines torr\u00e9fi\u00e9es, cr\u00e8me de balsamique", "offers": {"@type": "Offer", "price": "21.00", "priceCurrency": "EUR"}},
           {"@type": "MenuItem", "name": "Poke bowl", "description": "Thon cru en sashimi, riz tha\u00ef au citron vert, wakame, l\u00e9gumes, cream cheese, ananas, vinaigrette tha\u00ef, fruits \u00e0 coque grill\u00e9s", "offers": {"@type": "Offer", "price": "22.00", "priceCurrency": "EUR"}},
           {"@type": "MenuItem", "name": "Ceviche de daurade", "description": "Vinaigrette aux agrumes, pickles de l\u00e9gumes, glace yuzu", "offers": {"@type": "Offer", "price": "19.00", "priceCurrency": "EUR"}},
-          {"@type": "MenuItem", "name": "Hu\u00eetres", "offers": [{"@type": "Offer", "price": "14.00", "priceCurrency": "EUR", "name": "x6"}, {"@type": "Offer", "price": "28.00", "priceCurrency": "EUR", "name": "x12"}, {"@type": "Offer", "price": "50.00", "priceCurrency": "EUR", "name": "x24"}]},
-          {"@type": "MenuItem", "name": "Menu Enfant", "description": "Moins de 10 ans : Sirop + poulet ou poisson + sundae fraise ou caramel", "offers": {"@type": "Offer", "price": "15.00", "priceCurrency": "EUR"}}
+          {"@type": "MenuItem", "name": "Hu\u00eetres", "offers": [{"@type": "Offer", "price": "14.00", "priceCurrency": "EUR", "name": "x6"}, {"@type": "Offer", "price": "28.00", "priceCurrency": "EUR", "name": "x12"}, {"@type": "Offer", "price": "50.00", "priceCurrency": "EUR", "name": "x24"}]}
+        ]
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Menu Enfant",
+        "hasMenuItem": [
+          {"@type": "MenuItem", "name": "Menu Enfant (moins de 10 ans)", "description": "Sirop + poulet ou poisson + sundae fraise ou caramel", "offers": {"@type": "Offer", "price": "15.00", "priceCurrency": "EUR"}}
         ]
       },
       {
@@ -750,14 +770,52 @@
 
           <!-- Category tabs -->
           <div class="flex items-center justify-center gap-2 md:gap-3 flex-wrap mb-12" role="tablist" aria-label="Categories du menu">
-            <button class="menu-tab active bg-brand text-white px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold uppercase tracking-wider transition-all duration-300" role="tab" aria-selected="true" data-tab="demarrer">Pour D&eacute;marrer</button>
+            <button class="menu-tab active bg-brand text-white px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold uppercase tracking-wider transition-all duration-300" role="tab" aria-selected="true" data-tab="tapas">Tapas</button>
+            <button class="menu-tab bg-white text-text border border-gray-200 px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold uppercase tracking-wider hover:border-brand/50 transition-all duration-300" role="tab" aria-selected="false" data-tab="demarrer">Pour D&eacute;marrer</button>
             <button class="menu-tab bg-white text-text border border-gray-200 px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold uppercase tracking-wider hover:border-brand/50 transition-all duration-300" role="tab" aria-selected="false" data-tab="mer">La Mer</button>
             <button class="menu-tab bg-white text-text border border-gray-200 px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold uppercase tracking-wider hover:border-brand/50 transition-all duration-300" role="tab" aria-selected="false" data-tab="viande">La Viande</button>
             <button class="menu-tab bg-white text-text border border-gray-200 px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold uppercase tracking-wider hover:border-brand/50 transition-all duration-300" role="tab" aria-selected="false" data-tab="terminer">Pour Terminer</button>
+            <button class="menu-tab bg-white text-text border border-gray-200 px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold uppercase tracking-wider hover:border-brand/50 transition-all duration-300" role="tab" aria-selected="false" data-tab="enfant">Enfant</button>
+          </div>
+
+          <!-- TAPAS -->
+          <div class="menu-category text-left max-w-4xl mx-auto" data-category="tapas" role="tabpanel">
+            <div class="menu-item flex justify-between items-start py-4 border-b border-gray-200/60">
+              <div class="pr-4 min-w-0"><h3 class="font-semibold text-gray-900">Pan con tomate et Serrano</h3></div>
+              <span class="text-brand font-semibold text-sm whitespace-nowrap">12&euro;</span>
+            </div>
+            <div class="menu-item flex justify-between items-start py-4 border-b border-gray-200/60">
+              <div class="pr-4 min-w-0"><h3 class="font-semibold text-gray-900">Gambas &laquo;&nbsp;Black Tigers&nbsp;&raquo; pan&eacute;es &agrave; la noix de coco</h3></div>
+              <span class="text-brand font-semibold text-sm whitespace-nowrap">x6 13&euro;</span>
+            </div>
+            <div class="menu-item flex justify-between items-start py-4 border-b border-gray-200/60">
+              <div class="pr-4 min-w-0"><h3 class="font-semibold text-gray-900">P&eacute;pites d'encornets pan&eacute;es &agrave; l'ail et persil</h3></div>
+              <span class="text-brand font-semibold text-sm whitespace-nowrap">12&euro;</span>
+            </div>
+            <div class="menu-item flex justify-between items-start py-4 border-b border-gray-200/60">
+              <div class="pr-4 min-w-0"><h3 class="font-semibold text-gray-900">Croquetas au jambon</h3></div>
+              <span class="text-brand font-semibold text-sm whitespace-nowrap">x6 12&euro;</span>
+            </div>
+            <div class="menu-item flex justify-between items-start py-4 border-b border-gray-200/60">
+              <div class="pr-4 min-w-0"><h3 class="font-semibold text-gray-900">Croq' monsieur &agrave; la truffe, jambon et Cantal</h3></div>
+              <span class="text-brand font-semibold text-sm whitespace-nowrap">15&euro;</span>
+            </div>
+            <div class="menu-item flex justify-between items-start py-4 border-b border-gray-200/60">
+              <div class="pr-4 min-w-0"><h3 class="font-semibold text-gray-900">Patatas bravas</h3></div>
+              <span class="text-brand font-semibold text-sm whitespace-nowrap">9&euro;</span>
+            </div>
+            <div class="menu-item flex justify-between items-start py-4 border-b border-gray-200/60">
+              <div class="pr-4 min-w-0"><h3 class="font-semibold text-gray-900">F&ecirc;ta fouett&eacute;e</h3><p class="text-sm text-text-light mt-1">Miel et amandes concass&eacute;es, fruit confit et pain grill&eacute;</p></div>
+              <span class="text-brand font-semibold text-sm whitespace-nowrap">9&euro;</span>
+            </div>
+            <div class="menu-item flex justify-between items-start py-4 border-b border-brand/20">
+              <div class="pr-4 min-w-0"><h3 class="font-semibold text-gray-900">La Planche Chiringuito</h3><p class="text-sm text-text-light mt-1">Serrano, pan con tomate, p&eacute;pites d'encornets pan&eacute;s en persillade, f&ecirc;ta fouett&eacute;e au miel, gambas Black Tigers pan&eacute;es &agrave; la noix de coco, patatas bravas</p></div>
+              <span class="text-brand font-semibold text-sm whitespace-nowrap">40&euro;</span>
+            </div>
           </div>
 
           <!-- POUR DEMARRER -->
-          <div class="menu-category text-left max-w-4xl mx-auto" data-category="demarrer" role="tabpanel">
+          <div class="menu-category text-left max-w-4xl mx-auto hidden" data-category="demarrer" role="tabpanel">
             <div class="menu-item flex justify-between items-start py-4 border-b border-gray-200/60">
               <div class="pr-4 min-w-0"><h3 class="font-semibold text-gray-900">Burrata enti&egrave;re</h3><p class="text-sm text-text-light mt-1">Tomates de notre potager, fruits de saison r&ocirc;tis, miel, amandes grill&eacute;es, huile de basilic, sucrine</p></div>
               <span class="text-brand font-semibold text-sm whitespace-nowrap">20&euro;</span>
@@ -778,10 +836,14 @@
               <div class="pr-4 min-w-0"><h3 class="font-semibold text-gray-900">Ceviche de daurade</h3><p class="text-sm text-text-light mt-1">Vinaigrette aux agrumes, pickles de l&eacute;gumes, glace yuzu</p></div>
               <span class="text-brand font-semibold text-sm whitespace-nowrap">19&euro;</span>
             </div>
-            <div class="menu-item flex justify-between items-start py-4 border-b border-gray-200/60">
+            <div class="menu-item flex justify-between items-start py-4 border-b border-brand/20">
               <div class="pr-4 min-w-0"><h3 class="font-semibold text-gray-900">Hu&icirc;tres</h3></div>
               <span class="text-brand font-semibold text-sm whitespace-nowrap">x6 14&euro; &middot; x12 28&euro; &middot; x24 50&euro;</span>
             </div>
+          </div>
+
+          <!-- ENFANT -->
+          <div class="menu-category text-left max-w-4xl mx-auto hidden" data-category="enfant" role="tabpanel">
             <div class="menu-item flex justify-between items-start py-4 border-b border-brand/20">
               <div class="pr-4 min-w-0"><h3 class="font-semibold text-gray-900">Menu Enfant <span class="text-text-light font-normal">&middot; moins de 10 ans</span></h3><p class="text-sm text-text-light mt-1">Sirop + poulet ou poisson + sundae fraise ou caramel</p></div>
               <span class="text-brand font-semibold text-sm whitespace-nowrap">15&euro;</span>
