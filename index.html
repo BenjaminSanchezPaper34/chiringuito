@@ -1084,6 +1084,68 @@
   </footer>
 
   <!-- ============================================ -->
+  <!-- POPUP NEWSLETTER (actus saison) -->
+  <!-- ============================================ -->
+  <div id="newsletter-popup" class="fixed inset-0 z-[100] hidden items-center justify-center px-4" role="dialog" aria-labelledby="newsletter-title" aria-modal="true">
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="newsletter-backdrop"></div>
+
+    <!-- Card -->
+    <div class="relative bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 md:p-10 transform translate-y-4 opacity-0 transition-all duration-500" id="newsletter-card">
+      <!-- Close -->
+      <button type="button" id="newsletter-close" class="absolute top-4 right-4 w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-900 transition" aria-label="Fermer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <!-- Decorative fish accent -->
+      <div class="flex justify-center mb-3" aria-hidden="true">
+        <svg width="42" height="42" viewBox="0 0 100 100" fill="none" stroke="#009BA4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 50 C 25 30, 60 30, 75 50 C 60 70, 25 70, 15 50 Z"/>
+          <line x1="75" y1="50" x2="92" y2="38"/>
+          <line x1="75" y1="50" x2="92" y2="62"/>
+          <circle cx="28" cy="48" r="2.5" fill="#009BA4"/>
+        </svg>
+      </div>
+
+      <!-- Heading -->
+      <h2 id="newsletter-title" class="text-center mb-2" style="font-family: 'Parisienne', cursive; color: #009BA4; font-size: clamp(2rem, 5vw, 2.6rem); line-height: 1;">
+        Restez dans la vague
+      </h2>
+
+      <p class="text-center text-gray-600 text-sm md:text-base mb-6 leading-relaxed">
+        Recevez en avant-première les <strong>actualités</strong> et les <strong>dates clés de la saison</strong> au Chiringuito.
+      </p>
+
+      <!-- Form -->
+      <form id="newsletter-form" action="" method="POST" class="space-y-3">
+        <input type="text" name="prenom" placeholder="Prénom" autocomplete="given-name" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#009BA4] focus:ring-2 focus:ring-[#009BA4]/20 focus:outline-none text-gray-900 placeholder-gray-400 transition" />
+        <input type="email" name="email" placeholder="Votre email" autocomplete="email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#009BA4] focus:ring-2 focus:ring-[#009BA4]/20 focus:outline-none text-gray-900 placeholder-gray-400 transition" />
+        <input type="hidden" name="_subject" value="Nouvelle inscription newsletter Chiringuito" />
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+        <button type="submit" class="w-full py-3 rounded-xl bg-[#009BA4] hover:bg-[#007A82] text-white font-medium tracking-wide transition shadow-md hover:shadow-lg">
+          Je m'inscris
+        </button>
+      </form>
+
+      <p class="text-center text-xs text-gray-400 mt-5 leading-relaxed">
+        Pas de spam, pas de promo. Juste les <em>news</em> du Chiringuito.<br>
+        Désinscription en un clic à tout moment.
+      </p>
+
+      <!-- Success state (hidden by default) -->
+      <div id="newsletter-success" class="hidden text-center">
+        <div class="flex justify-center mb-3">
+          <div class="w-14 h-14 rounded-full bg-[#009BA4]/10 flex items-center justify-center">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#009BA4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+        </div>
+        <h3 class="font-semibold text-lg text-gray-900 mb-1">Bienvenue à bord !</h3>
+        <p class="text-gray-600 text-sm">On vous tient au courant des prochaines actus du Chiringuito.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
   <!-- SCRIPTS -->
   <!-- ============================================ -->
 
@@ -1387,6 +1449,107 @@
           const target = document.querySelector(anchor.getAttribute('href'));
           if (target) lenis.scrollTo(target, { offset: -80 });
         });
+      });
+
+      // ---- Popup Newsletter (actus saison) ----
+      const popup = document.getElementById('newsletter-popup');
+      const card = document.getElementById('newsletter-card');
+      const form = document.getElementById('newsletter-form');
+      const successEl = document.getElementById('newsletter-success');
+      const closeBtn = document.getElementById('newsletter-close');
+      const backdrop = document.getElementById('newsletter-backdrop');
+
+      const STORAGE_KEY = 'chiringuito_newsletter_state';
+      const DISMISS_DAYS = 7;
+
+      function getState() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; }
+      }
+      function setState(s) {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } catch {}
+      }
+      function shouldShow() {
+        const s = getState();
+        if (s.subscribed) return false;
+        if (s.dismissedAt && (Date.now() - s.dismissedAt) < DISMISS_DAYS * 86400000) return false;
+        return true;
+      }
+
+      function openPopup() {
+        if (!shouldShow()) return;
+        popup.classList.remove('hidden');
+        popup.classList.add('flex');
+        // Animate card in
+        requestAnimationFrame(() => {
+          card.classList.remove('translate-y-4', 'opacity-0');
+          card.classList.add('translate-y-0', 'opacity-100');
+        });
+      }
+      function closePopup(rememberDismissal = true) {
+        card.classList.add('translate-y-4', 'opacity-0');
+        card.classList.remove('translate-y-0', 'opacity-100');
+        setTimeout(() => {
+          popup.classList.add('hidden');
+          popup.classList.remove('flex');
+        }, 400);
+        if (rememberDismissal) {
+          const s = getState();
+          s.dismissedAt = Date.now();
+          setState(s);
+        }
+      }
+
+      // Trigger: 25 sec OR scroll 60% of page (whichever comes first)
+      let triggered = false;
+      const triggerOnce = () => {
+        if (triggered) return;
+        triggered = true;
+        openPopup();
+      };
+      setTimeout(triggerOnce, 25000);
+      window.addEventListener('scroll', () => {
+        const scrolled = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
+        if (scrolled > 0.6) triggerOnce();
+      }, { passive: true });
+
+      // Close handlers
+      closeBtn?.addEventListener('click', () => closePopup(true));
+      backdrop?.addEventListener('click', () => closePopup(true));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !popup.classList.contains('hidden')) closePopup(true);
+      });
+
+      // Form submission
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const endpoint = form.getAttribute('action');
+        // If no endpoint set, fall back to mailto
+        if (!endpoint) {
+          const data = new FormData(form);
+          const email = data.get('email');
+          const prenom = data.get('prenom') || '';
+          const subject = encodeURIComponent('Inscription newsletter Chiringuito');
+          const body = encodeURIComponent(`Prénom : ${prenom}\nEmail : ${email}`);
+          window.location.href = `mailto:contact@chiringuito-vias.fr?subject=${subject}&body=${body}`;
+          return;
+        }
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            form.style.display = 'none';
+            successEl.classList.remove('hidden');
+            const s = getState();
+            s.subscribed = true;
+            setState(s);
+            setTimeout(() => closePopup(false), 3500);
+          }
+        } catch (err) {
+          console.error('Newsletter signup error:', err);
+        }
       });
 
     });
