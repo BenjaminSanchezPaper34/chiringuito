@@ -1118,7 +1118,10 @@
 
       <!-- Form -->
       <form id="newsletter-form" action="" method="POST" class="space-y-3">
-        <input type="text" name="prenom" placeholder="Prénom" autocomplete="given-name" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#009BA4] focus:ring-2 focus:ring-[#009BA4]/20 focus:outline-none text-gray-900 placeholder-gray-400 transition" />
+        <div class="grid grid-cols-2 gap-3">
+          <input type="text" name="prenom" placeholder="Prénom" autocomplete="given-name" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#009BA4] focus:ring-2 focus:ring-[#009BA4]/20 focus:outline-none text-gray-900 placeholder-gray-400 transition" />
+          <input type="text" name="nom" placeholder="Nom" autocomplete="family-name" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#009BA4] focus:ring-2 focus:ring-[#009BA4]/20 focus:outline-none text-gray-900 placeholder-gray-400 transition" />
+        </div>
         <input type="email" name="email" placeholder="Votre email" autocomplete="email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#009BA4] focus:ring-2 focus:ring-[#009BA4]/20 focus:outline-none text-gray-900 placeholder-gray-400 transition" />
         <input type="hidden" name="_subject" value="Nouvelle inscription newsletter Chiringuito" />
         <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
@@ -1526,10 +1529,11 @@
         // If no endpoint set, fall back to mailto
         if (!endpoint) {
           const data = new FormData(form);
-          const email = data.get('email');
           const prenom = data.get('prenom') || '';
+          const nom = data.get('nom') || '';
+          const email = data.get('email');
           const subject = encodeURIComponent('Inscription newsletter Chiringuito');
-          const body = encodeURIComponent(`Prénom : ${prenom}\nEmail : ${email}`);
+          const body = encodeURIComponent(`Prénom : ${prenom}\nNom : ${nom}\nEmail : ${email}`);
           window.location.href = `mailto:contact@chiringuito-vias.fr?subject=${subject}&body=${body}`;
           return;
         }
