@@ -56,7 +56,7 @@ window.__metrics = {
       {
         "name": "Opening Party",
         "emoji": "🌅",
-        "period": "Début mai",
+        "period": "Samedi 6 juin",
         "visitors": 2500
       },
       {

@@ -14,7 +14,7 @@
       { "month": "Septembre", "dailyAvg": 500,  "days": 30, "total": 15000 }
     ],
     "events": [
-      { "name": "Opening Party",   "emoji": "🌅", "period": "Début mai",       "visitors": 2500 },
+      { "name": "Opening Party",   "emoji": "🌅", "period": "Samedi 6 juin",   "visitors": 2500 },
       { "name": "Coachella Party", "emoji": "🌴", "period": "Plein été",        "visitors": 2500 },
       { "name": "Closing Party",   "emoji": "🌙", "period": "Fin septembre",    "visitors": 2500 }
     ]
