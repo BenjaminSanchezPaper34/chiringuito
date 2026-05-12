@@ -517,6 +517,78 @@
       .soiree-card:hover { transform: translateY(-6px); }
     }
 
+    /* ───────── Artist marquee ───────── */
+    .marquee-mask {
+      mask-image: linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%);
+    }
+    .marquee-track { display: flex; width: max-content; animation: marqueeScroll 55s linear infinite; }
+    .marquee-row { display: flex; gap: 1rem; padding: 0 0.5rem; }
+    @media (min-width: 768px) { .marquee-row { gap: 1.25rem; padding: 0 0.625rem; } }
+    @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (hover: hover) { .marquee-track:hover { animation-play-state: paused; } }
+    @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
+
+    /* Artist tile */
+    .artist-tile {
+      position: relative; flex-shrink: 0;
+      width: 220px; height: 290px;
+      border-radius: 1.25rem; overflow: hidden;
+      cursor: pointer; text-align: left;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s;
+      box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.45);
+    }
+    @media (min-width: 768px) {
+      .artist-tile { width: 260px; height: 340px; border-radius: 1.5rem; }
+    }
+    .artist-tile--wide { width: 320px; }
+    @media (min-width: 768px) { .artist-tile--wide { width: 400px; } }
+    @media (hover: hover) {
+      .artist-tile:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 24px 50px -15px rgba(0, 0, 0, 0.6); }
+    }
+    .artist-bg { position: absolute; inset: 0; transition: transform 0.7s; }
+    @media (hover: hover) { .artist-tile:hover .artist-bg { transform: scale(1.08); } }
+    /* Dark gradient overlay at bottom for legibility */
+    .artist-tile::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.25) 35%, transparent 65%);
+    }
+    .artist-emoji {
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      font-size: 2.5rem; line-height: 1;
+      filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.4));
+      transition: transform 0.5s;
+    }
+    @media (min-width: 768px) { .artist-emoji { font-size: 3rem; top: 1.5rem; right: 1.5rem; } }
+    @media (hover: hover) { .artist-tile:hover .artist-emoji { transform: scale(1.15) rotate(-6deg); } }
+    .artist-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.25rem; z-index: 1;
+    }
+    @media (min-width: 768px) { .artist-info { padding: 1.5rem; } }
+    .artist-style {
+      display: inline-block; padding: 0.2rem 0.65rem; margin-bottom: 0.6rem;
+      background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 9999px;
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: white;
+    }
+    .artist-name {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 800; font-size: 1.35rem; line-height: 1.1; color: white;
+      margin-bottom: 0.4rem; letter-spacing: -0.02em;
+    }
+    @media (min-width: 768px) { .artist-name { font-size: 1.55rem; } }
+    .artist-event {
+      font-size: 0.7rem; color: rgba(255, 255, 255, 0.75);
+      letter-spacing: 0.05em;
+    }
+
+    /* Artist modal */
+    #artist-modal.is-open { display: flex !important; }
+    #artist-modal.is-open article { transform: translateY(0); opacity: 1; }
+
     /* Noise texture */
     .noise::after {
       content: ''; position: absolute; inset: 0; opacity: 0.03; pointer-events: none;
@@ -1008,6 +1080,153 @@
         </div>
       </div>
     </section>
+
+    <!-- ============================================ -->
+    <!-- ILS ONT JOUE CHEZ NOUS (mur d'artistes scrollant) -->
+    <!-- ============================================ -->
+    <section id="artistes" class="py-20 md:py-28 relative overflow-hidden bg-[#0F1B23] text-white">
+      <!-- Subtle texture -->
+      <div class="absolute inset-0 opacity-[0.07] noise pointer-events-none"></div>
+
+      <!-- Title block -->
+      <div class="relative z-10 max-w-6xl mx-auto px-6 mb-12 md:mb-16">
+        <div class="text-center">
+          <p class="text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-brand mb-3 reveal">La sc&egrave;ne du Chiringuito</p>
+          <h2 class="font-display text-5xl md:text-6xl lg:text-7xl text-white mb-4 tracking-tight reveal">Ils ont jou&eacute; chez nous</h2>
+          <p class="text-sm md:text-base text-white/60 tracking-wide reveal max-w-2xl mx-auto">DJ sets, lives acoustiques, groupes &eacute;mergents.<br class="hidden md:block"> La plage devient sc&egrave;ne, le couchant fait le reste.</p>
+        </div>
+      </div>
+
+      <!-- Marquee container -->
+      <div class="relative z-10 marquee-mask">
+        <div class="marquee-track" id="artistsMarquee">
+          <!-- Each tile is .artist-tile with data attributes for modal. Duplicated below for seamless loop. -->
+
+          <!-- ROW (will be duplicated by JS for infinite scroll) -->
+          <div class="marquee-row" id="artistsRow">
+
+            <button type="button" class="artist-tile" data-artist-name="Ma&iuml;a" data-artist-style="Live acoustique" data-artist-event="Opening Party 2025 &middot; 30 mai" data-artist-bio="Voix soul-folk, guitare voyageuse. Set lumineux face au coucher de soleil." data-artist-gradient="linear-gradient(165deg, #FFB088 0%, #FF7A45 50%, #C9461C 100%)" data-artist-emoji="&#x1F3B8;" aria-label="Voir Ma&iuml;a">
+              <div class="artist-bg" style="background: linear-gradient(165deg, #FFB088 0%, #FF7A45 50%, #C9461C 100%);"></div>
+              <span class="artist-emoji">&#x1F3B8;</span>
+              <div class="artist-info">
+                <p class="artist-style">Live acoustique</p>
+                <h3 class="artist-name">Ma&iuml;a</h3>
+                <p class="artist-event">Opening &middot; 2025</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile" data-artist-name="DJ Sol" data-artist-style="House set" data-artist-event="Coachella Party 2025 &middot; 18 juillet" data-artist-bio="Selecta house solaire, vinyles &amp; vibes. R&eacute;sident des soir&eacute;es montpelli&eacute;raines." data-artist-gradient="linear-gradient(165deg, #FFE082 0%, #FFB347 45%, #FF6A3D 100%)" data-artist-emoji="&#x1F3A7;" aria-label="Voir DJ Sol">
+              <div class="artist-bg" style="background: linear-gradient(165deg, #FFE082 0%, #FFB347 45%, #FF6A3D 100%);"></div>
+              <span class="artist-emoji">&#x1F3A7;</span>
+              <div class="artist-info">
+                <p class="artist-style">House set</p>
+                <h3 class="artist-name">DJ Sol</h3>
+                <p class="artist-event">Coachella &middot; 2025</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile artist-tile--wide" data-artist-name="The Coastliners" data-artist-style="Live band" data-artist-event="Closing Party 2025 &middot; 26 septembre" data-artist-bio="Quatuor surf-rock languedocien. Reverb &agrave; gogo et basses qui font trembler le sable." data-artist-gradient="linear-gradient(165deg, #4FD1C5 0%, #319795 50%, #1A5F70 100%)" data-artist-emoji="&#x1F941;" aria-label="Voir The Coastliners">
+              <div class="artist-bg" style="background: linear-gradient(165deg, #4FD1C5 0%, #319795 50%, #1A5F70 100%);"></div>
+              <span class="artist-emoji">&#x1F941;</span>
+              <div class="artist-info">
+                <p class="artist-style">Live band</p>
+                <h3 class="artist-name">The Coastliners</h3>
+                <p class="artist-event">Closing &middot; 2025</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile" data-artist-name="L&eacute;on Vega" data-artist-style="DJ ambient" data-artist-event="Apero sunset 2025 &middot; 12 ao&ucirc;t" data-artist-bio="Ambient downtempo. La bande-son parfaite des fins de journ&eacute;e." data-artist-gradient="linear-gradient(165deg, #B794F4 0%, #805AD5 50%, #44337A 100%)" data-artist-emoji="&#x1F319;" aria-label="Voir L&eacute;on Vega">
+              <div class="artist-bg" style="background: linear-gradient(165deg, #B794F4 0%, #805AD5 50%, #44337A 100%);"></div>
+              <span class="artist-emoji">&#x1F319;</span>
+              <div class="artist-info">
+                <p class="artist-style">DJ ambient</p>
+                <h3 class="artist-name">L&eacute;on Vega</h3>
+                <p class="artist-event">Apero sunset &middot; 2025</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile" data-artist-name="Salma" data-artist-style="Voix soul-jazz" data-artist-event="Live trio 2025 &middot; 5 juillet" data-artist-bio="Voix grave, contrebasse, piano. Trio jazz qui caresse au coucher du soleil." data-artist-gradient="linear-gradient(165deg, #F687B3 0%, #D53F8C 50%, #702459 100%)" data-artist-emoji="&#x1F3A4;" aria-label="Voir Salma">
+              <div class="artist-bg" style="background: linear-gradient(165deg, #F687B3 0%, #D53F8C 50%, #702459 100%);"></div>
+              <span class="artist-emoji">&#x1F3A4;</span>
+              <div class="artist-info">
+                <p class="artist-style">Voix soul-jazz</p>
+                <h3 class="artist-name">Salma</h3>
+                <p class="artist-event">Trio &middot; 2025</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile artist-tile--wide" data-artist-name="Kael &amp; Reso" data-artist-style="B2B DJ techno" data-artist-event="Coachella Party 2024" data-artist-bio="Duo techno melodique, deux platines, une mission : faire danser jusqu'au lever du soleil." data-artist-gradient="linear-gradient(165deg, #4299E1 0%, #2B6CB0 50%, #1A365D 100%)" data-artist-emoji="&#x1F3DD;" aria-label="Voir Kael &amp; Reso">
+              <div class="artist-bg" style="background: linear-gradient(165deg, #4299E1 0%, #2B6CB0 50%, #1A365D 100%);"></div>
+              <span class="artist-emoji">&#x1F3DD;</span>
+              <div class="artist-info">
+                <p class="artist-style">B2B DJ techno</p>
+                <h3 class="artist-name">Kael &amp; Reso</h3>
+                <p class="artist-event">Coachella &middot; 2024</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile" data-artist-name="Inio" data-artist-style="Guitare flamenca" data-artist-event="Apero 2024 &middot; 22 ao&ucirc;t" data-artist-bio="Guitare nylon, palmas, raclures de cajon. Soir&eacute;es tapas en mode S&eacute;ville." data-artist-gradient="linear-gradient(165deg, #F6AD55 0%, #C05621 50%, #7B341E 100%)" data-artist-emoji="&#x1FA97;" aria-label="Voir Inio">
+              <div class="artist-bg" style="background: linear-gradient(165deg, #F6AD55 0%, #C05621 50%, #7B341E 100%);"></div>
+              <span class="artist-emoji">&#x1FA97;</span>
+              <div class="artist-info">
+                <p class="artist-style">Guitare flamenca</p>
+                <h3 class="artist-name">Inio</h3>
+                <p class="artist-event">Apero &middot; 2024</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile" data-artist-name="Nova Beat" data-artist-style="DJ disco/funk" data-artist-event="Opening Party 2024" data-artist-bio="Disco-funk, vinyles ann&eacute;es 70-80, des grooves qui ressuscitent." data-artist-gradient="linear-gradient(165deg, #ED64A6 0%, #B83280 50%, #521B41 100%)" data-artist-emoji="&#x1F423;" aria-label="Voir Nova Beat">
+              <div class="artist-bg" style="background: linear-gradient(165deg, #ED64A6 0%, #B83280 50%, #521B41 100%);"></div>
+              <span class="artist-emoji">&#x1F423;</span>
+              <div class="artist-info">
+                <p class="artist-style">DJ disco/funk</p>
+                <h3 class="artist-name">Nova Beat</h3>
+                <p class="artist-event">Opening &middot; 2024</p>
+              </div>
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom CTA: artist booking (B2B angle) -->
+      <div class="relative z-10 max-w-3xl mx-auto px-6 mt-14 md:mt-16 text-center reveal">
+        <p class="text-xs md:text-sm tracking-[0.25em] uppercase text-brand/80 mb-3">Vous &ecirc;tes artiste ou booker ?</p>
+        <p class="text-white/70 text-sm md:text-base mb-5 max-w-xl mx-auto">La plage de Farinette accueille DJ sets, lives et formations acoustiques tout l'&eacute;t&eacute;. Sc&egrave;ne face mer, son professionnel, capacit&eacute; 800 personnes.</p>
+        <a href="mailto:contact@chiringuito-vias.fr?subject=Programmation%20live%20%E2%80%94%20Chiringuito%20Vias" class="inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 backdrop-blur-sm px-7 py-3.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 hover:gap-4">
+          Programmer un live
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Modal expansion for an artist -->
+    <div id="artist-modal" class="fixed inset-0 z-[110] hidden items-center justify-center px-4 py-6" role="dialog" aria-modal="true" aria-labelledby="artist-modal-title">
+      <div class="absolute inset-0 bg-black/85 backdrop-blur-md" data-artist-close></div>
+      <article class="relative z-10 max-w-3xl w-full bg-[#15212B] text-white rounded-3xl overflow-hidden shadow-2xl border border-white/10 transform translate-y-4 opacity-0 transition-all duration-500">
+        <button type="button" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center text-white transition" data-artist-close aria-label="Fermer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <!-- Hero media -->
+        <div class="relative aspect-[16/10] flex items-center justify-center" id="artist-modal-hero">
+          <span class="text-7xl md:text-8xl" id="artist-modal-emoji">&#x1F3B8;</span>
+        </div>
+        <!-- Body -->
+        <div class="p-7 md:p-10">
+          <p class="text-xs md:text-sm font-medium tracking-[0.25em] uppercase text-brand mb-2" id="artist-modal-style">Live acoustique</p>
+          <h3 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-3" id="artist-modal-title">Ma&iuml;a</h3>
+          <p class="text-sm text-white/60 mb-5" id="artist-modal-event">Opening Party 2025 &middot; 30 mai</p>
+          <p class="text-white/80 leading-relaxed mb-7" id="artist-modal-bio">Set lumineux face au coucher de soleil.</p>
+          <!-- Mini-gallery placeholder (will hold real photos later) -->
+          <div class="grid grid-cols-3 gap-2 md:gap-3 mb-5">
+            <div class="aspect-square rounded-xl bg-gradient-to-br from-brand/30 to-brand/5 flex items-center justify-center text-white/30 text-xs">photo 1</div>
+            <div class="aspect-square rounded-xl bg-gradient-to-br from-orange-400/30 to-pink-500/10 flex items-center justify-center text-white/30 text-xs">photo 2</div>
+            <div class="aspect-square rounded-xl bg-gradient-to-br from-purple-500/30 to-blue-600/10 flex items-center justify-center text-white/30 text-xs">vid&eacute;o</div>
+          </div>
+          <p class="text-[11px] text-white/40 text-center tracking-wide">Galerie en cours de constitution &middot; m&eacute;dias bient&ocirc;t en ligne</p>
+        </div>
+      </article>
+    </div>
 
     <!-- ============================================ -->
     <!-- SOIREES (3 evenements saison 2026) -->
@@ -1788,6 +2007,73 @@
       });
 
     });
+  </script>
+
+  <!-- ───────── Artist marquee & modal ───────── -->
+  <script>
+    (function () {
+      const row = document.getElementById('artistsRow');
+      const track = document.getElementById('artistsMarquee');
+      if (!row || !track) return;
+
+      // Duplicate the row for a seamless infinite scroll loop
+      const clone = row.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      // Remove inner button focusability on the clone (it's decorative)
+      clone.querySelectorAll('.artist-tile').forEach((b) => b.setAttribute('tabindex', '-1'));
+      track.appendChild(clone);
+
+      // Modal logic
+      const modal = document.getElementById('artist-modal');
+      const modalArticle = modal?.querySelector('article');
+      const fields = {
+        name: document.getElementById('artist-modal-title'),
+        style: document.getElementById('artist-modal-style'),
+        event: document.getElementById('artist-modal-event'),
+        bio: document.getElementById('artist-modal-bio'),
+        emoji: document.getElementById('artist-modal-emoji'),
+        hero: document.getElementById('artist-modal-hero'),
+      };
+
+      function openArtistModal(tile) {
+        if (!modal || !modalArticle) return;
+        fields.name.innerHTML = tile.dataset.artistName || '';
+        fields.style.innerHTML = tile.dataset.artistStyle || '';
+        fields.event.innerHTML = tile.dataset.artistEvent || '';
+        fields.bio.innerHTML = tile.dataset.artistBio || '';
+        fields.emoji.innerHTML = tile.dataset.artistEmoji || '🎵';
+        if (fields.hero && tile.dataset.artistGradient) {
+          fields.hero.style.background = tile.dataset.artistGradient;
+        }
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        // Animate in
+        requestAnimationFrame(() => {
+          modalArticle.classList.add('is-shown');
+        });
+      }
+
+      function closeArtistModal() {
+        if (!modal) return;
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      // Delegate clicks on tiles
+      track.addEventListener('click', (e) => {
+        const tile = e.target.closest('.artist-tile');
+        if (!tile || tile.getAttribute('tabindex') === '-1') return;
+        openArtistModal(tile);
+      });
+
+      // Close handlers
+      modal?.querySelectorAll('[data-artist-close]').forEach((el) => {
+        el.addEventListener('click', closeArtistModal);
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal?.classList.contains('is-open')) closeArtistModal();
+      });
+    })();
   </script>
 
 </body>
