@@ -517,17 +517,28 @@
       .soiree-card:hover { transform: translateY(-6px); }
     }
 
-    /* ───────── Artist marquee ───────── */
+    /* ───────── Artist carousel (infinite, scrollable both ways) ───────── */
     .marquee-mask {
       mask-image: linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%);
       -webkit-mask-image: linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%);
+      overflow: hidden;
     }
-    .marquee-track { display: flex; width: max-content; animation: marqueeScroll 55s linear infinite; }
-    .marquee-row { display: flex; gap: 1rem; padding: 0 0.5rem; }
+    .marquee-track {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      cursor: grab;
+      user-select: none;
+      scroll-behavior: auto;
+    }
+    .marquee-track::-webkit-scrollbar { display: none; }
+    .marquee-track.is-dragging { cursor: grabbing; }
+    .marquee-track.is-dragging .artist-tile { pointer-events: none; }
+    .marquee-row { display: flex; gap: 1rem; padding: 0 0.5rem; flex-shrink: 0; }
     @media (min-width: 768px) { .marquee-row { gap: 1.25rem; padding: 0 0.625rem; } }
-    @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    @media (hover: hover) { .marquee-track:hover { animation-play-state: paused; } }
-    @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 
     /* Artist tile */
     .artist-tile {
@@ -1082,6 +1093,114 @@
     </section>
 
     <!-- ============================================ -->
+    <!-- SOIREES (3 evenements saison 2026) -->
+    <!-- ============================================ -->
+    <section id="soirees" class="py-20 md:py-28 px-6 bg-gray-50 relative noise overflow-hidden">
+      <div class="max-w-6xl mx-auto relative">
+
+        <!-- Title -->
+        <div class="text-center mb-14 md:mb-16">
+          <p class="text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-brand/70 mb-3 reveal">Trois soir&eacute;es &agrave; ne pas manquer</p>
+          <h2 class="font-display text-5xl md:text-6xl lg:text-7xl text-brand mb-4 tracking-tight reveal">Soir&eacute;es</h2>
+          <p class="text-sm md:text-base text-text-light tracking-wide reveal max-w-xl mx-auto">DJ sets, ambiance festival, cocktails les pieds dans le sable.<br class="hidden md:block"> Trois rendez-vous incontournables de la saison 2026.</p>
+        </div>
+
+        <!-- Cards grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+
+          <!-- Opening Party -->
+          <article class="soiree-card group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(165deg, #FFF8F0 0%, #FFE9D4 50%, #FFC98A 100%);">
+            <div class="relative p-8 md:p-9 h-full flex flex-col">
+              <!-- Status badge -->
+              <div class="flex items-center justify-between mb-8">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 backdrop-blur-sm text-[10px] font-semibold uppercase tracking-widest text-orange-700">
+                  <span class="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>
+                  Confirm&eacute;e
+                </span>
+                <span class="text-5xl md:text-6xl leading-none transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">&#x1F305;</span>
+              </div>
+              <!-- Date -->
+              <p class="text-xs font-medium tracking-[0.25em] uppercase text-orange-800/80 mb-1 whitespace-nowrap">Samedi 6 juin</p>
+              <h3 class="font-display text-3xl md:text-4xl text-orange-900 leading-tight mb-3">Opening<br>Party</h3>
+              <p class="text-sm text-orange-900/70 leading-relaxed mb-8 flex-1">Lancement de saison, DJ set live et inauguration officielle de la plage priv&eacute;e. La nuit o&ugrave; tout commence.</p>
+              <!-- CTA (reservation a venir) -->
+              <button type="button" disabled aria-disabled="true" class="inline-flex items-center justify-center gap-2 w-full bg-orange-900/15 text-orange-900/50 border border-orange-900/15 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest cursor-not-allowed">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                R&eacute;servation
+              </button>
+              <p class="text-[10px] text-orange-900/60 text-center mt-3 tracking-widest uppercase">Bient&ocirc;t disponible</p>
+            </div>
+          </article>
+
+          <!-- Coachella Party -->
+          <article class="soiree-card group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(165deg, #F0FFF4 0%, #C6F6D5 40%, #FBBF77 100%);">
+            <div class="relative p-8 md:p-9 h-full flex flex-col">
+              <!-- Status badge -->
+              <div class="flex items-center justify-between mb-8">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 backdrop-blur-sm text-[10px] font-semibold uppercase tracking-widest text-green-800">
+                  <span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                  &Agrave; venir
+                </span>
+                <span class="text-5xl md:text-6xl leading-none transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">&#x1F334;</span>
+              </div>
+              <!-- Date -->
+              <p class="text-xs font-medium tracking-[0.25em] uppercase text-green-900/80 mb-1 whitespace-nowrap">Plein &eacute;t&eacute;</p>
+              <h3 class="font-display text-3xl md:text-4xl text-green-900 leading-tight mb-3">Coachella<br>Party</h3>
+              <p class="text-sm text-green-900/70 leading-relaxed mb-8 flex-1">Ambiance festival, tenues color&eacute;es et grand DJ set nocturne en bord de mer. La nuit la plus attendue de l'&eacute;t&eacute;.</p>
+              <!-- CTA (reservation a venir) -->
+              <button type="button" disabled aria-disabled="true" class="inline-flex items-center justify-center gap-2 w-full bg-green-900/15 text-green-900/50 border border-green-900/15 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest cursor-not-allowed">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                R&eacute;servation
+              </button>
+              <p class="text-[10px] text-green-900/60 text-center mt-3 tracking-widest uppercase">Bient&ocirc;t disponible</p>
+            </div>
+          </article>
+
+          <!-- Closing Party -->
+          <article class="soiree-card group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(165deg, #1E1B4B 0%, #3730A3 50%, #6D28D9 100%);">
+            <div class="relative p-8 md:p-9 h-full flex flex-col">
+              <!-- Status badge -->
+              <div class="flex items-center justify-between mb-8">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-[10px] font-semibold uppercase tracking-widest text-white/90">
+                  <span class="w-1.5 h-1.5 rounded-full bg-purple-300"></span>
+                  &Agrave; venir
+                </span>
+                <span class="text-5xl md:text-6xl leading-none transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">&#x1F319;</span>
+              </div>
+              <!-- Date -->
+              <p class="text-xs font-medium tracking-[0.25em] uppercase text-purple-200/80 mb-1 whitespace-nowrap">Fin septembre</p>
+              <h3 class="font-display text-3xl md:text-4xl text-white leading-tight mb-3">Closing<br>Party</h3>
+              <p class="text-sm text-purple-100/70 leading-relaxed mb-8 flex-1">Cl&ocirc;ture de saison, cocktails et spectacle au coucher du soleil. Une nuit m&eacute;morable pour terminer en beaut&eacute;.</p>
+              <!-- CTA (reservation a venir) -->
+              <button type="button" disabled aria-disabled="true" class="inline-flex items-center justify-center gap-2 w-full bg-white/15 text-white/50 border border-white/15 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest cursor-not-allowed">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                R&eacute;servation
+              </button>
+              <p class="text-[10px] text-purple-200/60 text-center mt-3 tracking-widest uppercase">Bient&ocirc;t disponible</p>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Newsletter incentive (replaces footnote) -->
+        <div class="mt-14 md:mt-16 reveal">
+          <div class="max-w-2xl mx-auto bg-white/70 backdrop-blur-sm border border-brand/15 rounded-3xl px-6 py-8 md:px-10 md:py-9 text-center shadow-sm">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand/10 text-brand mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+            </span>
+            <h3 class="font-display text-2xl md:text-3xl text-brand mb-2 leading-tight">Soyez les premiers pr&eacute;venus</h3>
+            <p class="text-sm md:text-base text-text-light leading-relaxed mb-6 max-w-md mx-auto">Inscrivez-vous &agrave; la newsletter pour recevoir les dates des soir&eacute;es d&egrave;s leur annonce, et r&eacute;server avant tout le monde.</p>
+            <button type="button" onclick="window.openNewsletterPopup && window.openNewsletterPopup()" class="magnetic-btn inline-flex items-center gap-3 bg-brand text-white px-7 py-3.5 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand-dark transition-all duration-300 hover:gap-4 shadow-md shadow-brand/20 hover:shadow-lg hover:shadow-brand/30">
+              Me pr&eacute;venir des dates
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+            <p class="text-[11px] text-text-light/60 mt-4 tracking-wide">Gratuit &middot; D&eacute;sinscription en un clic &middot; Plage de Farinette, Vias</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- ============================================ -->
     <!-- ILS ONT JOUE CHEZ NOUS (mur d'artistes scrollant) -->
     <!-- ============================================ -->
     <section id="artistes" class="py-20 md:py-28 relative overflow-hidden bg-[#0F1B23] text-white">
@@ -1228,114 +1347,6 @@
       </article>
     </div>
 
-    <!-- ============================================ -->
-    <!-- SOIREES (3 evenements saison 2026) -->
-    <!-- ============================================ -->
-    <section id="soirees" class="py-20 md:py-28 px-6 bg-gray-50 relative noise overflow-hidden">
-      <div class="max-w-6xl mx-auto relative">
-
-        <!-- Title -->
-        <div class="text-center mb-14 md:mb-16">
-          <p class="text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-brand/70 mb-3 reveal">Trois soir&eacute;es &agrave; ne pas manquer</p>
-          <h2 class="font-display text-5xl md:text-6xl lg:text-7xl text-brand mb-4 tracking-tight reveal">Soir&eacute;es</h2>
-          <p class="text-sm md:text-base text-text-light tracking-wide reveal max-w-xl mx-auto">DJ sets, ambiance festival, cocktails les pieds dans le sable.<br class="hidden md:block"> Trois rendez-vous incontournables de la saison 2026.</p>
-        </div>
-
-        <!-- Cards grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
-
-          <!-- Opening Party -->
-          <article class="soiree-card group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(165deg, #FFF8F0 0%, #FFE9D4 50%, #FFC98A 100%);">
-            <div class="relative p-8 md:p-9 h-full flex flex-col">
-              <!-- Status badge -->
-              <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 backdrop-blur-sm text-[10px] font-semibold uppercase tracking-widest text-orange-700">
-                  <span class="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>
-                  Confirm&eacute;e
-                </span>
-                <span class="text-5xl md:text-6xl leading-none transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">&#x1F305;</span>
-              </div>
-              <!-- Date -->
-              <p class="text-xs font-medium tracking-[0.25em] uppercase text-orange-800/80 mb-1 whitespace-nowrap">Samedi 6 juin</p>
-              <h3 class="font-display text-3xl md:text-4xl text-orange-900 leading-tight mb-3">Opening<br>Party</h3>
-              <p class="text-sm text-orange-900/70 leading-relaxed mb-8 flex-1">Lancement de saison, DJ set live et inauguration officielle de la plage priv&eacute;e. La nuit o&ugrave; tout commence.</p>
-              <!-- CTA (reservation a venir) -->
-              <button type="button" disabled aria-disabled="true" class="inline-flex items-center justify-center gap-2 w-full bg-orange-900/15 text-orange-900/50 border border-orange-900/15 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest cursor-not-allowed">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                R&eacute;servation
-              </button>
-              <p class="text-[10px] text-orange-900/60 text-center mt-3 tracking-widest uppercase">Bient&ocirc;t disponible</p>
-            </div>
-          </article>
-
-          <!-- Coachella Party -->
-          <article class="soiree-card group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(165deg, #F0FFF4 0%, #C6F6D5 40%, #FBBF77 100%);">
-            <div class="relative p-8 md:p-9 h-full flex flex-col">
-              <!-- Status badge -->
-              <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 backdrop-blur-sm text-[10px] font-semibold uppercase tracking-widest text-green-800">
-                  <span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
-                  &Agrave; venir
-                </span>
-                <span class="text-5xl md:text-6xl leading-none transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">&#x1F334;</span>
-              </div>
-              <!-- Date -->
-              <p class="text-xs font-medium tracking-[0.25em] uppercase text-green-900/80 mb-1 whitespace-nowrap">Plein &eacute;t&eacute;</p>
-              <h3 class="font-display text-3xl md:text-4xl text-green-900 leading-tight mb-3">Coachella<br>Party</h3>
-              <p class="text-sm text-green-900/70 leading-relaxed mb-8 flex-1">Ambiance festival, tenues color&eacute;es et grand DJ set nocturne en bord de mer. La nuit la plus attendue de l'&eacute;t&eacute;.</p>
-              <!-- CTA (reservation a venir) -->
-              <button type="button" disabled aria-disabled="true" class="inline-flex items-center justify-center gap-2 w-full bg-green-900/15 text-green-900/50 border border-green-900/15 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest cursor-not-allowed">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                R&eacute;servation
-              </button>
-              <p class="text-[10px] text-green-900/60 text-center mt-3 tracking-widest uppercase">Bient&ocirc;t disponible</p>
-            </div>
-          </article>
-
-          <!-- Closing Party -->
-          <article class="soiree-card group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(165deg, #1E1B4B 0%, #3730A3 50%, #6D28D9 100%);">
-            <div class="relative p-8 md:p-9 h-full flex flex-col">
-              <!-- Status badge -->
-              <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-[10px] font-semibold uppercase tracking-widest text-white/90">
-                  <span class="w-1.5 h-1.5 rounded-full bg-purple-300"></span>
-                  &Agrave; venir
-                </span>
-                <span class="text-5xl md:text-6xl leading-none transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">&#x1F319;</span>
-              </div>
-              <!-- Date -->
-              <p class="text-xs font-medium tracking-[0.25em] uppercase text-purple-200/80 mb-1 whitespace-nowrap">Fin septembre</p>
-              <h3 class="font-display text-3xl md:text-4xl text-white leading-tight mb-3">Closing<br>Party</h3>
-              <p class="text-sm text-purple-100/70 leading-relaxed mb-8 flex-1">Cl&ocirc;ture de saison, cocktails et spectacle au coucher du soleil. Une nuit m&eacute;morable pour terminer en beaut&eacute;.</p>
-              <!-- CTA (reservation a venir) -->
-              <button type="button" disabled aria-disabled="true" class="inline-flex items-center justify-center gap-2 w-full bg-white/15 text-white/50 border border-white/15 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest cursor-not-allowed">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                R&eacute;servation
-              </button>
-              <p class="text-[10px] text-purple-200/60 text-center mt-3 tracking-widest uppercase">Bient&ocirc;t disponible</p>
-            </div>
-          </article>
-
-        </div>
-
-        <!-- Newsletter incentive (replaces footnote) -->
-        <div class="mt-14 md:mt-16 reveal">
-          <div class="max-w-2xl mx-auto bg-white/70 backdrop-blur-sm border border-brand/15 rounded-3xl px-6 py-8 md:px-10 md:py-9 text-center shadow-sm">
-            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand/10 text-brand mb-4">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-            </span>
-            <h3 class="font-display text-2xl md:text-3xl text-brand mb-2 leading-tight">Soyez les premiers pr&eacute;venus</h3>
-            <p class="text-sm md:text-base text-text-light leading-relaxed mb-6 max-w-md mx-auto">Inscrivez-vous &agrave; la newsletter pour recevoir les dates des soir&eacute;es d&egrave;s leur annonce, et r&eacute;server avant tout le monde.</p>
-            <button type="button" onclick="window.openNewsletterPopup && window.openNewsletterPopup()" class="magnetic-btn inline-flex items-center gap-3 bg-brand text-white px-7 py-3.5 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand-dark transition-all duration-300 hover:gap-4 shadow-md shadow-brand/20 hover:shadow-lg hover:shadow-brand/30">
-              Me pr&eacute;venir des dates
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </button>
-            <p class="text-[11px] text-text-light/60 mt-4 tracking-wide">Gratuit &middot; D&eacute;sinscription en un clic &middot; Plage de Farinette, Vias</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
 
     <!-- ============================================ -->
     <!-- AVIS (Elfsight Google Reviews) -->
@@ -2009,19 +2020,111 @@
     });
   </script>
 
-  <!-- ───────── Artist marquee & modal ───────── -->
+  <!-- ───────── Artist carousel (infinite scroll + drag) & modal ───────── -->
   <script>
     (function () {
       const row = document.getElementById('artistsRow');
       const track = document.getElementById('artistsMarquee');
       if (!row || !track) return;
 
-      // Duplicate the row for a seamless infinite scroll loop
-      const clone = row.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      // Remove inner button focusability on the clone (it's decorative)
-      clone.querySelectorAll('.artist-tile').forEach((b) => b.setAttribute('tabindex', '-1'));
-      track.appendChild(clone);
+      // ── Build seamless infinite carousel
+      // We duplicate the row 3 times: [A][B][C] and keep scrollLeft inside the middle copy [B].
+      // When user scrolls past B, we wrap by adjusting scrollLeft by ±rowWidth instantly (no animation).
+      // This gives infinite illusion in both directions, no matter the input (auto, drag, swipe, wheel).
+      const cloneA = row.cloneNode(true);
+      const cloneC = row.cloneNode(true);
+      [cloneA, cloneC].forEach((c) => {
+        c.setAttribute('aria-hidden', 'true');
+        c.querySelectorAll('.artist-tile').forEach((b) => b.setAttribute('tabindex', '-1'));
+      });
+      track.insertBefore(cloneA, row);
+      track.appendChild(cloneC);
+
+      let rowWidth = 0;
+      const measure = () => { rowWidth = row.getBoundingClientRect().width; };
+      measure();
+      // Start scroll position at the middle copy
+      track.scrollLeft = rowWidth;
+
+      window.addEventListener('resize', () => {
+        const ratio = rowWidth ? track.scrollLeft / rowWidth : 1;
+        measure();
+        track.scrollLeft = rowWidth * ratio;
+      });
+
+      // ── Wrap logic: keep scrollLeft inside the middle [B] copy
+      function wrap() {
+        if (!rowWidth) return;
+        if (track.scrollLeft < rowWidth * 0.5) {
+          track.scrollLeft += rowWidth;
+        } else if (track.scrollLeft > rowWidth * 1.5) {
+          track.scrollLeft -= rowWidth;
+        }
+      }
+      track.addEventListener('scroll', wrap, { passive: true });
+
+      // ── Auto-scroll loop using requestAnimationFrame
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const AUTO_SPEED = 0.45; // px per frame (~27px/sec at 60fps)
+      let autoPaused = reducedMotion;
+      let resumeTimer = null;
+      function pauseAuto(durationMs = 2500) {
+        autoPaused = true;
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => { autoPaused = false; }, durationMs);
+      }
+      function rafLoop() {
+        if (!autoPaused && rowWidth) {
+          track.scrollLeft += AUTO_SPEED;
+        }
+        requestAnimationFrame(rafLoop);
+      }
+      rafLoop();
+
+      // ── Pointer drag (mouse + touch + pen via Pointer Events)
+      let isDown = false;
+      let startX = 0;
+      let startScroll = 0;
+      let moved = 0;
+      track.addEventListener('pointerdown', (e) => {
+        // Ignore right-click & middle-click
+        if (e.button > 0) return;
+        isDown = true;
+        moved = 0;
+        startX = e.clientX;
+        startScroll = track.scrollLeft;
+        track.classList.add('is-dragging');
+        track.setPointerCapture(e.pointerId);
+        autoPaused = true;
+      });
+      track.addEventListener('pointermove', (e) => {
+        if (!isDown) return;
+        const dx = e.clientX - startX;
+        moved = Math.abs(dx);
+        track.scrollLeft = startScroll - dx;
+      });
+      function endDrag(e) {
+        if (!isDown) return;
+        isDown = false;
+        track.classList.remove('is-dragging');
+        try { track.releasePointerCapture(e.pointerId); } catch (_) {}
+        pauseAuto(2500); // resume auto after pause
+      }
+      track.addEventListener('pointerup', endDrag);
+      track.addEventListener('pointercancel', endDrag);
+      track.addEventListener('pointerleave', (e) => { if (isDown) endDrag(e); });
+
+      // Pause auto when user touches (mobile native scroll) or wheels
+      track.addEventListener('touchstart', () => pauseAuto(2500), { passive: true });
+      track.addEventListener('wheel', () => pauseAuto(2500), { passive: true });
+
+      // Pause auto on hover (desktop pointer)
+      if (window.matchMedia('(hover: hover)').matches) {
+        track.addEventListener('mouseenter', () => { autoPaused = true; });
+        track.addEventListener('mouseleave', () => {
+          if (!isDown) { clearTimeout(resumeTimer); autoPaused = reducedMotion; }
+        });
+      }
 
       // Modal logic
       const modal = document.getElementById('artist-modal');
@@ -2059,10 +2162,11 @@
         document.body.style.overflow = '';
       }
 
-      // Delegate clicks on tiles
+      // Delegate clicks on tiles (any of the 3 copies). Suppress on drag.
       track.addEventListener('click', (e) => {
+        if (moved > 5) return; // user was dragging, don't open
         const tile = e.target.closest('.artist-tile');
-        if (!tile || tile.getAttribute('tabindex') === '-1') return;
+        if (!tile) return;
         openArtistModal(tile);
       });
 
