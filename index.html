@@ -2212,6 +2212,25 @@
       const artistTiles = Array.from(row.querySelectorAll('.artist-tile'));
       let currentArtistIndex = 0;
 
+      // ── Auto-advance slideshow when modal is open ──
+      // The modal cycles through artists automatically every AUTO_ADVANCE_MS.
+      // Any user interaction (click prev/next, swipe, keyboard arrows) resets
+      // the timer, so the user always has a fresh window to read.
+      const AUTO_ADVANCE_MS = 5000;
+      const reducedMotionMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let autoAdvanceTimer = null;
+      let autoAdvanceHoverPaused = false;
+      function startAutoAdvance() {
+        clearTimeout(autoAdvanceTimer);
+        if (reducedMotionMQ.matches) return; // respect a11y preference
+        if (autoAdvanceHoverPaused) return;  // paused while mouse hovers modal
+        autoAdvanceTimer = setTimeout(() => navigateArtist(1), AUTO_ADVANCE_MS);
+      }
+      function stopAutoAdvance() {
+        clearTimeout(autoAdvanceTimer);
+        autoAdvanceTimer = null;
+      }
+
       function renderArtistInModal(tile) {
         fields.name.innerHTML = tile.dataset.artistName || '';
         fields.event.innerHTML = tile.dataset.artistEvent || '';
@@ -2254,12 +2273,15 @@
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             modal.classList.add('is-open');
+            // Start the slideshow once the modal is fully in
+            startAutoAdvance();
           });
         });
       }
 
       // Cycle to prev (-1) or next (+1) artist within the open modal. Wraps
       // around (last → first, first → last). Uses a quick crossfade for polish.
+      // Also resets the auto-advance timer so user actions feel responsive.
       function navigateArtist(direction) {
         if (!artistTiles.length || !modalArticle) return;
         const total = artistTiles.length;
@@ -2274,10 +2296,13 @@
           // Restore default transition after the quick fade settles
           setTimeout(() => { modalArticle.style.transition = ''; }, 200);
         }, 150);
+        // Re-arm the auto-advance from now (fresh window to read this artist)
+        startAutoAdvance();
       }
 
       function closeArtistModal() {
         if (!modal) return;
+        stopAutoAdvance();
         modal.classList.remove('is-open');
         document.body.style.overflow = '';
         // Wait for the exit transition to finish before re-hiding (display:none)
@@ -2291,6 +2316,25 @@
           if (!modal.classList.contains('is-open')) modal.classList.add('hidden');
         }, 500);
       }
+
+      // Pause auto-advance while the cursor is over the modal article (desktop
+      // hover). On touch devices mouseenter/leave don't fire so this is silent.
+      if (modalArticle) {
+        modalArticle.addEventListener('mouseenter', () => {
+          autoAdvanceHoverPaused = true;
+          stopAutoAdvance();
+        });
+        modalArticle.addEventListener('mouseleave', () => {
+          autoAdvanceHoverPaused = false;
+          if (modal?.classList.contains('is-open')) startAutoAdvance();
+        });
+      }
+      // Pause if the page/tab loses focus, resume when it regains
+      document.addEventListener('visibilitychange', () => {
+        if (!modal?.classList.contains('is-open')) return;
+        if (document.hidden) stopAutoAdvance();
+        else startAutoAdvance();
+      });
 
       // (Tile activation is handled in the pointerup listener above —
       // we don't use the click event because pointer capture would redirect
