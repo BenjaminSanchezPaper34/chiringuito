@@ -604,18 +604,53 @@
       letter-spacing: 0.05em;
     }
 
-    /* Artist modal */
-    #artist-modal.is-open { display: flex !important; }
-    #artist-modal.is-open article { transform: translateY(0); opacity: 1; }
+    /* ───────── Artist modal ───────── */
+    #artist-modal { transition: opacity 0.35s ease-out; opacity: 0; }
+    #artist-modal.is-open { display: flex !important; opacity: 1; }
+    #artist-modal > article {
+      /* Initial state for entrance animation */
+      transform: translateY(16px) scale(0.96);
+      opacity: 0;
+      transition:
+        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.35s ease-out;
+    }
+    #artist-modal.is-open > article {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    /* Backdrop also fades */
+    #artist-modal > [data-artist-close].absolute {
+      transition: opacity 0.35s ease-out;
+      opacity: 0;
+    }
+    #artist-modal.is-open > [data-artist-close].absolute { opacity: 1; }
+
+    /* Hero height : capped so the bio stays visible even on small viewports */
+    #artist-modal-hero {
+      min-height: 240px;
+      height: clamp(240px, 50vh, 560px);
+    }
+    @media (min-width: 768px) {
+      #artist-modal-hero {
+        height: clamp(320px, 55vh, 600px);
+      }
+    }
+
     /* Hero in photo mode: subtle dark fade at bottom for visual continuity
        with the dark modal body underneath */
-    .artist-hero--photo {
-      position: relative;
-    }
+    .artist-hero--photo { position: relative; }
     .artist-hero--photo::after {
       content: '';
       position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(to bottom, transparent 60%, rgba(21, 33, 43, 0.5) 100%);
+      background: linear-gradient(to bottom, transparent 55%, rgba(21, 33, 43, 0.45) 85%, rgba(21, 33, 43, 0.8) 100%);
+    }
+
+    /* Custom scrollbar styling for modal article when content overflows */
+    #artist-modal > article::-webkit-scrollbar { width: 6px; }
+    #artist-modal > article::-webkit-scrollbar-track { background: transparent; }
+    #artist-modal > article::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15); border-radius: 999px;
     }
 
     /* Noise texture */
@@ -1328,31 +1363,33 @@
     </section>
 
     <!-- Modal expansion for an artist -->
-    <div id="artist-modal" class="fixed inset-0 z-[110] hidden items-center justify-center px-4 py-6" role="dialog" aria-modal="true" aria-labelledby="artist-modal-title">
+    <div id="artist-modal" class="fixed inset-0 z-[110] hidden items-center justify-center px-3 sm:px-4 py-4 sm:py-6" role="dialog" aria-modal="true" aria-labelledby="artist-modal-title">
+      <!-- Backdrop -->
       <div class="absolute inset-0 bg-black/85 backdrop-blur-md" data-artist-close></div>
-      <article class="relative z-10 max-w-3xl w-full bg-[#15212B] text-white rounded-3xl overflow-hidden shadow-2xl border border-white/10 transform translate-y-4 opacity-0 transition-all duration-500">
-        <button type="button" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center text-white transition" data-artist-close aria-label="Fermer">
+      <!-- Card -->
+      <article class="relative z-10 max-w-3xl w-full max-h-[95vh] overflow-y-auto bg-[#15212B] text-white rounded-2xl sm:rounded-3xl shadow-2xl border border-white/10">
+        <!-- Close button -->
+        <button type="button" class="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white transition shadow-lg" data-artist-close aria-label="Fermer">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
+
         <!-- Hero media -->
-        <div class="relative aspect-[3/4] md:aspect-[4/5] flex items-center justify-center bg-center bg-cover" id="artist-modal-hero">
-          <span class="text-7xl md:text-8xl" id="artist-modal-emoji">&#x1F3B8;</span>
+        <div class="relative flex items-center justify-center bg-center bg-cover" id="artist-modal-hero">
+          <span class="text-7xl md:text-8xl drop-shadow-lg" id="artist-modal-emoji">&#x1F3B8;</span>
         </div>
+
         <!-- Body -->
-        <div class="p-7 md:p-10">
-          <p class="text-xs md:text-sm font-medium tracking-[0.25em] uppercase text-brand mb-2" id="artist-modal-style">Live acoustique</p>
-          <h3 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-3" id="artist-modal-title">Ma&iuml;a</h3>
-          <p class="text-sm text-white/60 mb-5" id="artist-modal-event">Opening Party 2025 &middot; 30 mai</p>
-          <p class="text-white/80 leading-relaxed mb-6" id="artist-modal-bio">Set lumineux face au coucher de soleil.</p>
+        <div class="px-5 py-6 sm:px-7 sm:py-7 md:px-10 md:py-9">
+          <p class="text-[11px] sm:text-xs font-medium tracking-[0.25em] uppercase text-brand mb-2" id="artist-modal-style">Live acoustique</p>
+          <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-2 sm:mb-3 leading-tight" id="artist-modal-title">Ma&iuml;a</h3>
+          <p class="text-xs sm:text-sm text-white/60 mb-4 sm:mb-5" id="artist-modal-event">Opening Party 2025 &middot; 30 mai</p>
+          <p class="text-sm sm:text-base text-white/80 leading-relaxed mb-5 sm:mb-6" id="artist-modal-bio">Set lumineux face au coucher de soleil.</p>
           <!-- Social links (populated from data attributes) -->
-          <div class="flex flex-wrap items-center gap-2 mb-7" id="artist-modal-social"></div>
-          <!-- Mini-gallery placeholder (will hold real photos later) -->
-          <div class="grid grid-cols-3 gap-2 md:gap-3 mb-5">
-            <div class="aspect-square rounded-xl bg-gradient-to-br from-brand/30 to-brand/5 flex items-center justify-center text-white/30 text-xs">photo 1</div>
-            <div class="aspect-square rounded-xl bg-gradient-to-br from-orange-400/30 to-pink-500/10 flex items-center justify-center text-white/30 text-xs">photo 2</div>
-            <div class="aspect-square rounded-xl bg-gradient-to-br from-purple-500/30 to-blue-600/10 flex items-center justify-center text-white/30 text-xs">vid&eacute;o</div>
+          <div class="flex flex-wrap items-center gap-2 mb-6" id="artist-modal-social"></div>
+          <!-- Mini-gallery placeholder (subtle, just to tease that more is coming) -->
+          <div class="mt-4 pt-5 border-t border-white/8">
+            <p class="text-[10px] sm:text-[11px] text-white/40 text-center tracking-wide uppercase">Galerie photos &amp; vid&eacute;os &mdash; bient&ocirc;t en ligne</p>
           </div>
-          <p class="text-[11px] text-white/40 text-center tracking-wide">Galerie en cours de constitution &middot; m&eacute;dias bient&ocirc;t en ligne</p>
         </div>
       </article>
     </div>
@@ -2218,7 +2255,6 @@
             fields.hero.style.backgroundPosition = 'center';
             fields.hero.style.backgroundColor = '';
             fields.hero.classList.add('artist-hero--photo');
-            // Hide the emoji on photo mode (photo speaks for itself)
             if (fields.emoji) fields.emoji.style.display = 'none';
           } else {
             fields.hero.style.backgroundImage = '';
@@ -2233,11 +2269,17 @@
         if (fields.social) {
           fields.social.innerHTML = buildSocialLinks(tile);
         }
-        modal.classList.add('is-open');
+        // Reset internal scroll if reopened
+        modalArticle.scrollTop = 0;
+        // Two-step show : remove `hidden` first so the element is rendered,
+        // then on the next frame add `is-open` so opacity/transform transition
+        // fires from the initial state instead of being skipped.
+        modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
-        // Animate in
         requestAnimationFrame(() => {
-          modalArticle.classList.add('is-shown');
+          requestAnimationFrame(() => {
+            modal.classList.add('is-open');
+          });
         });
       }
 
@@ -2245,6 +2287,16 @@
         if (!modal) return;
         modal.classList.remove('is-open');
         document.body.style.overflow = '';
+        // Wait for the exit transition to finish before re-hiding (display:none)
+        const finalize = () => {
+          modal.classList.add('hidden');
+          modal.removeEventListener('transitionend', finalize);
+        };
+        modal.addEventListener('transitionend', finalize, { once: true });
+        // Fallback in case transitionend doesn't fire (e.g. reduced motion)
+        setTimeout(() => {
+          if (!modal.classList.contains('is-open')) modal.classList.add('hidden');
+        }, 500);
       }
 
       // (Tile activation is handled in the pointerup listener above —
