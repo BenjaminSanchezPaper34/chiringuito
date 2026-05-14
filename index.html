@@ -629,6 +629,31 @@
     /* Hero fills the whole article (poster style). The fade overlay is a
        separate sibling div so no ::after pseudo magic is needed. */
 
+    /* Instagram section stats — editorial layout (no card boxes) */
+    .ig-stat { display: flex; flex-direction: column; }
+    .ig-stat-accent {
+      width: 28px; height: 2px;
+      background: linear-gradient(to right, #009BA4 0%, rgba(0, 155, 164, 0.15) 100%);
+      margin-top: 12px; margin-bottom: 12px;
+      transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @media (min-width: 768px) { .ig-stat-accent { width: 36px; margin-top: 14px; margin-bottom: 14px; } }
+    .ig-stat:hover .ig-stat-accent { width: 52px; }
+    @media (min-width: 768px) { .ig-stat:hover .ig-stat-accent { width: 72px; } }
+    .ig-stat-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: #575756;
+    }
+    @media (min-width: 768px) { .ig-stat-label { font-size: 11px; } }
+    .ig-stat-sub {
+      margin-top: 4px;
+      font-size: 11px;
+      color: #8A8A89;
+      line-height: 1.3;
+    }
+    @media (min-width: 768px) { .ig-stat-sub { font-size: 12px; } }
+
     /* Noise texture */
     .noise::after {
       content: ''; position: absolute; inset: 0; opacity: 0.03; pointer-events: none;
@@ -1421,23 +1446,40 @@
           </a>
         </div>
 
-        <!-- Live stats (alimentees depuis partenaires-dashboard/data/metrics.json) -->
-        <div id="ig-stats" class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8 reveal">
-          <div class="text-center bg-white border border-gray-100 rounded-2xl px-3 py-5 sm:py-6 hover:shadow-md transition-shadow">
-            <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-brand tabular-nums leading-none mb-1.5" data-ig-stat="followers" data-target="13993">13&nbsp;993</p>
-            <p class="text-[10px] sm:text-xs text-text-light tracking-[0.2em] uppercase">Abonn&eacute;s</p>
+        <!-- Live stats : layout editorial sans cartes (numbers + thin accent line) -->
+        <div id="ig-stats" class="grid grid-cols-2 md:grid-cols-4 gap-y-9 gap-x-4 sm:gap-x-6 md:gap-x-8 mb-10 md:mb-14 reveal">
+          <div class="ig-stat">
+            <div class="flex items-baseline gap-1 leading-none">
+              <span class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-brand tabular-nums" data-ig-stat="followers" data-target="14239" data-format="k">14,2</span>
+              <span class="text-2xl sm:text-3xl md:text-4xl font-bold text-brand/60">K</span>
+            </div>
+            <div class="ig-stat-accent"></div>
+            <p class="ig-stat-label">Abonn&eacute;s</p>
+            <p class="ig-stat-sub">Instagram &middot; @chiringuitovias</p>
           </div>
-          <div class="text-center bg-white border border-gray-100 rounded-2xl px-3 py-5 sm:py-6 hover:shadow-md transition-shadow">
-            <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-brand tabular-nums leading-none mb-1.5" data-ig-stat="posts" data-target="1173">1&nbsp;173</p>
-            <p class="text-[10px] sm:text-xs text-text-light tracking-[0.2em] uppercase">Publications</p>
+
+          <div class="ig-stat">
+            <span class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-brand tabular-nums leading-none" data-ig-stat="posts" data-target="1179">1&nbsp;179</span>
+            <div class="ig-stat-accent"></div>
+            <p class="ig-stat-label">Publications</p>
+            <p class="ig-stat-sub">Photos &amp; vid&eacute;os post&eacute;es</p>
           </div>
-          <div class="text-center bg-white border border-gray-100 rounded-2xl px-3 py-5 sm:py-6 hover:shadow-md transition-shadow">
-            <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-brand tabular-nums leading-none mb-1.5"><span data-ig-stat="rating" data-target="4.5" data-decimals="1">4,5</span><span class="text-yellow-500 ml-0.5">&#9733;</span></p>
-            <p class="text-[10px] sm:text-xs text-text-light tracking-[0.2em] uppercase">Note moyenne</p>
+
+          <div class="ig-stat">
+            <div class="flex items-baseline gap-1 leading-none">
+              <span class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-brand tabular-nums" data-ig-stat="rating" data-target="4.5" data-decimals="1">4,5</span>
+              <span class="text-3xl sm:text-4xl text-yellow-500">&#9733;</span>
+            </div>
+            <div class="ig-stat-accent"></div>
+            <p class="ig-stat-label">Note moyenne</p>
+            <p class="ig-stat-sub">Google &middot; TripAdvisor &middot; Facebook</p>
           </div>
-          <div class="text-center bg-white border border-gray-100 rounded-2xl px-3 py-5 sm:py-6 hover:shadow-md transition-shadow">
-            <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-brand tabular-nums leading-none mb-1.5" data-ig-stat="reviews" data-target="6419">6&nbsp;419</p>
-            <p class="text-[10px] sm:text-xs text-text-light tracking-[0.2em] uppercase">Avis clients</p>
+
+          <div class="ig-stat">
+            <span class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-brand tabular-nums leading-none" data-ig-stat="reviews" data-target="6416">6&nbsp;416</span>
+            <div class="ig-stat-accent"></div>
+            <p class="ig-stat-label">Avis clients</p>
+            <p class="ig-stat-sub">Toutes plateformes confondues</p>
           </div>
         </div>
 
@@ -2430,22 +2472,32 @@
           maximumFractionDigits: decimals,
         });
       }
+      // Format truncated to thousands : 14239 -> "14,2" (so we can append a "K"
+      // suffix in HTML, mass-appeal display style).
+      function formatThousands(value) {
+        const k = value / 1000;
+        // 1 decimal under 100 (14,2K) ; 0 decimals beyond (240K)
+        const decimals = k < 100 ? 1 : 0;
+        return formatNumber(k, decimals);
+      }
       function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
       function countUp(el) {
         const target = parseFloat(el.dataset.target);
         const decimals = parseInt(el.dataset.decimals || '0', 10);
+        const format = el.dataset.format || ''; // "k" pour formater en milliers
         if (!Number.isFinite(target)) return;
         const duration = 1400;
         const start = performance.now();
         const initial = 0;
+        const render = (v) => (format === 'k' ? formatThousands(v) : formatNumber(v, decimals));
         function tick(now) {
           const elapsed = now - start;
           const progress = Math.min(elapsed / duration, 1);
           const eased = easeOutCubic(progress);
           const current = initial + (target - initial) * eased;
-          el.textContent = formatNumber(current, decimals);
+          el.textContent = render(current);
           if (progress < 1) requestAnimationFrame(tick);
-          else el.textContent = formatNumber(target, decimals);
+          else el.textContent = render(target);
         }
         requestAnimationFrame(tick);
       }
