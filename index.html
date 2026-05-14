@@ -1269,10 +1269,10 @@
               </div>
             </button>
 
-            <button type="button" class="artist-tile" data-artist-name="7Even" data-artist-style="DJ r&eacute;sident" data-artist-event="R&eacute;sident du Chiringuito" data-artist-bio="Quasiment notre r&eacute;sident officiel. La star qui revient encore et encore, faisant du Chiringuito sa sc&egrave;ne favorite saison apr&egrave;s saison." data-artist-photo="images/artistes/7even.jpg" data-artist-photo-full="images/artistes/7even-full.jpg" data-artist-gradient="linear-gradient(165deg, #1A1F3A 0%, #2D3561 50%, #4A5494 100%)" data-artist-emoji="&#x2B50;" data-artist-instagram="https://www.instagram.com/djseven.off/" aria-label="Voir 7Even">
+            <button type="button" class="artist-tile" data-artist-name="7even" data-artist-style="DJ r&eacute;sident" data-artist-event="R&eacute;sident du Chiringuito" data-artist-bio="Quasiment notre r&eacute;sident officiel. La star qui revient encore et encore, faisant du Chiringuito sa sc&egrave;ne favorite saison apr&egrave;s saison." data-artist-photo="images/artistes/7even.jpg" data-artist-photo-full="images/artistes/7even-full.jpg" data-artist-gradient="linear-gradient(165deg, #1A1F3A 0%, #2D3561 50%, #4A5494 100%)" data-artist-emoji="&#x2B50;" data-artist-instagram="https://www.instagram.com/djseven.off/" aria-label="Voir 7even">
               <div class="artist-bg" style="background-image: url('images/artistes/7even.jpg'); background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
-                <h3 class="artist-name">7Even</h3>
+                <h3 class="artist-name">7even</h3>
                 <p class="artist-event">La star de la maison</p>
               </div>
             </button>
@@ -1356,6 +1356,14 @@
         <!-- Close button -->
         <button type="button" class="absolute top-3 right-3 z-30 w-10 h-10 rounded-full bg-black/40 hover:bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition shadow-lg" data-artist-close aria-label="Fermer">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+
+        <!-- Prev / Next navigation between artists -->
+        <button type="button" id="artist-modal-prev" class="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/40 hover:bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition shadow-lg" aria-label="Artiste pr&eacute;c&eacute;dent">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button type="button" id="artist-modal-next" class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/40 hover:bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition shadow-lg" aria-label="Artiste suivant">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
         </button>
 
         <!-- Photo fullbleed (or gradient fallback) -->
@@ -2184,45 +2192,27 @@
         social: document.getElementById('artist-modal-social'),
       };
 
-      // Inline SVG paths for social platforms artists commonly use.
-      // viewBox is 0 0 24 24 for all so they render the same size.
-      const SOCIAL_ICONS = {
-        instagram: '<rect x="3" y="3" width="18" height="18" rx="5" ry="5" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>',
-        spotify: '<circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7 9.5c3-1 7-1 10 .5M7.5 12.5c2.5-.7 5.7-.6 8 .5M8 15.3c2-.5 4.4-.5 6 .3" stroke="#0F1B23" stroke-width="1.6" stroke-linecap="round" fill="none"/>',
-        soundcloud: '<path d="M3 14v3M5 12v5M7 11v6M9 10v7M11 9v8M13 9.5c0-1.5 1.2-2.5 2.5-2.5 1.4 0 2.5 1 2.5 2.5v7.5h-5zM18 12c.3-.1.7-.1 1 0 1.5.2 2.5 1.5 2.5 3s-1.2 2.5-2.5 2.5h-1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>',
-        youtube: '<rect x="2" y="5" width="20" height="14" rx="3" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/>',
-        bandcamp: '<path d="M3 6h12l-6 12H3z" fill="currentColor"/><path d="M16 9h5l-2.5 9h-5z" fill="currentColor" opacity="0.7"/>',
-        website: '<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" stroke="currentColor" stroke-width="1.5" fill="none"/>',
-      };
-      const SOCIAL_LABELS = {
-        instagram: 'Instagram',
-        spotify: 'Spotify',
-        soundcloud: 'SoundCloud',
-        youtube: 'YouTube',
-        bandcamp: 'Bandcamp',
-        website: 'Site web',
-      };
+      // Inline Instagram SVG (the only social we surface for now).
+      const INSTAGRAM_SVG = '<rect x="3" y="3" width="18" height="18" rx="5" ry="5" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>';
 
       function buildSocialLinks(tile) {
-        const links = [];
-        Object.keys(SOCIAL_ICONS).forEach((key) => {
-          const url = tile.dataset['artist' + key.charAt(0).toUpperCase() + key.slice(1)];
-          if (!url) return;
-          // Social buttons sit over a dark fade in the new poster modal, so we
-          // use a frosted-white style for guaranteed legibility on any photo.
-          links.push(
-            '<a href="' + url + '" target="_blank" rel="noopener noreferrer" ' +
-            'class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white/18 hover:bg-white/32 backdrop-blur-md border border-white/25 hover:border-white/50 text-white transition-all duration-300 hover:-translate-y-0.5 shadow-md" ' +
-            'aria-label="' + SOCIAL_LABELS[key] + '">' +
-            '<svg class="w-5 h-5" viewBox="0 0 24 24">' + SOCIAL_ICONS[key] + '</svg>' +
-            '</a>'
-          );
-        });
-        return links.join('');
+        const url = tile.dataset.artistInstagram;
+        if (!url) return '';
+        return (
+          '<a href="' + url + '" target="_blank" rel="noopener noreferrer" ' +
+          'class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white/18 hover:bg-white/32 backdrop-blur-md border border-white/25 hover:border-white/50 text-white transition-all duration-300 hover:-translate-y-0.5 shadow-md" ' +
+          'aria-label="Instagram">' +
+          '<svg class="w-5 h-5" viewBox="0 0 24 24">' + INSTAGRAM_SVG + '</svg>' +
+          '</a>'
+        );
       }
 
-      function openArtistModal(tile) {
-        if (!modal || !modalArticle) return;
+      // List of artist tiles (in the ORIGINAL row only — not the cloned ones).
+      // We resolve this once at startup; the order matches the carousel.
+      const artistTiles = Array.from(row.querySelectorAll('.artist-tile'));
+      let currentArtistIndex = 0;
+
+      function renderArtistInModal(tile) {
         fields.name.innerHTML = tile.dataset.artistName || '';
         fields.event.innerHTML = tile.dataset.artistEvent || '';
         // Hero : prefer the HD modal-quality photo, fallback to the tile photo,
@@ -2249,6 +2239,13 @@
         if (fields.social) {
           fields.social.innerHTML = buildSocialLinks(tile);
         }
+      }
+
+      function openArtistModal(tile) {
+        if (!modal || !modalArticle) return;
+        const idx = artistTiles.indexOf(tile);
+        if (idx !== -1) currentArtistIndex = idx;
+        renderArtistInModal(tile);
         // Two-step show : remove `hidden` first so the element is rendered,
         // then on the next frame add `is-open` so opacity/transform transition
         // fires from the initial state instead of being skipped.
@@ -2259,6 +2256,24 @@
             modal.classList.add('is-open');
           });
         });
+      }
+
+      // Cycle to prev (-1) or next (+1) artist within the open modal. Wraps
+      // around (last → first, first → last). Uses a quick crossfade for polish.
+      function navigateArtist(direction) {
+        if (!artistTiles.length || !modalArticle) return;
+        const total = artistTiles.length;
+        currentArtistIndex = (currentArtistIndex + direction + total) % total;
+        const nextTile = artistTiles[currentArtistIndex];
+        // Quick fade out / swap / fade in
+        modalArticle.style.transition = 'opacity 0.15s ease-out';
+        modalArticle.style.opacity = '0';
+        setTimeout(() => {
+          renderArtistInModal(nextTile);
+          modalArticle.style.opacity = '1';
+          // Restore default transition after the quick fade settles
+          setTimeout(() => { modalArticle.style.transition = ''; }, 200);
+        }, 150);
       }
 
       function closeArtistModal() {
@@ -2285,9 +2300,54 @@
       modal?.querySelectorAll('[data-artist-close]').forEach((el) => {
         el.addEventListener('click', closeArtistModal);
       });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal?.classList.contains('is-open')) closeArtistModal();
+
+      // Prev / Next click handlers (chevron buttons in the modal)
+      document.getElementById('artist-modal-prev')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navigateArtist(-1);
       });
+      document.getElementById('artist-modal-next')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navigateArtist(1);
+      });
+
+      // Keyboard : Esc to close, ←/→ to navigate
+      document.addEventListener('keydown', (e) => {
+        if (!modal?.classList.contains('is-open')) return;
+        if (e.key === 'Escape') return closeArtistModal();
+        if (e.key === 'ArrowLeft') { e.preventDefault(); navigateArtist(-1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); navigateArtist(1); }
+      });
+
+      // Swipe gesture on the modal article : left swipe → next, right swipe → prev.
+      // Threshold 50px ; ignore taps and small jitters so social links remain
+      // clickable.
+      if (modalArticle) {
+        let swipeStart = null;
+        let swipeDx = 0;
+        const SWIPE_THRESHOLD = 50;
+        modalArticle.addEventListener('pointerdown', (e) => {
+          if (e.button > 0) return;
+          // Ignore swipes that start on the close/nav buttons or social links
+          if (e.target.closest('button, a')) { swipeStart = null; return; }
+          swipeStart = e.clientX;
+          swipeDx = 0;
+        });
+        modalArticle.addEventListener('pointermove', (e) => {
+          if (swipeStart == null) return;
+          swipeDx = e.clientX - swipeStart;
+        });
+        const endSwipe = () => {
+          if (swipeStart == null) return;
+          if (Math.abs(swipeDx) > SWIPE_THRESHOLD) {
+            navigateArtist(swipeDx < 0 ? 1 : -1);
+          }
+          swipeStart = null;
+          swipeDx = 0;
+        };
+        modalArticle.addEventListener('pointerup', endSwipe);
+        modalArticle.addEventListener('pointercancel', endSwipe);
+      }
     })();
   </script>
 
