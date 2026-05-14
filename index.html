@@ -2100,18 +2100,31 @@
       track.addEventListener('scroll', wrap, { passive: true });
 
       // ── Auto-scroll loop using requestAnimationFrame
+      // We don't toggle on/off — instead we lerp currentSpeed toward
+      // targetSpeed each frame. That gives a soft brake on hover and a smooth
+      // ramp-up on resume, instead of a jerky stop/start.
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const AUTO_SPEED = 0.45; // px per frame (~27px/sec at 60fps)
-      let autoPaused = reducedMotion;
+      const AUTO_SPEED = 0.45;       // px per frame (~27px/sec at 60fps)
+      const SPEED_LERP = 0.05;       // ~20 frames (~0.33s) to settle 95% — feel: soft brake
+      let targetSpeed = reducedMotion ? 0 : AUTO_SPEED;
+      let currentSpeed = targetSpeed;
       let resumeTimer = null;
-      function pauseAuto(durationMs = 2500) {
-        autoPaused = true;
-        clearTimeout(resumeTimer);
-        resumeTimer = setTimeout(() => { autoPaused = false; }, durationMs);
+
+      function setPaused(paused) {
+        targetSpeed = (paused || reducedMotion) ? 0 : AUTO_SPEED;
       }
+      function pauseAuto(durationMs = 2500) {
+        setPaused(true);
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => setPaused(false), durationMs);
+      }
+
       function rafLoop() {
-        if (!autoPaused && rowWidth) {
-          track.scrollLeft += AUTO_SPEED;
+        currentSpeed += (targetSpeed - currentSpeed) * SPEED_LERP;
+        // Snap to zero below a tiny threshold so we eventually really stop
+        if (Math.abs(currentSpeed) < 0.005) currentSpeed = 0;
+        if (currentSpeed !== 0 && rowWidth) {
+          track.scrollLeft += currentSpeed;
         }
         requestAnimationFrame(rafLoop);
       }
@@ -2136,7 +2149,7 @@
         startX = e.clientX;
         startScroll = track.scrollLeft;
         startTile = e.target.closest('.artist-tile');
-        autoPaused = true;
+        setPaused(true);
         // Show grabbing cursor only on non-touch (visual feedback for desktop)
         if (e.pointerType !== 'touch') {
           track.classList.add('is-dragging');
@@ -2173,11 +2186,11 @@
       track.addEventListener('touchstart', () => pauseAuto(2500), { passive: true });
       track.addEventListener('wheel', () => pauseAuto(2500), { passive: true });
 
-      // Pause auto on hover (desktop pointer)
+      // Pause auto on hover (desktop pointer) — soft brake / soft resume
       if (window.matchMedia('(hover: hover)').matches) {
-        track.addEventListener('mouseenter', () => { autoPaused = true; });
+        track.addEventListener('mouseenter', () => { setPaused(true); });
         track.addEventListener('mouseleave', () => {
-          if (!isDown) { clearTimeout(resumeTimer); autoPaused = reducedMotion; }
+          if (!isDown) { clearTimeout(resumeTimer); setPaused(false); }
         });
       }
 
