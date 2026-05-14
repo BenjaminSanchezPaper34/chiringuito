@@ -1,0 +1,16 @@
+{
+  "name": "chiringuito-vias-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Site Le Chiringuito — Vias-Plage (landing + dashboard partenaires)",
+  "type": "module",
+  "scripts": {
+    "update:metrics": "node scripts/update-metrics.mjs"
+  },
+  "dependencies": {
+    "google-auth-library": "^9.15.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -2,3 +2,13 @@
 *.idlk
 *.idms
 Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Vercel
+.vercel/
+
+# Lockfile : tracked si on veut des installs reproductibles dans la CI.
+# Garder package-lock.json si genere par npm install. Pas besoin de l'ignorer.
