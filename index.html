@@ -597,8 +597,11 @@
       font-family: 'Inter', system-ui, sans-serif;
       font-weight: 800; font-size: 1.35rem; line-height: 1.1; color: white;
       margin-bottom: 0.4rem; letter-spacing: -0.02em;
+      text-transform: lowercase;
     }
     @media (min-width: 768px) { .artist-name { font-size: 1.55rem; } }
+    /* Modal title : same lowercase treatment for consistency */
+    #artist-modal-title { text-transform: lowercase; }
     .artist-event {
       font-size: 0.7rem; color: rgba(255, 255, 255, 0.75);
       letter-spacing: 0.05em;
