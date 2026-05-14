@@ -626,32 +626,8 @@
     }
     #artist-modal.is-open > [data-artist-close].absolute { opacity: 1; }
 
-    /* Hero height : capped so the bio stays visible even on small viewports */
-    #artist-modal-hero {
-      min-height: 240px;
-      height: clamp(240px, 50vh, 560px);
-    }
-    @media (min-width: 768px) {
-      #artist-modal-hero {
-        height: clamp(320px, 55vh, 600px);
-      }
-    }
-
-    /* Hero in photo mode: subtle dark fade at bottom for visual continuity
-       with the dark modal body underneath */
-    .artist-hero--photo { position: relative; }
-    .artist-hero--photo::after {
-      content: '';
-      position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(to bottom, transparent 55%, rgba(21, 33, 43, 0.45) 85%, rgba(21, 33, 43, 0.8) 100%);
-    }
-
-    /* Custom scrollbar styling for modal article when content overflows */
-    #artist-modal > article::-webkit-scrollbar { width: 6px; }
-    #artist-modal > article::-webkit-scrollbar-track { background: transparent; }
-    #artist-modal > article::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.15); border-radius: 999px;
-    }
+    /* Hero fills the whole article (poster style). The fade overlay is a
+       separate sibling div so no ::after pseudo magic is needed. */
 
     /* Noise texture */
     .noise::after {
@@ -1277,7 +1253,7 @@
           <!-- ROW (will be duplicated by JS for infinite scroll) -->
           <div class="marquee-row" id="artistsRow">
 
-            <button type="button" class="artist-tile" data-artist-name="Yann Muller" data-artist-style="DJ producteur" data-artist-event="Opening Party 2025 &middot; 7 juin" data-artist-bio="DJ et producteur fran&ccedil;ais (Nice / Dubai), reprises pop fusionn&eacute;es house et lounge. 135M+ d'&eacute;coutes Spotify, disque d'or avec &laquo;&nbsp;California Dreamin'&nbsp;&raquo;. Set lumineux face mer pour l'opening 2025." data-artist-photo="images/artistes/yann-muller-opening-2025.jpg" data-artist-gradient="linear-gradient(165deg, #1B0F2E 0%, #3A1A5C 50%, #6B2B8C 100%)" data-artist-emoji="&#x1F3A7;" data-artist-instagram="https://www.instagram.com/yann_muller/" data-artist-spotify="https://open.spotify.com/artist/41HOzTOe9JNerhym1HWxti" data-artist-soundcloud="https://soundcloud.com/yannmuller" data-artist-youtube="https://www.youtube.com/channel/UCxEVGiyCGf6WQrBpJVfZ12g" data-artist-bandcamp="https://yannmuller.bandcamp.com/" aria-label="Voir Yann Muller">
+            <button type="button" class="artist-tile" data-artist-name="Yann Muller" data-artist-style="DJ producteur" data-artist-event="Opening Party 2025 &middot; 7 juin" data-artist-bio="DJ et producteur fran&ccedil;ais (Nice / Dubai), reprises pop fusionn&eacute;es house et lounge. 135M+ d'&eacute;coutes Spotify, disque d'or avec &laquo;&nbsp;California Dreamin'&nbsp;&raquo;. Set lumineux face mer pour l'opening 2025." data-artist-photo="images/artistes/yann-muller-opening-2025.jpg" data-artist-photo-full="images/artistes/yann-muller-opening-2025-full.jpg" data-artist-gradient="linear-gradient(165deg, #1B0F2E 0%, #3A1A5C 50%, #6B2B8C 100%)" data-artist-emoji="&#x1F3A7;" data-artist-instagram="https://www.instagram.com/yann_muller/" data-artist-spotify="https://open.spotify.com/artist/41HOzTOe9JNerhym1HWxti" data-artist-soundcloud="https://soundcloud.com/yannmuller" data-artist-youtube="https://www.youtube.com/channel/UCxEVGiyCGf6WQrBpJVfZ12g" data-artist-bandcamp="https://yannmuller.bandcamp.com/" aria-label="Voir Yann Muller">
               <div class="artist-bg" style="background-image: url('images/artistes/yann-muller-opening-2025.jpg'); background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <p class="artist-style">DJ producteur</p>
@@ -1286,7 +1262,7 @@
               </div>
             </button>
 
-            <button type="button" class="artist-tile" data-artist-name="7EVEN" data-artist-style="DJ r&eacute;sident" data-artist-event="R&eacute;sident du Chiringuito" data-artist-bio="Quasiment notre r&eacute;sident officiel. La star qui revient encore et encore, faisant du Chiringuito sa sc&egrave;ne favorite saison apr&egrave;s saison." data-artist-photo="images/artistes/7even.jpg" data-artist-gradient="linear-gradient(165deg, #1A1F3A 0%, #2D3561 50%, #4A5494 100%)" data-artist-emoji="&#x2B50;" data-artist-instagram="https://www.instagram.com/djseven.off/" aria-label="Voir 7EVEN">
+            <button type="button" class="artist-tile" data-artist-name="7EVEN" data-artist-style="DJ r&eacute;sident" data-artist-event="R&eacute;sident du Chiringuito" data-artist-bio="Quasiment notre r&eacute;sident officiel. La star qui revient encore et encore, faisant du Chiringuito sa sc&egrave;ne favorite saison apr&egrave;s saison." data-artist-photo="images/artistes/7even.jpg" data-artist-photo-full="images/artistes/7even-full.jpg" data-artist-gradient="linear-gradient(165deg, #1A1F3A 0%, #2D3561 50%, #4A5494 100%)" data-artist-emoji="&#x2B50;" data-artist-instagram="https://www.instagram.com/djseven.off/" aria-label="Voir 7EVEN">
               <div class="artist-bg" style="background-image: url('images/artistes/7even.jpg'); background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <p class="artist-style">DJ r&eacute;sident</p>
@@ -1295,7 +1271,7 @@
               </div>
             </button>
 
-            <button type="button" class="artist-tile artist-tile--wide" data-artist-name="MOREZAN" data-artist-style="DJ" data-artist-event="Pr&eacute;sent dans tous les grands moments" data-artist-bio="Avec nous depuis des ann&eacute;es. De toutes les soir&eacute;es qui comptent, fid&egrave;le entre les fid&egrave;les. Sa griffe : des transitions impeccables et des choix qui font danser." data-artist-photo="images/artistes/morezan.jpg" data-artist-gradient="linear-gradient(165deg, #1A2A3A 0%, #16404D 50%, #008B8B 100%)" data-artist-emoji="&#x1F525;" data-artist-instagram="https://www.instagram.com/morezan.music/" aria-label="Voir MOREZAN">
+            <button type="button" class="artist-tile artist-tile--wide" data-artist-name="MOREZAN" data-artist-style="DJ" data-artist-event="Pr&eacute;sent dans tous les grands moments" data-artist-bio="Avec nous depuis des ann&eacute;es. De toutes les soir&eacute;es qui comptent, fid&egrave;le entre les fid&egrave;les. Sa griffe : des transitions impeccables et des choix qui font danser." data-artist-photo="images/artistes/morezan.jpg" data-artist-photo-full="images/artistes/morezan-full.jpg" data-artist-gradient="linear-gradient(165deg, #1A2A3A 0%, #16404D 50%, #008B8B 100%)" data-artist-emoji="&#x1F525;" data-artist-instagram="https://www.instagram.com/morezan.music/" aria-label="Voir MOREZAN">
               <div class="artist-bg" style="background-image: url('images/artistes/morezan.jpg'); background-size: cover; background-position: center 35%;"></div>
               <div class="artist-info">
                 <p class="artist-style">DJ</p>
@@ -1304,7 +1280,7 @@
               </div>
             </button>
 
-            <button type="button" class="artist-tile" data-artist-name="LUNAA" data-artist-style="DJ" data-artist-event="Closing Party 2025 &middot; 28 septembre" data-artist-bio="Pr&eacute;sente au Closing 2025 pour cl&ocirc;turer la saison. Set cr&eacute;pusculaire dans la lumi&egrave;re qui d&eacute;cline, &eacute;motion juste avant la nuit." data-artist-photo="images/artistes/lunaa-closing-2025.jpg" data-artist-gradient="linear-gradient(165deg, #2A1A4D 0%, #4A2E6E 50%, #7B4FA0 100%)" data-artist-emoji="&#x1F319;" data-artist-instagram="https://www.instagram.com/lunaamusicfr/" aria-label="Voir LUNAA">
+            <button type="button" class="artist-tile" data-artist-name="LUNAA" data-artist-style="DJ" data-artist-event="Closing Party 2025 &middot; 28 septembre" data-artist-bio="Pr&eacute;sente au Closing 2025 pour cl&ocirc;turer la saison. Set cr&eacute;pusculaire dans la lumi&egrave;re qui d&eacute;cline, &eacute;motion juste avant la nuit." data-artist-photo="images/artistes/lunaa-closing-2025.jpg" data-artist-photo-full="images/artistes/lunaa-closing-2025-full.jpg" data-artist-gradient="linear-gradient(165deg, #2A1A4D 0%, #4A2E6E 50%, #7B4FA0 100%)" data-artist-emoji="&#x1F319;" data-artist-instagram="https://www.instagram.com/lunaamusicfr/" aria-label="Voir LUNAA">
               <div class="artist-bg" style="background-image: url('images/artistes/lunaa-closing-2025.jpg'); background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <p class="artist-style">DJ</p>
@@ -1313,7 +1289,7 @@
               </div>
             </button>
 
-            <button type="button" class="artist-tile" data-artist-name="MAXDEE" data-artist-style="DJ" data-artist-event="Closing Party 2025 &middot; 28 septembre" data-artist-bio="Pr&eacute;sent au Closing 2025. &Eacute;nergie pure et set qui fait danser jusqu'au bout de la nuit, pour boucler la saison en feu." data-artist-photo="images/artistes/maxdee-closing-2025.jpg" data-artist-gradient="linear-gradient(165deg, #3A1B0F 0%, #7A2D14 50%, #C0492A 100%)" data-artist-emoji="&#x26A1;" data-artist-instagram="https://www.instagram.com/maxdee.ofc/" aria-label="Voir MAXDEE">
+            <button type="button" class="artist-tile" data-artist-name="MAXDEE" data-artist-style="DJ" data-artist-event="Closing Party 2025 &middot; 28 septembre" data-artist-bio="Pr&eacute;sent au Closing 2025. &Eacute;nergie pure et set qui fait danser jusqu'au bout de la nuit, pour boucler la saison en feu." data-artist-photo="images/artistes/maxdee-closing-2025.jpg" data-artist-photo-full="images/artistes/maxdee-closing-2025-full.jpg" data-artist-gradient="linear-gradient(165deg, #3A1B0F 0%, #7A2D14 50%, #C0492A 100%)" data-artist-emoji="&#x26A1;" data-artist-instagram="https://www.instagram.com/maxdee.ofc/" aria-label="Voir MAXDEE">
               <div class="artist-bg" style="background-image: url('images/artistes/maxdee-closing-2025.jpg'); background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <p class="artist-style">DJ</p>
@@ -1322,7 +1298,7 @@
               </div>
             </button>
 
-            <button type="button" class="artist-tile artist-tile--wide" data-artist-name="MAXX BATY" data-artist-style="DJ" data-artist-event="Habitu&eacute; des moments forts" data-artist-bio="Un des amis de la maison. Souvent avec nous quand l'ambiance le demande, toujours l&agrave; pour les moments forts. Un set qui m&ecirc;le l'attendu et la surprise." data-artist-photo="images/artistes/maxx-baty.jpg" data-artist-gradient="linear-gradient(165deg, #3A2812 0%, #6B4422 50%, #A87232 100%)" data-artist-emoji="&#x1F942;" data-artist-instagram="https://www.instagram.com/maxxbaty/" aria-label="Voir MAXX BATY">
+            <button type="button" class="artist-tile artist-tile--wide" data-artist-name="MAXX BATY" data-artist-style="DJ" data-artist-event="Habitu&eacute; des moments forts" data-artist-bio="Un des amis de la maison. Souvent avec nous quand l'ambiance le demande, toujours l&agrave; pour les moments forts. Un set qui m&ecirc;le l'attendu et la surprise." data-artist-photo="images/artistes/maxx-baty.jpg" data-artist-photo-full="images/artistes/maxx-baty-full.jpg" data-artist-gradient="linear-gradient(165deg, #3A2812 0%, #6B4422 50%, #A87232 100%)" data-artist-emoji="&#x1F942;" data-artist-instagram="https://www.instagram.com/maxxbaty/" aria-label="Voir MAXX BATY">
               <div class="artist-bg" style="background-image: url('images/artistes/maxx-baty.jpg'); background-size: cover; background-position: center 35%;"></div>
               <div class="artist-info">
                 <p class="artist-style">DJ</p>
@@ -1331,7 +1307,7 @@
               </div>
             </button>
 
-            <button type="button" class="artist-tile" data-artist-name="DEMSKO" data-artist-style="DJ" data-artist-event="Habitu&eacute; de la maison" data-artist-bio="R&eacute;guli&egrave;rement aux platines du Chiringuito. Set qui sait lire la salle, &eacute;nergie communicative et choix qui rassemblent. Un de nos visages familiers de l'&eacute;t&eacute;." data-artist-photo="images/artistes/demsko.jpg" data-artist-gradient="linear-gradient(165deg, #0F1F2D 0%, #1B3A5C 50%, #2E5A8C 100%)" data-artist-emoji="&#x1F3A7;" data-artist-instagram="https://www.instagram.com/demsko2.1/" aria-label="Voir DEMSKO">
+            <button type="button" class="artist-tile" data-artist-name="DEMSKO" data-artist-style="DJ" data-artist-event="Habitu&eacute; de la maison" data-artist-bio="R&eacute;guli&egrave;rement aux platines du Chiringuito. Set qui sait lire la salle, &eacute;nergie communicative et choix qui rassemblent. Un de nos visages familiers de l'&eacute;t&eacute;." data-artist-photo="images/artistes/demsko.jpg" data-artist-photo-full="images/artistes/demsko-full.jpg" data-artist-gradient="linear-gradient(165deg, #0F1F2D 0%, #1B3A5C 50%, #2E5A8C 100%)" data-artist-emoji="&#x1F3A7;" data-artist-instagram="https://www.instagram.com/demsko2.1/" aria-label="Voir DEMSKO">
               <div class="artist-bg" style="background-image: url('images/artistes/demsko.jpg'); background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <p class="artist-style">DJ</p>
@@ -1350,25 +1326,25 @@
     <div id="artist-modal" class="fixed inset-0 z-[110] hidden items-center justify-center px-3 sm:px-4 py-4 sm:py-6" role="dialog" aria-modal="true" aria-labelledby="artist-modal-title">
       <!-- Backdrop -->
       <div class="absolute inset-0 bg-black/85 backdrop-blur-md" data-artist-close></div>
-      <!-- Card -->
-      <article class="relative z-10 max-w-3xl w-full max-h-[95vh] overflow-y-auto bg-[#15212B] text-white rounded-2xl sm:rounded-3xl shadow-2xl border border-white/10">
+      <!-- Poster card : photo fullbleed + dark fade overlay + text/social bottom -->
+      <article class="relative z-10 w-full max-w-md max-h-[92vh] aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-[#15212B]">
         <!-- Close button -->
-        <button type="button" class="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white transition shadow-lg" data-artist-close aria-label="Fermer">
+        <button type="button" class="absolute top-3 right-3 z-30 w-10 h-10 rounded-full bg-black/40 hover:bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition shadow-lg" data-artist-close aria-label="Fermer">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
 
-        <!-- Hero media -->
-        <div class="relative flex items-center justify-center bg-center bg-cover" id="artist-modal-hero">
-          <span class="text-7xl md:text-8xl drop-shadow-lg" id="artist-modal-emoji">&#x1F3B8;</span>
+        <!-- Photo fullbleed (or gradient fallback) -->
+        <div class="absolute inset-0 bg-center bg-cover" id="artist-modal-hero">
+          <span class="absolute inset-0 flex items-center justify-center text-7xl md:text-8xl drop-shadow-lg" id="artist-modal-emoji">&#x1F3B8;</span>
         </div>
 
-        <!-- Body -->
-        <div class="px-5 py-6 sm:px-7 sm:py-7 md:px-10 md:py-9">
-          <p class="text-[11px] sm:text-xs font-medium tracking-[0.25em] uppercase text-brand mb-2" id="artist-modal-style">Live acoustique</p>
-          <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-2 sm:mb-3 leading-tight" id="artist-modal-title">Ma&iuml;a</h3>
-          <p class="text-xs sm:text-sm text-white/60 mb-4 sm:mb-5" id="artist-modal-event">Opening Party 2025 &middot; 30 mai</p>
-          <p class="text-sm sm:text-base text-white/80 leading-relaxed mb-5 sm:mb-6" id="artist-modal-bio">Set lumineux face au coucher de soleil.</p>
-          <!-- Social links (populated from data attributes) -->
+        <!-- Dark fade overlay -->
+        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, transparent 0%, transparent 35%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.92) 100%);"></div>
+
+        <!-- Text + social overlay (anchored bottom) -->
+        <div class="absolute left-0 right-0 bottom-0 z-20 px-6 py-7 sm:px-7 sm:py-8 text-white">
+          <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-1.5 leading-[1.05] drop-shadow-lg" id="artist-modal-title">Yann Muller</h3>
+          <p class="text-xs sm:text-sm text-white/80 mb-5 drop-shadow" id="artist-modal-event">Opening Party 2025 &middot; 7 juin</p>
           <div class="flex flex-wrap items-center gap-2" id="artist-modal-social"></div>
         </div>
       </article>
@@ -2177,9 +2153,7 @@
       const modalArticle = modal?.querySelector('article');
       const fields = {
         name: document.getElementById('artist-modal-title'),
-        style: document.getElementById('artist-modal-style'),
         event: document.getElementById('artist-modal-event'),
-        bio: document.getElementById('artist-modal-bio'),
         emoji: document.getElementById('artist-modal-emoji'),
         hero: document.getElementById('artist-modal-hero'),
         social: document.getElementById('artist-modal-social'),
@@ -2209,11 +2183,13 @@
         Object.keys(SOCIAL_ICONS).forEach((key) => {
           const url = tile.dataset['artist' + key.charAt(0).toUpperCase() + key.slice(1)];
           if (!url) return;
+          // Social buttons sit over a dark fade in the new poster modal, so we
+          // use a frosted-white style for guaranteed legibility on any photo.
           links.push(
             '<a href="' + url + '" target="_blank" rel="noopener noreferrer" ' +
-            'class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 hover:border-white/35 text-white/85 hover:text-white transition-all duration-300 hover:-translate-y-0.5" ' +
+            'class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white/18 hover:bg-white/32 backdrop-blur-md border border-white/25 hover:border-white/50 text-white transition-all duration-300 hover:-translate-y-0.5 shadow-md" ' +
             'aria-label="' + SOCIAL_LABELS[key] + '">' +
-            '<svg class="w-[18px] h-[18px]" viewBox="0 0 24 24">' + SOCIAL_ICONS[key] + '</svg>' +
+            '<svg class="w-5 h-5" viewBox="0 0 24 24">' + SOCIAL_ICONS[key] + '</svg>' +
             '</a>'
           );
         });
@@ -2223,23 +2199,22 @@
       function openArtistModal(tile) {
         if (!modal || !modalArticle) return;
         fields.name.innerHTML = tile.dataset.artistName || '';
-        fields.style.innerHTML = tile.dataset.artistStyle || '';
         fields.event.innerHTML = tile.dataset.artistEvent || '';
-        fields.bio.innerHTML = tile.dataset.artistBio || '';
-        // Hero: prefer photo over gradient + emoji
+        // Hero : prefer the HD modal-quality photo, fallback to the tile photo,
+        // then the gradient + emoji.
         if (fields.hero) {
+          const photoFull = tile.dataset.artistPhotoFull;
           const photo = tile.dataset.artistPhoto;
-          if (photo) {
-            fields.hero.style.backgroundImage = "url('" + photo + "')";
+          const heroSrc = photoFull || photo;
+          if (heroSrc) {
+            fields.hero.style.backgroundImage = "url('" + heroSrc + "')";
             fields.hero.style.backgroundSize = 'cover';
             fields.hero.style.backgroundPosition = 'center';
             fields.hero.style.backgroundColor = '';
-            fields.hero.classList.add('artist-hero--photo');
             if (fields.emoji) fields.emoji.style.display = 'none';
           } else {
             fields.hero.style.backgroundImage = '';
             fields.hero.style.background = tile.dataset.artistGradient || '';
-            fields.hero.classList.remove('artist-hero--photo');
             if (fields.emoji) {
               fields.emoji.style.display = '';
               fields.emoji.innerHTML = tile.dataset.artistEmoji || '🎵';
@@ -2249,8 +2224,6 @@
         if (fields.social) {
           fields.social.innerHTML = buildSocialLinks(tile);
         }
-        // Reset internal scroll if reopened
-        modalArticle.scrollTop = 0;
         // Two-step show : remove `hidden` first so the element is rendered,
         // then on the next frame add `is-open` so opacity/transform transition
         // fires from the initial state instead of being skipped.
