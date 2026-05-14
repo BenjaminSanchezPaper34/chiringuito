@@ -551,17 +551,17 @@
     /* Artist tile */
     .artist-tile {
       position: relative; flex-shrink: 0;
-      width: 220px; height: 290px;
+      width: 240px; height: 360px;
       border-radius: 1.25rem; overflow: hidden;
       cursor: pointer; text-align: left;
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s;
       box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.45);
     }
     @media (min-width: 768px) {
-      .artist-tile { width: 260px; height: 340px; border-radius: 1.5rem; }
+      .artist-tile { width: 280px; height: 420px; border-radius: 1.5rem; }
     }
-    .artist-tile--wide { width: 320px; }
-    @media (min-width: 768px) { .artist-tile--wide { width: 400px; } }
+    /* All tiles share the same size — the .artist-tile--wide variant is no
+       longer used. Class kept in HTML for now (harmless), CSS rules removed. */
     @media (hover: hover) {
       .artist-tile:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 24px 50px -15px rgba(0, 0, 0, 0.6); }
     }
@@ -1261,7 +1261,7 @@
               </div>
             </button>
 
-            <button type="button" class="artist-tile artist-tile--wide" data-artist-name="Patrick S&eacute;bastien" data-artist-event="Invit&eacute; d'honneur du Chiringuito" data-artist-bio="L&eacute;gende fran&ccedil;aise. Animateur, chanteur, com&eacute;dien : ses tubes ont fait danser plusieurs g&eacute;n&eacute;rations. Le Chiringuito a eu l'honneur de l'accueillir sur la plage." data-artist-photo="images/artistes/patrick-sebastien.jpg" data-artist-photo-full="images/artistes/patrick-sebastien-full.jpg" data-artist-gradient="linear-gradient(165deg, #3A1F0F 0%, #6B3818 50%, #C26B2C 100%)" data-artist-emoji="&#x1F3A4;" data-artist-instagram="https://www.instagram.com/patricksebastienofficiel/" aria-label="Voir Patrick S&eacute;bastien">
+            <button type="button" class="artist-tile" data-artist-name="Patrick S&eacute;bastien" data-artist-event="Invit&eacute; d'honneur du Chiringuito" data-artist-bio="L&eacute;gende fran&ccedil;aise. Animateur, chanteur, com&eacute;dien : ses tubes ont fait danser plusieurs g&eacute;n&eacute;rations. Le Chiringuito a eu l'honneur de l'accueillir sur la plage." data-artist-photo="images/artistes/patrick-sebastien.jpg" data-artist-photo-full="images/artistes/patrick-sebastien-full.jpg" data-artist-gradient="linear-gradient(165deg, #3A1F0F 0%, #6B3818 50%, #C26B2C 100%)" data-artist-emoji="&#x1F3A4;" data-artist-instagram="https://www.instagram.com/patricksebastienofficiel/" aria-label="Voir Patrick S&eacute;bastien">
               <div class="artist-bg" style="background-image: url('images/artistes/patrick-sebastien.jpg'); background-size: cover; background-position: center 25%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Patrick S&eacute;bastien</h3>
@@ -1277,7 +1277,7 @@
               </div>
             </button>
 
-            <button type="button" class="artist-tile artist-tile--wide" data-artist-name="Morezan" data-artist-style="DJ" data-artist-event="Pr&eacute;sent dans tous les grands moments" data-artist-bio="Avec nous depuis des ann&eacute;es. De toutes les soir&eacute;es qui comptent, fid&egrave;le entre les fid&egrave;les. Sa griffe : des transitions impeccables et des choix qui font danser." data-artist-photo="images/artistes/morezan.jpg" data-artist-photo-full="images/artistes/morezan-full.jpg" data-artist-gradient="linear-gradient(165deg, #1A2A3A 0%, #16404D 50%, #008B8B 100%)" data-artist-emoji="&#x1F525;" data-artist-instagram="https://www.instagram.com/morezan.music/" aria-label="Voir Morezan">
+            <button type="button" class="artist-tile" data-artist-name="Morezan" data-artist-style="DJ" data-artist-event="Pr&eacute;sent dans tous les grands moments" data-artist-bio="Avec nous depuis des ann&eacute;es. De toutes les soir&eacute;es qui comptent, fid&egrave;le entre les fid&egrave;les. Sa griffe : des transitions impeccables et des choix qui font danser." data-artist-photo="images/artistes/morezan.jpg" data-artist-photo-full="images/artistes/morezan-full.jpg" data-artist-gradient="linear-gradient(165deg, #1A2A3A 0%, #16404D 50%, #008B8B 100%)" data-artist-emoji="&#x1F525;" data-artist-instagram="https://www.instagram.com/morezan.music/" aria-label="Voir Morezan">
               <div class="artist-bg" style="background-image: url('images/artistes/morezan.jpg'); background-size: cover; background-position: center 35%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Morezan</h3>
@@ -1301,7 +1301,7 @@
               </div>
             </button>
 
-            <button type="button" class="artist-tile artist-tile--wide" data-artist-name="Maxx Baty" data-artist-style="DJ" data-artist-event="Habitu&eacute; des moments forts" data-artist-bio="Un des amis de la maison. Souvent avec nous quand l'ambiance le demande, toujours l&agrave; pour les moments forts. Un set qui m&ecirc;le l'attendu et la surprise." data-artist-photo="images/artistes/maxx-baty.jpg" data-artist-photo-full="images/artistes/maxx-baty-full.jpg" data-artist-gradient="linear-gradient(165deg, #3A2812 0%, #6B4422 50%, #A87232 100%)" data-artist-emoji="&#x1F942;" data-artist-instagram="https://www.instagram.com/maxxbaty/" aria-label="Voir Maxx Baty">
+            <button type="button" class="artist-tile" data-artist-name="Maxx Baty" data-artist-style="DJ" data-artist-event="Habitu&eacute; des moments forts" data-artist-bio="Un des amis de la maison. Souvent avec nous quand l'ambiance le demande, toujours l&agrave; pour les moments forts. Un set qui m&ecirc;le l'attendu et la surprise." data-artist-photo="images/artistes/maxx-baty.jpg" data-artist-photo-full="images/artistes/maxx-baty-full.jpg" data-artist-gradient="linear-gradient(165deg, #3A2812 0%, #6B4422 50%, #A87232 100%)" data-artist-emoji="&#x1F942;" data-artist-instagram="https://www.instagram.com/maxxbaty/" aria-label="Voir Maxx Baty">
               <div class="artist-bg" style="background-image: url('images/artistes/maxx-baty.jpg'); background-size: cover; background-position: center 35%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Maxx Baty</h3>
@@ -1333,7 +1333,7 @@
               </div>
             </button>
 
-            <button type="button" class="artist-tile artist-tile--wide" data-artist-name="Camille Combal" data-artist-event="Soir&eacute;e du 28 juin 2019" data-artist-bio="Animateur TV et radio, voix incontournable du paysage audiovisuel fran&ccedil;ais. Le 28 juin 2019, il a fait escale au Chiringuito pour une soir&eacute;e m&eacute;morable." data-artist-photo="images/artistes/camille-combal.jpg" data-artist-photo-full="images/artistes/camille-combal-full.jpg" data-artist-gradient="linear-gradient(165deg, #1A2A3A 0%, #2D456E 50%, #4A6A9C 100%)" data-artist-emoji="&#x1F3A4;" data-artist-instagram="https://www.instagram.com/camillecombal/" aria-label="Voir Camille Combal">
+            <button type="button" class="artist-tile" data-artist-name="Camille Combal" data-artist-event="Soir&eacute;e du 28 juin 2019" data-artist-bio="Animateur TV et radio, voix incontournable du paysage audiovisuel fran&ccedil;ais. Le 28 juin 2019, il a fait escale au Chiringuito pour une soir&eacute;e m&eacute;morable." data-artist-photo="images/artistes/camille-combal.jpg" data-artist-photo-full="images/artistes/camille-combal-full.jpg" data-artist-gradient="linear-gradient(165deg, #1A2A3A 0%, #2D456E 50%, #4A6A9C 100%)" data-artist-emoji="&#x1F3A4;" data-artist-instagram="https://www.instagram.com/camillecombal/" aria-label="Voir Camille Combal">
               <div class="artist-bg" style="background-image: url('images/artistes/camille-combal.jpg'); background-size: cover; background-position: center 25%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Camille Combal</h3>
