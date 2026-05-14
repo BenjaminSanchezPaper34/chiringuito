@@ -463,7 +463,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Parisienne&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Parisienne&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet"/>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -631,10 +631,21 @@
 
     /* Instagram section stats — editorial layout (no card boxes) */
     .ig-stat { display: flex; flex-direction: column; }
+    /* Numbers in Fraunces (variable serif) — high optical size for display feel.
+       Tight tracking, weight 700, with slight pseudo-italic via skew on hover
+       is intentionally NOT applied (legibility > flair). */
+    .ig-stat-num {
+      font-family: 'Fraunces', 'Times New Roman', serif;
+      font-weight: 700;
+      font-variation-settings: 'opsz' 144, 'SOFT' 50;
+      letter-spacing: -0.04em;
+      font-feature-settings: 'tnum' 1, 'ss01' 1; /* tabular + alt 1 */
+      line-height: 0.95;
+    }
     .ig-stat-accent {
       width: 28px; height: 2px;
       background: linear-gradient(to right, #009BA4 0%, rgba(0, 155, 164, 0.15) 100%);
-      margin-top: 12px; margin-bottom: 12px;
+      margin-top: 14px; margin-bottom: 12px;
       transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
     @media (min-width: 768px) { .ig-stat-accent { width: 36px; margin-top: 14px; margin-bottom: 14px; } }
@@ -1449,9 +1460,9 @@
         <!-- Live stats : layout editorial sans cartes (numbers + thin accent line) -->
         <div id="ig-stats" class="grid grid-cols-2 md:grid-cols-4 gap-y-9 gap-x-4 sm:gap-x-6 md:gap-x-8 mb-10 md:mb-14 reveal">
           <div class="ig-stat">
-            <div class="flex items-baseline gap-1 leading-none">
-              <span class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-brand tabular-nums" data-ig-stat="followers" data-target="14239" data-format="k">14,2</span>
-              <span class="text-2xl sm:text-3xl md:text-4xl font-bold text-brand/60">K</span>
+            <div class="flex items-baseline gap-1">
+              <span class="ig-stat-num text-5xl sm:text-6xl md:text-7xl text-brand" data-ig-stat="followers" data-target="14239" data-format="k">14,2</span>
+              <span class="ig-stat-num text-2xl sm:text-3xl md:text-4xl text-brand/55">K</span>
             </div>
             <div class="ig-stat-accent"></div>
             <p class="ig-stat-label">Abonn&eacute;s</p>
@@ -1459,15 +1470,15 @@
           </div>
 
           <div class="ig-stat">
-            <span class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-brand tabular-nums leading-none" data-ig-stat="posts" data-target="1179">1&nbsp;179</span>
+            <span class="ig-stat-num text-5xl sm:text-6xl md:text-7xl text-brand" data-ig-stat="posts" data-target="1179">1&nbsp;179</span>
             <div class="ig-stat-accent"></div>
             <p class="ig-stat-label">Publications</p>
             <p class="ig-stat-sub">Photos &amp; vid&eacute;os post&eacute;es</p>
           </div>
 
           <div class="ig-stat">
-            <div class="flex items-baseline gap-1 leading-none">
-              <span class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-brand tabular-nums" data-ig-stat="rating" data-target="4.5" data-decimals="1">4,5</span>
+            <div class="flex items-baseline gap-1.5">
+              <span class="ig-stat-num text-5xl sm:text-6xl md:text-7xl text-brand" data-ig-stat="rating" data-target="4.5" data-decimals="1">4,5</span>
               <span class="text-3xl sm:text-4xl text-yellow-500">&#9733;</span>
             </div>
             <div class="ig-stat-accent"></div>
@@ -1476,7 +1487,7 @@
           </div>
 
           <div class="ig-stat">
-            <span class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-brand tabular-nums leading-none" data-ig-stat="reviews" data-target="6416">6&nbsp;416</span>
+            <span class="ig-stat-num text-5xl sm:text-6xl md:text-7xl text-brand" data-ig-stat="reviews" data-target="6416">6&nbsp;416</span>
             <div class="ig-stat-accent"></div>
             <p class="ig-stat-label">Avis clients</p>
             <p class="ig-stat-sub">Toutes plateformes confondues</p>
