@@ -607,6 +607,16 @@
     /* Artist modal */
     #artist-modal.is-open { display: flex !important; }
     #artist-modal.is-open article { transform: translateY(0); opacity: 1; }
+    /* Hero in photo mode: subtle dark fade at bottom for visual continuity
+       with the dark modal body underneath */
+    .artist-hero--photo {
+      position: relative;
+    }
+    .artist-hero--photo::after {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(to bottom, transparent 60%, rgba(21, 33, 43, 0.5) 100%);
+    }
 
     /* Noise texture */
     .noise::after {
@@ -1232,12 +1242,11 @@
           <!-- ROW (will be duplicated by JS for infinite scroll) -->
           <div class="marquee-row" id="artistsRow">
 
-            <button type="button" class="artist-tile" data-artist-name="Ma&iuml;a" data-artist-style="Live acoustique" data-artist-event="Opening Party 2025 &middot; 30 mai" data-artist-bio="Voix soul-folk, guitare voyageuse. Set lumineux face au coucher de soleil." data-artist-gradient="linear-gradient(165deg, #FFB088 0%, #FF7A45 50%, #C9461C 100%)" data-artist-emoji="&#x1F3B8;" data-artist-instagram="https://instagram.com/maia.music" data-artist-spotify="https://open.spotify.com/artist/placeholder" data-artist-youtube="https://youtube.com/@maia" aria-label="Voir Ma&iuml;a">
-              <div class="artist-bg" style="background: linear-gradient(165deg, #FFB088 0%, #FF7A45 50%, #C9461C 100%);"></div>
-              <span class="artist-emoji">&#x1F3B8;</span>
+            <button type="button" class="artist-tile" data-artist-name="Yann Muller" data-artist-style="DJ producteur" data-artist-event="Opening Party 2025 &middot; 7 juin" data-artist-bio="DJ et producteur fran&ccedil;ais (Nice / Dubai), reprises pop fusionn&eacute;es house et lounge. 135M+ d'&eacute;coutes Spotify, disque d'or avec &laquo;&nbsp;California Dreamin'&nbsp;&raquo;. Set lumineux face mer pour l'opening 2025." data-artist-photo="images/artistes/yann-muller-opening-2025.jpg" data-artist-gradient="linear-gradient(165deg, #1B0F2E 0%, #3A1A5C 50%, #6B2B8C 100%)" data-artist-emoji="&#x1F3A7;" data-artist-instagram="https://www.instagram.com/yann_muller/" data-artist-spotify="https://open.spotify.com/artist/41HOzTOe9JNerhym1HWxti" data-artist-soundcloud="https://soundcloud.com/yannmuller" data-artist-youtube="https://www.youtube.com/channel/UCxEVGiyCGf6WQrBpJVfZ12g" data-artist-bandcamp="https://yannmuller.bandcamp.com/" aria-label="Voir Yann Muller">
+              <div class="artist-bg" style="background-image: url('images/artistes/yann-muller-opening-2025.jpg'); background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
-                <p class="artist-style">Live acoustique</p>
-                <h3 class="artist-name">Ma&iuml;a</h3>
+                <p class="artist-style">DJ producteur</p>
+                <h3 class="artist-name">Yann Muller</h3>
                 <p class="artist-event">Opening &middot; 2025</p>
               </div>
             </button>
@@ -2181,9 +2190,26 @@
         fields.style.innerHTML = tile.dataset.artistStyle || '';
         fields.event.innerHTML = tile.dataset.artistEvent || '';
         fields.bio.innerHTML = tile.dataset.artistBio || '';
-        fields.emoji.innerHTML = tile.dataset.artistEmoji || '🎵';
-        if (fields.hero && tile.dataset.artistGradient) {
-          fields.hero.style.background = tile.dataset.artistGradient;
+        // Hero: prefer photo over gradient + emoji
+        if (fields.hero) {
+          const photo = tile.dataset.artistPhoto;
+          if (photo) {
+            fields.hero.style.backgroundImage = "url('" + photo + "')";
+            fields.hero.style.backgroundSize = 'cover';
+            fields.hero.style.backgroundPosition = 'center';
+            fields.hero.style.backgroundColor = '';
+            fields.hero.classList.add('artist-hero--photo');
+            // Hide the emoji on photo mode (photo speaks for itself)
+            if (fields.emoji) fields.emoji.style.display = 'none';
+          } else {
+            fields.hero.style.backgroundImage = '';
+            fields.hero.style.background = tile.dataset.artistGradient || '';
+            fields.hero.classList.remove('artist-hero--photo');
+            if (fields.emoji) {
+              fields.emoji.style.display = '';
+              fields.emoji.innerHTML = tile.dataset.artistEmoji || '🎵';
+            }
+          }
         }
         if (fields.social) {
           fields.social.innerHTML = buildSocialLinks(tile);
