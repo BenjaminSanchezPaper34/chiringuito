@@ -541,14 +541,9 @@
     .marquee-row { display: flex; gap: 1rem; padding: 0 0.5rem; flex-shrink: 0; }
     @media (min-width: 768px) { .marquee-row { gap: 1.25rem; padding: 0 0.625rem; } }
 
-    /* Override Elfsight widget internal max-width — the platform.js renders the
-       feed with its own (smaller) container width set in their dashboard. We
-       force it to fill the wrapping div so the feed matches the site width. */
-    [class^="elfsight-app-"],
-    [class^="elfsight-app-"] > *,
-    [class*="EisFeed"], [class*="WidgetWrapper"],
-    [class*="widget-wrapper"], [class*="layout"],
-    .eis-feed, .eapps-instagram-feed {
+    /* Override Elfsight widget root width only (NOT internal children — they
+       contain arrows/nav/etc whose width must remain controlled by Elfsight). */
+    [class^="elfsight-app-"] {
       width: 100% !important;
       max-width: 100% !important;
     }
