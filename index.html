@@ -463,7 +463,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Parisienne&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Parisienne&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet"/>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -516,6 +516,154 @@
     @media (hover: hover) {
       .soiree-card:hover { transform: translateY(-6px); }
     }
+
+    /* ───────── Artist carousel (infinite, scrollable both ways) ───────── */
+    .marquee-mask {
+      mask-image: linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%);
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 20px 0; /* breathing room so tile hover lift/scale doesn't get clipped */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      cursor: grab;
+      user-select: none;
+      scroll-behavior: auto;
+    }
+    .marquee-track::-webkit-scrollbar { display: none; }
+    .marquee-track.is-dragging { cursor: grabbing; }
+    .marquee-track.is-dragging .artist-tile { pointer-events: none; }
+    .marquee-row { display: flex; gap: 1rem; padding: 0 0.5rem; flex-shrink: 0; }
+    @media (min-width: 768px) { .marquee-row { gap: 1.25rem; padding: 0 0.625rem; } }
+
+    /* Override Elfsight widget root width only (NOT internal children — they
+       contain arrows/nav/etc whose width must remain controlled by Elfsight). */
+    [class^="elfsight-app-"] {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    /* Artist tile */
+    .artist-tile {
+      position: relative; flex-shrink: 0;
+      width: 240px; height: 360px;
+      border-radius: 1.25rem; overflow: hidden;
+      cursor: pointer; text-align: left;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s;
+      box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.45);
+    }
+    @media (min-width: 768px) {
+      .artist-tile { width: 280px; height: 420px; border-radius: 1.5rem; }
+    }
+    /* All tiles share the same size — the .artist-tile--wide variant is no
+       longer used. Class kept in HTML for now (harmless), CSS rules removed. */
+    @media (hover: hover) {
+      .artist-tile:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 24px 50px -15px rgba(0, 0, 0, 0.6); }
+    }
+    .artist-bg { position: absolute; inset: 0; transition: transform 0.7s; }
+    @media (hover: hover) { .artist-tile:hover .artist-bg { transform: scale(1.08); } }
+    /* Dark gradient overlay at bottom for legibility */
+    .artist-tile::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.25) 35%, transparent 65%);
+    }
+    .artist-emoji {
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      font-size: 2.5rem; line-height: 1;
+      filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.4));
+      transition: transform 0.5s;
+    }
+    @media (min-width: 768px) { .artist-emoji { font-size: 3rem; top: 1.5rem; right: 1.5rem; } }
+    @media (hover: hover) { .artist-tile:hover .artist-emoji { transform: scale(1.15) rotate(-6deg); } }
+    .artist-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.25rem; z-index: 1;
+    }
+    @media (min-width: 768px) { .artist-info { padding: 1.5rem; } }
+    .artist-style {
+      display: inline-block; padding: 0.2rem 0.65rem; margin-bottom: 0.6rem;
+      background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 9999px;
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: white;
+    }
+    .artist-name {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 800; font-size: 1.35rem; line-height: 1.1; color: white;
+      margin-bottom: 0.4rem; letter-spacing: -0.02em;
+    }
+    @media (min-width: 768px) { .artist-name { font-size: 1.55rem; } }
+    .artist-event {
+      font-size: 0.7rem; color: rgba(255, 255, 255, 0.75);
+      letter-spacing: 0.05em;
+    }
+
+    /* ───────── Artist modal ───────── */
+    #artist-modal { transition: opacity 0.35s ease-out; opacity: 0; }
+    #artist-modal.is-open { display: flex !important; opacity: 1; }
+    #artist-modal > article {
+      /* Initial state for entrance animation */
+      transform: translateY(16px) scale(0.96);
+      opacity: 0;
+      transition:
+        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.35s ease-out;
+    }
+    #artist-modal.is-open > article {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    /* Backdrop also fades */
+    #artist-modal > [data-artist-close].absolute {
+      transition: opacity 0.35s ease-out;
+      opacity: 0;
+    }
+    #artist-modal.is-open > [data-artist-close].absolute { opacity: 1; }
+
+    /* Hero fills the whole article (poster style). The fade overlay is a
+       separate sibling div so no ::after pseudo magic is needed. */
+
+    /* Instagram section stats — editorial layout (no card boxes) */
+    .ig-stat { display: flex; flex-direction: column; }
+    /* Numbers in Fraunces (variable serif) — high optical size for display feel.
+       Tight tracking, weight 700, with slight pseudo-italic via skew on hover
+       is intentionally NOT applied (legibility > flair). */
+    .ig-stat-num {
+      font-family: 'Fraunces', 'Times New Roman', serif;
+      font-weight: 700;
+      font-variation-settings: 'opsz' 144, 'SOFT' 50;
+      letter-spacing: -0.04em;
+      font-feature-settings: 'tnum' 1, 'ss01' 1; /* tabular + alt 1 */
+      line-height: 0.95;
+    }
+    .ig-stat-accent {
+      width: 28px; height: 2px;
+      background: linear-gradient(to right, #009BA4 0%, rgba(0, 155, 164, 0.15) 100%);
+      margin-top: 14px; margin-bottom: 12px;
+      transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @media (min-width: 768px) { .ig-stat-accent { width: 36px; margin-top: 14px; margin-bottom: 14px; } }
+    .ig-stat:hover .ig-stat-accent { width: 52px; }
+    @media (min-width: 768px) { .ig-stat:hover .ig-stat-accent { width: 72px; } }
+    .ig-stat-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: #575756;
+    }
+    @media (min-width: 768px) { .ig-stat-label { font-size: 11px; } }
+    .ig-stat-sub {
+      margin-top: 4px;
+      font-size: 11px;
+      color: #8A8A89;
+      line-height: 1.3;
+    }
+    @media (min-width: 768px) { .ig-stat-sub { font-size: 12px; } }
 
     /* Noise texture */
     .noise::after {
@@ -618,7 +766,7 @@
         <a href="#accueil" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Accueil</a>
         <a href="#menu" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Menu</a>
         <a href="#plage" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Plage</a>
-        <a href="#soirees" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Soir&eacute;es</a>
+        <a href="#soirees" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Dansez</a>
         <a href="#avis" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Avis</a>
         <a href="#contact" class="nav-link text-sm font-medium tracking-widest uppercase text-white transition-colors duration-300">Contact</a>
       </div>
@@ -636,7 +784,7 @@
         <a href="#accueil" class="mobile-nav-link text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Accueil</a>
         <a href="#menu" class="mobile-nav-link text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Menu</a>
         <a href="#plage" class="mobile-nav-link text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Plage</a>
-        <a href="#soirees" class="mobile-nav-link text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Soir&eacute;es</a>
+        <a href="#soirees" class="mobile-nav-link text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Dansez</a>
         <a href="#avis" class="mobile-nav-link text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Avis</a>
         <a href="#contact" class="mobile-nav-link text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Contact</a>
       </nav>
@@ -1018,7 +1166,7 @@
         <!-- Title -->
         <div class="text-center mb-14 md:mb-16">
           <p class="text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-brand/70 mb-3 reveal">Trois soir&eacute;es &agrave; ne pas manquer</p>
-          <h2 class="font-display text-5xl md:text-6xl lg:text-7xl text-brand mb-4 tracking-tight reveal">Soir&eacute;es</h2>
+          <h2 class="font-display text-5xl md:text-6xl lg:text-7xl text-brand mb-4 tracking-tight reveal">Dansez</h2>
           <p class="text-sm md:text-base text-text-light tracking-wide reveal max-w-xl mx-auto">DJ sets, ambiance festival, cocktails les pieds dans le sable.<br class="hidden md:block"> Trois rendez-vous incontournables de la saison 2026.</p>
         </div>
 
@@ -1038,7 +1186,7 @@
               </div>
               <!-- Date -->
               <p class="text-xs font-medium tracking-[0.25em] uppercase text-orange-800/80 mb-1 whitespace-nowrap">Samedi 6 juin</p>
-              <h3 class="font-display text-3xl md:text-4xl text-orange-900 leading-tight mb-3">Opening<br>Party</h3>
+              <h3 class="font-display text-3xl md:text-4xl text-orange-900 leading-tight mb-3 whitespace-nowrap">Opening Party</h3>
               <p class="text-sm text-orange-900/70 leading-relaxed mb-8 flex-1">Lancement de saison, DJ set live et inauguration officielle de la plage priv&eacute;e. La nuit o&ugrave; tout commence.</p>
               <!-- CTA (reservation a venir) -->
               <button type="button" disabled aria-disabled="true" class="inline-flex items-center justify-center gap-2 w-full bg-orange-900/15 text-orange-900/50 border border-orange-900/15 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest cursor-not-allowed">
@@ -1062,7 +1210,7 @@
               </div>
               <!-- Date -->
               <p class="text-xs font-medium tracking-[0.25em] uppercase text-green-900/80 mb-1 whitespace-nowrap">Plein &eacute;t&eacute;</p>
-              <h3 class="font-display text-3xl md:text-4xl text-green-900 leading-tight mb-3">Coachella<br>Party</h3>
+              <h3 class="font-display text-3xl md:text-4xl text-green-900 leading-tight mb-3 whitespace-nowrap">Coachella Party</h3>
               <p class="text-sm text-green-900/70 leading-relaxed mb-8 flex-1">Ambiance festival, tenues color&eacute;es et grand DJ set nocturne en bord de mer. La nuit la plus attendue de l'&eacute;t&eacute;.</p>
               <!-- CTA (reservation a venir) -->
               <button type="button" disabled aria-disabled="true" class="inline-flex items-center justify-center gap-2 w-full bg-green-900/15 text-green-900/50 border border-green-900/15 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest cursor-not-allowed">
@@ -1086,7 +1234,7 @@
               </div>
               <!-- Date -->
               <p class="text-xs font-medium tracking-[0.25em] uppercase text-purple-200/80 mb-1 whitespace-nowrap">Fin septembre</p>
-              <h3 class="font-display text-3xl md:text-4xl text-white leading-tight mb-3">Closing<br>Party</h3>
+              <h3 class="font-display text-3xl md:text-4xl text-white leading-tight mb-3 whitespace-nowrap">Closing Party</h3>
               <p class="text-sm text-purple-100/70 leading-relaxed mb-8 flex-1">Cl&ocirc;ture de saison, cocktails et spectacle au coucher du soleil. Une nuit m&eacute;morable pour terminer en beaut&eacute;.</p>
               <!-- CTA (reservation a venir) -->
               <button type="button" disabled aria-disabled="true" class="inline-flex items-center justify-center gap-2 w-full bg-white/15 text-white/50 border border-white/15 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest cursor-not-allowed">
@@ -1117,6 +1265,160 @@
 
       </div>
     </section>
+    <!-- ============================================ -->
+    <!-- ILS ONT JOUE CHEZ NOUS (mur d'artistes scrollant) -->
+    <!-- ============================================ -->
+    <section id="artistes" class="py-20 md:py-28 relative overflow-hidden bg-[#0F1B23] text-white">
+      <!-- Subtle texture -->
+      <div class="absolute inset-0 opacity-[0.07] noise pointer-events-none"></div>
+
+      <!-- Title block -->
+      <div class="relative z-10 max-w-6xl mx-auto px-6 mb-12 md:mb-16">
+        <div class="text-center">
+          <p class="text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-brand mb-3 reveal">La sc&egrave;ne du Chiringuito</p>
+          <h2 class="font-display text-5xl md:text-6xl lg:text-7xl text-white mb-4 tracking-tight reveal">Ils ont jou&eacute; chez nous</h2>
+          <p class="text-sm md:text-base text-white/60 tracking-wide reveal max-w-2xl mx-auto">DJ sets, lives acoustiques, groupes &eacute;mergents.<br class="hidden md:block"> La plage devient sc&egrave;ne, le couchant fait le reste.</p>
+        </div>
+      </div>
+
+      <!-- Marquee container -->
+      <div class="relative z-10 marquee-mask">
+        <div class="marquee-track" id="artistsMarquee">
+          <!-- Each tile is .artist-tile with data attributes for modal. Duplicated below for seamless loop. -->
+
+          <!-- ROW (will be duplicated by JS for infinite scroll) -->
+          <div class="marquee-row" id="artistsRow">
+
+            <button type="button" class="artist-tile" data-artist-name="Yann Muller" data-artist-style="DJ producteur" data-artist-event="Opening Party 2025 &middot; 7 juin" data-artist-bio="DJ et producteur fran&ccedil;ais (Nice / Dubai), reprises pop fusionn&eacute;es house et lounge. 135M+ d'&eacute;coutes Spotify, disque d'or avec &laquo;&nbsp;California Dreamin'&nbsp;&raquo;. Set lumineux face mer pour l'opening 2025." data-artist-photo="images/artistes/yann-muller-opening-2025.jpg" data-artist-photo-full="images/artistes/yann-muller-opening-2025-full.jpg" data-artist-gradient="linear-gradient(165deg, #1B0F2E 0%, #3A1A5C 50%, #6B2B8C 100%)" data-artist-emoji="&#x1F3A7;" data-artist-instagram="https://www.instagram.com/yann_muller/" data-artist-spotify="https://open.spotify.com/artist/41HOzTOe9JNerhym1HWxti" data-artist-soundcloud="https://soundcloud.com/yannmuller" data-artist-youtube="https://www.youtube.com/channel/UCxEVGiyCGf6WQrBpJVfZ12g" data-artist-bandcamp="https://yannmuller.bandcamp.com/" aria-label="Voir Yann Muller">
+              <div class="artist-bg" style="background-image: url('images/artistes/yann-muller-opening-2025.jpg'); background-size: cover; background-position: center 30%;"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">Yann Muller</h3>
+                <p class="artist-event">Opening &middot; 2025</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile" data-artist-name="Patrick S&eacute;bastien" data-artist-event="Invit&eacute; d'honneur du Chiringuito" data-artist-bio="L&eacute;gende fran&ccedil;aise. Animateur, chanteur, com&eacute;dien : ses tubes ont fait danser plusieurs g&eacute;n&eacute;rations. Le Chiringuito a eu l'honneur de l'accueillir sur la plage." data-artist-photo="images/artistes/patrick-sebastien.jpg" data-artist-photo-full="images/artistes/patrick-sebastien-full.jpg" data-artist-gradient="linear-gradient(165deg, #3A1F0F 0%, #6B3818 50%, #C26B2C 100%)" data-artist-emoji="&#x1F3A4;" data-artist-instagram="https://www.instagram.com/patricksebastienofficiel/" aria-label="Voir Patrick S&eacute;bastien">
+              <div class="artist-bg" style="background-image: url('images/artistes/patrick-sebastien.jpg'); background-size: cover; background-position: center 25%;"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">Patrick S&eacute;bastien</h3>
+                <p class="artist-event">Invit&eacute; d'honneur</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile" data-artist-name="7even" data-artist-style="DJ r&eacute;sident" data-artist-event="R&eacute;sident du Chiringuito" data-artist-bio="Quasiment notre r&eacute;sident officiel. La star qui revient encore et encore, faisant du Chiringuito sa sc&egrave;ne favorite saison apr&egrave;s saison." data-artist-photo="images/artistes/7even.jpg" data-artist-photo-full="images/artistes/7even-full.jpg" data-artist-gradient="linear-gradient(165deg, #1A1F3A 0%, #2D3561 50%, #4A5494 100%)" data-artist-emoji="&#x2B50;" data-artist-instagram="https://www.instagram.com/djseven.off/" aria-label="Voir 7even">
+              <div class="artist-bg" style="background-image: url('images/artistes/7even.jpg'); background-size: cover; background-position: center 30%;"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">7even</h3>
+                <p class="artist-event">La star de la maison</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile" data-artist-name="Morezan" data-artist-style="DJ" data-artist-event="Pr&eacute;sent dans tous les grands moments" data-artist-bio="Avec nous depuis des ann&eacute;es. De toutes les soir&eacute;es qui comptent, fid&egrave;le entre les fid&egrave;les. Sa griffe : des transitions impeccables et des choix qui font danser." data-artist-photo="images/artistes/morezan.jpg" data-artist-photo-full="images/artistes/morezan-full.jpg" data-artist-gradient="linear-gradient(165deg, #1A2A3A 0%, #16404D 50%, #008B8B 100%)" data-artist-emoji="&#x1F525;" data-artist-instagram="https://www.instagram.com/morezan.music/" aria-label="Voir Morezan">
+              <div class="artist-bg" style="background-image: url('images/artistes/morezan.jpg'); background-size: cover; background-position: center 35%;"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">Morezan</h3>
+                <p class="artist-event">Toutes les grandes soir&eacute;es</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile" data-artist-name="Lunaa" data-artist-style="DJ" data-artist-event="Closing Party 2025 &middot; 28 septembre" data-artist-bio="Pr&eacute;sente au Closing 2025 pour cl&ocirc;turer la saison. Set cr&eacute;pusculaire dans la lumi&egrave;re qui d&eacute;cline, &eacute;motion juste avant la nuit." data-artist-photo="images/artistes/lunaa-closing-2025.jpg" data-artist-photo-full="images/artistes/lunaa-closing-2025-full.jpg" data-artist-gradient="linear-gradient(165deg, #2A1A4D 0%, #4A2E6E 50%, #7B4FA0 100%)" data-artist-emoji="&#x1F319;" data-artist-instagram="https://www.instagram.com/lunaamusicfr/" aria-label="Voir Lunaa">
+              <div class="artist-bg" style="background-image: url('images/artistes/lunaa-closing-2025.jpg'); background-size: cover; background-position: center 30%;"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">Lunaa</h3>
+                <p class="artist-event">Closing &middot; 2025</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile" data-artist-name="Maxdee" data-artist-style="DJ" data-artist-event="Closing Party 2025 &middot; 28 septembre" data-artist-bio="Pr&eacute;sent au Closing 2025. &Eacute;nergie pure et set qui fait danser jusqu'au bout de la nuit, pour boucler la saison en feu." data-artist-photo="images/artistes/maxdee-closing-2025.jpg" data-artist-photo-full="images/artistes/maxdee-closing-2025-full.jpg" data-artist-gradient="linear-gradient(165deg, #3A1B0F 0%, #7A2D14 50%, #C0492A 100%)" data-artist-emoji="&#x26A1;" data-artist-instagram="https://www.instagram.com/maxdee.ofc/" aria-label="Voir Maxdee">
+              <div class="artist-bg" style="background-image: url('images/artistes/maxdee-closing-2025.jpg'); background-size: cover; background-position: center 30%;"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">Maxdee</h3>
+                <p class="artist-event">Closing &middot; 2025</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile" data-artist-name="Maxx Baty" data-artist-style="DJ" data-artist-event="Habitu&eacute; des moments forts" data-artist-bio="Un des amis de la maison. Souvent avec nous quand l'ambiance le demande, toujours l&agrave; pour les moments forts. Un set qui m&ecirc;le l'attendu et la surprise." data-artist-photo="images/artistes/maxx-baty.jpg" data-artist-photo-full="images/artistes/maxx-baty-full.jpg" data-artist-gradient="linear-gradient(165deg, #3A2812 0%, #6B4422 50%, #A87232 100%)" data-artist-emoji="&#x1F942;" data-artist-instagram="https://www.instagram.com/maxxbaty/" aria-label="Voir Maxx Baty">
+              <div class="artist-bg" style="background-image: url('images/artistes/maxx-baty.jpg'); background-size: cover; background-position: center 35%;"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">Maxx Baty</h3>
+                <p class="artist-event">Ami de la maison</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile" data-artist-name="Demsko" data-artist-style="DJ" data-artist-event="Habitu&eacute; de la maison" data-artist-bio="R&eacute;guli&egrave;rement aux platines du Chiringuito. Set qui sait lire la salle, &eacute;nergie communicative et choix qui rassemblent. Un de nos visages familiers de l'&eacute;t&eacute;." data-artist-photo="images/artistes/demsko.jpg" data-artist-photo-full="images/artistes/demsko-full.jpg" data-artist-gradient="linear-gradient(165deg, #0F1F2D 0%, #1B3A5C 50%, #2E5A8C 100%)" data-artist-emoji="&#x1F3A7;" data-artist-instagram="https://www.instagram.com/demsko2.1/" aria-label="Voir Demsko">
+              <div class="artist-bg" style="background-image: url('images/artistes/demsko.jpg'); background-size: cover; background-position: center 30%;"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">Demsko</h3>
+                <p class="artist-event">Habitu&eacute; de la maison</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile" data-artist-name="Wallace Neg&atilde;o" data-artist-event="Invit&eacute; live" data-artist-bio="Chanteur, songwriter et ma&icirc;tre du cavaquinho. Roots samba fusionn&eacute;es jazz, soul et funk. Bas&eacute; &agrave; Marseille depuis 10 ans, il fait vibrer le sud avec sa voix unique." data-artist-photo="images/artistes/wallace-negao.jpg" data-artist-photo-full="images/artistes/wallace-negao-full.jpg" data-artist-gradient="linear-gradient(165deg, #1A3A1F 0%, #2D5C32 50%, #4E8A52 100%)" data-artist-emoji="&#x1F3B6;" data-artist-instagram="https://www.instagram.com/wallacenegao/" aria-label="Voir Wallace Neg&atilde;o">
+              <div class="artist-bg" style="background-image: url('images/artistes/wallace-negao.jpg'); background-size: cover; background-position: center 30%;"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">Wallace Neg&atilde;o</h3>
+                <p class="artist-event">Invit&eacute; live</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile" data-artist-name="Ladies &amp; Sax" data-artist-event="Opening Party 2024" data-artist-bio="Duo musical avec saxophone live. Touche jazzy et festive qui a fait swinguer l'opening 2024 du Chiringuito." data-artist-photo="images/artistes/ladies-sax-opening-2024.jpg" data-artist-photo-full="images/artistes/ladies-sax-opening-2024-full.jpg" data-artist-gradient="linear-gradient(165deg, #2D1F3A 0%, #5C2D5E 50%, #9B4A8A 100%)" data-artist-emoji="&#x1F3B7;" data-artist-instagram="https://www.instagram.com/ladies_sax/" aria-label="Voir Ladies &amp; Sax">
+              <div class="artist-bg" style="background-image: url('images/artistes/ladies-sax-opening-2024.jpg'); background-size: cover; background-position: center 30%;"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">Ladies &amp; Sax</h3>
+                <p class="artist-event">Opening &middot; 2024</p>
+              </div>
+            </button>
+
+            <button type="button" class="artist-tile" data-artist-name="Camille Combal" data-artist-event="Soir&eacute;e du 28 juin 2019" data-artist-bio="Animateur TV et radio, voix incontournable du paysage audiovisuel fran&ccedil;ais. Le 28 juin 2019, il a fait escale au Chiringuito pour une soir&eacute;e m&eacute;morable." data-artist-photo="images/artistes/camille-combal.jpg" data-artist-photo-full="images/artistes/camille-combal-full.jpg" data-artist-gradient="linear-gradient(165deg, #1A2A3A 0%, #2D456E 50%, #4A6A9C 100%)" data-artist-emoji="&#x1F3A4;" data-artist-instagram="https://www.instagram.com/camillecombal/" aria-label="Voir Camille Combal">
+              <div class="artist-bg" style="background-image: url('images/artistes/camille-combal.jpg'); background-size: cover; background-position: center 25%;"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">Camille Combal</h3>
+                <p class="artist-event">28 juin 2019</p>
+              </div>
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Modal expansion for an artist -->
+    <div id="artist-modal" class="fixed inset-0 z-[110] hidden items-center justify-center px-3 sm:px-4 py-4 sm:py-6" role="dialog" aria-modal="true" aria-labelledby="artist-modal-title">
+      <!-- Backdrop -->
+      <div class="absolute inset-0 bg-black/85 backdrop-blur-md" data-artist-close></div>
+      <!-- Poster card : photo fullbleed + dark fade overlay + text/social bottom -->
+      <article class="relative z-10 w-full max-w-md max-h-[92vh] aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-[#15212B]">
+        <!-- Close button -->
+        <button type="button" class="absolute top-3 right-3 z-30 w-10 h-10 rounded-full bg-black/40 hover:bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition shadow-lg" data-artist-close aria-label="Fermer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+
+        <!-- Prev / Next navigation between artists -->
+        <button type="button" id="artist-modal-prev" class="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/40 hover:bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition shadow-lg" aria-label="Artiste pr&eacute;c&eacute;dent">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button type="button" id="artist-modal-next" class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/40 hover:bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition shadow-lg" aria-label="Artiste suivant">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+        </button>
+
+        <!-- Photo fullbleed (or gradient fallback) -->
+        <div class="absolute inset-0 bg-center bg-cover" id="artist-modal-hero">
+          <span class="absolute inset-0 flex items-center justify-center text-7xl md:text-8xl drop-shadow-lg" id="artist-modal-emoji">&#x1F3B8;</span>
+        </div>
+
+        <!-- Dark fade overlay -->
+        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, transparent 0%, transparent 35%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.92) 100%);"></div>
+
+        <!-- Text + social overlay (anchored bottom, centered) -->
+        <div class="absolute left-0 right-0 bottom-0 z-20 px-6 py-7 sm:px-7 sm:py-8 text-white text-center">
+          <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-1.5 leading-[1.05] drop-shadow-lg" id="artist-modal-title">Yann Muller</h3>
+          <p class="text-xs sm:text-sm text-white/80 mb-5 drop-shadow" id="artist-modal-event">Opening Party 2025 &middot; 7 juin</p>
+          <div class="flex flex-wrap items-center justify-center gap-2" id="artist-modal-social"></div>
+        </div>
+      </article>
+    </div>
+
 
     <!-- ============================================ -->
     <!-- AVIS (Elfsight Google Reviews) -->
@@ -1139,7 +1441,7 @@
     <!-- INSTAGRAM -->
     <!-- ============================================ -->
     <section id="instagram" class="py-16 md:py-20 px-6">
-      <div class="max-w-4xl mx-auto">
+      <div class="max-w-6xl mx-auto">
 
         <!-- Header -->
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 reveal">
@@ -1155,6 +1457,7 @@
           </a>
         </div>
 
+        <!-- Live stats : layout editorial sans cartes (numbers + thin accent line) -->
         <!-- Reels autoplay -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 reveal">
           <a href="https://www.instagram.com/reel/DPg8LQVCi5C/" target="_blank" rel="noopener noreferrer" class="block rounded-2xl overflow-hidden aspect-[9/16] relative group">
@@ -1181,6 +1484,43 @@
               <svg class="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
             </div>
           </a>
+        </div>
+
+        <!-- Live stats (entre les reels et le feed Elfsight) -->
+        <div id="ig-stats" class="grid grid-cols-2 md:grid-cols-4 gap-y-9 gap-x-4 sm:gap-x-6 md:gap-x-8 mb-10 md:mb-14 reveal">
+          <div class="ig-stat">
+            <div class="flex items-baseline gap-1">
+              <span class="ig-stat-num text-5xl sm:text-6xl md:text-7xl text-brand" data-ig-stat="followers" data-target="14239" data-format="k">14,2</span>
+              <span class="ig-stat-num text-2xl sm:text-3xl md:text-4xl text-brand/55">K</span>
+            </div>
+            <div class="ig-stat-accent"></div>
+            <p class="ig-stat-label">Abonn&eacute;s</p>
+            <p class="ig-stat-sub">Instagram &middot; @chiringuitovias</p>
+          </div>
+
+          <div class="ig-stat">
+            <span class="ig-stat-num text-5xl sm:text-6xl md:text-7xl text-brand" data-ig-stat="posts" data-target="1179">1&nbsp;179</span>
+            <div class="ig-stat-accent"></div>
+            <p class="ig-stat-label">Publications</p>
+            <p class="ig-stat-sub">Photos &amp; vid&eacute;os post&eacute;es</p>
+          </div>
+
+          <div class="ig-stat">
+            <div class="flex items-baseline gap-1.5">
+              <span class="ig-stat-num text-5xl sm:text-6xl md:text-7xl text-brand" data-ig-stat="rating" data-target="4.5" data-decimals="1">4,5</span>
+              <span class="text-3xl sm:text-4xl text-yellow-500">&#9733;</span>
+            </div>
+            <div class="ig-stat-accent"></div>
+            <p class="ig-stat-label">Note moyenne</p>
+            <p class="ig-stat-sub">Google &middot; TripAdvisor &middot; Facebook</p>
+          </div>
+
+          <div class="ig-stat">
+            <span class="ig-stat-num text-5xl sm:text-6xl md:text-7xl text-brand" data-ig-stat="reviews" data-target="6416">6&nbsp;416</span>
+            <div class="ig-stat-accent"></div>
+            <p class="ig-stat-label">Avis clients</p>
+            <p class="ig-stat-sub">Toutes plateformes confondues</p>
+          </div>
         </div>
 
         <!-- Elfsight Instagram Feed -->
@@ -1788,6 +2128,406 @@
       });
 
     });
+  </script>
+
+  <!-- ───────── Artist carousel (infinite scroll + drag) & modal ───────── -->
+  <script>
+    (function () {
+      const row = document.getElementById('artistsRow');
+      const track = document.getElementById('artistsMarquee');
+      if (!row || !track) return;
+
+      // ── Build seamless infinite carousel
+      // We duplicate the row 3 times: [A][B][C] and keep scrollLeft inside the middle copy [B].
+      // When user scrolls past B, we wrap by adjusting scrollLeft by ±rowWidth instantly (no animation).
+      // This gives infinite illusion in both directions, no matter the input (auto, drag, swipe, wheel).
+      const cloneA = row.cloneNode(true);
+      const cloneC = row.cloneNode(true);
+      [cloneA, cloneC].forEach((c) => {
+        c.setAttribute('aria-hidden', 'true');
+        c.querySelectorAll('.artist-tile').forEach((b) => b.setAttribute('tabindex', '-1'));
+      });
+      track.insertBefore(cloneA, row);
+      track.appendChild(cloneC);
+
+      let rowWidth = 0;
+      const measure = () => { rowWidth = row.getBoundingClientRect().width; };
+      measure();
+      // Start scroll position at the middle copy
+      track.scrollLeft = rowWidth;
+
+      window.addEventListener('resize', () => {
+        const ratio = rowWidth ? track.scrollLeft / rowWidth : 1;
+        measure();
+        track.scrollLeft = rowWidth * ratio;
+      });
+
+      // ── Wrap logic: keep scrollLeft inside the middle [B] copy
+      function wrap() {
+        if (!rowWidth) return;
+        if (track.scrollLeft < rowWidth * 0.5) {
+          track.scrollLeft += rowWidth;
+        } else if (track.scrollLeft > rowWidth * 1.5) {
+          track.scrollLeft -= rowWidth;
+        }
+      }
+      track.addEventListener('scroll', wrap, { passive: true });
+
+      // ── Auto-scroll loop using requestAnimationFrame
+      // We don't toggle on/off — instead we lerp currentSpeed toward
+      // targetSpeed each frame. That gives a soft brake on hover and a smooth
+      // ramp-up on resume, instead of a jerky stop/start.
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const AUTO_SPEED = 0.45;       // px per frame (~27px/sec at 60fps)
+      const SPEED_LERP = 0.05;       // ~20 frames (~0.33s) to settle 95% — feel: soft brake
+      let targetSpeed = reducedMotion ? 0 : AUTO_SPEED;
+      let currentSpeed = targetSpeed;
+      let resumeTimer = null;
+
+      function setPaused(paused) {
+        targetSpeed = (paused || reducedMotion) ? 0 : AUTO_SPEED;
+      }
+      function pauseAuto(durationMs = 2500) {
+        setPaused(true);
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => setPaused(false), durationMs);
+      }
+
+      function rafLoop() {
+        currentSpeed += (targetSpeed - currentSpeed) * SPEED_LERP;
+        // Snap to zero below a tiny threshold so we eventually really stop
+        if (Math.abs(currentSpeed) < 0.005) currentSpeed = 0;
+        if (currentSpeed !== 0 && rowWidth) {
+          track.scrollLeft += currentSpeed;
+        }
+        requestAnimationFrame(rafLoop);
+      }
+      rafLoop();
+
+      // ── Pointer interaction (drag for mouse, tap-to-open for everyone)
+      // We deliberately AVOID setPointerCapture + the native click event,
+      // because pointer capture redirects the synthetic click to the track,
+      // breaking `closest('.artist-tile')`. Instead we resolve the tap inside
+      // pointerup using the tile captured at pointerdown.
+      let isDown = false;
+      let startX = 0;
+      let startScroll = 0;
+      let moved = 0;
+      let startTile = null;
+      const TAP_THRESHOLD = 5; // px below which a press counts as a tap (not drag)
+
+      track.addEventListener('pointerdown', (e) => {
+        if (e.button > 0) return; // ignore right/middle click
+        isDown = true;
+        moved = 0;
+        startX = e.clientX;
+        startScroll = track.scrollLeft;
+        startTile = e.target.closest('.artist-tile');
+        setPaused(true);
+        // Show grabbing cursor only on non-touch (visual feedback for desktop)
+        if (e.pointerType !== 'touch') {
+          track.classList.add('is-dragging');
+        }
+      });
+
+      track.addEventListener('pointermove', (e) => {
+        if (!isDown) return;
+        const dx = e.clientX - startX;
+        moved = Math.abs(dx);
+        // On touch we let the browser's native overflow-x scroll do its job;
+        // on mouse/pen we drive scrollLeft ourselves.
+        if (e.pointerType !== 'touch') {
+          track.scrollLeft = startScroll - dx;
+        }
+      });
+
+      function endInteraction() {
+        if (!isDown) return;
+        isDown = false;
+        track.classList.remove('is-dragging');
+        // It was a tap if the pointer moved less than the threshold → open modal
+        if (moved < TAP_THRESHOLD && startTile) {
+          openArtistModal(startTile);
+        }
+        startTile = null;
+        pauseAuto(2500);
+      }
+      track.addEventListener('pointerup', endInteraction);
+      track.addEventListener('pointercancel', endInteraction);
+      track.addEventListener('pointerleave', () => { if (isDown) endInteraction(); });
+
+      // Pause auto when user touches (mobile native scroll) or wheels
+      track.addEventListener('touchstart', () => pauseAuto(2500), { passive: true });
+      track.addEventListener('wheel', () => pauseAuto(2500), { passive: true });
+
+      // Pause auto on hover (desktop pointer) — soft brake / soft resume
+      if (window.matchMedia('(hover: hover)').matches) {
+        track.addEventListener('mouseenter', () => { setPaused(true); });
+        track.addEventListener('mouseleave', () => {
+          if (!isDown) { clearTimeout(resumeTimer); setPaused(false); }
+        });
+      }
+
+      // Modal logic
+      const modal = document.getElementById('artist-modal');
+      const modalArticle = modal?.querySelector('article');
+      const fields = {
+        name: document.getElementById('artist-modal-title'),
+        event: document.getElementById('artist-modal-event'),
+        emoji: document.getElementById('artist-modal-emoji'),
+        hero: document.getElementById('artist-modal-hero'),
+        social: document.getElementById('artist-modal-social'),
+      };
+
+      // Inline Instagram SVG (the only social we surface for now).
+      const INSTAGRAM_SVG = '<rect x="3" y="3" width="18" height="18" rx="5" ry="5" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>';
+
+      function buildSocialLinks(tile) {
+        const url = tile.dataset.artistInstagram;
+        if (!url) return '';
+        return (
+          '<a href="' + url + '" target="_blank" rel="noopener noreferrer" ' +
+          'class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white/18 hover:bg-white/32 backdrop-blur-md border border-white/25 hover:border-white/50 text-white transition-all duration-300 hover:-translate-y-0.5 shadow-md" ' +
+          'aria-label="Instagram">' +
+          '<svg class="w-5 h-5" viewBox="0 0 24 24">' + INSTAGRAM_SVG + '</svg>' +
+          '</a>'
+        );
+      }
+
+      // List of artist tiles (in the ORIGINAL row only — not the cloned ones).
+      // We resolve this once at startup; the order matches the carousel.
+      const artistTiles = Array.from(row.querySelectorAll('.artist-tile'));
+      let currentArtistIndex = 0;
+
+      // Note : pas de slideshow auto dans le modal — la card s'ouvre, l'user
+      // navigue manuellement (clic chevrons, swipe, fleches clavier) puis
+      // ferme. L'autoplay vit uniquement sur le carousel des tuiles fermees.
+
+      function renderArtistInModal(tile) {
+        fields.name.innerHTML = tile.dataset.artistName || '';
+        fields.event.innerHTML = tile.dataset.artistEvent || '';
+        // Hero : prefer the HD modal-quality photo, fallback to the tile photo,
+        // then the gradient + emoji.
+        if (fields.hero) {
+          const photoFull = tile.dataset.artistPhotoFull;
+          const photo = tile.dataset.artistPhoto;
+          const heroSrc = photoFull || photo;
+          if (heroSrc) {
+            fields.hero.style.backgroundImage = "url('" + heroSrc + "')";
+            fields.hero.style.backgroundSize = 'cover';
+            fields.hero.style.backgroundPosition = 'center';
+            fields.hero.style.backgroundColor = '';
+            if (fields.emoji) fields.emoji.style.display = 'none';
+          } else {
+            fields.hero.style.backgroundImage = '';
+            fields.hero.style.background = tile.dataset.artistGradient || '';
+            if (fields.emoji) {
+              fields.emoji.style.display = '';
+              fields.emoji.innerHTML = tile.dataset.artistEmoji || '🎵';
+            }
+          }
+        }
+        if (fields.social) {
+          fields.social.innerHTML = buildSocialLinks(tile);
+        }
+      }
+
+      function openArtistModal(tile) {
+        if (!modal || !modalArticle) return;
+        const idx = artistTiles.indexOf(tile);
+        if (idx !== -1) currentArtistIndex = idx;
+        renderArtistInModal(tile);
+        // Two-step show : remove `hidden` first so the element is rendered,
+        // then on the next frame add `is-open` so opacity/transform transition
+        // fires from the initial state instead of being skipped.
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            modal.classList.add('is-open');
+          });
+        });
+      }
+
+      // Cycle to prev (-1) or next (+1) artist within the open modal. Wraps
+      // around (last → first, first → last). Uses a quick crossfade for polish.
+      function navigateArtist(direction) {
+        if (!artistTiles.length || !modalArticle) return;
+        const total = artistTiles.length;
+        currentArtistIndex = (currentArtistIndex + direction + total) % total;
+        const nextTile = artistTiles[currentArtistIndex];
+        // Quick fade out / swap / fade in
+        modalArticle.style.transition = 'opacity 0.15s ease-out';
+        modalArticle.style.opacity = '0';
+        setTimeout(() => {
+          renderArtistInModal(nextTile);
+          modalArticle.style.opacity = '1';
+          // Restore default transition after the quick fade settles
+          setTimeout(() => { modalArticle.style.transition = ''; }, 200);
+        }, 150);
+      }
+
+      function closeArtistModal() {
+        if (!modal) return;
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+        // Wait for the exit transition to finish before re-hiding (display:none)
+        const finalize = () => {
+          modal.classList.add('hidden');
+          modal.removeEventListener('transitionend', finalize);
+        };
+        modal.addEventListener('transitionend', finalize, { once: true });
+        // Fallback in case transitionend doesn't fire (e.g. reduced motion)
+        setTimeout(() => {
+          if (!modal.classList.contains('is-open')) modal.classList.add('hidden');
+        }, 500);
+      }
+
+
+      // (Tile activation is handled in the pointerup listener above —
+      // we don't use the click event because pointer capture would redirect
+      // it to the track and break `closest('.artist-tile')`.)
+
+      // Close handlers
+      modal?.querySelectorAll('[data-artist-close]').forEach((el) => {
+        el.addEventListener('click', closeArtistModal);
+      });
+
+      // Prev / Next click handlers (chevron buttons in the modal)
+      document.getElementById('artist-modal-prev')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navigateArtist(-1);
+      });
+      document.getElementById('artist-modal-next')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navigateArtist(1);
+      });
+
+      // Keyboard : Esc to close, ←/→ to navigate
+      document.addEventListener('keydown', (e) => {
+        if (!modal?.classList.contains('is-open')) return;
+        if (e.key === 'Escape') return closeArtistModal();
+        if (e.key === 'ArrowLeft') { e.preventDefault(); navigateArtist(-1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); navigateArtist(1); }
+      });
+
+      // Swipe gesture on the modal article : left swipe → next, right swipe → prev.
+      // Threshold 50px ; ignore taps and small jitters so social links remain
+      // clickable.
+      if (modalArticle) {
+        let swipeStart = null;
+        let swipeDx = 0;
+        const SWIPE_THRESHOLD = 50;
+        modalArticle.addEventListener('pointerdown', (e) => {
+          if (e.button > 0) return;
+          // Ignore swipes that start on the close/nav buttons or social links
+          if (e.target.closest('button, a')) { swipeStart = null; return; }
+          swipeStart = e.clientX;
+          swipeDx = 0;
+        });
+        modalArticle.addEventListener('pointermove', (e) => {
+          if (swipeStart == null) return;
+          swipeDx = e.clientX - swipeStart;
+        });
+        const endSwipe = () => {
+          if (swipeStart == null) return;
+          if (Math.abs(swipeDx) > SWIPE_THRESHOLD) {
+            navigateArtist(swipeDx < 0 ? 1 : -1);
+          }
+          swipeStart = null;
+          swipeDx = 0;
+        };
+        modalArticle.addEventListener('pointerup', endSwipe);
+        modalArticle.addEventListener('pointercancel', endSwipe);
+      }
+    })();
+  </script>
+
+  <!-- ───────── Instagram section : live stats from metrics.json ───────── -->
+  <script>
+    (function () {
+      const stats = document.querySelectorAll('#ig-stats [data-ig-stat]');
+      if (!stats.length) return;
+
+      // 1. Fetch latest metrics so the numbers are always fresh (the file is
+      //    regenerated by scripts/update-metrics.mjs on the partenaires-dashboard
+      //    side). Fallback : data-target attribute (current values hardcoded).
+      function applyValues(metrics) {
+        const ig = metrics?.platforms?.instagram || {};
+        const kpis = metrics?.kpis || {};
+        const fresh = {
+          followers: ig.followers ?? null,
+          posts: ig.posts ?? null,
+          rating: kpis.averageRating ?? null,
+          reviews: kpis.totalReviews ?? null,
+        };
+        stats.forEach((el) => {
+          const key = el.dataset.igStat;
+          const next = fresh[key];
+          if (next != null && Number.isFinite(next)) {
+            el.dataset.target = String(next);
+          }
+        });
+      }
+
+      fetch('/partenaires-dashboard/data/metrics.json', { cache: 'no-cache' })
+        .then((r) => (r.ok ? r.json() : null))
+        .then(applyValues)
+        .catch(() => {/* offline / 404 : on garde les valeurs en dur du HTML */})
+        .finally(animateOnReveal);
+
+      // 2. Count-up animation when the stats block scrolls into view (once).
+      const FRENCH_LOCALE = 'fr-FR';
+      function formatNumber(value, decimals) {
+        return value.toLocaleString(FRENCH_LOCALE, {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals,
+        });
+      }
+      // Format truncated to thousands : 14239 -> "14,2" (so we can append a "K"
+      // suffix in HTML, mass-appeal display style).
+      function formatThousands(value) {
+        const k = value / 1000;
+        // 1 decimal under 100 (14,2K) ; 0 decimals beyond (240K)
+        const decimals = k < 100 ? 1 : 0;
+        return formatNumber(k, decimals);
+      }
+      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+      function countUp(el) {
+        const target = parseFloat(el.dataset.target);
+        const decimals = parseInt(el.dataset.decimals || '0', 10);
+        const format = el.dataset.format || ''; // "k" pour formater en milliers
+        if (!Number.isFinite(target)) return;
+        const duration = 1400;
+        const start = performance.now();
+        const initial = 0;
+        const render = (v) => (format === 'k' ? formatThousands(v) : formatNumber(v, decimals));
+        function tick(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = easeOutCubic(progress);
+          const current = initial + (target - initial) * eased;
+          el.textContent = render(current);
+          if (progress < 1) requestAnimationFrame(tick);
+          else el.textContent = render(target);
+        }
+        requestAnimationFrame(tick);
+      }
+      function animateOnReveal() {
+        if (!('IntersectionObserver' in window)) {
+          stats.forEach(countUp);
+          return;
+        }
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.querySelectorAll('[data-ig-stat]').forEach(countUp);
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.4 });
+        observer.observe(document.getElementById('ig-stats'));
+      }
+    })();
   </script>
 
 </body>
