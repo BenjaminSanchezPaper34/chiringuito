@@ -2091,38 +2091,57 @@
       }
       rafLoop();
 
-      // ── Pointer drag (mouse + touch + pen via Pointer Events)
+      // ── Pointer interaction (drag for mouse, tap-to-open for everyone)
+      // We deliberately AVOID setPointerCapture + the native click event,
+      // because pointer capture redirects the synthetic click to the track,
+      // breaking `closest('.artist-tile')`. Instead we resolve the tap inside
+      // pointerup using the tile captured at pointerdown.
       let isDown = false;
       let startX = 0;
       let startScroll = 0;
       let moved = 0;
+      let startTile = null;
+      const TAP_THRESHOLD = 5; // px below which a press counts as a tap (not drag)
+
       track.addEventListener('pointerdown', (e) => {
-        // Ignore right-click & middle-click
-        if (e.button > 0) return;
+        if (e.button > 0) return; // ignore right/middle click
         isDown = true;
         moved = 0;
         startX = e.clientX;
         startScroll = track.scrollLeft;
-        track.classList.add('is-dragging');
-        track.setPointerCapture(e.pointerId);
+        startTile = e.target.closest('.artist-tile');
         autoPaused = true;
+        // Show grabbing cursor only on non-touch (visual feedback for desktop)
+        if (e.pointerType !== 'touch') {
+          track.classList.add('is-dragging');
+        }
       });
+
       track.addEventListener('pointermove', (e) => {
         if (!isDown) return;
         const dx = e.clientX - startX;
         moved = Math.abs(dx);
-        track.scrollLeft = startScroll - dx;
+        // On touch we let the browser's native overflow-x scroll do its job;
+        // on mouse/pen we drive scrollLeft ourselves.
+        if (e.pointerType !== 'touch') {
+          track.scrollLeft = startScroll - dx;
+        }
       });
-      function endDrag(e) {
+
+      function endInteraction() {
         if (!isDown) return;
         isDown = false;
         track.classList.remove('is-dragging');
-        try { track.releasePointerCapture(e.pointerId); } catch (_) {}
-        pauseAuto(2500); // resume auto after pause
+        // It was a tap if the pointer moved less than the threshold → open modal
+        if (moved < TAP_THRESHOLD && startTile) {
+          openArtistModal(startTile);
+        }
+        startTile = null;
+        pauseAuto(2500);
       }
-      track.addEventListener('pointerup', endDrag);
-      track.addEventListener('pointercancel', endDrag);
-      track.addEventListener('pointerleave', (e) => { if (isDown) endDrag(e); });
+      track.addEventListener('pointerup', endInteraction);
+      track.addEventListener('pointercancel', endInteraction);
+      track.addEventListener('pointerleave', () => { if (isDown) endInteraction(); });
 
       // Pause auto when user touches (mobile native scroll) or wheels
       track.addEventListener('touchstart', () => pauseAuto(2500), { passive: true });
@@ -2228,13 +2247,9 @@
         document.body.style.overflow = '';
       }
 
-      // Delegate clicks on tiles (any of the 3 copies). Suppress on drag.
-      track.addEventListener('click', (e) => {
-        if (moved > 5) return; // user was dragging, don't open
-        const tile = e.target.closest('.artist-tile');
-        if (!tile) return;
-        openArtistModal(tile);
-      });
+      // (Tile activation is handled in the pointerup listener above —
+      // we don't use the click event because pointer capture would redirect
+      // it to the track and break `closest('.artist-tile')`.)
 
       // Close handlers
       modal?.querySelectorAll('[data-artist-close]').forEach((el) => {
