@@ -1353,6 +1353,11 @@
       <div class="absolute inset-0 bg-black/85 backdrop-blur-md" data-artist-close></div>
       <!-- Poster card : photo fullbleed + dark fade overlay + text/social bottom -->
       <article class="relative z-10 w-full max-w-md max-h-[92vh] aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-[#15212B]">
+        <!-- Auto-advance progress bar (top of the card, thin white line) -->
+        <div class="absolute top-0 left-0 right-0 h-[3px] z-30 pointer-events-none">
+          <div id="artist-modal-progress-bar" class="h-full bg-white/85 shadow-[0_0_8px_rgba(255,255,255,0.5)]" style="width: 0%;"></div>
+        </div>
+
         <!-- Close button -->
         <button type="button" class="absolute top-3 right-3 z-30 w-10 h-10 rounded-full bg-black/40 hover:bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition shadow-lg" data-artist-close aria-label="Fermer">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -2215,20 +2220,32 @@
       // ── Auto-advance slideshow when modal is open ──
       // The modal cycles through artists automatically every AUTO_ADVANCE_MS.
       // Any user interaction (click prev/next, swipe, keyboard arrows) resets
-      // the timer, so the user always has a fresh window to read.
+      // the timer. A thin progress bar at the top gives visual feedback.
       const AUTO_ADVANCE_MS = 5000;
       const reducedMotionMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
       let autoAdvanceTimer = null;
-      let autoAdvanceHoverPaused = false;
+      const progressBar = document.getElementById('artist-modal-progress-bar');
+
       function startAutoAdvance() {
         clearTimeout(autoAdvanceTimer);
-        if (reducedMotionMQ.matches) return; // respect a11y preference
-        if (autoAdvanceHoverPaused) return;  // paused while mouse hovers modal
+        if (reducedMotionMQ.matches) return;
+        // Animate the progress bar 0 -> 100% over AUTO_ADVANCE_MS
+        if (progressBar) {
+          progressBar.style.transition = 'none';
+          progressBar.style.width = '0%';
+          void progressBar.offsetWidth; // force reflow before setting 100%
+          progressBar.style.transition = 'width ' + (AUTO_ADVANCE_MS / 1000) + 's linear';
+          progressBar.style.width = '100%';
+        }
         autoAdvanceTimer = setTimeout(() => navigateArtist(1), AUTO_ADVANCE_MS);
       }
       function stopAutoAdvance() {
         clearTimeout(autoAdvanceTimer);
         autoAdvanceTimer = null;
+        if (progressBar) {
+          progressBar.style.transition = 'width 0.25s ease-out';
+          progressBar.style.width = '0%';
+        }
       }
 
       function renderArtistInModal(tile) {
@@ -2317,18 +2334,6 @@
         }, 500);
       }
 
-      // Pause auto-advance while the cursor is over the modal article (desktop
-      // hover). On touch devices mouseenter/leave don't fire so this is silent.
-      if (modalArticle) {
-        modalArticle.addEventListener('mouseenter', () => {
-          autoAdvanceHoverPaused = true;
-          stopAutoAdvance();
-        });
-        modalArticle.addEventListener('mouseleave', () => {
-          autoAdvanceHoverPaused = false;
-          if (modal?.classList.contains('is-open')) startAutoAdvance();
-        });
-      }
       // Pause if the page/tab loses focus, resume when it regains
       document.addEventListener('visibilitychange', () => {
         if (!modal?.classList.contains('is-open')) return;
