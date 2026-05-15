@@ -1183,7 +1183,7 @@
         </div>
 
         <!-- Featured billboard : Opening Party visual officiel -->
-        <a href="https://yp.events/ed741201-ef61-4104-b748-61b580d1e47e/OPENING-PARTY-CHIRINGUITO-avec-BON-ENTENDEUR?from=https://www.chiringuito-vias.fr" target="_blank" rel="noopener noreferrer" class="block relative rounded-3xl overflow-hidden mb-8 md:mb-10 group shadow-xl hover:shadow-2xl transition-shadow duration-500 reveal" aria-label="R&eacute;server vos places pour l'Opening Party du 6 juin avec Bon Entendeur">
+        <a href="https://yp.events/ed741201-ef61-4104-b748-61b580d1e47e/OPENING-PARTY-CHIRINGUITO-avec-BON-ENTENDEUR?from=https://www.chiringuito-vias.fr" target="_blank" rel="noopener noreferrer" class="block relative rounded-3xl overflow-hidden mb-4 group shadow-xl hover:shadow-2xl transition-shadow duration-500 reveal" aria-label="R&eacute;server vos places pour l'Opening Party du 6 juin avec Bon Entendeur">
           <img src="images/opening-2026/banner-wide.jpg" alt="Opening Party Chiringuito samedi 6 juin avec Bon Entendeur" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" loading="lazy" width="1800" height="666"/>
           <!-- Floating CTA badge on the banner -->
           <div class="absolute bottom-3 right-3 sm:bottom-5 sm:right-5 bg-white/95 backdrop-blur-md text-brand border border-white shadow-lg px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
@@ -1191,6 +1191,21 @@
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </div>
         </a>
+
+        <!-- Spotify embed pour decouvrir Bon Entendeur (deplie au clic, lazy iframe) -->
+        <div class="max-w-2xl mx-auto mb-10 md:mb-12 reveal">
+          <button type="button" id="spotify-toggle" class="group w-full flex items-center justify-center gap-2.5 bg-white border border-gray-200 hover:border-brand/40 text-text hover:text-brand px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-sm hover:shadow-md" aria-expanded="false" aria-controls="spotify-embed">
+            <!-- Spotify-style note icon -->
+            <svg class="w-4 h-4 text-[#1DB954] group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/>
+            </svg>
+            <span id="spotify-toggle-label">&Eacute;couter Bon Entendeur sur Spotify</span>
+            <svg class="w-3.5 h-3.5 transition-transform duration-300" id="spotify-toggle-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="spotify-embed" class="hidden mt-3 overflow-hidden">
+            <!-- iframe injectee a l'ouverture pour eviter de la charger inutilement -->
+          </div>
+        </div>
 
         <!-- Cards grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
@@ -2543,6 +2558,47 @@
         }, { threshold: 0.4 });
         observer.observe(document.getElementById('ig-stats'));
       }
+    })();
+  </script>
+
+  <!-- ───────── Spotify embed toggle (Bon Entendeur) ───────── -->
+  <script>
+    (function () {
+      const toggle = document.getElementById('spotify-toggle');
+      const wrap = document.getElementById('spotify-embed');
+      const label = document.getElementById('spotify-toggle-label');
+      const chevron = document.getElementById('spotify-toggle-chevron');
+      if (!toggle || !wrap) return;
+
+      let injected = false;
+      toggle.addEventListener('click', () => {
+        const isOpen = !wrap.classList.contains('hidden');
+        if (isOpen) {
+          wrap.classList.add('hidden');
+          toggle.setAttribute('aria-expanded', 'false');
+          label.textContent = 'Écouter Bon Entendeur sur Spotify';
+          chevron.style.transform = 'rotate(0deg)';
+          return;
+        }
+        // Open : inject iframe on first open only (lazy)
+        if (!injected) {
+          const iframe = document.createElement('iframe');
+          iframe.setAttribute('style', 'border-radius:14px;');
+          iframe.setAttribute('src', 'https://open.spotify.com/embed/artist/2lwjwKfYZCuPEJOo8t32CD?utm_source=generator&theme=0');
+          iframe.setAttribute('width', '100%');
+          iframe.setAttribute('height', '352');
+          iframe.setAttribute('frameborder', '0');
+          iframe.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
+          iframe.setAttribute('loading', 'lazy');
+          iframe.setAttribute('title', 'Lecteur Spotify Bon Entendeur');
+          wrap.appendChild(iframe);
+          injected = true;
+        }
+        wrap.classList.remove('hidden');
+        toggle.setAttribute('aria-expanded', 'true');
+        label.textContent = 'Masquer le lecteur';
+        chevron.style.transform = 'rotate(180deg)';
+      });
     })();
   </script>
 
