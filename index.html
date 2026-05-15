@@ -1540,10 +1540,15 @@
         </div>
 
         <!-- Live stats : meme style que les compteurs de prix de la section Plage -->
-        <div id="ig-stats" class="flex flex-wrap items-center justify-center gap-y-6 gap-x-8 md:gap-x-12 mb-10 reveal">
+        <div id="ig-stats" class="flex flex-wrap items-center justify-center gap-y-6 gap-x-6 md:gap-x-10 mb-10 reveal">
           <div class="text-center">
             <span class="text-2xl md:text-3xl font-bold text-brand tabular-nums" data-ig-stat="followers" data-target="14239" data-format="k">14,2K</span>
             <p class="text-xs text-text-light mt-1">Abonn&eacute;s <span class="text-text-light/60">Instagram</span></p>
+          </div>
+          <div class="w-px h-10 bg-gray-200 hidden md:block"></div>
+          <div class="text-center">
+            <span class="text-2xl md:text-3xl font-bold text-brand tabular-nums" data-ig-stat="fbFollowers" data-target="10127" data-format="k">10,1K</span>
+            <p class="text-xs text-text-light mt-1">Fans <span class="text-text-light/60">Facebook</span></p>
           </div>
           <div class="w-px h-10 bg-gray-200 hidden md:block"></div>
           <div class="text-center">
@@ -2493,9 +2498,11 @@
       //    side). Fallback : data-target attribute (current values hardcoded).
       function applyValues(metrics) {
         const ig = metrics?.platforms?.instagram || {};
+        const fb = metrics?.platforms?.facebook || {};
         const kpis = metrics?.kpis || {};
         const fresh = {
           followers: ig.followers ?? null,
+          fbFollowers: fb.likes ?? null,
           posts: ig.posts ?? null,
           rating: kpis.averageRating ?? null,
           reviews: kpis.totalReviews ?? null,
