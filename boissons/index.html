@@ -51,7 +51,18 @@
     <p class="text-white/70 text-xs tracking-[0.3em] uppercase mt-3">Carte des boissons 2026</p>
   </header>
 
-  <!-- Tabs sticky -->
+  <!-- Menu switcher : Carte / Apres-midi / Boissons -->
+  <div class="bg-white border-b border-gray-100">
+    <div class="max-w-4xl mx-auto px-3 py-3 overflow-x-auto no-scrollbar flex justify-center">
+      <div class="flex items-center gap-2 min-w-max">
+        <a href="/carte/" class="bg-white text-text border border-gray-200 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all hover:border-brand/40 hover:text-brand">Carte</a>
+        <a href="/carte/apres-midi/" class="bg-white text-text border border-gray-200 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all hover:border-brand/40 hover:text-brand">Apr&egrave;s-midi</a>
+        <span class="bg-brand text-white px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider whitespace-nowrap">Boissons</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs sticky (categories de la carte des boissons) -->
   <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-lg border-b border-gray-100 shadow-sm">
     <div class="max-w-4xl mx-auto px-3 py-3 overflow-x-auto no-scrollbar flex justify-start md:justify-center">
       <div class="flex items-center gap-2 min-w-max" role="tablist">
@@ -294,11 +305,15 @@
       </div>
     </section>
 
-    <!-- Lien vers la carte -->
-    <div class="mt-12 pt-8 border-t border-gray-200">
+    <!-- Cross-links autres cartes -->
+    <div class="mt-12 pt-8 border-t border-gray-200 space-y-3">
       <a href="/carte/" class="block bg-brand/10 backdrop-blur-sm border border-brand/20 rounded-2xl p-5 text-center hover:bg-brand/15 transition-all">
         <p class="text-brand font-semibold text-sm uppercase tracking-widest mb-1">Carte du restaurant</p>
         <p class="text-text-light text-xs">Tapas, entr&eacute;es, plats viande &amp; poisson, desserts</p>
+      </a>
+      <a href="/carte/apres-midi/" class="block bg-brand/10 backdrop-blur-sm border border-brand/20 rounded-2xl p-5 text-center hover:bg-brand/15 transition-all">
+        <p class="text-brand font-semibold text-sm uppercase tracking-widest mb-1">Carte d'apr&egrave;s-midi</p>
+        <p class="text-text-light text-xs">Servie entre les services &middot; salades, planches, glaces &amp; gaufres</p>
       </a>
     </div>
 

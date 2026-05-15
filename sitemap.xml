@@ -91,6 +91,13 @@
   </url>
 
   <url>
+    <loc>https://chiringuito-vias.fr/carte/apres-midi/</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
     <loc>https://chiringuito-vias.fr/boissons/</loc>
     <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
