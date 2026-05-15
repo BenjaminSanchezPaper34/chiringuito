@@ -206,8 +206,8 @@
     "@graph": [
       {
         "@type": "Event",
-        "name": "Opening Party 2026 - Chiringuito Vias",
-        "description": "Soiree d'ouverture de saison du Chiringuito a Vias-Plage le samedi 6 juin 2026. DJ set live, inauguration de la plage privee, ambiance estivale les pieds dans le sable.",
+        "name": "Opening Party 2026 avec Bon Entendeur - Chiringuito Vias",
+        "description": "Soiree d'ouverture de saison du Chiringuito a Vias-Plage le samedi 6 juin 2026 avec Bon Entendeur en tete d'affiche. DJ set live, inauguration de la plage privee, ambiance estivale les pieds dans le sable.",
         "startDate": "2026-06-06T19:00:00+02:00",
         "endDate": "2026-06-07T01:00:00+02:00",
         "eventStatus": "https://schema.org/EventScheduled",
@@ -225,15 +225,17 @@
           }
         },
         "image": "https://chiringuito-vias.fr/images/og-chiringuito.jpg",
-        "performer": {"@type": "Organization", "name": "Chiringuito Vias"},
+        "performer": [
+          {"@type": "MusicGroup", "name": "Bon Entendeur"},
+          {"@type": "Organization", "name": "Chiringuito Vias"}
+        ],
         "organizer": {"@type": "Organization", "name": "Chiringuito Vias", "url": "https://chiringuito-vias.fr"},
         "offers": {
           "@type": "Offer",
-          "url": "https://bookings.zenchef.com/results?rid=360974&pid=1001",
+          "url": "https://yp.events/ed741201-ef61-4104-b748-61b580d1e47e/OPENING-PARTY-CHIRINGUITO-avec-BON-ENTENDEUR",
           "availability": "https://schema.org/InStock",
-          "price": "0",
           "priceCurrency": "EUR",
-          "validFrom": "2026-04-01T00:00:00+02:00"
+          "validFrom": "2026-05-15T00:00:00+02:00"
         }
       },
       {
@@ -647,6 +649,32 @@
     }
     #hero-logo { animation: glow-pulse 3s ease-in-out infinite; }
 
+    /* Opening Party hero CTA : warm pulse + gradient shimmer to catch the eye */
+    @keyframes opening-pulse {
+      0%, 100% {
+        box-shadow:
+          0 8px 22px -4px rgba(249, 115, 22, 0.55),
+          0 0 0 0 rgba(249, 115, 22, 0.4);
+      }
+      50% {
+        box-shadow:
+          0 14px 38px -2px rgba(249, 115, 22, 0.75),
+          0 0 0 8px rgba(249, 115, 22, 0);
+      }
+    }
+    @keyframes opening-shimmer {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    .opening-cta {
+      background-size: 200% 100%;
+      animation: opening-pulse 2.6s ease-in-out infinite,
+                 opening-shimmer 4s linear infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .opening-cta { animation: none; box-shadow: 0 8px 22px -4px rgba(249, 115, 22, 0.55); }
+    }
+
     /* Split text animation */
     .split-char { display: inline-block; opacity: 0; transform: translateY(20px); }
     .split-char.visible { opacity: 1; transform: translateY(0); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -797,7 +825,15 @@
       <div id="hero-content" class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
         <h1 class="sr-only">Chiringuito - Plage Priv&eacute;e, Restaurant &amp; Bar &agrave; Vias-Plage (34450)</h1>
         <img src="images/logo-blanc-chiringuito.svg" alt="Chiringuito Vias-Plage - Plage priv&eacute;e, restaurant et bar face &agrave; la M&eacute;diterran&eacute;e" class="w-48 md:w-72 lg:w-80 mb-8" id="hero-logo" width="320" height="200"/>
-        <p id="hero-tagline" class="text-white/80 text-xs md:text-sm tracking-[0.35em] uppercase font-light mb-10">Restaurant &middot; Bar &middot; Plage priv&eacute;e</p>
+        <p id="hero-tagline" class="text-white/80 text-xs md:text-sm tracking-[0.35em] uppercase font-light mb-7">Restaurant &middot; Bar &middot; Plage priv&eacute;e</p>
+
+        <!-- CTA Opening Party : mise en avant maximale (gradient orange + pulse glow) -->
+        <a href="https://yp.events/ed741201-ef61-4104-b748-61b580d1e47e/OPENING-PARTY-CHIRINGUITO-avec-BON-ENTENDEUR?from=https://www.chiringuito-vias.fr" target="_blank" rel="noopener noreferrer" class="opening-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-500 text-white px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-7">
+          <span class="text-lg leading-none">&#x1F3AB;</span>
+          <span class="sm:hidden">Opening &middot; 6 juin &middot; Bon Entendeur</span>
+          <span class="hidden sm:inline">Opening Party &middot; 6 juin avec Bon Entendeur</span>
+          <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
 
         <!-- Reservation CTAs -->
         <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-4">
@@ -1160,13 +1196,13 @@
               <!-- Date -->
               <p class="text-xs font-medium tracking-[0.25em] uppercase text-orange-800/80 mb-1 whitespace-nowrap">Samedi 6 juin</p>
               <h3 class="font-display text-3xl md:text-4xl text-orange-900 leading-tight mb-3 whitespace-nowrap">Opening Party</h3>
-              <p class="text-sm text-orange-900/70 leading-relaxed mb-8 flex-1">Lancement de saison, DJ set live et inauguration officielle de la plage priv&eacute;e. La nuit o&ugrave; tout commence.</p>
-              <!-- CTA (reservation a venir) -->
-              <button type="button" disabled aria-disabled="true" class="inline-flex items-center justify-center gap-2 w-full bg-orange-900/15 text-orange-900/50 border border-orange-900/15 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest cursor-not-allowed">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                R&eacute;servation
-              </button>
-              <p class="text-[10px] text-orange-900/60 text-center mt-3 tracking-widest uppercase">Bient&ocirc;t disponible</p>
+              <p class="text-sm text-orange-900/70 leading-relaxed mb-8 flex-1">Lancement de saison avec <strong class="text-orange-950">Bon Entendeur</strong> en t&ecirc;te d'affiche. DJ set live et inauguration officielle de la plage priv&eacute;e. La nuit o&ugrave; tout commence.</p>
+              <!-- CTA actif : billetterie Yurplan -->
+              <a href="https://yp.events/ed741201-ef61-4104-b748-61b580d1e47e/OPENING-PARTY-CHIRINGUITO-avec-BON-ENTENDEUR?from=https://www.chiringuito-vias.fr" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-orange-900 hover:bg-orange-950 text-white px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 hover:gap-3 shadow-md shadow-orange-900/30">
+                R&eacute;server mes places
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </a>
+              <p class="text-[10px] text-orange-900/60 text-center mt-3 tracking-widest uppercase">Billetterie ouverte</p>
             </div>
           </article>
 
