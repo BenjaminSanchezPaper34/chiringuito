@@ -224,9 +224,12 @@
             "addressCountry": "FR"
           }
         },
-        "image": "https://chiringuito-vias.fr/images/og-chiringuito.jpg",
+        "image": [
+          "https://chiringuito-vias.fr/images/opening-2026/og-1200x675.jpg",
+          "https://chiringuito-vias.fr/images/opening-2026/poster-full.jpg"
+        ],
         "performer": [
-          {"@type": "MusicGroup", "name": "Bon Entendeur"},
+          {"@type": "MusicGroup", "name": "Bon Entendeur", "sameAs": "https://www.instagram.com/bon_entendeur/"},
           {"@type": "Organization", "name": "Chiringuito Vias"}
         ],
         "organizer": {"@type": "Organization", "name": "Chiringuito Vias", "url": "https://chiringuito-vias.fr"},
@@ -1179,6 +1182,16 @@
           <p class="text-sm md:text-base text-text-light tracking-wide reveal max-w-xl mx-auto">DJ sets, ambiance festival, cocktails les pieds dans le sable.<br class="hidden md:block"> Trois rendez-vous incontournables de la saison 2026.</p>
         </div>
 
+        <!-- Featured billboard : Opening Party visual officiel -->
+        <a href="https://yp.events/ed741201-ef61-4104-b748-61b580d1e47e/OPENING-PARTY-CHIRINGUITO-avec-BON-ENTENDEUR?from=https://www.chiringuito-vias.fr" target="_blank" rel="noopener noreferrer" class="block relative rounded-3xl overflow-hidden mb-8 md:mb-10 group shadow-xl hover:shadow-2xl transition-shadow duration-500 reveal" aria-label="R&eacute;server vos places pour l'Opening Party du 6 juin avec Bon Entendeur">
+          <img src="images/opening-2026/banner-wide.jpg" alt="Opening Party Chiringuito samedi 6 juin avec Bon Entendeur" class="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]" loading="lazy" width="1800" height="666"/>
+          <!-- Floating CTA badge on the banner -->
+          <div class="absolute bottom-3 right-3 sm:bottom-5 sm:right-5 bg-white/95 backdrop-blur-md text-brand border border-white shadow-lg px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+            R&eacute;server mes places
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </div>
+        </a>
+
         <!-- Cards grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
 
@@ -1297,6 +1310,14 @@
 
           <!-- ROW (will be duplicated by JS for infinite scroll) -->
           <div class="marquee-row" id="artistsRow">
+
+            <button type="button" class="artist-tile" data-artist-name="Bon Entendeur" data-artist-event="Opening Party 2026 &middot; 6 juin" data-artist-bio="Duo fran&ccedil;ais culte, French touch contemporaine, sets envo&ucirc;tants entre house, disco et pop sample. T&ecirc;te d'affiche de l'Opening 2026 du Chiringuito." data-artist-photo="images/opening-2026/poster-tile.jpg" data-artist-photo-full="images/opening-2026/poster-full.jpg" data-artist-gradient="linear-gradient(165deg, #1A4D5E 0%, #2D7A8E 50%, #FF9B7A 100%)" data-artist-emoji="&#x1F3DD;&#xFE0F;" data-artist-instagram="https://www.instagram.com/bon_entendeur/" aria-label="Voir Bon Entendeur">
+              <div class="artist-bg" style="background-image: url('images/opening-2026/poster-tile.jpg'); background-size: cover; background-position: center 15%;"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">Bon Entendeur</h3>
+                <p class="artist-event">Opening &middot; 6 juin 2026</p>
+              </div>
+            </button>
 
             <button type="button" class="artist-tile" data-artist-name="Yann Muller" data-artist-style="DJ producteur" data-artist-event="Opening Party 2025 &middot; 7 juin" data-artist-bio="DJ et producteur fran&ccedil;ais (Nice / Dubai), reprises pop fusionn&eacute;es house et lounge. 135M+ d'&eacute;coutes Spotify, disque d'or avec &laquo;&nbsp;California Dreamin'&nbsp;&raquo;. Set lumineux face mer pour l'opening 2025." data-artist-photo="images/artistes/yann-muller-opening-2025.jpg" data-artist-photo-full="images/artistes/yann-muller-opening-2025-full.jpg" data-artist-gradient="linear-gradient(165deg, #1B0F2E 0%, #3A1A5C 50%, #6B2B8C 100%)" data-artist-emoji="&#x1F3A7;" data-artist-instagram="https://www.instagram.com/yann_muller/" data-artist-spotify="https://open.spotify.com/artist/41HOzTOe9JNerhym1HWxti" data-artist-soundcloud="https://soundcloud.com/yannmuller" data-artist-youtube="https://www.youtube.com/channel/UCxEVGiyCGf6WQrBpJVfZ12g" data-artist-bandcamp="https://yannmuller.bandcamp.com/" aria-label="Voir Yann Muller">
               <div class="artist-bg" style="background-image: url('images/artistes/yann-muller-opening-2025.jpg'); background-size: cover; background-position: center 30%;"></div>
