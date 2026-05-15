@@ -886,6 +886,32 @@
     </section>
 
     <!-- ============================================ -->
+    <!-- OPENING SPOTLIGHT (juste sous le hero : affiche + son Spotify) -->
+    <!-- ============================================ -->
+    <section id="opening-spotlight" class="py-12 md:py-16 px-6 bg-gray-50 relative">
+      <div class="max-w-md mx-auto">
+
+        <!-- Affiche officielle, cliquable (ouvre le popup billetterie) -->
+        <button type="button" data-opening-open class="block w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500 group reveal" aria-label="Ouvrir la billetterie de l'Opening Party">
+          <img src="images/opening-2026/poster-full.jpg" alt="Opening Party Chiringuito samedi 6 juin avec Bon Entendeur" class="block w-full h-auto transition-transform duration-700 group-hover:scale-[1.02]" loading="lazy" decoding="async"/>
+        </button>
+
+        <!-- Spotify embed toggle (Bon Entendeur · Le Temps Est Bon) -->
+        <div class="mt-5 reveal">
+          <button type="button" id="spotify-toggle" class="group w-full flex items-center justify-center gap-2.5 bg-white border border-gray-200 hover:border-brand/40 text-text hover:text-brand px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-sm hover:shadow-md" aria-expanded="false" aria-controls="spotify-embed">
+            <svg class="w-4 h-4 text-[#1DB954] group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/>
+            </svg>
+            <span id="spotify-toggle-label">&Eacute;couter &laquo;&nbsp;Le Temps Est Bon&nbsp;&raquo; &mdash; Bon Entendeur</span>
+            <svg class="w-3.5 h-3.5 transition-transform duration-300" id="spotify-toggle-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="spotify-embed" class="hidden mt-3 overflow-hidden"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================ -->
     <!-- BIENVENUE -->
     <!-- ============================================ -->
     <section id="bienvenue" class="py-16 md:py-24 px-6 relative overflow-hidden">
@@ -1195,21 +1221,6 @@
           <p class="text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-brand/70 mb-3 reveal">Trois soir&eacute;es &agrave; ne pas manquer</p>
           <h2 class="font-display text-5xl md:text-6xl lg:text-7xl text-brand mb-4 tracking-tight reveal">Dansez</h2>
           <p class="text-sm md:text-base text-text-light tracking-wide reveal max-w-xl mx-auto">DJ sets, ambiance festival, cocktails les pieds dans le sable.<br class="hidden md:block"> Trois rendez-vous incontournables de la saison 2026.</p>
-        </div>
-
-        <!-- Spotify embed pour decouvrir Bon Entendeur (deplie au clic, lazy iframe) -->
-        <div class="max-w-2xl mx-auto mb-10 md:mb-12 reveal">
-          <button type="button" id="spotify-toggle" class="group w-full flex items-center justify-center gap-2.5 bg-white border border-gray-200 hover:border-brand/40 text-text hover:text-brand px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-sm hover:shadow-md" aria-expanded="false" aria-controls="spotify-embed">
-            <!-- Spotify-style note icon -->
-            <svg class="w-4 h-4 text-[#1DB954] group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/>
-            </svg>
-            <span id="spotify-toggle-label">&Eacute;couter &laquo;&nbsp;Le Temps Est Bon&nbsp;&raquo; &mdash; Bon Entendeur</span>
-            <svg class="w-3.5 h-3.5 transition-transform duration-300" id="spotify-toggle-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div id="spotify-embed" class="hidden mt-3 overflow-hidden">
-            <!-- iframe injectee a l'ouverture pour eviter de la charger inutilement -->
-          </div>
         </div>
 
         <!-- Cards grid -->
