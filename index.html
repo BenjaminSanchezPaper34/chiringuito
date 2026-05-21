@@ -1166,30 +1166,6 @@
           <p class="text-sm md:text-base text-text-light tracking-wide reveal">R&eacute;servez vos bains de soleil et profitez de la plage.</p>
         </div>
 
-        <!-- Widget meteo + mer (Open-Meteo, alimentation cote client) -->
-        <div id="weather-widget" class="max-w-xl mx-auto mb-12 reveal hidden">
-          <!-- Header sobre, sans cadre -->
-          <div class="flex items-center justify-between mb-4 px-1">
-            <div class="flex items-center gap-2 text-brand">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-              <p class="text-[11px] font-semibold tracking-[0.2em] uppercase">M&eacute;t&eacute;o Vias-Plage</p>
-            </div>
-            <p class="text-[10px] text-text-light/70" id="weather-updated"></p>
-          </div>
-          <!-- Daily forecast (3 days) - dividers verticaux seulement -->
-          <div class="grid grid-cols-3 mb-4" id="weather-days">
-            <!-- Days injected by JS -->
-          </div>
-          <!-- Sea + wind + contextual message -->
-          <div class="flex flex-wrap items-center justify-between gap-3 text-xs px-1">
-            <div class="flex items-center gap-4 text-text">
-              <span class="inline-flex items-center gap-1.5"><span class="text-base leading-none">&#127754;</span> <span>Mer <strong id="weather-sea" class="font-semibold text-brand">—</strong></span></span>
-              <span class="inline-flex items-center gap-1.5"><span class="text-base leading-none">&#128168;</span> <span>Vent <strong id="weather-wind" class="font-semibold text-brand">—</strong></span></span>
-            </div>
-            <p class="text-text-light italic" id="weather-mood"></p>
-          </div>
-        </div>
-
         <!-- Pricing -->
         <div class="flex items-center justify-center gap-8 md:gap-12 mb-6 reveal">
           <div class="text-center">
@@ -1218,6 +1194,30 @@
           <p class="mt-4 text-sm text-text-light">
             ou par t&eacute;l&eacute;phone : <a href="tel:+33674946221" class="text-brand hover:text-brand-dark font-medium transition-colors">06 74 94 62 21</a>
           </p>
+        </div>
+
+        <!-- Widget meteo + mer (Open-Meteo, sous le CTA, sans cadre) -->
+        <div id="weather-widget" class="max-w-xl mx-auto mt-14 reveal hidden">
+          <!-- Header sobre -->
+          <div class="flex items-center justify-between mb-4 px-1">
+            <div class="flex items-center gap-2 text-brand">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+              <p class="text-[11px] font-semibold tracking-[0.2em] uppercase">M&eacute;t&eacute;o Vias-Plage</p>
+            </div>
+            <p class="text-[10px] text-text-light/70" id="weather-updated"></p>
+          </div>
+          <!-- Daily forecast (3 days) - dividers verticaux seulement, aucun fond -->
+          <div class="grid grid-cols-3 mb-4" id="weather-days">
+            <!-- Days injected by JS -->
+          </div>
+          <!-- Sea + wind + contextual message -->
+          <div class="flex flex-wrap items-center justify-between gap-3 text-xs px-1">
+            <div class="flex items-center gap-4 text-text">
+              <span class="inline-flex items-center gap-1.5"><span class="text-base leading-none">&#127754;</span> <span>Mer <strong id="weather-sea" class="font-semibold text-brand">—</strong></span></span>
+              <span class="inline-flex items-center gap-1.5"><span class="text-base leading-none">&#128168;</span> <span>Vent <strong id="weather-wind" class="font-semibold text-brand">—</strong></span></span>
+            </div>
+            <p class="text-text-light italic" id="weather-mood"></p>
+          </div>
         </div>
       </div>
     </section>
@@ -2770,13 +2770,14 @@
         const daysWrap = document.getElementById('weather-days');
         if (!widget || !daysWrap) return;
 
+        // Toutes les cards jour ont le meme rendu (pas de highlight bg ni de
+        // couleur sur le label du jour courant). Seul 'Aujourd'hui' lui-meme
+        // suffit a indiquer le jour actuel.
         daysWrap.innerHTML = data.days.slice(0, 3).map((d, i) => {
           const desc = classify({ sunHours: d.sunHours, cloudPct: d.cloudPct, precipProb: d.precipProb });
-          const isToday = i === 0;
           return (
-            '<div class="' + (i > 0 ? 'border-l border-gray-100 ' : '') +
-            'px-2 py-4 text-center ' + (isToday ? 'bg-brand/5' : '') + '">' +
-              '<p class="text-[10px] font-semibold tracking-[0.18em] uppercase ' + (isToday ? 'text-brand' : 'text-text-light') + ' mb-1.5">' + d.label + '</p>' +
+            '<div class="' + (i > 0 ? 'border-l border-gray-100 ' : '') + 'px-2 py-4 text-center">' +
+              '<p class="text-[10px] font-semibold tracking-[0.18em] uppercase text-text-light mb-1.5">' + d.label + '</p>' +
               '<div class="text-3xl leading-none mb-1.5" title="' + desc.label + '">' + desc.emoji + '</div>' +
               '<p class="text-[11px] text-text-light/80">' + desc.label + '</p>' +
               '<p class="mt-1.5 text-sm font-semibold text-text tabular-nums">' + d.tmin + '° <span class="text-text-light/50">/</span> ' + d.tmax + '°</p>' +
