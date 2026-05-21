@@ -12,6 +12,7 @@ const MANUAL_OVERRIDE_PATH = path.join(ROOT, 'partenaires-dashboard', 'data', 'm
 const CHIRINGUITO_SITE = 'https://chiringuito-vias.fr/';
 const INSTAGRAM_URL = 'https://www.instagram.com/chiringuitovias/';
 const FACEBOOK_URL = 'https://www.facebook.com/chiringuitovias/';
+const TIKTOK_URL = 'https://www.tiktok.com/@chiringuitovias';
 
 const REQUEST_HEADERS = {
   'user-agent':
@@ -282,6 +283,27 @@ async function getInstagramMetrics() {
   }
 }
 
+async function getTikTokMetrics() {
+  // TikTok publie les compteurs dans le HTML du profile dans un objet JSON
+  // SIGI_STATE / UNIVERSAL_DATA_FOR_REHYDRATION. Grep simple sur des cles
+  // numeriques bien typees (followerCount, heartCount, videoCount) suffit.
+  const html = await fetchText(TIKTOK_URL);
+  const followers = Number(html.match(/"followerCount":(\d+)/)?.[1]);
+  const following = Number(html.match(/"followingCount":(\d+)/)?.[1]);
+  const hearts    = Number(html.match(/"heartCount":(\d+)/)?.[1]);
+  const videos    = Number(html.match(/"videoCount":(\d+)/)?.[1]);
+  if (!Number.isFinite(followers)) {
+    throw new Error('Compteur TikTok followerCount introuvable');
+  }
+  return {
+    followers,
+    following: Number.isFinite(following) ? following : null,
+    hearts:    Number.isFinite(hearts)    ? hearts    : null,
+    videos:    Number.isFinite(videos)    ? videos    : null,
+    source: 'TikTok public profile HTML',
+  };
+}
+
 async function getFacebookMetrics() {
   const html = await fetchText(FACEBOOK_URL, { useDefaultHeaders: false });
 
@@ -473,6 +495,15 @@ async function main() {
     facebook = { likes: null, talkingAbout: null, checkins: null, source: 'Facebook public meta', error: error.message };
   }
 
+  let tiktok = null;
+  try {
+    tiktok = await getTikTokMetrics();
+    status.tiktok = 'live';
+  } catch (error) {
+    status.tiktok = 'error';
+    tiktok = { followers: null, following: null, hearts: null, videos: null, source: 'TikTok public profile HTML', error: error.message };
+  }
+
   let reviews = [];
   try {
     reviews = await getElfsightSourceMetrics();
@@ -504,7 +535,7 @@ async function main() {
   const googleReview = reviews.find((item) => item.supplier === 'google') || null;
   const facebookReview = reviews.find((item) => item.supplier === 'facebook') || null;
 
-  const totalAudience = sumNumbers([instagram.followers, facebook.likes]);
+  const totalAudience = sumNumbers([instagram.followers, facebook.likes, tiktok.followers]);
   const totalReviews = sumNumbers([
     tripAdvisorReview?.reviews,
     googleReview?.reviews,
@@ -563,6 +594,15 @@ async function main() {
         reviewRating: facebookReview?.rating ?? null,
         source: facebook.source,
         error: facebook.error || null
+      },
+      tiktok: {
+        url: TIKTOK_URL,
+        followers: tiktok.followers,
+        following: tiktok.following,
+        hearts: tiktok.hearts,
+        videos: tiktok.videos,
+        source: tiktok.source,
+        error: tiktok.error || null
       },
       tripadvisor: {
         url: tripAdvisorReview?.uri || null,

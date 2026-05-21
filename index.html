@@ -828,7 +828,15 @@
       <div id="hero-content" class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
         <h1 class="sr-only">Chiringuito - Plage Priv&eacute;e, Restaurant &amp; Bar &agrave; Vias-Plage (34450)</h1>
         <img src="images/logo-blanc-chiringuito.svg" alt="Chiringuito Vias-Plage - Plage priv&eacute;e, restaurant et bar face &agrave; la M&eacute;diterran&eacute;e" class="w-48 md:w-72 lg:w-80 mb-8" id="hero-logo" width="320" height="200"/>
-        <p id="hero-tagline" class="text-white/80 text-xs md:text-sm tracking-[0.35em] uppercase font-light mb-7">Restaurant &middot; Bar &middot; Plage priv&eacute;e</p>
+        <p id="hero-tagline" class="text-white/80 text-xs md:text-sm tracking-[0.35em] uppercase font-light mb-4">Restaurant &middot; Bar &middot; Plage priv&eacute;e</p>
+
+        <!-- Mini chip meteo (alimente par JS, cache par defaut tant qu'on n'a pas la donnee) -->
+        <div id="hero-weather" class="hidden mb-6 inline-flex items-center gap-2 text-white/85 text-xs sm:text-sm font-medium tracking-wide">
+          <span id="hero-weather-emoji" class="text-base leading-none"></span>
+          <span id="hero-weather-temp"></span>
+          <span class="opacity-50">&middot;</span>
+          <span class="opacity-70">Vias-Plage</span>
+        </div>
 
         <!-- CTA Opening Party : mise en avant maximale (gradient orange + pulse glow). Lien direct Yurplan. -->
         <a href="https://yp.events/ed741201-ef61-4104-b748-61b580d1e47e/OPENING-PARTY-CHIRINGUITO-avec-BON-ENTENDEUR?from=https://www.chiringuito-vias.fr" target="_blank" rel="noopener noreferrer" class="opening-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-500 text-white px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-7">
@@ -874,7 +882,7 @@
     <!-- OPENING SPOTLIGHT (juste sous le hero : affiche + son Spotify) -->
     <!-- ============================================ -->
     <section id="opening-spotlight" class="py-12 md:py-16 px-6 bg-gray-50 relative">
-      <div class="max-w-md md:max-w-3xl mx-auto">
+      <div class="max-w-md md:max-w-5xl mx-auto">
 
         <!-- Affiche cliquable - direct Yurplan. Portrait sur mobile, landscape sur desktop. -->
         <a href="https://yp.events/ed741201-ef61-4104-b748-61b580d1e47e/OPENING-PARTY-CHIRINGUITO-avec-BON-ENTENDEUR?from=https://www.chiringuito-vias.fr" target="_blank" rel="noopener noreferrer" class="block w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500 group reveal" aria-label="R&eacute;server vos places sur Yurplan pour l'Opening Party">
@@ -1153,7 +1161,7 @@
     <!-- ============================================ -->
     <section id="plage" class="py-20 md:py-28 px-6">
       <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-16">
+        <div class="text-center mb-12">
           <h2 class="font-display text-5xl md:text-6xl lg:text-7xl text-brand mb-3 tracking-tight reveal">Profitez</h2>
           <p class="text-sm md:text-base text-text-light tracking-wide reveal">R&eacute;servez vos bains de soleil et profitez de la plage.</p>
         </div>
@@ -1186,6 +1194,30 @@
           <p class="mt-4 text-sm text-text-light">
             ou par t&eacute;l&eacute;phone : <a href="tel:+33674946221" class="text-brand hover:text-brand-dark font-medium transition-colors">06 74 94 62 21</a>
           </p>
+        </div>
+
+        <!-- Widget meteo + mer (Open-Meteo, sous le CTA, sans cadre) -->
+        <div id="weather-widget" class="max-w-xl mx-auto mt-14 reveal hidden">
+          <!-- Header sobre -->
+          <div class="flex items-center justify-between mb-4 px-1">
+            <div class="flex items-center gap-2 text-brand">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+              <p class="text-[11px] font-semibold tracking-[0.2em] uppercase">M&eacute;t&eacute;o Vias-Plage</p>
+            </div>
+            <p class="text-[10px] text-text-light/70" id="weather-updated"></p>
+          </div>
+          <!-- Daily forecast (3 days) - dividers verticaux seulement, aucun fond -->
+          <div class="grid grid-cols-3 mb-4" id="weather-days">
+            <!-- Days injected by JS -->
+          </div>
+          <!-- Sea + wind + contextual message -->
+          <div class="flex flex-wrap items-center justify-between gap-3 text-xs px-1">
+            <div class="flex items-center gap-4 text-text">
+              <span class="inline-flex items-center gap-1.5"><span class="text-base leading-none">&#127754;</span> <span>Mer <strong id="weather-sea" class="font-semibold text-brand">—</strong></span></span>
+              <span class="inline-flex items-center gap-1.5"><span class="text-base leading-none">&#128168;</span> <span>Vent <strong id="weather-wind" class="font-semibold text-brand">—</strong></span></span>
+            </div>
+            <p class="text-text-light italic" id="weather-mood"></p>
+          </div>
         </div>
       </div>
     </section>
@@ -1529,31 +1561,43 @@
         </div>
 
         <!-- Live stats : meme style que les compteurs de prix de la section Plage -->
-        <div id="ig-stats" class="flex flex-wrap items-center justify-center gap-y-6 gap-x-6 md:gap-x-10 mb-10 reveal">
-          <div class="text-center">
-            <span class="text-2xl md:text-3xl font-bold text-brand tabular-nums" data-ig-stat="followers" data-target="14239" data-format="k">14,2K</span>
-            <p class="text-xs text-text-light mt-1">Abonn&eacute;s <span class="text-text-light/60">Instagram</span></p>
-          </div>
+        <div id="ig-stats" class="flex flex-wrap items-center justify-center gap-y-6 gap-x-5 md:gap-x-8 mb-10 reveal">
+
+          <a href="https://www.instagram.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" class="ig-stat-link text-center group" aria-label="Voir Instagram (14 239 abonnés)">
+            <span class="text-2xl md:text-3xl font-bold text-brand tabular-nums group-hover:text-brand-dark transition-colors" data-ig-stat="followers" data-target="14239" data-format="k">14,2K</span>
+            <p class="text-xs text-text-light mt-1 group-hover:text-text transition-colors">Abonn&eacute;s <span class="text-text-light/60">Instagram</span></p>
+          </a>
           <div class="w-px h-10 bg-gray-200 hidden md:block"></div>
-          <div class="text-center">
-            <span class="text-2xl md:text-3xl font-bold text-brand tabular-nums" data-ig-stat="fbFollowers" data-target="10127" data-format="k">10,1K</span>
-            <p class="text-xs text-text-light mt-1">Fans <span class="text-text-light/60">Facebook</span></p>
-          </div>
+
+          <a href="https://www.facebook.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" class="ig-stat-link text-center group" aria-label="Voir Facebook (10 127 fans)">
+            <span class="text-2xl md:text-3xl font-bold text-brand tabular-nums group-hover:text-brand-dark transition-colors" data-ig-stat="fbFollowers" data-target="10127" data-format="k">10,1K</span>
+            <p class="text-xs text-text-light mt-1 group-hover:text-text transition-colors">Fans <span class="text-text-light/60">Facebook</span></p>
+          </a>
           <div class="w-px h-10 bg-gray-200 hidden md:block"></div>
-          <div class="text-center">
-            <span class="text-2xl md:text-3xl font-bold text-brand tabular-nums" data-ig-stat="posts" data-target="1179" data-format="k">1,2K</span>
-            <p class="text-xs text-text-light mt-1">Publications</p>
-          </div>
+
+          <a href="https://www.tiktok.com/@chiringuitovias" target="_blank" rel="noopener noreferrer" class="ig-stat-link text-center group" aria-label="Voir TikTok (258 abonnés)">
+            <span class="text-2xl md:text-3xl font-bold text-brand tabular-nums group-hover:text-brand-dark transition-colors" data-ig-stat="tiktokFollowers" data-target="258" data-format="k">258</span>
+            <p class="text-xs text-text-light mt-1 group-hover:text-text transition-colors">Abonn&eacute;s <span class="text-text-light/60">TikTok</span></p>
+          </a>
           <div class="w-px h-10 bg-gray-200 hidden md:block"></div>
-          <div class="text-center">
-            <span class="text-2xl md:text-3xl font-bold text-brand tabular-nums"><span data-ig-stat="rating" data-target="4.5" data-decimals="1">4,5</span><span class="text-yellow-500 ml-0.5">&#9733;</span></span>
-            <p class="text-xs text-text-light mt-1">Note <span class="text-text-light/60">moyenne</span></p>
-          </div>
+
+          <a href="https://www.instagram.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" class="ig-stat-link text-center group" aria-label="Voir les publications Instagram">
+            <span class="text-2xl md:text-3xl font-bold text-brand tabular-nums group-hover:text-brand-dark transition-colors" data-ig-stat="posts" data-target="1179" data-format="k">1,2K</span>
+            <p class="text-xs text-text-light mt-1 group-hover:text-text transition-colors">Publications</p>
+          </a>
           <div class="w-px h-10 bg-gray-200 hidden md:block"></div>
-          <div class="text-center">
-            <span class="text-2xl md:text-3xl font-bold text-brand tabular-nums" data-ig-stat="reviews" data-target="6416" data-format="k">6,4K</span>
-            <p class="text-xs text-text-light mt-1">Avis <span class="text-text-light/60">clients</span></p>
-          </div>
+
+          <a href="https://search.google.com/local/reviews?placeid=ChIJazcpXeQXsRIRkwBwXjrxp1o" target="_blank" rel="noopener noreferrer" class="ig-stat-link text-center group" aria-label="Voir les avis Google (note moyenne 4,5/5)">
+            <span class="text-2xl md:text-3xl font-bold text-brand tabular-nums group-hover:text-brand-dark transition-colors"><span data-ig-stat="rating" data-target="4.5" data-decimals="1">4,5</span><span class="text-yellow-500 ml-0.5">&#9733;</span></span>
+            <p class="text-xs text-text-light mt-1 group-hover:text-text transition-colors">Note <span class="text-text-light/60">moyenne</span></p>
+          </a>
+          <div class="w-px h-10 bg-gray-200 hidden md:block"></div>
+
+          <a href="https://search.google.com/local/reviews?placeid=ChIJazcpXeQXsRIRkwBwXjrxp1o" target="_blank" rel="noopener noreferrer" class="ig-stat-link text-center group" aria-label="Voir tous les avis clients">
+            <span class="text-2xl md:text-3xl font-bold text-brand tabular-nums group-hover:text-brand-dark transition-colors" data-ig-stat="reviews" data-target="6416" data-format="k">6,4K</span>
+            <p class="text-xs text-text-light mt-1 group-hover:text-text transition-colors">Avis <span class="text-text-light/60">clients</span></p>
+          </a>
+
         </div>
 
         <!-- Elfsight Instagram Feed -->
@@ -2488,13 +2532,15 @@
       function applyValues(metrics) {
         const ig = metrics?.platforms?.instagram || {};
         const fb = metrics?.platforms?.facebook || {};
+        const tt = metrics?.platforms?.tiktok || {};
         const kpis = metrics?.kpis || {};
         const fresh = {
-          followers: ig.followers ?? null,
-          fbFollowers: fb.likes ?? null,
-          posts: ig.posts ?? null,
-          rating: kpis.averageRating ?? null,
-          reviews: kpis.totalReviews ?? null,
+          followers:        ig.followers ?? null,
+          fbFollowers:      fb.likes ?? null,
+          tiktokFollowers:  tt.followers ?? null,
+          posts:            ig.posts ?? null,
+          rating:           kpis.averageRating ?? null,
+          reviews:          kpis.totalReviews ?? null,
         };
         stats.forEach((el) => {
           const key = el.dataset.igStat;
@@ -2519,9 +2565,11 @@
           maximumFractionDigits: decimals,
         });
       }
-      // Format truncated to thousands with a "K" suffix : 14239 -> "14,2K"
-      // (mass-appeal display style, matches the transat price counters layout).
+      // Format truncated to thousands with a "K" suffix : 14239 -> "14,2K".
+      // En dessous de 1000 on garde le nombre brut (258 -> "258", pas "0,3K"
+      // qui serait moche).
       function formatThousands(value) {
+        if (value < 1000) return formatNumber(value, 0);
         const k = value / 1000;
         // 1 decimal under 100 (14,2K) ; 0 decimals beyond (240K)
         const decimals = k < 100 ? 1 : 0;
@@ -2605,6 +2653,185 @@
         label.textContent = 'Masquer le lecteur';
         chevron.style.transform = 'rotate(180deg)';
       });
+    })();
+  </script>
+
+  <!-- ───────── Widget meteo Open-Meteo ───────── -->
+  <script>
+    (function () {
+      // Vias-Plage approx
+      const LAT = 43.30, LON = 3.40;
+      const CACHE_KEY = 'chiringuito_weather_v2';
+      const CACHE_TTL_MS = 30 * 60 * 1000; // 30 min
+
+      // Classification basee sur l'ENSOLEILLEMENT REEL (sunshine_duration en heures)
+      // + couverture nuageuse moyenne + proba de pluie. Le weather_code WMO d'Open-Meteo
+      // sur-classifie souvent en 'Couvert' alors que la realite locale est ensoleillee.
+      function classify({ sunHours, cloudPct, precipProb }) {
+        sunHours = sunHours || 0;
+        cloudPct = cloudPct || 0;
+        precipProb = precipProb || 0;
+        if (precipProb >= 60)             return { emoji: '\u{1F326}️', label: 'Quelques averses' };
+        if (sunHours >= 11)               return { emoji: '☀️',         label: 'Ensoleillé' };
+        if (sunHours >= 8)                return { emoji: '\u{1F324}️', label: 'Lumineux' };
+        if (precipProb >= 35)             return { emoji: '⛅',          label: 'Variable' };
+        if (cloudPct >= 70)               return { emoji: '⛅',          label: 'Doux et voilé' };
+        if (sunHours >= 5)                return { emoji: '\u{1F324}️', label: 'Belle clarté' };
+        return                              { emoji: '⛅',          label: 'Doux' };
+      }
+
+      // Day label : Aujourd'hui / Demain / nom du jour
+      const DAY_NAMES = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+      function dayLabel(dateStr, offsetDays) {
+        if (offsetDays === 0) return "Aujourd'hui";
+        if (offsetDays === 1) return 'Demain';
+        const d = new Date(dateStr + 'T12:00:00');
+        return DAY_NAMES[d.getDay()];
+      }
+
+      // Phrase contextuelle : TOUJOURS positive, on invite TOUJOURS a venir
+      // (jamais 'deconseille', jamais 'restez chez vous', jamais 'abrite' qui sonne anxiogene)
+      function moodPhrase({ maxTemp, sunHours, precipProb, wind }) {
+        maxTemp = maxTemp || 0;
+        sunHours = sunHours || 0;
+        precipProb = precipProb || 0;
+        wind = wind || 0;
+        if (precipProb >= 60) return 'La salle et la terrasse couverte vous régalent quoi qu\'il arrive.';
+        if (maxTemp >= 28 && sunHours >= 9) return 'Pleine chaleur — réservez votre transat tôt.';
+        if (maxTemp >= 24 && sunHours >= 9) return 'Plage parfaite — votre transat vous attend.';
+        if (maxTemp >= 22 && sunHours >= 6) return 'Belle journée pour l\'apéro les pieds dans le sable.';
+        if (maxTemp >= 20) return 'Douceur méditerranéenne — le déjeuner en bord de mer vous tend les bras.';
+        if (wind >= 30) return 'Brise du large agréable — réservez en terrasse ou en salle.';
+        return 'Le Chiringuito vous accueille toute la journée, les pieds dans le sable.';
+      }
+
+      function readCache() {
+        try {
+          const raw = localStorage.getItem(CACHE_KEY);
+          if (!raw) return null;
+          const { ts, data } = JSON.parse(raw);
+          if (Date.now() - ts > CACHE_TTL_MS) return null;
+          return data;
+        } catch { return null; }
+      }
+      function writeCache(data) {
+        try { localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); } catch {}
+      }
+
+      async function fetchWeather() {
+        // Modele meteofrance_seamless = AROME haute resolution (J0-J2) + ARPEGE (au-dela)
+        // Donnees plus fiables sur le littoral francais que le modele default 'best_match'.
+        const weatherUrl =
+          'https://api.open-meteo.com/v1/forecast' +
+          '?latitude=' + LAT + '&longitude=' + LON +
+          '&current=temperature_2m,cloud_cover,wind_speed_10m,precipitation' +
+          '&daily=temperature_2m_max,temperature_2m_min,wind_speed_10m_max,cloud_cover_mean,precipitation_probability_max,sunshine_duration' +
+          '&timezone=Europe%2FParis&forecast_days=3' +
+          '&models=meteofrance_seamless';
+        const marineUrl =
+          'https://marine-api.open-meteo.com/v1/marine' +
+          '?latitude=' + LAT + '&longitude=' + LON +
+          '&daily=sea_surface_temperature_max&timezone=Europe%2FParis&forecast_days=1';
+
+        const [wRes, mRes] = await Promise.all([
+          fetch(weatherUrl).then((r) => (r.ok ? r.json() : null)),
+          fetch(marineUrl).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+        ]);
+        if (!wRes) throw new Error('Open-Meteo failed');
+
+        return {
+          current: {
+            temp: Math.round(wRes.current?.temperature_2m),
+            cloud: wRes.current?.cloud_cover,
+            wind: Math.round(wRes.current?.wind_speed_10m),
+            rain: wRes.current?.precipitation,
+          },
+          days: (wRes.daily?.time || []).map((dateStr, i) => ({
+            date: dateStr,
+            offset: i,
+            label: dayLabel(dateStr, i),
+            tmin: Math.round(wRes.daily.temperature_2m_min[i]),
+            tmax: Math.round(wRes.daily.temperature_2m_max[i]),
+            windMax: Math.round(wRes.daily.wind_speed_10m_max[i]),
+            cloudPct: wRes.daily.cloud_cover_mean[i],
+            precipProb: wRes.daily.precipitation_probability_max[i],
+            sunHours: (wRes.daily.sunshine_duration[i] || 0) / 3600,
+          })),
+          sea: mRes?.daily?.sea_surface_temperature_max?.[0] != null
+            ? Math.round(mRes.daily.sea_surface_temperature_max[0])
+            : null,
+        };
+      }
+
+      function render(data) {
+        if (!data) return;
+        const today = data.days[0] || {};
+
+        // Hero chip - classify l'instant present a partir des heures d'ensoleillement du jour
+        const heroChip = document.getElementById('hero-weather');
+        if (heroChip && data.current && data.current.temp != null) {
+          const cur = classify({
+            sunHours: today.sunHours,
+            cloudPct: data.current.cloud,
+            precipProb: today.precipProb,
+          });
+          document.getElementById('hero-weather-emoji').textContent = cur.emoji;
+          document.getElementById('hero-weather-temp').textContent = data.current.temp + '°';
+          heroChip.classList.remove('hidden');
+          heroChip.style.display = 'inline-flex';
+        }
+
+        // Main widget
+        const widget = document.getElementById('weather-widget');
+        const daysWrap = document.getElementById('weather-days');
+        if (!widget || !daysWrap) return;
+
+        // Toutes les cards jour ont le meme rendu (pas de highlight bg ni de
+        // couleur sur le label du jour courant). Seul 'Aujourd'hui' lui-meme
+        // suffit a indiquer le jour actuel.
+        daysWrap.innerHTML = data.days.slice(0, 3).map((d, i) => {
+          const desc = classify({ sunHours: d.sunHours, cloudPct: d.cloudPct, precipProb: d.precipProb });
+          return (
+            '<div class="' + (i > 0 ? 'border-l border-gray-100 ' : '') + 'px-2 py-4 text-center">' +
+              '<p class="text-[10px] font-semibold tracking-[0.18em] uppercase text-text-light mb-1.5">' + d.label + '</p>' +
+              '<div class="text-3xl leading-none mb-1.5" title="' + desc.label + '">' + desc.emoji + '</div>' +
+              '<p class="text-[11px] text-text-light/80">' + desc.label + '</p>' +
+              '<p class="mt-1.5 text-sm font-semibold text-text tabular-nums">' + d.tmin + '° <span class="text-text-light/50">/</span> ' + d.tmax + '°</p>' +
+            '</div>'
+          );
+        }).join('');
+
+        // Sea, wind, mood
+        const seaEl = document.getElementById('weather-sea');
+        if (seaEl) seaEl.textContent = data.sea != null ? data.sea + '°' : '—';
+
+        const windEl = document.getElementById('weather-wind');
+        if (windEl) windEl.textContent = data.current?.wind != null ? data.current.wind + ' km/h' : '—';
+
+        const moodEl = document.getElementById('weather-mood');
+        if (moodEl) moodEl.textContent = moodPhrase({
+          maxTemp: today.tmax,
+          sunHours: today.sunHours,
+          precipProb: today.precipProb,
+          wind: today.windMax || data.current?.wind,
+        });
+
+        const updatedEl = document.getElementById('weather-updated');
+        if (updatedEl) {
+          const now = new Date();
+          updatedEl.textContent = 'mis à jour ' + now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        widget.classList.remove('hidden');
+      }
+
+      // Initial render from cache (if any) for instant display, then refresh in background
+      const cached = readCache();
+      if (cached) render(cached);
+
+      fetchWeather()
+        .then((data) => { writeCache(data); render(data); })
+        .catch(() => {/* silently hide on failure (widget reste hidden si pas de cache) */});
     })();
   </script>
 
