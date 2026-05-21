@@ -828,7 +828,15 @@
       <div id="hero-content" class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
         <h1 class="sr-only">Chiringuito - Plage Priv&eacute;e, Restaurant &amp; Bar &agrave; Vias-Plage (34450)</h1>
         <img src="images/logo-blanc-chiringuito.svg" alt="Chiringuito Vias-Plage - Plage priv&eacute;e, restaurant et bar face &agrave; la M&eacute;diterran&eacute;e" class="w-48 md:w-72 lg:w-80 mb-8" id="hero-logo" width="320" height="200"/>
-        <p id="hero-tagline" class="text-white/80 text-xs md:text-sm tracking-[0.35em] uppercase font-light mb-7">Restaurant &middot; Bar &middot; Plage priv&eacute;e</p>
+        <p id="hero-tagline" class="text-white/80 text-xs md:text-sm tracking-[0.35em] uppercase font-light mb-4">Restaurant &middot; Bar &middot; Plage priv&eacute;e</p>
+
+        <!-- Mini chip meteo (alimente par JS, cache par defaut tant qu'on n'a pas la donnee) -->
+        <div id="hero-weather" class="hidden mb-6 inline-flex items-center gap-2 text-white/85 text-xs sm:text-sm font-medium tracking-wide">
+          <span id="hero-weather-emoji" class="text-base leading-none"></span>
+          <span id="hero-weather-temp"></span>
+          <span class="opacity-50">&middot;</span>
+          <span class="opacity-70">Vias-Plage</span>
+        </div>
 
         <!-- CTA Opening Party : mise en avant maximale (gradient orange + pulse glow). Lien direct Yurplan. -->
         <a href="https://yp.events/ed741201-ef61-4104-b748-61b580d1e47e/OPENING-PARTY-CHIRINGUITO-avec-BON-ENTENDEUR?from=https://www.chiringuito-vias.fr" target="_blank" rel="noopener noreferrer" class="opening-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-500 text-white px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-7">
@@ -1153,9 +1161,35 @@
     <!-- ============================================ -->
     <section id="plage" class="py-20 md:py-28 px-6">
       <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-16">
+        <div class="text-center mb-12">
           <h2 class="font-display text-5xl md:text-6xl lg:text-7xl text-brand mb-3 tracking-tight reveal">Profitez</h2>
           <p class="text-sm md:text-base text-text-light tracking-wide reveal">R&eacute;servez vos bains de soleil et profitez de la plage.</p>
+        </div>
+
+        <!-- Widget meteo + mer (Open-Meteo, alimentation cote client) -->
+        <div id="weather-widget" class="max-w-xl mx-auto mb-12 reveal hidden">
+          <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+            <!-- Header -->
+            <div class="flex items-center justify-between px-5 py-3 bg-gradient-to-r from-brand/5 to-brand/10 border-b border-gray-100">
+              <div class="flex items-center gap-2 text-brand">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                <p class="text-[11px] font-semibold tracking-[0.2em] uppercase">M&eacute;t&eacute;o Vias-Plage</p>
+              </div>
+              <p class="text-[10px] text-text-light/70" id="weather-updated"></p>
+            </div>
+            <!-- Daily forecast (3 days) -->
+            <div class="grid grid-cols-3" id="weather-days">
+              <!-- Days injected by JS -->
+            </div>
+            <!-- Sea + wind + contextual message -->
+            <div class="px-5 py-4 bg-gray-50/70 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3 text-xs">
+              <div class="flex items-center gap-4 text-text">
+                <span class="inline-flex items-center gap-1.5"><span class="text-base leading-none">&#127754;</span> <span>Mer <strong id="weather-sea" class="font-semibold text-brand">—</strong></span></span>
+                <span class="inline-flex items-center gap-1.5"><span class="text-base leading-none">&#128168;</span> <span>Vent <strong id="weather-wind" class="font-semibold text-brand">—</strong></span></span>
+              </div>
+              <p class="text-text-light italic" id="weather-mood"></p>
+            </div>
+          </div>
         </div>
 
         <!-- Pricing -->
@@ -2605,6 +2639,162 @@
         label.textContent = 'Masquer le lecteur';
         chevron.style.transform = 'rotate(180deg)';
       });
+    })();
+  </script>
+
+  <!-- ───────── Widget meteo Open-Meteo ───────── -->
+  <script>
+    (function () {
+      // Vias-Plage approx
+      const LAT = 43.30, LON = 3.40;
+      const CACHE_KEY = 'chiringuito_weather_v1';
+      const CACHE_TTL_MS = 30 * 60 * 1000; // 30 min
+
+      // WMO weather codes -> emoji + label
+      function describeCode(code) {
+        if (code === 0)                  return { emoji: '☀️', label: 'Ensoleillé' };
+        if (code === 1)                  return { emoji: '\u{1F324}️', label: 'Peu nuageux' };
+        if (code === 2)                  return { emoji: '⛅',           label: 'Partiellement nuageux' };
+        if (code === 3)                  return { emoji: '☁️',     label: 'Couvert' };
+        if (code === 45 || code === 48)  return { emoji: '\u{1F32B}️',  label: 'Brouillard' };
+        if (code >= 51 && code <= 57)    return { emoji: '\u{1F326}️',  label: 'Bruine' };
+        if (code >= 61 && code <= 67)    return { emoji: '\u{1F327}️',  label: 'Pluie' };
+        if (code >= 71 && code <= 77)    return { emoji: '❄️',     label: 'Neige' };
+        if (code >= 80 && code <= 82)    return { emoji: '\u{1F326}️',  label: 'Averses' };
+        if (code >= 95 && code <= 99)    return { emoji: '⛈️',     label: 'Orage' };
+        return { emoji: '\u{1F324}️', label: 'Variable' };
+      }
+
+      // Day label : Aujourd'hui / Demain / nom du jour
+      const DAY_NAMES = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+      function dayLabel(dateStr, offsetDays) {
+        if (offsetDays === 0) return "Aujourd'hui";
+        if (offsetDays === 1) return 'Demain';
+        const d = new Date(dateStr + 'T12:00:00');
+        return DAY_NAMES[d.getDay()];
+      }
+
+      function moodPhrase(maxTemp, code, windKmh) {
+        if (code >= 95) return 'Orage prévu — réservez en salle, on y est bien.';
+        if (code >= 61 && code <= 82) return 'Averse prévue — la salle reste cosy, et la carte aussi.';
+        if (windKmh >= 35) return 'Vent du large — privilégiez la salle ou les transats abrités.';
+        if (maxTemp >= 28 && code <= 2) return 'Pleine chaleur — réservez votre transat tôt.';
+        if (maxTemp >= 24 && code <= 3) return 'Plage parfaite — réservez tôt pour avoir votre place.';
+        if (maxTemp >= 20 && code <= 3) return 'Belle journée pour l\'apéro en terrasse.';
+        if (maxTemp >= 16) return 'Douceur méditerranéenne, parfait pour un déjeuner en bord de mer.';
+        return 'Bord de mer en mode contemplatif — le restaurant vous accueille.';
+      }
+
+      function readCache() {
+        try {
+          const raw = localStorage.getItem(CACHE_KEY);
+          if (!raw) return null;
+          const { ts, data } = JSON.parse(raw);
+          if (Date.now() - ts > CACHE_TTL_MS) return null;
+          return data;
+        } catch { return null; }
+      }
+      function writeCache(data) {
+        try { localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); } catch {}
+      }
+
+      async function fetchWeather() {
+        const weatherUrl =
+          'https://api.open-meteo.com/v1/forecast' +
+          '?latitude=' + LAT + '&longitude=' + LON +
+          '&current=temperature_2m,weather_code,wind_speed_10m' +
+          '&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max' +
+          '&timezone=Europe%2FParis&forecast_days=3';
+        const marineUrl =
+          'https://marine-api.open-meteo.com/v1/marine' +
+          '?latitude=' + LAT + '&longitude=' + LON +
+          '&daily=sea_surface_temperature_max&timezone=Europe%2FParis&forecast_days=1';
+
+        const [wRes, mRes] = await Promise.all([
+          fetch(weatherUrl).then((r) => (r.ok ? r.json() : null)),
+          fetch(marineUrl).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+        ]);
+        if (!wRes) throw new Error('Open-Meteo failed');
+
+        return {
+          current: {
+            temp: Math.round(wRes.current?.temperature_2m),
+            code: wRes.current?.weather_code,
+            wind: Math.round(wRes.current?.wind_speed_10m),
+          },
+          days: (wRes.daily?.time || []).map((dateStr, i) => ({
+            date: dateStr,
+            offset: i,
+            label: dayLabel(dateStr, i),
+            code: wRes.daily.weather_code[i],
+            tmin: Math.round(wRes.daily.temperature_2m_min[i]),
+            tmax: Math.round(wRes.daily.temperature_2m_max[i]),
+            windMax: Math.round(wRes.daily.wind_speed_10m_max[i]),
+          })),
+          sea: mRes?.daily?.sea_surface_temperature_max?.[0] != null
+            ? Math.round(mRes.daily.sea_surface_temperature_max[0])
+            : null,
+        };
+      }
+
+      function render(data) {
+        if (!data) return;
+        // Hero chip
+        const heroChip = document.getElementById('hero-weather');
+        if (heroChip && data.current && data.current.temp != null) {
+          const cur = describeCode(data.current.code);
+          document.getElementById('hero-weather-emoji').textContent = cur.emoji;
+          document.getElementById('hero-weather-temp').textContent = data.current.temp + '°';
+          heroChip.classList.remove('hidden');
+          heroChip.style.display = 'inline-flex';
+        }
+
+        // Main widget
+        const widget = document.getElementById('weather-widget');
+        const daysWrap = document.getElementById('weather-days');
+        if (!widget || !daysWrap) return;
+
+        daysWrap.innerHTML = data.days.slice(0, 3).map((d, i) => {
+          const desc = describeCode(d.code);
+          const isToday = i === 0;
+          return (
+            '<div class="' + (i > 0 ? 'border-l border-gray-100 ' : '') +
+            'px-2 py-4 text-center ' + (isToday ? 'bg-brand/5' : '') + '">' +
+              '<p class="text-[10px] font-semibold tracking-[0.18em] uppercase ' + (isToday ? 'text-brand' : 'text-text-light') + ' mb-1.5">' + d.label + '</p>' +
+              '<div class="text-3xl leading-none mb-1.5" title="' + desc.label + '">' + desc.emoji + '</div>' +
+              '<p class="text-[11px] text-text-light/80">' + desc.label + '</p>' +
+              '<p class="mt-1.5 text-sm font-semibold text-text tabular-nums">' + d.tmin + '° <span class="text-text-light/50">/</span> ' + d.tmax + '°</p>' +
+            '</div>'
+          );
+        }).join('');
+
+        // Sea, wind, mood (based on today)
+        const today = data.days[0] || {};
+        const seaEl = document.getElementById('weather-sea');
+        if (seaEl) seaEl.textContent = data.sea != null ? data.sea + '°' : '—';
+
+        const windEl = document.getElementById('weather-wind');
+        if (windEl) windEl.textContent = data.current?.wind != null ? data.current.wind + ' km/h' : '—';
+
+        const moodEl = document.getElementById('weather-mood');
+        if (moodEl) moodEl.textContent = moodPhrase(today.tmax || 20, today.code || 0, today.windMax || data.current?.wind || 0);
+
+        const updatedEl = document.getElementById('weather-updated');
+        if (updatedEl) {
+          const now = new Date();
+          updatedEl.textContent = 'mis à jour ' + now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        widget.classList.remove('hidden');
+      }
+
+      // Initial render from cache (if any) for instant display, then refresh in background
+      const cached = readCache();
+      if (cached) render(cached);
+
+      fetchWeather()
+        .then((data) => { writeCache(data); render(data); })
+        .catch(() => {/* silently hide on failure (widget reste hidden si pas de cache) */});
     })();
   </script>
 
