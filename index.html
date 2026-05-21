@@ -2647,22 +2647,23 @@
     (function () {
       // Vias-Plage approx
       const LAT = 43.30, LON = 3.40;
-      const CACHE_KEY = 'chiringuito_weather_v1';
+      const CACHE_KEY = 'chiringuito_weather_v2';
       const CACHE_TTL_MS = 30 * 60 * 1000; // 30 min
 
-      // WMO weather codes -> emoji + label
-      function describeCode(code) {
-        if (code === 0)                  return { emoji: '☀️', label: 'Ensoleillé' };
-        if (code === 1)                  return { emoji: '\u{1F324}️', label: 'Peu nuageux' };
-        if (code === 2)                  return { emoji: '⛅',           label: 'Partiellement nuageux' };
-        if (code === 3)                  return { emoji: '☁️',     label: 'Couvert' };
-        if (code === 45 || code === 48)  return { emoji: '\u{1F32B}️',  label: 'Brouillard' };
-        if (code >= 51 && code <= 57)    return { emoji: '\u{1F326}️',  label: 'Bruine' };
-        if (code >= 61 && code <= 67)    return { emoji: '\u{1F327}️',  label: 'Pluie' };
-        if (code >= 71 && code <= 77)    return { emoji: '❄️',     label: 'Neige' };
-        if (code >= 80 && code <= 82)    return { emoji: '\u{1F326}️',  label: 'Averses' };
-        if (code >= 95 && code <= 99)    return { emoji: '⛈️',     label: 'Orage' };
-        return { emoji: '\u{1F324}️', label: 'Variable' };
+      // Classification basee sur l'ENSOLEILLEMENT REEL (sunshine_duration en heures)
+      // + couverture nuageuse moyenne + proba de pluie. Le weather_code WMO d'Open-Meteo
+      // sur-classifie souvent en 'Couvert' alors que la realite locale est ensoleillee.
+      function classify({ sunHours, cloudPct, precipProb }) {
+        sunHours = sunHours || 0;
+        cloudPct = cloudPct || 0;
+        precipProb = precipProb || 0;
+        if (precipProb >= 60)             return { emoji: '\u{1F326}️', label: 'Quelques averses' };
+        if (sunHours >= 11)               return { emoji: '☀️',         label: 'Ensoleillé' };
+        if (sunHours >= 8)                return { emoji: '\u{1F324}️', label: 'Lumineux' };
+        if (precipProb >= 35)             return { emoji: '⛅',          label: 'Variable' };
+        if (cloudPct >= 70)               return { emoji: '⛅',          label: 'Doux et voilé' };
+        if (sunHours >= 5)                return { emoji: '\u{1F324}️', label: 'Belle clarté' };
+        return                              { emoji: '⛅',          label: 'Doux' };
       }
 
       // Day label : Aujourd'hui / Demain / nom du jour
@@ -2674,15 +2675,20 @@
         return DAY_NAMES[d.getDay()];
       }
 
-      function moodPhrase(maxTemp, code, windKmh) {
-        if (code >= 95) return 'Orage prévu — réservez en salle, on y est bien.';
-        if (code >= 61 && code <= 82) return 'Averse prévue — la salle reste cosy, et la carte aussi.';
-        if (windKmh >= 35) return 'Vent du large — privilégiez la salle ou les transats abrités.';
-        if (maxTemp >= 28 && code <= 2) return 'Pleine chaleur — réservez votre transat tôt.';
-        if (maxTemp >= 24 && code <= 3) return 'Plage parfaite — réservez tôt pour avoir votre place.';
-        if (maxTemp >= 20 && code <= 3) return 'Belle journée pour l\'apéro en terrasse.';
-        if (maxTemp >= 16) return 'Douceur méditerranéenne, parfait pour un déjeuner en bord de mer.';
-        return 'Bord de mer en mode contemplatif — le restaurant vous accueille.';
+      // Phrase contextuelle : TOUJOURS positive, on invite TOUJOURS a venir
+      // (jamais 'deconseille', jamais 'restez chez vous', jamais 'abrite' qui sonne anxiogene)
+      function moodPhrase({ maxTemp, sunHours, precipProb, wind }) {
+        maxTemp = maxTemp || 0;
+        sunHours = sunHours || 0;
+        precipProb = precipProb || 0;
+        wind = wind || 0;
+        if (precipProb >= 60) return 'La salle et la terrasse couverte vous régalent quoi qu\'il arrive.';
+        if (maxTemp >= 28 && sunHours >= 9) return 'Pleine chaleur — réservez votre transat tôt.';
+        if (maxTemp >= 24 && sunHours >= 9) return 'Plage parfaite — votre transat vous attend.';
+        if (maxTemp >= 22 && sunHours >= 6) return 'Belle journée pour l\'apéro les pieds dans le sable.';
+        if (maxTemp >= 20) return 'Douceur méditerranéenne — le déjeuner en bord de mer vous tend les bras.';
+        if (wind >= 30) return 'Brise du large agréable — réservez en terrasse ou en salle.';
+        return 'Le Chiringuito vous accueille toute la journée, les pieds dans le sable.';
       }
 
       function readCache() {
@@ -2699,12 +2705,15 @@
       }
 
       async function fetchWeather() {
+        // Modele meteofrance_seamless = AROME haute resolution (J0-J2) + ARPEGE (au-dela)
+        // Donnees plus fiables sur le littoral francais que le modele default 'best_match'.
         const weatherUrl =
           'https://api.open-meteo.com/v1/forecast' +
           '?latitude=' + LAT + '&longitude=' + LON +
-          '&current=temperature_2m,weather_code,wind_speed_10m' +
-          '&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max' +
-          '&timezone=Europe%2FParis&forecast_days=3';
+          '&current=temperature_2m,cloud_cover,wind_speed_10m,precipitation' +
+          '&daily=temperature_2m_max,temperature_2m_min,wind_speed_10m_max,cloud_cover_mean,precipitation_probability_max,sunshine_duration' +
+          '&timezone=Europe%2FParis&forecast_days=3' +
+          '&models=meteofrance_seamless';
         const marineUrl =
           'https://marine-api.open-meteo.com/v1/marine' +
           '?latitude=' + LAT + '&longitude=' + LON +
@@ -2719,17 +2728,20 @@
         return {
           current: {
             temp: Math.round(wRes.current?.temperature_2m),
-            code: wRes.current?.weather_code,
+            cloud: wRes.current?.cloud_cover,
             wind: Math.round(wRes.current?.wind_speed_10m),
+            rain: wRes.current?.precipitation,
           },
           days: (wRes.daily?.time || []).map((dateStr, i) => ({
             date: dateStr,
             offset: i,
             label: dayLabel(dateStr, i),
-            code: wRes.daily.weather_code[i],
             tmin: Math.round(wRes.daily.temperature_2m_min[i]),
             tmax: Math.round(wRes.daily.temperature_2m_max[i]),
             windMax: Math.round(wRes.daily.wind_speed_10m_max[i]),
+            cloudPct: wRes.daily.cloud_cover_mean[i],
+            precipProb: wRes.daily.precipitation_probability_max[i],
+            sunHours: (wRes.daily.sunshine_duration[i] || 0) / 3600,
           })),
           sea: mRes?.daily?.sea_surface_temperature_max?.[0] != null
             ? Math.round(mRes.daily.sea_surface_temperature_max[0])
@@ -2739,10 +2751,16 @@
 
       function render(data) {
         if (!data) return;
-        // Hero chip
+        const today = data.days[0] || {};
+
+        // Hero chip - classify l'instant present a partir des heures d'ensoleillement du jour
         const heroChip = document.getElementById('hero-weather');
         if (heroChip && data.current && data.current.temp != null) {
-          const cur = describeCode(data.current.code);
+          const cur = classify({
+            sunHours: today.sunHours,
+            cloudPct: data.current.cloud,
+            precipProb: today.precipProb,
+          });
           document.getElementById('hero-weather-emoji').textContent = cur.emoji;
           document.getElementById('hero-weather-temp').textContent = data.current.temp + '°';
           heroChip.classList.remove('hidden');
@@ -2755,7 +2773,7 @@
         if (!widget || !daysWrap) return;
 
         daysWrap.innerHTML = data.days.slice(0, 3).map((d, i) => {
-          const desc = describeCode(d.code);
+          const desc = classify({ sunHours: d.sunHours, cloudPct: d.cloudPct, precipProb: d.precipProb });
           const isToday = i === 0;
           return (
             '<div class="' + (i > 0 ? 'border-l border-gray-100 ' : '') +
@@ -2768,8 +2786,7 @@
           );
         }).join('');
 
-        // Sea, wind, mood (based on today)
-        const today = data.days[0] || {};
+        // Sea, wind, mood
         const seaEl = document.getElementById('weather-sea');
         if (seaEl) seaEl.textContent = data.sea != null ? data.sea + '°' : '—';
 
@@ -2777,7 +2794,12 @@
         if (windEl) windEl.textContent = data.current?.wind != null ? data.current.wind + ' km/h' : '—';
 
         const moodEl = document.getElementById('weather-mood');
-        if (moodEl) moodEl.textContent = moodPhrase(today.tmax || 20, today.code || 0, today.windMax || data.current?.wind || 0);
+        if (moodEl) moodEl.textContent = moodPhrase({
+          maxTemp: today.tmax,
+          sunHours: today.sunHours,
+          precipProb: today.precipProb,
+          wind: today.windMax || data.current?.wind,
+        });
 
         const updatedEl = document.getElementById('weather-updated');
         if (updatedEl) {
