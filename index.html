@@ -882,7 +882,7 @@
     <!-- OPENING SPOTLIGHT (juste sous le hero : affiche + son Spotify) -->
     <!-- ============================================ -->
     <section id="opening-spotlight" class="py-12 md:py-16 px-6 bg-gray-50 relative">
-      <div class="max-w-md md:max-w-3xl mx-auto">
+      <div class="max-w-md md:max-w-5xl mx-auto">
 
         <!-- Affiche cliquable - direct Yurplan. Portrait sur mobile, landscape sur desktop. -->
         <a href="https://yp.events/ed741201-ef61-4104-b748-61b580d1e47e/OPENING-PARTY-CHIRINGUITO-avec-BON-ENTENDEUR?from=https://www.chiringuito-vias.fr" target="_blank" rel="noopener noreferrer" class="block w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500 group reveal" aria-label="R&eacute;server vos places sur Yurplan pour l'Opening Party">
@@ -1168,27 +1168,25 @@
 
         <!-- Widget meteo + mer (Open-Meteo, alimentation cote client) -->
         <div id="weather-widget" class="max-w-xl mx-auto mb-12 reveal hidden">
-          <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
-            <!-- Header -->
-            <div class="flex items-center justify-between px-5 py-3 bg-gradient-to-r from-brand/5 to-brand/10 border-b border-gray-100">
-              <div class="flex items-center gap-2 text-brand">
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-                <p class="text-[11px] font-semibold tracking-[0.2em] uppercase">M&eacute;t&eacute;o Vias-Plage</p>
-              </div>
-              <p class="text-[10px] text-text-light/70" id="weather-updated"></p>
+          <!-- Header sobre, sans cadre -->
+          <div class="flex items-center justify-between mb-4 px-1">
+            <div class="flex items-center gap-2 text-brand">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+              <p class="text-[11px] font-semibold tracking-[0.2em] uppercase">M&eacute;t&eacute;o Vias-Plage</p>
             </div>
-            <!-- Daily forecast (3 days) -->
-            <div class="grid grid-cols-3" id="weather-days">
-              <!-- Days injected by JS -->
+            <p class="text-[10px] text-text-light/70" id="weather-updated"></p>
+          </div>
+          <!-- Daily forecast (3 days) - dividers verticaux seulement -->
+          <div class="grid grid-cols-3 mb-4" id="weather-days">
+            <!-- Days injected by JS -->
+          </div>
+          <!-- Sea + wind + contextual message -->
+          <div class="flex flex-wrap items-center justify-between gap-3 text-xs px-1">
+            <div class="flex items-center gap-4 text-text">
+              <span class="inline-flex items-center gap-1.5"><span class="text-base leading-none">&#127754;</span> <span>Mer <strong id="weather-sea" class="font-semibold text-brand">—</strong></span></span>
+              <span class="inline-flex items-center gap-1.5"><span class="text-base leading-none">&#128168;</span> <span>Vent <strong id="weather-wind" class="font-semibold text-brand">—</strong></span></span>
             </div>
-            <!-- Sea + wind + contextual message -->
-            <div class="px-5 py-4 bg-gray-50/70 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3 text-xs">
-              <div class="flex items-center gap-4 text-text">
-                <span class="inline-flex items-center gap-1.5"><span class="text-base leading-none">&#127754;</span> <span>Mer <strong id="weather-sea" class="font-semibold text-brand">—</strong></span></span>
-                <span class="inline-flex items-center gap-1.5"><span class="text-base leading-none">&#128168;</span> <span>Vent <strong id="weather-wind" class="font-semibold text-brand">—</strong></span></span>
-              </div>
-              <p class="text-text-light italic" id="weather-mood"></p>
-            </div>
+            <p class="text-text-light italic" id="weather-mood"></p>
           </div>
         </div>
 
