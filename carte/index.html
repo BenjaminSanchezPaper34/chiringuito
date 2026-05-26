@@ -40,6 +40,33 @@
       },
     }
   </script>
+
+  <!-- JSON-LD : WebPage + BreadcrumbList pour rich results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://chiringuito-vias.fr/carte/#webpage",
+        "url": "https://chiringuito-vias.fr/carte/",
+        "name": "Carte 2026 - Chiringuito Vias-Plage",
+        "description": "Carte du Chiringuito Vias-Plage 2026 : tapas, entrees, plats viande et poisson, desserts, menu enfant.",
+        "inLanguage": "fr-FR",
+        "isPartOf": {"@type": "WebSite", "name": "Chiringuito Vias-Plage", "url": "https://chiringuito-vias.fr/"},
+        "primaryImageOfPage": {"@type": "ImageObject", "url": "https://chiringuito-vias.fr/images/og-chiringuito.jpg"},
+        "about": {"@type": "Restaurant", "name": "Chiringuito Vias-Plage", "url": "https://chiringuito-vias.fr/"}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://chiringuito-vias.fr/"},
+          {"@type": "ListItem", "position": 2, "name": "Carte midi & soir", "item": "https://chiringuito-vias.fr/carte/"}
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body class="bg-white text-text font-sans antialiased">
