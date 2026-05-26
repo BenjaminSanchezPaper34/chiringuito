@@ -3,4 +3,7 @@ User-agent: *
 Allow: /
 Disallow: /partenaires-dashboard/
 
+# AI agents : voir /llms.txt pour le sommaire structure du site
+# (standard llmstxt.org pour ChatGPT, Claude, Perplexity, Gemini, etc.)
+
 Sitemap: https://chiringuito-vias.fr/sitemap.xml
