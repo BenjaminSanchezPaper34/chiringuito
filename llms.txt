@@ -7,6 +7,8 @@
 ## Pages principales
 
 - [Accueil](https://chiringuito-vias.fr/) : Présentation générale, hero vidéo, sections Bienvenue, carte, plage privée, soirées 2026 (Opening Party 6 juin avec Bon Entendeur), mur des artistes qui ont joué, météo locale, avis clients
+- [Réserver](https://chiringuito-vias.fr/reserver/) : Hub réservation — table restaurant (Zenchef), transat plage (Zenchef), billetterie Opening Party (Yurplan), réservation VIP par téléphone
+- [Opening Party 2026](https://chiringuito-vias.fr/opening-2026/) : Page événement dédiée samedi 6 juin avec Bon Entendeur — affiche officielle, billetterie Yurplan, infos pratiques, Spotify
 - [Carte midi & soir](https://chiringuito-vias.fr/carte/) : Tapas, entrées, plats viande et mer, desserts, menu enfant — servie aux 2 services
 - [Carte après-midi](https://chiringuito-vias.fr/carte/apres-midi/) : Salades, planches, gambas, coupes glaces Mövenpick, gaufres — servie entre les services
 - [Carte boissons](https://chiringuito-vias.fr/boissons/) : Cocktails, vins régionaux, champagnes, bières, apéritifs, softs
