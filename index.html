@@ -1166,8 +1166,31 @@
           <p class="text-sm md:text-base text-text-light tracking-wide reveal max-w-xl mx-auto">DJ sets, ambiance festival, cocktails les pieds dans le sable.<br class="hidden md:block"> Les rendez-vous incontournables de la saison 2026.</p>
         </div>
 
-        <!-- Cards grid (Opening passee retiree - reste les 2 soirees a venir) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 max-w-3xl mx-auto">
+        <!-- Cards grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+
+          <!-- Opening Party (terminee) -->
+          <article class="soiree-card group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(165deg, #FFF8F0 0%, #FFE9D4 50%, #FFC98A 100%);">
+            <div class="relative p-8 md:p-9 h-full flex flex-col">
+              <!-- Status badge : terminee -->
+              <div class="flex items-center justify-between mb-8">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 backdrop-blur-sm text-[10px] font-semibold uppercase tracking-widest text-orange-800/70">
+                  <span class="w-1.5 h-1.5 rounded-full bg-orange-800/40"></span>
+                  Termin&eacute;e
+                </span>
+                <span class="text-5xl md:text-6xl leading-none transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">&#x1F305;</span>
+              </div>
+              <!-- Date -->
+              <p class="text-xs font-medium tracking-[0.25em] uppercase text-orange-800/80 mb-1 whitespace-nowrap">Samedi 6 juin</p>
+              <h3 class="font-display text-3xl md:text-4xl text-orange-900 leading-tight mb-3 whitespace-nowrap">Opening Party</h3>
+              <p class="text-sm text-orange-900/70 leading-relaxed mb-8 flex-1">Lancement de saison avec <strong class="text-orange-950">Bon Entendeur</strong> en t&ecirc;te d'affiche. Une nuit inoubliable face mer&nbsp;: merci &agrave; tous&nbsp;!</p>
+              <!-- CTA : retrospective (pas de vente) -->
+              <a href="/opening-2026/" class="inline-flex items-center justify-center gap-2 w-full bg-orange-900/10 hover:bg-orange-900/20 text-orange-900 border border-orange-900/15 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 hover:gap-3">
+                Revivre la soir&eacute;e
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </a>
+            </div>
+          </article>
 
           <!-- Coachella Party -->
           <article class="soiree-card group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(165deg, #F0FFF4 0%, #C6F6D5 40%, #FBBF77 100%);">
