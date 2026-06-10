@@ -6,16 +6,16 @@
 
 ## Pages principales
 
-- [Accueil](https://chiringuito-vias.fr/) : Présentation générale, hero vidéo, sections Bienvenue, carte, plage privée, prochaines soirées 2026 (Coachella, Closing), mur des artistes qui ont joué (dont Bon Entendeur), météo locale, avis clients
-- [Réserver](https://chiringuito-vias.fr/reserver/) : Hub réservation — table restaurant (Zenchef), transat plage (Zenchef), réservation VIP par téléphone
-- [Opening Party 2026](https://chiringuito-vias.fr/opening-2026/) : Page rétrospective de la soirée d'ouverture du 6 juin avec Bon Entendeur (événement passé)
-- [Carte midi & soir](https://chiringuito-vias.fr/carte/) : Tapas, entrées, plats viande et mer, desserts, menu enfant — servie aux 2 services
-- [Carte après-midi](https://chiringuito-vias.fr/carte/apres-midi/) : Salades, planches, gambas, coupes glaces Mövenpick, gaufres — servie entre les services
-- [Carte boissons](https://chiringuito-vias.fr/boissons/) : Cocktails, vins régionaux, champagnes, bières, apéritifs, softs
+- [Accueil](https://www.chiringuito-vias.fr/) : Présentation générale, hero vidéo, sections Bienvenue, carte, plage privée, prochaines soirées 2026 (Coachella, Closing), mur des artistes qui ont joué (dont Bon Entendeur), météo locale, avis clients
+- [Réserver](https://www.chiringuito-vias.fr/reserver/) : Hub réservation — table restaurant (Zenchef), transat plage (Zenchef), réservation VIP par téléphone
+- [Opening Party 2026](https://www.chiringuito-vias.fr/opening-2026/) : Page rétrospective de la soirée d'ouverture du 6 juin avec Bon Entendeur (événement passé)
+- [Carte midi & soir](https://www.chiringuito-vias.fr/carte/) : Tapas, entrées, plats viande et mer, desserts, menu enfant — servie aux 2 services
+- [Carte après-midi](https://www.chiringuito-vias.fr/carte/apres-midi/) : Salades, planches, gambas, coupes glaces Mövenpick, gaufres — servie entre les services
+- [Carte boissons](https://www.chiringuito-vias.fr/boissons/) : Cocktails, vins régionaux, champagnes, bières, apéritifs, softs
 
 ## Événements 2026
 
-- **Opening Party** — A eu lieu le samedi 6 juin avec Bon Entendeur en tête d'affiche (terminée) · [Retour en images](https://chiringuito-vias.fr/opening-2026/)
+- **Opening Party** — A eu lieu le samedi 6 juin avec Bon Entendeur en tête d'affiche (terminée) · [Retour en images](https://www.chiringuito-vias.fr/opening-2026/)
 - **Coachella Party** — À venir (été 2026, date à définir). Ambiance festival, tenues colorées, DJ set nocturne face mer. Billetterie (Yurplan) à venir
 - **Closing Party** — À venir, fin septembre (date à confirmer)
 
@@ -47,5 +47,5 @@ DJ résidents et invités habituels : 7even, Demsko, Maxx Baty, Maxdee, Lunaa, M
 
 ## Optional
 
-- [Sitemap XML](https://chiringuito-vias.fr/sitemap.xml)
+- [Sitemap XML](https://www.chiringuito-vias.fr/sitemap.xml)
 - Inscription newsletter directement via le site (popup ou section dédiée) pour recevoir les dates de soirées et nouveautés saison

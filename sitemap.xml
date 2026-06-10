@@ -4,28 +4,28 @@
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 
   <url>
-    <loc>https://chiringuito-vias.fr/</loc>
+    <loc>https://www.chiringuito-vias.fr/</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
 
     <image:image>
-      <image:loc>https://chiringuito-vias.fr/images/og-chiringuito.jpg</image:loc>
+      <image:loc>https://www.chiringuito-vias.fr/images/og-chiringuito.jpg</image:loc>
       <image:title>Chiringuito - Plage priv&#233;e &#224; Vias-Plage</image:title>
       <image:caption>Restaurant de plage Chiringuito, plage priv&#233;e face &#224; la M&#233;diterran&#233;e &#224; Vias-Plage, H&#233;rault</image:caption>
       <image:geo_location>Vias-Plage, H&#233;rault, France</image:geo_location>
     </image:image>
     <image:image>
-      <image:loc>https://chiringuito-vias.fr/images/logo-blanc-chiringuito.svg</image:loc>
+      <image:loc>https://www.chiringuito-vias.fr/images/logo-blanc-chiringuito.svg</image:loc>
       <image:title>Logo Chiringuito Vias-Plage</image:title>
     </image:image>
 
     <!-- Video Hero : ambiance plage -->
     <video:video>
-      <video:thumbnail_loc>https://chiringuito-vias.fr/images/og-chiringuito.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://www.chiringuito-vias.fr/images/og-chiringuito.jpg</video:thumbnail_loc>
       <video:title>Chiringuito Vias-Plage - Ambiance plage priv&#233;e</video:title>
       <video:description>D&#233;couvrez l'ambiance du Chiringuito, plage priv&#233;e &#224; Vias-Plage. Restaurant, bar, transats face &#224; la M&#233;diterran&#233;e.</video:description>
-      <video:content_loc>https://chiringuito-vias.fr/assets/mainvideo-chiringuito.mp4</video:content_loc>
+      <video:content_loc>https://www.chiringuito-vias.fr/assets/mainvideo-chiringuito.mp4</video:content_loc>
       <video:duration>19</video:duration>
       <video:family_friendly>yes</video:family_friendly>
       <video:live>no</video:live>
@@ -38,10 +38,10 @@
 
     <!-- Reel 1 -->
     <video:video>
-      <video:thumbnail_loc>https://chiringuito-vias.fr/assets/reels/reel-1-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://www.chiringuito-vias.fr/assets/reels/reel-1-thumb.jpg</video:thumbnail_loc>
       <video:title>Chiringuito Vias - Moment d'&#233;t&#233;</video:title>
       <video:description>Reel Chiringuito Vias-Plage : moments captur&#233;s au restaurant de plage face &#224; la M&#233;diterran&#233;e.</video:description>
-      <video:content_loc>https://chiringuito-vias.fr/assets/reels/reel-1.mp4</video:content_loc>
+      <video:content_loc>https://www.chiringuito-vias.fr/assets/reels/reel-1.mp4</video:content_loc>
       <video:duration>22</video:duration>
       <video:family_friendly>yes</video:family_friendly>
       <video:live>no</video:live>
@@ -53,10 +53,10 @@
 
     <!-- Reel 2 -->
     <video:video>
-      <video:thumbnail_loc>https://chiringuito-vias.fr/assets/reels/reel-2-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://www.chiringuito-vias.fr/assets/reels/reel-2-thumb.jpg</video:thumbnail_loc>
       <video:title>Chiringuito Vias - Cuisine &amp; cocktails</video:title>
       <video:description>Reel Chiringuito Vias-Plage : la cuisine raffin&#233;e et les cocktails de notre restaurant de plage.</video:description>
-      <video:content_loc>https://chiringuito-vias.fr/assets/reels/reel-2.mp4</video:content_loc>
+      <video:content_loc>https://www.chiringuito-vias.fr/assets/reels/reel-2.mp4</video:content_loc>
       <video:duration>17</video:duration>
       <video:family_friendly>yes</video:family_friendly>
       <video:live>no</video:live>
@@ -68,10 +68,10 @@
 
     <!-- Reel 3 -->
     <video:video>
-      <video:thumbnail_loc>https://chiringuito-vias.fr/assets/reels/reel-3-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://www.chiringuito-vias.fr/assets/reels/reel-3-thumb.jpg</video:thumbnail_loc>
       <video:title>Chiringuito Vias - Plage &amp; transats</video:title>
       <video:description>Reel Chiringuito Vias-Plage : transats, plage priv&#233;e et atmosph&#232;re m&#233;diterran&#233;enne.</video:description>
-      <video:content_loc>https://chiringuito-vias.fr/assets/reels/reel-3.mp4</video:content_loc>
+      <video:content_loc>https://www.chiringuito-vias.fr/assets/reels/reel-3.mp4</video:content_loc>
       <video:duration>23</video:duration>
       <video:family_friendly>yes</video:family_friendly>
       <video:live>no</video:live>
@@ -84,56 +84,56 @@
   </url>
 
   <url>
-    <loc>https://chiringuito-vias.fr/reserver/</loc>
+    <loc>https://www.chiringuito-vias.fr/reserver/</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://chiringuito-vias.fr/reserver/table/</loc>
+    <loc>https://www.chiringuito-vias.fr/reserver/table/</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
 
   <url>
-    <loc>https://chiringuito-vias.fr/reserver/bain-de-soleil/</loc>
+    <loc>https://www.chiringuito-vias.fr/reserver/bain-de-soleil/</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
 
   <url>
-    <loc>https://chiringuito-vias.fr/opening-2026/</loc>
+    <loc>https://www.chiringuito-vias.fr/opening-2026/</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://chiringuito-vias.fr/carte/</loc>
+    <loc>https://www.chiringuito-vias.fr/carte/</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://chiringuito-vias.fr/carte/apres-midi/</loc>
+    <loc>https://www.chiringuito-vias.fr/carte/apres-midi/</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://chiringuito-vias.fr/boissons/</loc>
+    <loc>https://www.chiringuito-vias.fr/boissons/</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://chiringuito-vias.fr/assets/menunumerique-chiringuito.pdf</loc>
+    <loc>https://www.chiringuito-vias.fr/assets/menunumerique-chiringuito.pdf</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
