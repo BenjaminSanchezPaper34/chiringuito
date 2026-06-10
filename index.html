@@ -1707,6 +1707,26 @@
     </div>
   </div>
 
+  <!-- Popup Evenement : prioritaire sur le popup newsletter tant que la soiree est a venir (cf JS : ACTIVE_EVENT) -->
+  <div id="event-popup" class="fixed inset-0 z-[100] hidden items-center justify-center px-4" role="dialog" aria-label="Coachella Party - dimanche 21 juin, billetterie" aria-modal="true">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="event-popup-backdrop"></div>
+    <div class="relative bg-white rounded-3xl shadow-2xl max-w-2xl w-full overflow-hidden transform translate-y-4 opacity-0 transition-all duration-500" id="event-popup-card">
+      <button type="button" id="event-popup-close" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/35 hover:bg-black/60 backdrop-blur-sm flex items-center justify-center text-white transition shadow-lg" aria-label="Fermer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <a href="https://ypl.me/RM0" target="_blank" rel="noopener noreferrer" class="block" aria-label="Reserver pour la Coachella Party sur Yurplan">
+        <img src="images/coachella-popup.jpg" alt="Coachella Party au Chiringuito - dimanche 21 juin des 18h, soir de la Fete de la Musique" class="w-full h-auto block" width="1400" height="517" />
+      </a>
+      <div class="p-5 sm:p-6">
+        <a href="https://ypl.me/RM0" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-gradient-to-r from-lime-500 via-amber-400 to-orange-500 text-white px-6 py-3.5 rounded-full text-sm font-bold uppercase tracking-widest hover:gap-3 hover:scale-[1.02] shadow-md hover:shadow-lg transition-all duration-300">
+          R&eacute;server ma place
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        <p class="text-center text-xs text-gray-400 mt-3">Billetterie s&eacute;curis&eacute;e Yurplan &middot; dimanche 21 juin, d&egrave;s 18h</p>
+      </div>
+    </div>
+  </div>
+
   <!-- ============================================ -->
   <!-- SCRIPTS -->
   <!-- ============================================ -->
@@ -2061,12 +2081,54 @@
         }
       }
 
+      // ---- Popup Evenement (prioritaire sur la newsletter tant que la soiree est a venir) ----
+      // Pour un nouvel event : mettre a jour ACTIVE_EVENT (key + until) + l'image/lien du #event-popup.
+      // Hors saison / aucun event : mettre ACTIVE_EVENT = null -> le popup newsletter reprend automatiquement.
+      const ACTIVE_EVENT = { key: 'coachella_2026', until: new Date('2026-06-22T03:00:00+02:00') };
+      function eventIsActive() {
+        try { return !!ACTIVE_EVENT && new Date() < ACTIVE_EVENT.until; } catch { return false; }
+      }
+      const eventPopup = document.getElementById('event-popup');
+      const eventCard = document.getElementById('event-popup-card');
+      const EVENT_STORAGE_KEY = 'chiringuito_event_state';
+      const EVENT_DISMISS_DAYS = 3;
+      function eventShouldShow() {
+        if (!eventIsActive() || !eventPopup) return false;
+        try {
+          const s = JSON.parse(localStorage.getItem(EVENT_STORAGE_KEY) || '{}');
+          if (s.key === ACTIVE_EVENT.key && s.dismissedAt && (Date.now() - s.dismissedAt) < EVENT_DISMISS_DAYS * 86400000) return false;
+        } catch {}
+        return true;
+      }
+      function openEventPopup() {
+        if (!eventShouldShow()) return;
+        eventPopup.classList.remove('hidden');
+        eventPopup.classList.add('flex');
+        requestAnimationFrame(() => {
+          eventCard.classList.remove('translate-y-4', 'opacity-0');
+          eventCard.classList.add('translate-y-0', 'opacity-100');
+        });
+      }
+      function closeEventPopup() {
+        eventCard.classList.add('translate-y-4', 'opacity-0');
+        eventCard.classList.remove('translate-y-0', 'opacity-100');
+        setTimeout(() => { eventPopup.classList.add('hidden'); eventPopup.classList.remove('flex'); }, 400);
+        try { localStorage.setItem(EVENT_STORAGE_KEY, JSON.stringify({ key: ACTIVE_EVENT.key, dismissedAt: Date.now() })); } catch {}
+      }
+      document.getElementById('event-popup-close')?.addEventListener('click', closeEventPopup);
+      document.getElementById('event-popup-backdrop')?.addEventListener('click', closeEventPopup);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && eventPopup && !eventPopup.classList.contains('hidden')) closeEventPopup();
+      });
+
       // Trigger: 25 sec OR scroll 60% of page (whichever comes first)
+      // Soiree a venir -> popup EVENEMENT ; sinon -> popup NEWSLETTER.
       let triggered = false;
       const triggerOnce = () => {
         if (triggered) return;
         triggered = true;
-        openPopup();
+        if (eventIsActive()) openEventPopup();
+        else openPopup();
       };
       setTimeout(triggerOnce, 25000);
       window.addEventListener('scroll', () => {
