@@ -640,14 +640,6 @@
     }
     #hero-logo { animation: glow-pulse 3s ease-in-out infinite; }
 
-    /* CTA hero (galerie photos) : glow chaud orange/ambre */
-    @keyframes hero-cta-glow {
-      0%, 100% { box-shadow: 0 8px 24px rgba(249,115,22,0.30), 0 0 0 0 rgba(245,158,11,0); }
-      50%      { box-shadow: 0 10px 30px rgba(249,115,22,0.45), 0 0 26px 4px rgba(245,158,11,0.30); }
-    }
-    .hero-glow-cta { animation: hero-cta-glow 2.8s ease-in-out infinite; }
-    @media (prefers-reduced-motion: reduce) { .hero-glow-cta { animation: none; } }
-
 
     /* Split text animation */
     .split-char { display: inline-block; opacity: 0; transform: translateY(20px); }
@@ -808,14 +800,6 @@
           <span class="opacity-50">&middot;</span>
           <span class="opacity-70">Vias-Plage</span>
         </div>
-
-        <!-- CTA hero : galerie photos de l'Opening (gradient sunset + glow). Lien externe Paper34. -->
-        <a href="https://www.paper34.fr/galerie/chiringuito-opening" target="_blank" rel="noopener noreferrer" class="hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-500 text-white px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
-          <span class="text-lg leading-none">&#x1F4F8;</span>
-          <span class="sm:hidden">Photos de l'Opening</span>
-          <span class="hidden sm:inline">Voir les photos de l'Opening</span>
-          <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
 
         <!-- Reservation CTAs -->
         <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-4">
