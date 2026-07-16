@@ -287,6 +287,34 @@
       },
       {
         "@type": "Event",
+        "name": "Aperol Pop-Up - Chiringuito Vias",
+        "description": "L'Aperol Pop-Up s'installe au Chiringuito Vias-Plage le vendredi 24 juillet 2026 des 19h : Joachim Pastor et Chambre Noire aux platines, animations exclusives face mer. Entree gratuite, preventes sur Shotgun.",
+        "startDate": "2026-07-24T19:00:00+02:00",
+        "endDate": "2026-07-25T02:00:00+02:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "isAccessibleForFree": true,
+        "location": {
+          "@type": "Place",
+          "name": "Chiringuito Vias-Plage",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Plage de Farinette",
+            "addressLocality": "Vias",
+            "postalCode": "34450",
+            "addressRegion": "Occitanie",
+            "addressCountry": "FR"
+          }
+        },
+        "image": "https://www.chiringuito-vias.fr/images/og-chiringuito.jpg",
+        "performer": [
+          {"@type": "Person", "name": "Joachim Pastor"},
+          {"@type": "MusicGroup", "name": "Chambre Noire"}
+        ],
+        "organizer": {"@type": "Organization", "name": "Chiringuito Vias", "url": "https://www.chiringuito-vias.fr"}
+      },
+      {
+        "@type": "Event",
         "name": "Closing Party 2026 - Chiringuito Vias",
         "description": "Soiree de cloture de saison du Chiringuito Vias-Plage. Nuit memorable, cocktails et spectacle au coucher du soleil. Date a confirmer (fin septembre 2026).",
         "startDate": "2026-09-26T19:00:00+02:00",
@@ -833,11 +861,11 @@
           <span class="opacity-70">Vias-Plage</span>
         </div>
 
-        <!-- CTA hero : galerie photos de la Reggaeton Fiesta (gradient fiesta + glow). Lien externe Paper34. -->
-        <a href="https://www.paper34.fr/galerie/chiringuito-reggaeton" target="_blank" rel="noopener noreferrer" class="hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-white px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
-          <span class="text-lg leading-none">&#x1F4F8;</span>
-          <span class="sm:hidden">Photos de la Reggaeton</span>
-          <span class="hidden sm:inline">Voir les photos de la Reggaeton Fiesta</span>
+        <!-- CTA hero : Aperol Pop-Up - vendredi 24 juillet (gradient Aperol + glow). Scroll vers la card ; preventes Shotgun a venir. -->
+        <a href="#soirees" class="hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-orange-400 via-orange-500 to-red-500 text-white px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
+          <span class="text-lg leading-none">&#x1F34A;</span>
+          <span class="sm:hidden">Aperol Pop-Up &middot; 24 juil.</span>
+          <span class="hidden sm:inline">Aperol Pop-Up &middot; vendredi 24 juillet</span>
           <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
 
@@ -1273,6 +1301,30 @@
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
               <p class="text-[10px] text-white/60 text-center mt-3 tracking-widest uppercase">Galerie compl&egrave;te &middot; t&eacute;l&eacute;chargement libre</p>
+            </div>
+          </article>
+
+          <!-- Aperol Pop-Up -->
+          <article class="soiree-card group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(160deg, #FF9E2C 0%, #FF6A13 48%, #E63E00 100%);">
+            <div class="relative p-8 md:p-9 h-full flex flex-col">
+              <!-- Status badge : prochaine soiree -->
+              <div class="flex items-center justify-between mb-8">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-[10px] font-semibold uppercase tracking-widest text-white/95">
+                  <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                  Prochaine soir&eacute;e
+                </span>
+                <span class="text-5xl md:text-6xl leading-none transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">&#x1F34A;</span>
+              </div>
+              <!-- Date -->
+              <p class="text-xs font-medium tracking-[0.25em] uppercase text-white/85 mb-1 whitespace-nowrap">Vendredi 24 juillet</p>
+              <h3 class="font-display text-3xl md:text-4xl text-white leading-tight mb-3 whitespace-nowrap">Aperol Pop-Up</h3>
+              <p class="text-sm text-white/90 leading-relaxed mb-8 flex-1">L'Aperol Pop-Up s'installe au Chiringuito avec <strong class="text-white">Joachim Pastor</strong> et <strong class="text-white">Chambre Noire</strong> aux platines, d&egrave;s 19h. Spritz face mer et animations exclusives. Entr&eacute;e gratuite.</p>
+              <!-- CTA : preventes Shotgun a venir -> on capte les interesses via la newsletter -->
+              <button type="button" onclick="window.openNewsletterPopup &amp;&amp; window.openNewsletterPopup()" class="inline-flex items-center justify-center gap-2 w-full bg-white text-[#E63E00] px-5 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:gap-3 hover:scale-[1.02] shadow-md hover:shadow-lg transition-all duration-300">
+                M'avertir de l'ouverture
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </button>
+              <p class="text-[10px] text-white/75 text-center mt-3 tracking-widest uppercase">Entr&eacute;e gratuite &middot; pr&eacute;ventes Shotgun tr&egrave;s bient&ocirc;t</p>
             </div>
           </article>
 
