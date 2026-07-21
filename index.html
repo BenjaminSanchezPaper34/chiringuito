@@ -1333,6 +1333,9 @@
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
               <p class="text-[10px] text-white/75 text-center mt-3 tracking-widest uppercase">Entr&eacute;e gratuite &middot; animations exclusives en pr&eacute;vente</p>
+              <!-- VIP places limitees : RETIRER ce bloc quand complet -->
+              <a href="tel:+33646472945" class="block text-center text-xs font-semibold text-white mt-2 hover:text-white/80 transition-colors">&#x1F973; R&eacute;servation VIP au <span class="underline decoration-white/40 underline-offset-2 whitespace-nowrap">06&nbsp;46&nbsp;47&nbsp;29&nbsp;45</span></a>
+              <!-- /VIP -->
             </div>
           </article>
 
@@ -1820,7 +1823,7 @@
   </div>
 
   <!-- Popup Evenement : prioritaire sur le popup newsletter tant que la soiree est a venir (cf JS : ACTIVE_EVENT) -->
-  <div id="event-popup" class="fixed inset-0 z-[100] hidden items-center justify-center px-4" role="dialog" aria-label="Aperol Pop-Up - vendredi 24 juillet, preventes" aria-modal="true">
+  <div id="event-popup" class="fixed inset-0 z-[100] hidden items-center justify-center px-4" role="dialog" aria-label="Aperol Pop-Up - vendredi 24 juillet, preventes et reservation VIP" aria-modal="true">
     <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="event-popup-backdrop"></div>
     <div class="relative bg-white rounded-3xl shadow-2xl max-w-sm sm:max-w-md w-full overflow-hidden transform translate-y-4 opacity-0 transition-all duration-500" id="event-popup-card">
       <button type="button" id="event-popup-close" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/35 hover:bg-black/60 backdrop-blur-sm flex items-center justify-center text-white transition shadow-lg" aria-label="Fermer">
@@ -1834,6 +1837,11 @@
           Pr&eacute;ventes Shotgun
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
+        <!-- VIP places limitees : RETIRER ce bloc quand complet -->
+        <a href="tel:+33646472945" class="mt-2.5 inline-flex items-center justify-center gap-2 w-full bg-orange-50 border-2 border-orange-500/40 text-[#E63E00] px-6 py-3 rounded-full text-sm font-bold hover:bg-orange-100 hover:border-orange-500/60 hover:scale-[1.02] transition-all duration-300">
+          &#x1F973; R&eacute;servation VIP au <span class="whitespace-nowrap">06&nbsp;46&nbsp;47&nbsp;29&nbsp;45</span>
+        </a>
+        <!-- /VIP -->
         <p class="text-center text-xs text-gray-400 mt-3">Entr&eacute;e gratuite &middot; vendredi 24 juillet, d&egrave;s 19h</p>
       </div>
     </div>
