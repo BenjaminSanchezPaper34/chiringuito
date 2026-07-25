@@ -311,15 +311,7 @@
           {"@type": "Person", "name": "Joachim Pastor"},
           {"@type": "MusicGroup", "name": "Chambre Noire"}
         ],
-        "organizer": {"@type": "Organization", "name": "Chiringuito Vias", "url": "https://www.chiringuito-vias.fr"},
-        "offers": {
-          "@type": "Offer",
-          "url": "https://shotgun.live/fr/events/aperol-pop-up-edition-n-2-vias-plage-24-juillet-2026",
-          "availability": "https://schema.org/InStock",
-          "price": "0",
-          "priceCurrency": "EUR",
-          "validFrom": "2026-07-15T00:00:00+02:00"
-        }
+        "organizer": {"@type": "Organization", "name": "Chiringuito Vias", "url": "https://www.chiringuito-vias.fr"}
       },
       {
         "@type": "Event",
@@ -700,14 +692,6 @@
     }
     #hero-logo { animation: glow-pulse 3s ease-in-out infinite; }
 
-    /* CTA hero (galerie photos) : glow chaud orange/rose */
-    @keyframes hero-cta-glow {
-      0%, 100% { box-shadow: 0 8px 24px rgba(249,115,22,0.30), 0 0 0 0 rgba(244,63,94,0); }
-      50%      { box-shadow: 0 10px 30px rgba(249,115,22,0.45), 0 0 26px 4px rgba(244,63,94,0.28); }
-    }
-    .hero-glow-cta { animation: hero-cta-glow 2.8s ease-in-out infinite; }
-    @media (prefers-reduced-motion: reduce) { .hero-glow-cta { animation: none; } }
-
 
     /* Split text animation */
     .split-char { display: inline-block; opacity: 0; transform: translateY(20px); }
@@ -868,14 +852,6 @@
           <span class="opacity-50">&middot;</span>
           <span class="opacity-70">Vias-Plage</span>
         </div>
-
-        <!-- CTA hero : Aperol Pop-Up - vendredi 24 juillet (gradient Aperol + glow). Lien direct preventes Shotgun. -->
-        <a href="https://shotgun.live/fr/events/aperol-pop-up-edition-n-2-vias-plage-24-juillet-2026?utm_source=aperol-pop-up-edition-n-2-chiringuito-24-juillet-2026" target="_blank" rel="noopener noreferrer" class="hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-orange-400 via-orange-500 to-red-500 text-white px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
-          <span class="text-lg leading-none">&#x1F34A;</span>
-          <span class="sm:hidden">Aperol Pop-Up &middot; 24 juil.</span>
-          <span class="hidden sm:inline">Aperol Pop-Up &middot; vendredi 24 juillet</span>
-          <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
 
         <!-- Reservation CTAs -->
         <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-4">
@@ -1315,27 +1291,24 @@
           <!-- Aperol Pop-Up -->
           <article class="soiree-card group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(160deg, #FF9E2C 0%, #FF6A13 48%, #E63E00 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
-              <!-- Status badge : prochaine soiree -->
+              <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-[10px] font-semibold uppercase tracking-widest text-white/95">
-                  <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
-                  Prochaine soir&eacute;e
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-[10px] font-semibold uppercase tracking-widest text-white/70">
+                  <span class="w-1.5 h-1.5 rounded-full bg-white/40"></span>
+                  Termin&eacute;e
                 </span>
                 <span class="text-5xl md:text-6xl leading-none transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">&#x1F34A;</span>
               </div>
               <!-- Date -->
               <p class="text-xs font-medium tracking-[0.25em] uppercase text-white/85 mb-1 whitespace-nowrap">Vendredi 24 juillet</p>
               <h3 class="font-display text-3xl md:text-4xl text-white leading-tight mb-3 whitespace-nowrap">Aperol Pop-Up</h3>
-              <p class="text-sm text-white/90 leading-relaxed mb-8 flex-1">L'Aperol Pop-Up s'installe au Chiringuito avec <strong class="text-white">Joachim Pastor</strong> et <strong class="text-white">Chambre Noire</strong> aux platines, d&egrave;s 19h. Spritz face mer et animations exclusives. Entr&eacute;e gratuite.</p>
-              <!-- CTA : preventes Shotgun -->
-              <a href="https://shotgun.live/fr/events/aperol-pop-up-edition-n-2-vias-plage-24-juillet-2026?utm_source=aperol-pop-up-edition-n-2-chiringuito-24-juillet-2026" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-white text-[#E63E00] px-5 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:gap-3 hover:scale-[1.02] shadow-md hover:shadow-lg transition-all duration-300">
-                Pr&eacute;ventes Shotgun
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-              </a>
-              <p class="text-[10px] text-white/75 text-center mt-3 tracking-widest uppercase">Entr&eacute;e gratuite &middot; animations exclusives en pr&eacute;vente</p>
-              <!-- VIP places limitees : RETIRER ce bloc quand complet -->
-              <a href="tel:+33646472945" class="block text-center text-xs font-semibold text-white mt-2 hover:text-white/80 transition-colors">&#x1F973; R&eacute;servation VIP au <span class="underline decoration-white/40 underline-offset-2 whitespace-nowrap">06&nbsp;46&nbsp;47&nbsp;29&nbsp;45</span></a>
-              <!-- /VIP -->
+              <p class="text-sm text-white/90 leading-relaxed mb-8 flex-1">L'Aperol Pop-Up s'est install&eacute; au Chiringuito avec <strong class="text-white">Joachim Pastor</strong> et <strong class="text-white">Chambre Noire</strong> aux platines. Spritz face mer et animations exclusives&nbsp;: salud &agrave; tous&nbsp;!</p>
+              <!-- CTA : photos a venir (galerie pas encore prete) -->
+              <button type="button" disabled aria-disabled="true" class="inline-flex items-center justify-center gap-2 w-full bg-white/15 text-white/50 border border-white/15 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest cursor-not-allowed">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Voir les photos
+              </button>
+              <p class="text-[10px] text-white/60 text-center mt-3 tracking-widest uppercase">Bient&ocirc;t disponible</p>
             </div>
           </article>
 
@@ -1861,11 +1834,6 @@
           Pr&eacute;ventes Shotgun
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
-        <!-- VIP places limitees : RETIRER ce bloc quand complet -->
-        <a href="tel:+33646472945" class="mt-2.5 inline-flex items-center justify-center gap-2 w-full bg-orange-50 border-2 border-orange-500/40 text-[#E63E00] px-6 py-3 rounded-full text-sm font-bold hover:bg-orange-100 hover:border-orange-500/60 hover:scale-[1.02] transition-all duration-300">
-          &#x1F973; R&eacute;servation VIP au <span class="whitespace-nowrap">06&nbsp;46&nbsp;47&nbsp;29&nbsp;45</span>
-        </a>
-        <!-- /VIP -->
         <p class="text-center text-xs text-gray-400 mt-3">Entr&eacute;e gratuite &middot; vendredi 24 juillet, d&egrave;s 19h</p>
       </div>
     </div>
@@ -2229,7 +2197,7 @@
       // Pour un nouvel event : mettre a jour ACTIVE_EVENT (key + until) + l'image/lien du #event-popup.
       // alwaysShow: true -> le popup se re-affiche a CHAQUE visite (ignore la fermeture precedente).
       // Hors saison / aucun event : mettre ACTIVE_EVENT = null -> le popup newsletter reprend automatiquement.
-      const ACTIVE_EVENT = { key: 'aperol_2026', until: new Date('2026-07-25T03:00:00+02:00'), alwaysShow: true };
+      const ACTIVE_EVENT = null;
       function eventIsActive() {
         try { return !!ACTIVE_EVENT && new Date() < ACTIVE_EVENT.until; } catch { return false; }
       }
