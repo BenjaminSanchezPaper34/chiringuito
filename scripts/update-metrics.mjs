@@ -531,9 +531,20 @@ async function main() {
     };
   }
 
-  const tripAdvisorReview = reviews.find((item) => item.supplier === 'trip-advisor') || null;
-  const googleReview = reviews.find((item) => item.supplier === 'google') || null;
-  const facebookReview = reviews.find((item) => item.supplier === 'facebook') || null;
+  let tripAdvisorReview = reviews.find((item) => item.supplier === 'trip-advisor') || null;
+  let googleReview = reviews.find((item) => item.supplier === 'google') || null;
+  let facebookReview = reviews.find((item) => item.supplier === 'facebook') || null;
+
+  // Garde-fou anti-regression : un compteur d'avis ne retombe pas a 0.
+  // Si une source renvoie 0/null (scrape rate), on conserve la derniere valeur connue (marquee stale).
+  const keepLastReviews = (fresh, prevRating, prevReviews, prevUrl) => {
+    if (fresh && Number.isFinite(fresh.reviews) && fresh.reviews > 0) return fresh;
+    if (!Number.isFinite(prevReviews) || prevReviews <= 0) return fresh;
+    return { ...(fresh || {}), rating: prevRating ?? null, reviews: prevReviews, uri: fresh?.uri || prevUrl || null, stale: true };
+  };
+  tripAdvisorReview = keepLastReviews(tripAdvisorReview, existing?.platforms?.tripadvisor?.rating, existing?.platforms?.tripadvisor?.reviews, existing?.platforms?.tripadvisor?.url);
+  googleReview = keepLastReviews(googleReview, existing?.platforms?.google?.rating, existing?.platforms?.google?.reviews, existing?.platforms?.google?.url);
+  facebookReview = keepLastReviews(facebookReview, existing?.platforms?.facebook?.reviewRating, existing?.platforms?.facebook?.reviews, existing?.platforms?.facebook?.url);
 
   const totalAudience = sumNumbers([instagram.followers, facebook.likes, tiktok.followers]);
   const totalReviews = sumNumbers([
