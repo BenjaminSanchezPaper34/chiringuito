@@ -680,6 +680,46 @@ async function main() {
 
   console.log(`Metrics updated -> ${OUTPUT_PATH}`);
   console.log(`Inline JS      -> ${INLINE_PATH}`);
+
+  // ---- Synchro GEO : repercute les chiffres frais dans llms.txt (lu par les IA)
+  // et dans l'aggregateRating du schema JSON-LD de index.html. ----
+  const frNum = (n) => (Number.isFinite(n) ? n.toLocaleString('fr-FR').replace(/[  ]/g, ' ') : null);
+  const kpis = merged.kpis || {};
+  const pf = merged.platforms || {};
+  try {
+    const LLMS_PATH = path.join(ROOT, 'llms.txt');
+    let llms = await fs.readFile(LLMS_PATH, 'utf8');
+    if (Number.isFinite(kpis.totalReviews) && kpis.totalReviews > 0 && Number.isFinite(kpis.averageRating)) {
+      llms = llms.replace(
+        /- \*\*Note moyenne pondérée\*\* : .*/,
+        `- **Note moyenne pondérée** : ${kpis.averageRating.toFixed(1).replace('.', ',')} / 5 sur ${frNum(kpis.totalReviews)} avis (Google Reviews, TripAdvisor, Facebook)`
+      );
+    }
+    const [ig, fb, tk] = [pf.instagram?.followers, pf.facebook?.likes, pf.tiktok?.followers];
+    if ([ig, fb, tk].every(Number.isFinite)) {
+      llms = llms.replace(
+        /- \*\*Audience sociale\*\* : .*/,
+        `- **Audience sociale** : ${frNum(ig)} abonnés Instagram, ${frNum(fb)} fans Facebook, ${frNum(tk)} abonnés TikTok`
+      );
+    }
+    await fs.writeFile(LLMS_PATH, llms, 'utf8');
+    console.log('llms.txt sync  -> stats avis + audience mises a jour');
+  } catch (error) {
+    console.warn(`llms.txt sync ignoree : ${error.message}`);
+  }
+  try {
+    if (Number.isFinite(kpis.totalReviews) && kpis.totalReviews > 0 && Number.isFinite(kpis.averageRating)) {
+      const INDEX_PATH = path.join(ROOT, 'index.html');
+      let idx = await fs.readFile(INDEX_PATH, 'utf8');
+      idx = idx
+        .replace(/("aggregateRating":[^}]*"ratingValue": ")[0-9.]+(")/s, `$1${kpis.averageRating.toFixed(1)}$2`)
+        .replace(/("aggregateRating":[^}]*"ratingCount": ")\d+(")/s, `$1${kpis.totalReviews}$2`);
+      await fs.writeFile(INDEX_PATH, idx, 'utf8');
+      console.log('index.html sync -> aggregateRating mis a jour');
+    }
+  } catch (error) {
+    console.warn(`index.html sync ignoree : ${error.message}`);
+  }
 }
 
 main().catch((error) => {
