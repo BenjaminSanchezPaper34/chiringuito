@@ -1,4 +1,8 @@
 {
+  "redirects": [
+    { "source": "/concours", "destination": "/", "permanent": false },
+    { "source": "/concours/(.*)", "destination": "/", "permanent": false }
+  ],
   "headers": [
     {
       "source": "/(.*)",
