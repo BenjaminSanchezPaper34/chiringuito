@@ -1,9 +1,25 @@
 # Chiringuito Vias - robots.txt
+
 User-agent: *
 Allow: /
-Disallow: /partenaires-dashboard/
 
-# AI agents : voir /llms.txt pour le sommaire structure du site
-# (standard llmstxt.org pour ChatGPT, Claude, Perplexity, Gemini, etc.)
+# Agents IA : acces explicitement autorise (ChatGPT, Claude, Perplexity, Gemini, Apple)
+# Sommaire structure du site : /llms.txt (standard llmstxt.org)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
 
 Sitemap: https://www.chiringuito-vias.fr/sitemap.xml
