@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, follow"/>
+  <title>Page introuvable | Chiringuito Vias-Plage</title>
+  <link rel="icon" type="image/svg+xml" href="/images/logo2-chiringuito.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Parisienne&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; min-height: 100dvh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 2rem 1.5rem; text-align: center;
+      font-family: Inter, system-ui, sans-serif; color: #fff;
+      background: linear-gradient(165deg, #009BA4 0%, #007A82 50%, #005F66 100%);
+    }
+    .logo { width: 190px; max-width: 60vw; height: auto; margin-bottom: 2.5rem; opacity: .95; }
+    .code { font-family: Parisienne, cursive; font-size: clamp(4.5rem, 18vw, 8rem); line-height: 1; margin: 0 0 .5rem; }
+    h1 { font-size: clamp(1.25rem, 4vw, 1.6rem); font-weight: 600; margin: 0 0 .9rem; letter-spacing: -.01em; }
+    p { font-size: 1rem; line-height: 1.65; color: rgba(255,255,255,.82); max-width: 30rem; margin: 0 0 2.25rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
+    a.btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .95rem 1.75rem; border-radius: 999px;
+      font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .12em;
+      text-decoration: none; transition: transform .3s ease, background .3s ease, border-color .3s ease;
+    }
+    a.primary { background: #fff; color: #007A82; box-shadow: 0 6px 20px rgba(0,0,0,.15); }
+    a.ghost { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(6px); }
+    a.btn:hover { transform: translateY(-2px); }
+    a.ghost:hover { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.6); }
+    .contact { margin-top: 2.75rem; font-size: .82rem; color: rgba(255,255,255,.7); }
+    .contact a { color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.35); }
+    @media (prefers-reduced-motion: reduce) { a.btn { transition: none; } a.btn:hover { transform: none; } }
+  </style>
+</head>
+<body>
+  <img src="/images/logo-blanc-chiringuito.svg" alt="Le Chiringuito Vias-Plage" class="logo" width="190" height="76"/>
+  <p class="code">404</p>
+  <h1>Cette page a pris le large</h1>
+  <p>La page que vous cherchez n'existe plus ou a change d'adresse. Le sable, lui, n'a pas bouge&nbsp;: retrouvez-nous face a la mer sur la plage de Farinette.</p>
+  <div class="actions">
+    <a href="/" class="btn primary">Retour a l'accueil</a>
+    <a href="/carte/" class="btn ghost">Voir la carte</a>
+    <a href="/reserver/" class="btn ghost">Reserver</a>
+  </div>
+  <p class="contact">Une question&nbsp;? <a href="tel:+33674946221">06&nbsp;74&nbsp;94&nbsp;62&nbsp;21</a> &middot; Plage de Farinette, 34450 Vias-Plage</p>
+</body>
+</html>
