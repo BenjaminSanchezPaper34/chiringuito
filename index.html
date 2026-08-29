@@ -2880,12 +2880,15 @@
 
   <!-- ───────── Reels Instagram : chargement differe ─────────
        Les 3 reels pesent ~5,4 Mo et se trouvent en bas de page. Le poster
-       (miniature) s'affiche tout de suite ; la video n'est telechargee que
-       lorsque la section approche du viewport. -->
+       (miniature) s'affiche immediatement ; la video n'est telechargee qu'a
+       l'approche du viewport. Double securite : IntersectionObserver quand il
+       est disponible + verification manuelle au defilement, pour qu'un reel
+       ne puisse jamais rester bloque sur sa miniature. -->
   <script>
     (function () {
-      const videos = document.querySelectorAll('video[data-lazy-video]');
+      const videos = [...document.querySelectorAll('video[data-lazy-video]')];
       if (!videos.length) return;
+      const MARGE = 300; // px avant l'entree dans l'ecran
 
       function load(video) {
         if (video.dataset.loaded) return;
@@ -2898,19 +2901,35 @@
         const p = video.play();
         if (p && p.catch) p.catch(() => {}); // lecture auto refusee : le poster reste affiche
       }
-
-      if (!('IntersectionObserver' in window)) {
-        videos.forEach(load);
-        return;
-      }
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          load(entry.target);
-          observer.unobserve(entry.target);
+      function reste() { return videos.filter((v) => !v.dataset.loaded); }
+      function checkManuel() {
+        const encours = reste();
+        encours.forEach((v) => {
+          const r = v.getBoundingClientRect();
+          if (r.top < window.innerHeight + MARGE && r.bottom > -MARGE) load(v);
         });
-      }, { rootMargin: '300px' });
-      videos.forEach((v) => observer.observe(v));
+        if (!reste().length) window.removeEventListener('scroll', onScroll);
+      }
+      let planifie = false;
+      function onScroll() {
+        if (planifie) return;
+        planifie = true;
+        setTimeout(() => { planifie = false; checkManuel(); }, 150);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            load(entry.target);
+            observer.unobserve(entry.target);
+          });
+        }, { rootMargin: MARGE + 'px' });
+        videos.forEach((v) => observer.observe(v));
+      }
+      checkManuel(); // cas ou les reels sont deja visibles au chargement
     })();
   </script>
 
