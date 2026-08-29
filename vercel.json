@@ -1,17 +1,6 @@
 {
   "redirects": [
     {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "chiringuito-vias.fr"
-        }
-      ],
-      "destination": "https://www.chiringuito-vias.fr/$1",
-      "permanent": true
-    },
-    {
       "source": "/concours",
       "destination": "/",
       "permanent": true
