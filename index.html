@@ -887,11 +887,17 @@
 
         <!-- CTA hero : Closing Party - dimanche 27 septembre (gradient violet + glow).
              Billetterie pas encore ouverte -> le bouton ouvre le popup newsletter. -->
-        <button type="button" onclick="window.openNewsletterPopup && window.openNewsletterPopup()" class="hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-indigo-500 via-purple-600 to-fuchsia-500 text-white px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
+        <button type="button" onclick="window.openNewsletterPopup && window.openNewsletterPopup()" aria-label="S'inscrire a la newsletter pour etre averti de l'ouverture des reservations de la Closing Party du dimanche 27 septembre" class="hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-indigo-500 via-purple-600 to-fuchsia-500 text-white px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
           <span class="text-lg leading-none">&#x1F319;</span>
-          <span class="sm:hidden">Closing Party &middot; 27 sept.</span>
-          <span class="hidden sm:inline">Closing Party &middot; dimanche 27 septembre</span>
-          <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          <!-- Mobile : l'action d'abord, la soiree ensuite -->
+          <span class="sm:hidden">M'avertir &middot; Closing 27 sept.</span>
+          <!-- Desktop : soiree + action separees par un filet, pour qu'on ne confonde pas avec une reservation -->
+          <span class="hidden sm:inline-flex items-center gap-3">
+            <span>Closing Party &middot; dimanche 27 septembre</span>
+            <span class="w-px h-4 bg-white/40" aria-hidden="true"></span>
+            <span class="text-white/90">M'avertir de l'ouverture</span>
+          </span>
+          <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
         </button>
 
         <!-- Reservation CTAs -->
