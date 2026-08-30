@@ -67,4 +67,5 @@ DJ résidents et invités habituels : 7even, Demsko, Maxx Baty, Maxdee, Lunaa, M
 ## Optional
 
 - [Sitemap XML](https://www.chiringuito-vias.fr/sitemap.xml)
+- [Mentions légales](https://www.chiringuito-vias.fr/mentions-legales/) · [Politique de confidentialité](https://www.chiringuito-vias.fr/confidentialite/)
 - Inscription newsletter directement via le site (popup ou section dédiée) pour recevoir les dates de soirées et nouveautés saison
