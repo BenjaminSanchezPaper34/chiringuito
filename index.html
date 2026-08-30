@@ -530,9 +530,9 @@
   </script>
 
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Parisienne&display=swap" rel="stylesheet"/>
+  <!-- Polices auto-hebergees (conformite CNIL - aucun CDN de polices tiers) -->
+  <link rel="preload" href="/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin/>
+  <link rel="stylesheet" href="/fonts/fonts.css"/>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -1610,9 +1610,17 @@
           <p class="text-sm md:text-base text-text-light tracking-wide reveal">Ce que disent nos clients</p>
         </div>
 
-        <!-- Elfsight Avis Widget -->
-        <div class="reveal">
-          <iframe src="https://a4beb9c13c9e40c7a32b6ff37282c533.elf.site" width="100%" height="450" frameborder="0" loading="lazy" title="Avis clients Chiringuito Vias" style="border-radius: 16px;"></iframe>
+        <!-- Elfsight Avis Widget : charge uniquement apres consentement (CNIL) -->
+        <div class="reveal" data-consent-slot="avis">
+          <template data-consent-embed>
+            <iframe src="https://a4beb9c13c9e40c7a32b6ff37282c533.elf.site" width="100%" height="450" frameborder="0" loading="lazy" title="Avis clients Chiringuito Vias" style="border-radius: 16px;"></iframe>
+          </template>
+          <div data-consent-placeholder class="rounded-2xl border border-gray-200 bg-gray-50 px-6 py-10 text-center">
+            <p class="text-2xl font-bold text-gray-900 mb-1">4,5 / 5 <span aria-hidden="true">&#11088;</span></p>
+            <p class="text-sm text-text-light mb-5">Plus de 6&nbsp;600 avis sur Google, TripAdvisor et Facebook</p>
+            <p class="text-sm text-text-light max-w-md mx-auto mb-5">L'affichage des avis utilise le service Elfsight, susceptible de d&eacute;poser des cookies. Il ne se charge qu'avec votre accord.</p>
+            <button type="button" data-consent-allow class="inline-flex items-center gap-2 bg-brand text-white px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand-dark transition-colors">Autoriser et afficher les avis</button>
+          </div>
         </div>
       </div>
     </section>
@@ -1706,9 +1714,16 @@
 
         </div>
 
-        <!-- Elfsight Instagram Feed -->
-        <div class="rounded-2xl overflow-hidden border border-gray-100 reveal">
+        <!-- Elfsight Instagram Feed : charge uniquement apres consentement (CNIL) -->
+        <div class="rounded-2xl overflow-hidden border border-gray-100 reveal" data-consent-slot="instagram">
           <div class="elfsight-app-421cfd10-b946-4415-a8c5-f9275a5aa0c9" data-elfsight-app-lazy></div>
+          <div data-consent-placeholder class="bg-gray-50 px-6 py-10 text-center">
+            <p class="text-sm text-text-light max-w-md mx-auto mb-5">Le fil Instagram utilise le service Elfsight, susceptible de d&eacute;poser des cookies. Il ne se charge qu'avec votre accord.</p>
+            <div class="flex flex-wrap items-center justify-center gap-3">
+              <button type="button" data-consent-allow class="inline-flex items-center gap-2 bg-brand text-white px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand-dark transition-colors">Autoriser et afficher</button>
+              <a href="https://www.instagram.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-brand/30 text-brand px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand/10 transition-colors">Voir @chiringuitovias</a>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -1880,10 +1895,20 @@
       </div>
     </div>
 
-    <!-- Google Maps -->
-    <div class="max-w-5xl mx-auto px-6 pb-10">
-      <div class="rounded-2xl overflow-hidden shadow-lg border border-white/10" style="height: 200px;">
-        <iframe src="https://maps.google.com/maps?q=Chiringuito+Plage+Priv%C3%A9e+Vias+Plage+de+Farinette+34450&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="Chiringuito - Plage de Farinette, Vias-Plage"></iframe>
+    <!-- Google Maps : charge uniquement apres consentement (CNIL) -->
+    <div class="max-w-5xl mx-auto px-6 pb-10" data-consent-slot="maps">
+      <template data-consent-embed>
+        <div class="rounded-2xl overflow-hidden shadow-lg border border-white/10" style="height: 200px;">
+          <iframe src="https://maps.google.com/maps?q=Chiringuito+Plage+Priv%C3%A9e+Vias+Plage+de+Farinette+34450&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="Chiringuito - Plage de Farinette, Vias-Plage"></iframe>
+        </div>
+      </template>
+      <div data-consent-placeholder class="rounded-2xl border border-white/15 bg-white/5 px-6 py-8 text-center">
+        <p class="text-sm text-white/85 mb-1 font-semibold">&#128205; Plage de Farinette &middot; 34450 Vias-Plage</p>
+        <p class="text-xs text-white/60 max-w-md mx-auto mb-4">La carte interactive utilise Google Maps, susceptible de d&eacute;poser des cookies. Elle ne se charge qu'avec votre accord.</p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <button type="button" data-consent-allow class="inline-flex items-center gap-2 bg-white text-brand-dark px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-white/90 transition-colors">Autoriser et afficher la carte</button>
+          <a href="https://maps.google.com/?q=Chiringuito+Plage+Priv%C3%A9e+Vias+Plage+de+Farinette+34450" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-white/30 text-white px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-white/10 transition-colors">Ouvrir dans Google Maps</a>
+        </div>
       </div>
     </div>
 
@@ -1891,9 +1916,14 @@
     <div class="border-t border-white/10 py-6 px-6">
       <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/40">
         <p>CHIRINGUITO &copy; <script>document.write(new Date().getFullYear())</script> Tous droits r&eacute;serv&eacute;s</p>
-        <a href="https://paper34.fr" target="_blank" rel="noopener noreferrer" title="Studio graphique Paper34 &agrave; Agde" class="flex items-center gap-2 hover:text-white/60 transition-colors">
-          Site cr&eacute;&eacute; par
-          <img src="images/logoblanc-paper34.svg" alt="Paper34 - Studio graphique &agrave; Agde" class="h-3 opacity-40" width="64" height="12" loading="lazy"/>
+        <nav class="flex flex-wrap items-center gap-x-4 gap-y-1" aria-label="Liens l&eacute;gaux">
+          <a href="/mentions-legales/" class="hover:text-white/70 underline decoration-white/20 underline-offset-2 transition-colors">Mentions l&eacute;gales</a>
+          <a href="/confidentialite/" class="hover:text-white/70 underline decoration-white/20 underline-offset-2 transition-colors">Confidentialit&eacute;</a>
+          <button type="button" onclick="window.openConsentBanner && window.openConsentBanner()" class="hover:text-white/70 underline decoration-white/20 underline-offset-2 transition-colors">G&eacute;rer les cookies</button>
+        </nav>
+        <a href="https://paper34.fr" target="_blank" rel="noopener noreferrer" title="Studio graphique Paper34 &agrave; Agde" class="group flex items-center gap-2 hover:text-white/60 transition-colors">
+          R&eacute;alis&eacute; par
+          <img src="images/logoblanc-paper34.svg" alt="Paper34 - Studio graphique &agrave; Agde" class="h-3 opacity-40 group-hover:opacity-80 transition-opacity duration-300" width="64" height="12" loading="lazy"/>
         </a>
       </div>
     </div>
@@ -1976,6 +2006,66 @@
     </div>
   </div>
 
+  <!-- ============================================ -->
+  <!-- CONSENTEMENT COOKIES (CNIL : blocage reel des tiers Elfsight / Google Maps) -->
+  <!-- ============================================ -->
+  <div id="consent-banner" class="fixed bottom-0 inset-x-0 z-[110] hidden px-4 pb-4 sm:px-6 sm:pb-6" role="dialog" aria-live="polite" aria-label="Gestion des cookies">
+    <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-2xl border border-gray-200 p-5 sm:p-6">
+      <p class="text-sm text-text leading-relaxed mb-4">
+        <strong class="text-gray-900">&#127850; Cookies&nbsp;:</strong> ce site n'utilise aucun cookie publicitaire. Certains contenus (avis clients, fil Instagram, carte Google Maps) proviennent de services tiers susceptibles de d&eacute;poser des cookies&nbsp;: ils ne se chargent qu'avec votre accord.
+        <a href="/confidentialite/" class="text-brand font-semibold underline underline-offset-2">En savoir plus</a>
+      </p>
+      <div class="flex flex-wrap gap-3 justify-end">
+        <button type="button" id="consent-deny" class="px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest border border-gray-300 text-text hover:border-gray-400 transition-colors">Continuer sans</button>
+        <button type="button" id="consent-grant" class="px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest bg-brand text-white hover:bg-brand-dark transition-colors">Accepter</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Gestionnaire de consentement : rien ne se charge avant accord ("granted").
+    // Refus ("denied") : les encadres restent, avec un bouton "Autoriser" par bloc.
+    (function () {
+      const KEY = 'chir_consent_tiers'; // "granted" | "denied"
+      const banner = document.getElementById('consent-banner');
+      const slots = document.querySelectorAll('[data-consent-slot]');
+
+      function lire() { try { return localStorage.getItem(KEY); } catch { return null; } }
+      function ecrire(v) { try { localStorage.setItem(KEY, v); } catch {} }
+
+      function chargerTiers() {
+        // 1. iframes en attente (avis, carte)
+        slots.forEach((slot) => {
+          const tpl = slot.querySelector('template[data-consent-embed]');
+          const ph = slot.querySelector('[data-consent-placeholder]');
+          if (tpl) { slot.appendChild(tpl.content.cloneNode(true)); tpl.remove(); }
+          if (ph) ph.remove();
+        });
+        // 2. script Elfsight (avis + Instagram)
+        if (!document.querySelector('script[src*="static.elfsight.com"]')) {
+          const s = document.createElement('script');
+          s.src = 'https://static.elfsight.com/platform/platform.js';
+          s.defer = true;
+          document.body.appendChild(s);
+        }
+      }
+
+      function fermer() { banner.classList.add('hidden'); }
+      function decider(v) { ecrire(v); fermer(); if (v === 'granted') chargerTiers(); }
+
+      document.getElementById('consent-grant').addEventListener('click', () => decider('granted'));
+      document.getElementById('consent-deny').addEventListener('click', () => decider('denied'));
+      // Boutons "Autoriser et afficher" des encadres : accord global
+      document.querySelectorAll('[data-consent-allow]').forEach((b) => b.addEventListener('click', () => decider('granted')));
+      // Lien "Gerer les cookies" du footer : rouvre la banniere
+      window.openConsentBanner = () => banner.classList.remove('hidden');
+
+      const etat = lire();
+      if (etat === 'granted') chargerTiers();
+      else if (etat !== 'denied') banner.classList.remove('hidden');
+    })();
+  </script>
+
   <!-- Popup Evenement : prioritaire sur le popup newsletter tant que la soiree est a venir (cf JS : ACTIVE_EVENT) -->
   <div id="event-popup" class="fixed inset-0 z-[100] hidden items-center justify-center px-4" role="dialog" aria-label="Aperol Pop-Up - vendredi 24 juillet, preventes et reservation VIP" aria-modal="true">
     <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="event-popup-backdrop"></div>
@@ -2000,15 +2090,14 @@
   <!-- SCRIPTS -->
   <!-- ============================================ -->
 
-  <!-- Elfsight (Google Reviews + Instagram) -->
-  <script src="https://static.elfsight.com/platform/platform.js" defer></script>
+  <!-- Elfsight (Google Reviews + Instagram) : script charge par le gestionnaire de consentement uniquement -->
 
   <!-- GSAP + ScrollTrigger -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js" defer></script>
+  <script src="/js/vendor/gsap.min.js" defer></script>
+  <script src="/js/vendor/ScrollTrigger.min.js" defer></script>
 
   <!-- Lenis Smooth Scroll -->
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js" defer></script>
+  <script src="/js/vendor/lenis.min.js" defer></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
