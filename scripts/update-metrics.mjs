@@ -702,6 +702,10 @@ async function main() {
         `- **Audience sociale** : ${frNum(ig)} abonnés Instagram, ${frNum(fb)} fans Facebook, ${frNum(tk)} abonnés TikTok`
       );
     }
+    llms = llms.replace(
+      /_Dernière mise à jour : \d{4}-\d{2}-\d{2}_/,
+      `_Dernière mise à jour : ${now.slice(0, 10)}_`
+    );
     await fs.writeFile(LLMS_PATH, llms, 'utf8');
     console.log('llms.txt sync  -> stats avis + audience mises a jour');
   } catch (error) {

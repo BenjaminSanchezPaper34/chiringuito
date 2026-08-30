@@ -316,9 +316,9 @@
       {
         "@type": "Event",
         "name": "Closing Party 2026 - Chiringuito Vias",
-        "description": "Soiree de cloture de saison du Chiringuito Vias-Plage. Nuit memorable, cocktails et spectacle au coucher du soleil. Date a confirmer (fin septembre 2026).",
-        "startDate": "2026-09-26T19:00:00+02:00",
-        "endDate": "2026-09-27T01:00:00+02:00",
+        "description": "Closing Party du Chiringuito Vias-Plage le dimanche 27 septembre 2026 : soiree de cloture de saison, cocktails et spectacle au coucher du soleil, les pieds dans le sable. Reservations bientot ouvertes, dates annoncees via la newsletter du site.",
+        "startDate": "2026-09-27T19:00:00+02:00",
+        "endDate": "2026-09-28T02:00:00+02:00",
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
         "location": {
@@ -335,15 +335,7 @@
         },
         "image": "https://www.chiringuito-vias.fr/images/og-chiringuito.jpg",
         "performer": {"@type": "Organization", "name": "Chiringuito Vias"},
-        "organizer": {"@type": "Organization", "name": "Chiringuito Vias", "url": "https://www.chiringuito-vias.fr"},
-        "offers": {
-          "@type": "Offer",
-          "url": "https://bookings.zenchef.com/results?rid=360974&pid=1001",
-          "availability": "https://schema.org/InStock",
-          "price": "0",
-          "priceCurrency": "EUR",
-          "validFrom": "2026-04-01T00:00:00+02:00"
-        }
+        "organizer": {"@type": "Organization", "name": "Chiringuito Vias", "url": "https://www.chiringuito-vias.fr"}
       }
     ]
   }
@@ -724,6 +716,14 @@
     }
     #hero-logo { animation: glow-pulse 3s ease-in-out infinite; }
 
+    /* CTA hero (Closing Party) : glow violet nocturne */
+    @keyframes hero-cta-glow {
+      0%, 100% { box-shadow: 0 8px 24px rgba(109,40,217,0.35), 0 0 0 0 rgba(168,85,247,0); }
+      50%      { box-shadow: 0 10px 30px rgba(109,40,217,0.50), 0 0 26px 4px rgba(168,85,247,0.32); }
+    }
+    .hero-glow-cta { animation: hero-cta-glow 2.8s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) { .hero-glow-cta { animation: none; } }
+
 
     /* Split text animation */
     .split-char { display: inline-block; opacity: 0; transform: translateY(20px); }
@@ -884,6 +884,15 @@
           <span class="opacity-50">&middot;</span>
           <span class="opacity-70">Vias-Plage</span>
         </div>
+
+        <!-- CTA hero : Closing Party - dimanche 27 septembre (gradient violet + glow).
+             Billetterie pas encore ouverte -> le bouton ouvre le popup newsletter. -->
+        <button type="button" onclick="window.openNewsletterPopup && window.openNewsletterPopup()" class="hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-indigo-500 via-purple-600 to-fuchsia-500 text-white px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
+          <span class="text-lg leading-none">&#x1F319;</span>
+          <span class="sm:hidden">Closing Party &middot; 27 sept.</span>
+          <span class="hidden sm:inline">Closing Party &middot; dimanche 27 septembre</span>
+          <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
 
         <!-- Reservation CTAs -->
         <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-4">
@@ -1350,22 +1359,22 @@
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge -->
               <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-[10px] font-semibold uppercase tracking-widest text-white/90">
-                  <span class="w-1.5 h-1.5 rounded-full bg-purple-300"></span>
-                  &Agrave; venir
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-[10px] font-semibold uppercase tracking-widest text-white/95">
+                  <span class="w-1.5 h-1.5 rounded-full bg-purple-200 animate-pulse"></span>
+                  Prochaine soir&eacute;e
                 </span>
                 <span class="text-5xl md:text-6xl leading-none transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">&#x1F319;</span>
               </div>
               <!-- Date -->
-              <p class="text-xs font-medium tracking-[0.25em] uppercase text-purple-200/80 mb-1 whitespace-nowrap">Fin septembre</p>
+              <p class="text-xs font-medium tracking-[0.25em] uppercase text-purple-200/90 mb-1 whitespace-nowrap">Dimanche 27 septembre</p>
               <h3 class="font-display text-3xl md:text-4xl text-white leading-tight mb-3 whitespace-nowrap">Closing Party</h3>
-              <p class="text-sm text-purple-100/70 leading-relaxed mb-8 flex-1">Cl&ocirc;ture de saison, cocktails et spectacle au coucher du soleil. Une nuit m&eacute;morable pour terminer en beaut&eacute;.</p>
-              <!-- CTA (reservation a venir) -->
-              <button type="button" disabled aria-disabled="true" class="inline-flex items-center justify-center gap-2 w-full bg-white/15 text-white/50 border border-white/15 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest cursor-not-allowed">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                R&eacute;servation
+              <p class="text-sm text-purple-100/80 leading-relaxed mb-8 flex-1">Cl&ocirc;ture de saison le <strong class="text-white">dimanche 27 septembre</strong>&nbsp;: cocktails et spectacle au coucher du soleil, une derni&egrave;re nuit m&eacute;morable avant l'hiver.</p>
+              <!-- CTA : reservations pas encore ouvertes -> inscription newsletter pour etre prevenu -->
+              <button type="button" onclick="window.openNewsletterPopup && window.openNewsletterPopup()" class="inline-flex items-center justify-center gap-2 w-full bg-white text-[#4C1D95] px-5 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:gap-3 hover:scale-[1.02] shadow-md hover:shadow-lg transition-all duration-300">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                M'avertir de l'ouverture
               </button>
-              <p class="text-[10px] text-purple-200/60 text-center mt-3 tracking-widest uppercase">Bient&ocirc;t disponible</p>
+              <p class="text-[10px] text-purple-200/70 text-center mt-3 tracking-widest uppercase">R&eacute;servations bient&ocirc;t ouvertes &middot; soyez pr&eacute;venu en premier</p>
             </div>
           </article>
 
