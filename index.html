@@ -530,9 +530,9 @@
   </script>
 
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Parisienne&display=swap" rel="stylesheet"/>
+  <!-- Polices auto-hebergees (conformite CNIL - aucun CDN de polices tiers) -->
+  <link rel="preload" href="/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin/>
+  <link rel="stylesheet" href="/fonts/fonts.css"/>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -2004,11 +2004,11 @@
   <script src="https://static.elfsight.com/platform/platform.js" defer></script>
 
   <!-- GSAP + ScrollTrigger -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js" defer></script>
+  <script src="/js/vendor/gsap.min.js" defer></script>
+  <script src="/js/vendor/ScrollTrigger.min.js" defer></script>
 
   <!-- Lenis Smooth Scroll -->
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js" defer></script>
+  <script src="/js/vendor/lenis.min.js" defer></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
