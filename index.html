@@ -1609,6 +1609,34 @@
 
 
     <!-- ============================================ -->
+    <!-- PARTENAIRES (meme composant tuile/modale que le mur des artistes) -->
+    <!-- ============================================ -->
+    <section id="partenaires" class="py-20 md:py-28 px-6 bg-gray-50 relative noise overflow-hidden">
+      <div class="relative z-10 max-w-6xl mx-auto">
+        <div class="text-center mb-12 md:mb-14">
+          <p class="text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-brand mb-3 reveal">Ils nous accompagnent</p>
+          <h2 class="font-display text-5xl md:text-6xl lg:text-7xl text-brand mb-4 tracking-tight reveal">Nos partenaires</h2>
+          <p class="text-sm md:text-base text-text-light tracking-wide reveal max-w-2xl mx-auto">Les acteurs locaux qui font vivre la plage et les traditions du territoire &agrave; nos c&ocirc;t&eacute;s.</p>
+        </div>
+
+        <!-- Grille centree : les tuiles s'ajoutent simplement a la suite -->
+        <div id="partnersGrid" class="flex flex-wrap justify-center gap-5 md:gap-6 reveal">
+
+          <button type="button" class="artist-tile" data-artist-name="Biou y Toros" data-artist-style="Partenaire" data-artist-event="Partenaire &middot; traditions camarguaises &amp; espagnoles" data-artist-gradient="linear-gradient(165deg, #3B1D12 0%, #7A2E1C 50%, #C8552B 100%)" data-artist-emoji="&#x1F402;" data-artist-instagram="https://www.instagram.com/biousytoros/" aria-label="Voir Biou y Toros">
+            <div class="artist-bg" style="background: linear-gradient(165deg, #3B1D12 0%, #7A2E1C 50%, #C8552B 100%);"></div>
+            <span class="artist-emoji" aria-hidden="true">&#x1F402;</span>
+            <div class="artist-info">
+              <span class="artist-style">Partenaire</span>
+              <h3 class="artist-name">Biou y Toros</h3>
+              <p class="artist-event">Traditions camarguaises &amp; espagnoles</p>
+            </div>
+          </button>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
     <!-- AVIS (Elfsight Google Reviews) -->
     <!-- ============================================ -->
     <section id="avis" class="py-20 md:py-28 px-6 bg-white relative">
@@ -2792,6 +2820,11 @@
       track.addEventListener('touchstart', () => pauseAuto(2500), { passive: true });
       track.addEventListener('wheel', () => pauseAuto(2500), { passive: true });
 
+      // Grille partenaires : meme modale, ouverture au clic
+      document.querySelectorAll('#partnersGrid .artist-tile').forEach((t) => {
+        t.addEventListener('click', () => openArtistModal(t));
+      });
+
       // Pause auto on hover (desktop pointer) — soft brake / soft resume
       if (window.matchMedia('(hover: hover)').matches) {
         track.addEventListener('mouseenter', () => { setPaused(true); });
@@ -2830,6 +2863,8 @@
       // We resolve this once at startup; the order matches the carousel.
       const artistTiles = Array.from(row.querySelectorAll('.artist-tile'));
       let currentArtistIndex = 0;
+      // Famille active pour prev/next : le carrousel, ou la grille partenaires
+      let activeTiles = artistTiles;
 
       // Note : pas de slideshow auto dans le modal — la card s'ouvre, l'user
       // navigue manuellement (clic chevrons, swipe, fleches clavier) puis
@@ -2866,8 +2901,16 @@
 
       function openArtistModal(tile) {
         if (!modal || !modalArticle) return;
-        const idx = artistTiles.indexOf(tile);
+        const grid = tile.closest('#partnersGrid');
+        activeTiles = grid ? Array.from(grid.querySelectorAll('.artist-tile')) : artistTiles;
+        const idx = activeTiles.indexOf(tile);
         if (idx !== -1) currentArtistIndex = idx;
+        // Chevrons inutiles quand la famille n'a qu'un membre
+        const seul = activeTiles.length < 2;
+        ['artist-modal-prev', 'artist-modal-next'].forEach((id) => {
+          const b = document.getElementById(id);
+          if (b) b.classList.toggle('hidden', seul);
+        });
         renderArtistInModal(tile);
         // Two-step show : remove `hidden` first so the element is rendered,
         // then on the next frame add `is-open` so opacity/transform transition
@@ -2884,10 +2927,10 @@
       // Cycle to prev (-1) or next (+1) artist within the open modal. Wraps
       // around (last → first, first → last). Uses a quick crossfade for polish.
       function navigateArtist(direction) {
-        if (!artistTiles.length || !modalArticle) return;
-        const total = artistTiles.length;
+        if (!activeTiles.length || !modalArticle) return;
+        const total = activeTiles.length;
         currentArtistIndex = (currentArtistIndex + direction + total) % total;
-        const nextTile = artistTiles[currentArtistIndex];
+        const nextTile = activeTiles[currentArtistIndex];
         // Quick fade out / swap / fade in
         modalArticle.style.transition = 'opacity 0.15s ease-out';
         modalArticle.style.opacity = '0';
