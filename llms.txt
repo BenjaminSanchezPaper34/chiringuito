@@ -8,13 +8,12 @@ _Dernière mise à jour : 2026-08-30_
 
 ## Pages principales
 
-- [Accueil](https://www.chiringuito-vias.fr/) : Présentation générale, hero vidéo, sections Bienvenue, carte, plage privée, soirées 2026 (4 passées + Closing Party le 27 septembre), mur des 16 artistes qui ont joué (dont Bon Entendeur), météo locale, avis clients
+- [Accueil](https://www.chiringuito-vias.fr/) : Présentation générale, hero vidéo, sections Bienvenue, galerie photos (28 photos en bande défilante : plage privée, cuisine, bar, ambiance, vues aériennes), carte, plage privée, soirées 2026 (4 passées + Closing Party le 27 septembre), mur des 16 artistes qui ont joué (dont Bon Entendeur), météo locale, avis clients
 - [Réserver](https://www.chiringuito-vias.fr/reserver/) : Hub réservation — table restaurant (Zenchef), transat plage (Zenchef), réservation VIP par téléphone
 - [Opening Party 2026](https://www.chiringuito-vias.fr/opening-2026/) : Page rétrospective de la soirée d'ouverture du 6 juin avec Bon Entendeur (événement passé)
 - [Carte midi & soir](https://www.chiringuito-vias.fr/carte/) : Tapas, entrées, plats viande et mer, desserts, menu enfant — servie aux 2 services
 - [Carte après-midi](https://www.chiringuito-vias.fr/carte/apres-midi/) : Salades, planches, gambas, coupes glaces Mövenpick, gaufres — servie entre les services
 - [Carte boissons](https://www.chiringuito-vias.fr/boissons/) : Cocktails, vins régionaux, champagnes, bières, apéritifs, softs
-- [Galerie photos](https://www.chiringuito-vias.fr/galerie/) : 28 photos du lieu — plage privée et transats, cuisine (dorade, gambas, Saint-Jacques, huîtres, desserts maison), bar et cocktails, ambiance des soirées, vues aériennes de la plage de Farinette
 
 ## Événements 2026
 
