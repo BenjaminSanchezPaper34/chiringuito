@@ -681,30 +681,7 @@
       letter-spacing: 0.05em;
     }
 
-    /* ───────── Artist modal ───────── */
-    #artist-modal { transition: opacity 0.35s ease-out; opacity: 0; }
-    #artist-modal.is-open { display: flex !important; opacity: 1; }
-    #artist-modal > article {
-      /* Initial state for entrance animation */
-      transform: translateY(16px) scale(0.96);
-      opacity: 0;
-      transition:
-        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-        opacity 0.35s ease-out;
-    }
-    #artist-modal.is-open > article {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-    }
-    /* Backdrop also fades */
-    #artist-modal > [data-artist-close].absolute {
-      transition: opacity 0.35s ease-out;
-      opacity: 0;
-    }
-    #artist-modal.is-open > [data-artist-close].absolute { opacity: 1; }
 
-    /* Hero fills the whole article (poster style). The fade overlay is a
-       separate sibling div so no ::after pseudo magic is needed. */
 
     /* Menu deployable : reserve au desktop (mobile redirige vers /carte/) */
     @media (max-width: 767px) {
@@ -1436,133 +1413,133 @@
           <!-- ROW (will be duplicated by JS for infinite scroll) -->
           <div class="marquee-row" id="artistsRow">
 
-            <button type="button" class="artist-tile" data-artist-name="Bon Entendeur" data-artist-event="Opening Party 2026 &middot; 6 juin" data-artist-bio="Duo fran&ccedil;ais culte, French touch contemporaine, sets envo&ucirc;tants entre house, disco et pop sample. T&ecirc;te d'affiche de l'Opening 2026 du Chiringuito." data-artist-photo="images/artistes/bon-entendeur.webp" data-artist-photo-full="images/artistes/bon-entendeur-full.webp" data-artist-gradient="linear-gradient(165deg, #1A4D5E 0%, #2D7A8E 50%, #FF9B7A 100%)" data-artist-emoji="&#x1F3DD;&#xFE0F;" data-artist-instagram="https://www.instagram.com/bon_entendeur/" aria-label="Voir Bon Entendeur">
+            <a href="https://www.instagram.com/bon_entendeur/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Bon Entendeur sur Instagram (nouvel onglet)">
               <div class="artist-bg" style="background-image: url('images/artistes/bon-entendeur.webp'); background-size: cover; background-position: center;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Bon Entendeur</h3>
                 <p class="artist-event">Opening &middot; 6 juin 2026</p>
               </div>
-            </button>
+            </a>
 
-            <button type="button" class="artist-tile" data-artist-name="Carli" data-artist-style="DJ" data-artist-event="Coachella Party 2026 &middot; 21 juin" data-artist-bio="Aux platines de la Coachella Party 2026 du Chiringuito, le soir de la F&ecirc;te de la Musique. &Eacute;nergie festival et s&eacute;lections qui font monter la temp&eacute;rature face mer." data-artist-photo="images/artistes/carli.webp" data-artist-photo-full="images/artistes/carli-full.webp" data-artist-gradient="linear-gradient(165deg, #0F1F2D 0%, #1B3A5C 50%, #2E5A8C 100%)" data-artist-emoji="&#x1F3A7;" data-artist-instagram="https://www.instagram.com/carlimusic_ofc/" aria-label="Voir Carli">
-              <div class="artist-bg" style="background-image: url('images/artistes/carli.webp'); background-size: cover; background-position: center;"></div>
+            <a href="https://www.instagram.com/carlimusic_ofc/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Carli sur Instagram (nouvel onglet)">
+              <div class="artist-bg" style="background-image: url('images/artistes/carli-2026.webp'); background-size: cover; background-position: center;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Carli</h3>
                 <p class="artist-event">Coachella &middot; 21 juin 2026</p>
               </div>
-            </button>
+            </a>
 
-            <button type="button" class="artist-tile" data-artist-name="JLauww" data-artist-style="DJ" data-artist-event="Reggaeton Fiesta 2026 &middot; 11 juillet" data-artist-bio="Aux platines de la Reggaeton Fiesta 2026 du Chiringuito&nbsp;: sets reggaeton &amp; latino, perreo et bonne humeur communicative face mer." data-artist-photo="images/artistes/jlauww.webp" data-artist-photo-full="images/artistes/jlauww-full.webp" data-artist-gradient="linear-gradient(165deg, #2D0F1F 0%, #5C1B3A 50%, #C2456B 100%)" data-artist-emoji="&#x1F3A7;" data-artist-instagram="https://www.instagram.com/j.lauww/" aria-label="Voir JLauww">
+            <a href="https://www.instagram.com/j.lauww/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="JLauww sur Instagram (nouvel onglet)">
               <div class="artist-bg" style="background-image: url('images/artistes/jlauww.webp'); background-size: cover; background-position: center;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">JLauww</h3>
                 <p class="artist-event">Reggaeton &middot; 11 juillet 2026</p>
               </div>
-            </button>
+            </a>
 
-            <button type="button" class="artist-tile" data-artist-name="DJ Will" data-artist-style="DJ" data-artist-event="Reggaeton Fiesta 2026 &middot; 11 juillet" data-artist-bio="Aux platines et au micro de la Reggaeton Fiesta 2026 du Chiringuito. &Eacute;nergie urbaine et reggaeton pour faire vibrer la plage de Farinette." data-artist-photo="images/artistes/dj-will.webp" data-artist-photo-full="images/artistes/dj-will-full.webp" data-artist-gradient="linear-gradient(165deg, #141414 0%, #2E2E2E 50%, #5A5A5A 100%)" data-artist-emoji="&#x1F3A7;" data-artist-instagram="https://www.instagram.com/therealdjwill/" aria-label="Voir DJ Will">
+            <a href="https://www.instagram.com/therealdjwill/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="DJ Will sur Instagram (nouvel onglet)">
               <div class="artist-bg" style="background-image: url('images/artistes/dj-will.webp'); background-size: cover; background-position: center;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">DJ Will</h3>
                 <p class="artist-event">Reggaeton &middot; 11 juillet 2026</p>
               </div>
-            </button>
+            </a>
 
-            <button type="button" class="artist-tile" data-artist-name="Luis Labori" data-artist-style="Performer" data-artist-event="Reggaeton Fiesta 2026 &middot; 11 juillet" data-artist-bio="Au micro de la Reggaeton Fiesta 2026 du Chiringuito&nbsp;: show et vibes 100% latino jusqu'au bout de la nuit face mer." data-artist-photo="images/artistes/luis-labori.webp" data-artist-photo-full="images/artistes/luis-labori-full.webp" data-artist-gradient="linear-gradient(165deg, #1F0F2D 0%, #4A1B5C 50%, #C2582C 100%)" data-artist-emoji="&#x1F3A4;" data-artist-instagram="https://www.instagram.com/luislabori/" aria-label="Voir Luis Labori">
+            <a href="https://www.instagram.com/luislabori/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Luis Labori sur Instagram (nouvel onglet)">
               <div class="artist-bg" style="background-image: url('images/artistes/luis-labori.webp'); background-size: cover; background-position: center;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Luis Labori</h3>
                 <p class="artist-event">Reggaeton &middot; 11 juillet 2026</p>
               </div>
-            </button>
+            </a>
 
-            <button type="button" class="artist-tile" data-artist-name="Yann Muller" data-artist-style="DJ producteur" data-artist-event="Opening Party 2025 &middot; 7 juin" data-artist-bio="DJ et producteur fran&ccedil;ais (Nice / Dubai), reprises pop fusionn&eacute;es house et lounge. 135M+ d'&eacute;coutes Spotify, disque d'or avec &laquo;&nbsp;California Dreamin'&nbsp;&raquo;. Set lumineux face mer pour l'opening 2025." data-artist-photo="images/artistes/yann-muller-opening-2025.webp" data-artist-photo-full="images/artistes/yann-muller-opening-2025-full.webp" data-artist-gradient="linear-gradient(165deg, #1B0F2E 0%, #3A1A5C 50%, #6B2B8C 100%)" data-artist-emoji="&#x1F3A7;" data-artist-instagram="https://www.instagram.com/yann_muller/" data-artist-spotify="https://open.spotify.com/artist/41HOzTOe9JNerhym1HWxti" data-artist-soundcloud="https://soundcloud.com/yannmuller" data-artist-youtube="https://www.youtube.com/channel/UCxEVGiyCGf6WQrBpJVfZ12g" data-artist-bandcamp="https://yannmuller.bandcamp.com/" aria-label="Voir Yann Muller">
+            <a href="https://www.instagram.com/yann_muller/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Yann Muller sur Instagram (nouvel onglet)">
               <div class="artist-bg" style="background-image: url('images/artistes/yann-muller-opening-2025.webp'); background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Yann Muller</h3>
                 <p class="artist-event">Opening &middot; 2025</p>
               </div>
-            </button>
+            </a>
 
-            <button type="button" class="artist-tile" data-artist-name="Patrick S&eacute;bastien" data-artist-event="Invit&eacute; d'honneur du Chiringuito" data-artist-bio="L&eacute;gende fran&ccedil;aise. Animateur, chanteur, com&eacute;dien : ses tubes ont fait danser plusieurs g&eacute;n&eacute;rations. Le Chiringuito a eu l'honneur de l'accueillir sur la plage." data-artist-photo="images/artistes/patrick-sebastien.webp" data-artist-photo-full="images/artistes/patrick-sebastien-full.webp" data-artist-gradient="linear-gradient(165deg, #3A1F0F 0%, #6B3818 50%, #C26B2C 100%)" data-artist-emoji="&#x1F3A4;" data-artist-instagram="https://www.instagram.com/patricksebastienofficiel/" aria-label="Voir Patrick S&eacute;bastien">
+            <a href="https://www.instagram.com/patricksebastienofficiel/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Patrick S&eacute;bastien sur Instagram (nouvel onglet)">
               <div class="artist-bg" style="background-image: url('images/artistes/patrick-sebastien.webp'); background-size: cover; background-position: center 25%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Patrick S&eacute;bastien</h3>
                 <p class="artist-event">Invit&eacute; d'honneur</p>
               </div>
-            </button>
+            </a>
 
-            <button type="button" class="artist-tile" data-artist-name="7even" data-artist-style="DJ r&eacute;sident" data-artist-event="R&eacute;sident du Chiringuito" data-artist-bio="Quasiment notre r&eacute;sident officiel. La star qui revient encore et encore, faisant du Chiringuito sa sc&egrave;ne favorite saison apr&egrave;s saison." data-artist-photo="images/artistes/7even.webp" data-artist-photo-full="images/artistes/7even-full.webp" data-artist-gradient="linear-gradient(165deg, #1A1F3A 0%, #2D3561 50%, #4A5494 100%)" data-artist-emoji="&#x2B50;" data-artist-instagram="https://www.instagram.com/djseven.off/" aria-label="Voir 7even">
+            <a href="https://www.instagram.com/djseven.off/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="7even sur Instagram (nouvel onglet)">
               <div class="artist-bg" style="background-image: url('images/artistes/7even.webp'); background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">7even</h3>
                 <p class="artist-event">La star de la maison</p>
               </div>
-            </button>
+            </a>
 
-            <button type="button" class="artist-tile" data-artist-name="Morezan" data-artist-style="DJ" data-artist-event="Pr&eacute;sent dans tous les grands moments" data-artist-bio="Avec nous depuis des ann&eacute;es. De toutes les soir&eacute;es qui comptent, fid&egrave;le entre les fid&egrave;les. Sa griffe : des transitions impeccables et des choix qui font danser." data-artist-photo="images/artistes/morezan.webp" data-artist-photo-full="images/artistes/morezan-full.webp" data-artist-gradient="linear-gradient(165deg, #1A2A3A 0%, #16404D 50%, #008B8B 100%)" data-artist-emoji="&#x1F525;" data-artist-instagram="https://www.instagram.com/morezan.music/" aria-label="Voir Morezan">
+            <a href="https://www.instagram.com/morezan.music/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Morezan sur Instagram (nouvel onglet)">
               <div class="artist-bg" style="background-image: url('images/artistes/morezan.webp'); background-size: cover; background-position: center 35%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Morezan</h3>
                 <p class="artist-event">Toutes les grandes soir&eacute;es</p>
               </div>
-            </button>
+            </a>
 
-            <button type="button" class="artist-tile" data-artist-name="Lunaa" data-artist-style="DJ" data-artist-event="Closing Party 2025 &middot; 28 septembre" data-artist-bio="Pr&eacute;sente au Closing 2025 pour cl&ocirc;turer la saison. Set cr&eacute;pusculaire dans la lumi&egrave;re qui d&eacute;cline, &eacute;motion juste avant la nuit." data-artist-photo="images/artistes/lunaa-closing-2025.webp" data-artist-photo-full="images/artistes/lunaa-closing-2025-full.webp" data-artist-gradient="linear-gradient(165deg, #2A1A4D 0%, #4A2E6E 50%, #7B4FA0 100%)" data-artist-emoji="&#x1F319;" data-artist-instagram="https://www.instagram.com/lunaamusicfr/" aria-label="Voir Lunaa">
+            <a href="https://www.instagram.com/lunaamusicfr/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Lunaa sur Instagram (nouvel onglet)">
               <div class="artist-bg" style="background-image: url('images/artistes/lunaa-closing-2025.webp'); background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Lunaa</h3>
                 <p class="artist-event">Closing &middot; 2025</p>
               </div>
-            </button>
+            </a>
 
-            <button type="button" class="artist-tile" data-artist-name="Maxdee" data-artist-style="DJ" data-artist-event="Closing Party 2025 &middot; 28 septembre" data-artist-bio="Pr&eacute;sent au Closing 2025. &Eacute;nergie pure et set qui fait danser jusqu'au bout de la nuit, pour boucler la saison en feu." data-artist-photo="images/artistes/maxdee-closing-2025.webp" data-artist-photo-full="images/artistes/maxdee-closing-2025-full.webp" data-artist-gradient="linear-gradient(165deg, #3A1B0F 0%, #7A2D14 50%, #C0492A 100%)" data-artist-emoji="&#x26A1;" data-artist-instagram="https://www.instagram.com/maxdee.ofc/" aria-label="Voir Maxdee">
+            <a href="https://www.instagram.com/maxdee.ofc/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Maxdee sur Instagram (nouvel onglet)">
               <div class="artist-bg" style="background-image: url('images/artistes/maxdee-closing-2025.webp'); background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Maxdee</h3>
                 <p class="artist-event">Closing &middot; 2025</p>
               </div>
-            </button>
+            </a>
 
-            <button type="button" class="artist-tile" data-artist-name="Maxx Baty" data-artist-style="DJ" data-artist-event="Habitu&eacute; des moments forts" data-artist-bio="Un des amis de la maison. Souvent avec nous quand l'ambiance le demande, toujours l&agrave; pour les moments forts. Un set qui m&ecirc;le l'attendu et la surprise." data-artist-photo="images/artistes/maxx-baty.webp" data-artist-photo-full="images/artistes/maxx-baty-full.webp" data-artist-gradient="linear-gradient(165deg, #3A2812 0%, #6B4422 50%, #A87232 100%)" data-artist-emoji="&#x1F942;" data-artist-instagram="https://www.instagram.com/maxxbaty/" aria-label="Voir Maxx Baty">
+            <a href="https://www.instagram.com/maxxbaty/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Maxx Baty sur Instagram (nouvel onglet)">
               <div class="artist-bg" style="background-image: url('images/artistes/maxx-baty.webp'); background-size: cover; background-position: center 35%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Maxx Baty</h3>
                 <p class="artist-event">Ami de la maison</p>
               </div>
-            </button>
+            </a>
 
-            <button type="button" class="artist-tile" data-artist-name="Demsko" data-artist-style="DJ" data-artist-event="Habitu&eacute; de la maison" data-artist-bio="R&eacute;guli&egrave;rement aux platines du Chiringuito. Set qui sait lire la salle, &eacute;nergie communicative et choix qui rassemblent. Un de nos visages familiers de l'&eacute;t&eacute;." data-artist-photo="images/artistes/demsko.webp" data-artist-photo-full="images/artistes/demsko-full.webp" data-artist-gradient="linear-gradient(165deg, #0F1F2D 0%, #1B3A5C 50%, #2E5A8C 100%)" data-artist-emoji="&#x1F3A7;" data-artist-instagram="https://www.instagram.com/demsko2.1/" aria-label="Voir Demsko">
+            <a href="https://www.instagram.com/demsko2.1/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Demsko sur Instagram (nouvel onglet)">
               <div class="artist-bg" style="background-image: url('images/artistes/demsko.webp'); background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Demsko</h3>
                 <p class="artist-event">Habitu&eacute; de la maison</p>
               </div>
-            </button>
+            </a>
 
-            <button type="button" class="artist-tile" data-artist-name="Wallace Neg&atilde;o" data-artist-event="Invit&eacute; live" data-artist-bio="Chanteur, songwriter et ma&icirc;tre du cavaquinho. Roots samba fusionn&eacute;es jazz, soul et funk. Bas&eacute; &agrave; Marseille depuis 10 ans, il fait vibrer le sud avec sa voix unique." data-artist-photo="images/artistes/wallace-negao.webp" data-artist-photo-full="images/artistes/wallace-negao-full.webp" data-artist-gradient="linear-gradient(165deg, #1A3A1F 0%, #2D5C32 50%, #4E8A52 100%)" data-artist-emoji="&#x1F3B6;" data-artist-instagram="https://www.instagram.com/wallacenegao/" aria-label="Voir Wallace Neg&atilde;o">
+            <a href="https://www.instagram.com/wallacenegao/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Wallace Neg&atilde;o sur Instagram (nouvel onglet)">
               <div class="artist-bg" style="background-image: url('images/artistes/wallace-negao.webp'); background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Wallace Neg&atilde;o</h3>
                 <p class="artist-event">Invit&eacute; live</p>
               </div>
-            </button>
+            </a>
 
-            <button type="button" class="artist-tile" data-artist-name="Ladies &amp; Sax" data-artist-event="Opening Party 2024" data-artist-bio="Duo musical avec saxophone live. Touche jazzy et festive qui a fait swinguer l'opening 2024 du Chiringuito." data-artist-photo="images/artistes/ladies-sax-opening-2024.webp" data-artist-photo-full="images/artistes/ladies-sax-opening-2024-full.webp" data-artist-gradient="linear-gradient(165deg, #2D1F3A 0%, #5C2D5E 50%, #9B4A8A 100%)" data-artist-emoji="&#x1F3B7;" data-artist-instagram="https://www.instagram.com/ladies_sax/" aria-label="Voir Ladies &amp; Sax">
+            <a href="https://www.instagram.com/ladies_sax/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Ladies &amp; Sax sur Instagram (nouvel onglet)">
               <div class="artist-bg" style="background-image: url('images/artistes/ladies-sax-opening-2024.webp'); background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Ladies &amp; Sax</h3>
                 <p class="artist-event">Opening &middot; 2024</p>
               </div>
-            </button>
+            </a>
 
-            <button type="button" class="artist-tile" data-artist-name="Camille Combal" data-artist-event="Soir&eacute;e du 28 juin 2019" data-artist-bio="Animateur TV et radio, voix incontournable du paysage audiovisuel fran&ccedil;ais. Le 28 juin 2019, il a fait escale au Chiringuito pour une soir&eacute;e m&eacute;morable." data-artist-photo="images/artistes/camille-combal.webp" data-artist-photo-full="images/artistes/camille-combal-full.webp" data-artist-gradient="linear-gradient(165deg, #1A2A3A 0%, #2D456E 50%, #4A6A9C 100%)" data-artist-emoji="&#x1F3A4;" data-artist-instagram="https://www.instagram.com/camillecombal/" aria-label="Voir Camille Combal">
+            <a href="https://www.instagram.com/camillecombal/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Camille Combal sur Instagram (nouvel onglet)">
               <div class="artist-bg" style="background-image: url('images/artistes/camille-combal.webp'); background-size: cover; background-position: center 25%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Camille Combal</h3>
                 <p class="artist-event">28 juin 2019</p>
               </div>
-            </button>
+            </a>
 
           </div>
         </div>
@@ -1571,42 +1548,33 @@
     </section>
 
 
-    <!-- Modal expansion for an artist -->
-    <div id="artist-modal" class="fixed inset-0 z-[110] hidden items-center justify-center px-3 sm:px-4 py-4 sm:py-6" role="dialog" aria-modal="true" aria-labelledby="artist-modal-title">
-      <!-- Backdrop -->
-      <div class="absolute inset-0 bg-black/85 backdrop-blur-md" data-artist-close></div>
-      <!-- Poster card : photo fullbleed + dark fade overlay + text/social bottom -->
-      <article class="relative z-10 w-full max-w-md max-h-[92vh] aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-[#15212B]">
-        <!-- Close button -->
-        <button type="button" class="absolute top-3 right-3 z-30 w-10 h-10 rounded-full bg-black/40 hover:bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition shadow-lg" data-artist-close aria-label="Fermer">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-
-        <!-- Prev / Next navigation between artists -->
-        <button type="button" id="artist-modal-prev" class="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/40 hover:bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition shadow-lg" aria-label="Artiste pr&eacute;c&eacute;dent">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-        </button>
-        <button type="button" id="artist-modal-next" class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/40 hover:bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition shadow-lg" aria-label="Artiste suivant">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-        </button>
-
-        <!-- Photo fullbleed (or gradient fallback) -->
-        <div class="absolute inset-0 bg-center bg-cover" id="artist-modal-hero">
-          <span class="absolute inset-0 flex items-center justify-center text-7xl md:text-8xl drop-shadow-lg" id="artist-modal-emoji">&#x1F3B8;</span>
+    <!-- ============================================ -->
+    <!-- PARTENAIRES (meme composant tuile/modale que le mur des artistes) -->
+    <!-- ============================================ -->
+    <section id="partenaires" class="py-20 md:py-28 px-6 bg-gray-50 relative noise overflow-hidden">
+      <div class="relative z-10 max-w-6xl mx-auto">
+        <div class="text-center mb-12 md:mb-14">
+          <p class="text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-brand mb-3 reveal">Ils nous accompagnent</p>
+          <h2 class="font-display text-5xl md:text-6xl lg:text-7xl text-brand mb-4 tracking-tight reveal">Nos partenaires</h2>
+          <p class="text-sm md:text-base text-text-light tracking-wide reveal max-w-2xl mx-auto">Les acteurs locaux qui font vivre la plage et les traditions du territoire &agrave; nos c&ocirc;t&eacute;s.</p>
         </div>
 
-        <!-- Dark fade overlay -->
-        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, transparent 0%, transparent 35%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.92) 100%);"></div>
+        <!-- Grille centree : chaque tuile est un lien direct (Instagram en priorite) -->
+        <div id="partnersGrid" class="flex flex-wrap justify-center gap-5 md:gap-6 reveal">
 
-        <!-- Text + social overlay (anchored bottom, centered) -->
-        <div class="absolute left-0 right-0 bottom-0 z-20 px-6 py-7 sm:px-7 sm:py-8 text-white text-center">
-          <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-1.5 leading-[1.05] drop-shadow-lg" id="artist-modal-title">Yann Muller</h3>
-          <p class="text-xs sm:text-sm text-white/80 mb-5 drop-shadow" id="artist-modal-event">Opening Party 2025 &middot; 7 juin</p>
-          <div class="flex flex-wrap items-center justify-center gap-2" id="artist-modal-social"></div>
+          <!-- Tuile partenaire = lien direct (Instagram privilegie), pas de modale -->
+          <a href="https://www.instagram.com/biousytoros/" target="_blank" rel="noopener noreferrer" class="artist-tile block" aria-label="Biou y Toros sur Instagram (nouvel onglet)">
+            <div class="artist-bg" style="background-image: url('images/partenaires/biou-y-toros.webp'); background-size: cover; background-position: center;"></div>
+            <div class="artist-info">
+              <span class="artist-style">Partenaire</span>
+              <h3 class="artist-name">Biou y Toros</h3>
+              <p class="artist-event">Traditions camarguaises &amp; espagnoles</p>
+            </div>
+          </a>
+
         </div>
-      </article>
-    </div>
-
+      </div>
+    </section>
 
     <!-- ============================================ -->
     <!-- AVIS (Elfsight Google Reviews) -->
@@ -1860,11 +1828,6 @@
   <!-- ============================================ -->
   <!-- FOOTER -->
   <!-- ============================================ -->
-  <!-- Frise transition vers footer -->
-  <div class="w-full pointer-events-none overflow-hidden" aria-hidden="true" style="background-color: #007A82;">
-    <div class="w-full" style="height: 50px; background: white url('images/frise.svg') repeat-x center bottom; background-size: 167px 50px;"></div>
-  </div>
-
   <footer id="contact" class="text-white relative overflow-hidden" style="background: linear-gradient(165deg, #009BA4 0%, #007A82 50%, #005F66 100%);">
 
     <!-- Logo + tagline -->
@@ -2662,7 +2625,7 @@
     });
   </script>
 
-  <!-- ───────── Artist carousel (infinite scroll + drag) & modal ───────── -->
+  <!-- ───────── Artist carousel (infinite scroll + drag) — les tuiles sont des liens directs ───────── -->
   <script>
     (function () {
       const row = document.getElementById('artistsRow');
@@ -2746,6 +2709,7 @@
       let startScroll = 0;
       let moved = 0;
       let startTile = null;
+      let startPointerType = '';
       const TAP_THRESHOLD = 5; // px below which a press counts as a tap (not drag)
 
       track.addEventListener('pointerdown', (e) => {
@@ -2755,6 +2719,7 @@
         startX = e.clientX;
         startScroll = track.scrollLeft;
         startTile = e.target.closest('.artist-tile');
+        startPointerType = e.pointerType;
         setPaused(true);
         // Show grabbing cursor only on non-touch (visual feedback for desktop)
         if (e.pointerType !== 'touch') {
@@ -2777,13 +2742,22 @@
         if (!isDown) return;
         isDown = false;
         track.classList.remove('is-dragging');
-        // It was a tap if the pointer moved less than the threshold → open modal
-        if (moved < TAP_THRESHOLD && startTile) {
-          openArtistModal(startTile);
+        // Tap a la souris/stylet : pendant l'appui les tuiles sont en
+        // pointer-events:none (classe is-dragging), le clic natif n'atteint donc
+        // jamais le lien -> on l'ouvre ici, depuis le relachement (geste
+        // utilisateur, accepte par les bloqueurs de popup). Au doigt, la classe
+        // n'est pas posee : le clic natif du lien fait le travail.
+        if (moved < TAP_THRESHOLD && startTile && startPointerType !== 'touch') {
+          const href = startTile.getAttribute('href');
+          if (href) window.open(href, '_blank', 'noopener');
         }
         startTile = null;
         pauseAuto(2500);
       }
+      // Garde anti-clic apres glisser : le click natif suit le pointerup
+      track.addEventListener('click', (e) => {
+        if (moved >= TAP_THRESHOLD) { e.preventDefault(); e.stopPropagation(); }
+      }, true);
       track.addEventListener('pointerup', endInteraction);
       track.addEventListener('pointercancel', endInteraction);
       track.addEventListener('pointerleave', () => { if (isDown) endInteraction(); });
@@ -2800,178 +2774,6 @@
         });
       }
 
-      // Modal logic
-      const modal = document.getElementById('artist-modal');
-      const modalArticle = modal?.querySelector('article');
-      const fields = {
-        name: document.getElementById('artist-modal-title'),
-        event: document.getElementById('artist-modal-event'),
-        emoji: document.getElementById('artist-modal-emoji'),
-        hero: document.getElementById('artist-modal-hero'),
-        social: document.getElementById('artist-modal-social'),
-      };
-
-      // Inline Instagram SVG (the only social we surface for now).
-      const INSTAGRAM_SVG = '<rect x="3" y="3" width="18" height="18" rx="5" ry="5" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>';
-
-      function buildSocialLinks(tile) {
-        const url = tile.dataset.artistInstagram;
-        if (!url) return '';
-        return (
-          '<a href="' + url + '" target="_blank" rel="noopener noreferrer" ' +
-          'class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white/18 hover:bg-white/32 backdrop-blur-md border border-white/25 hover:border-white/50 text-white transition-all duration-300 hover:-translate-y-0.5 shadow-md" ' +
-          'aria-label="Instagram">' +
-          '<svg class="w-5 h-5" viewBox="0 0 24 24">' + INSTAGRAM_SVG + '</svg>' +
-          '</a>'
-        );
-      }
-
-      // List of artist tiles (in the ORIGINAL row only — not the cloned ones).
-      // We resolve this once at startup; the order matches the carousel.
-      const artistTiles = Array.from(row.querySelectorAll('.artist-tile'));
-      let currentArtistIndex = 0;
-
-      // Note : pas de slideshow auto dans le modal — la card s'ouvre, l'user
-      // navigue manuellement (clic chevrons, swipe, fleches clavier) puis
-      // ferme. L'autoplay vit uniquement sur le carousel des tuiles fermees.
-
-      function renderArtistInModal(tile) {
-        fields.name.innerHTML = tile.dataset.artistName || '';
-        fields.event.innerHTML = tile.dataset.artistEvent || '';
-        // Hero : prefer the HD modal-quality photo, fallback to the tile photo,
-        // then the gradient + emoji.
-        if (fields.hero) {
-          const photoFull = tile.dataset.artistPhotoFull;
-          const photo = tile.dataset.artistPhoto;
-          const heroSrc = photoFull || photo;
-          if (heroSrc) {
-            fields.hero.style.backgroundImage = "url('" + heroSrc + "')";
-            fields.hero.style.backgroundSize = 'cover';
-            fields.hero.style.backgroundPosition = 'center';
-            fields.hero.style.backgroundColor = '';
-            if (fields.emoji) fields.emoji.style.display = 'none';
-          } else {
-            fields.hero.style.backgroundImage = '';
-            fields.hero.style.background = tile.dataset.artistGradient || '';
-            if (fields.emoji) {
-              fields.emoji.style.display = '';
-              fields.emoji.innerHTML = tile.dataset.artistEmoji || '🎵';
-            }
-          }
-        }
-        if (fields.social) {
-          fields.social.innerHTML = buildSocialLinks(tile);
-        }
-      }
-
-      function openArtistModal(tile) {
-        if (!modal || !modalArticle) return;
-        const idx = artistTiles.indexOf(tile);
-        if (idx !== -1) currentArtistIndex = idx;
-        renderArtistInModal(tile);
-        // Two-step show : remove `hidden` first so the element is rendered,
-        // then on the next frame add `is-open` so opacity/transform transition
-        // fires from the initial state instead of being skipped.
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            modal.classList.add('is-open');
-          });
-        });
-      }
-
-      // Cycle to prev (-1) or next (+1) artist within the open modal. Wraps
-      // around (last → first, first → last). Uses a quick crossfade for polish.
-      function navigateArtist(direction) {
-        if (!artistTiles.length || !modalArticle) return;
-        const total = artistTiles.length;
-        currentArtistIndex = (currentArtistIndex + direction + total) % total;
-        const nextTile = artistTiles[currentArtistIndex];
-        // Quick fade out / swap / fade in
-        modalArticle.style.transition = 'opacity 0.15s ease-out';
-        modalArticle.style.opacity = '0';
-        setTimeout(() => {
-          renderArtistInModal(nextTile);
-          modalArticle.style.opacity = '1';
-          // Restore default transition after the quick fade settles
-          setTimeout(() => { modalArticle.style.transition = ''; }, 200);
-        }, 150);
-      }
-
-      function closeArtistModal() {
-        if (!modal) return;
-        modal.classList.remove('is-open');
-        document.body.style.overflow = '';
-        // Wait for the exit transition to finish before re-hiding (display:none)
-        const finalize = () => {
-          modal.classList.add('hidden');
-          modal.removeEventListener('transitionend', finalize);
-        };
-        modal.addEventListener('transitionend', finalize, { once: true });
-        // Fallback in case transitionend doesn't fire (e.g. reduced motion)
-        setTimeout(() => {
-          if (!modal.classList.contains('is-open')) modal.classList.add('hidden');
-        }, 500);
-      }
-
-
-      // (Tile activation is handled in the pointerup listener above —
-      // we don't use the click event because pointer capture would redirect
-      // it to the track and break `closest('.artist-tile')`.)
-
-      // Close handlers
-      modal?.querySelectorAll('[data-artist-close]').forEach((el) => {
-        el.addEventListener('click', closeArtistModal);
-      });
-
-      // Prev / Next click handlers (chevron buttons in the modal)
-      document.getElementById('artist-modal-prev')?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        navigateArtist(-1);
-      });
-      document.getElementById('artist-modal-next')?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        navigateArtist(1);
-      });
-
-      // Keyboard : Esc to close, ←/→ to navigate
-      document.addEventListener('keydown', (e) => {
-        if (!modal?.classList.contains('is-open')) return;
-        if (e.key === 'Escape') return closeArtistModal();
-        if (e.key === 'ArrowLeft') { e.preventDefault(); navigateArtist(-1); }
-        if (e.key === 'ArrowRight') { e.preventDefault(); navigateArtist(1); }
-      });
-
-      // Swipe gesture on the modal article : left swipe → next, right swipe → prev.
-      // Threshold 50px ; ignore taps and small jitters so social links remain
-      // clickable.
-      if (modalArticle) {
-        let swipeStart = null;
-        let swipeDx = 0;
-        const SWIPE_THRESHOLD = 50;
-        modalArticle.addEventListener('pointerdown', (e) => {
-          if (e.button > 0) return;
-          // Ignore swipes that start on the close/nav buttons or social links
-          if (e.target.closest('button, a')) { swipeStart = null; return; }
-          swipeStart = e.clientX;
-          swipeDx = 0;
-        });
-        modalArticle.addEventListener('pointermove', (e) => {
-          if (swipeStart == null) return;
-          swipeDx = e.clientX - swipeStart;
-        });
-        const endSwipe = () => {
-          if (swipeStart == null) return;
-          if (Math.abs(swipeDx) > SWIPE_THRESHOLD) {
-            navigateArtist(swipeDx < 0 ? 1 : -1);
-          }
-          swipeStart = null;
-          swipeDx = 0;
-        };
-        modalArticle.addEventListener('pointerup', endSwipe);
-        modalArticle.addEventListener('pointercancel', endSwipe);
-      }
     })();
   </script>
 
