@@ -1626,8 +1626,8 @@
           <div data-consent-placeholder class="rounded-2xl border border-gray-200 bg-gray-50 px-6 py-10 text-center">
             <p class="text-2xl font-bold text-gray-900 mb-1">4,5 / 5 <span aria-hidden="true">&#11088;</span></p>
             <p class="text-sm text-text-light mb-5">Plus de 6&nbsp;600 avis sur Google, TripAdvisor et Facebook</p>
-            <p class="text-sm text-text-light max-w-md mx-auto mb-5">L'affichage des avis utilise le service Elfsight, susceptible de d&eacute;poser des cookies. Il ne se charge qu'avec votre accord.</p>
-            <button type="button" data-consent-allow class="inline-flex items-center gap-2 bg-brand text-white px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand-dark transition-colors">Autoriser et afficher les avis</button>
+            <p class="text-sm text-text-light max-w-md mx-auto mb-5">Vous avez d&eacute;sactiv&eacute; les avis clients (Elfsight) dans vos pr&eacute;f&eacute;rences de confidentialit&eacute;.</p>
+            <button type="button" data-rallumer="elfsight" class="inline-flex items-center gap-2 bg-brand text-white px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand-dark transition-colors">R&eacute;afficher les avis</button>
           </div>
         </div>
       </div>
@@ -1726,9 +1726,9 @@
         <div class="rounded-2xl overflow-hidden border border-gray-100 reveal" data-consent-slot="instagram">
           <div class="elfsight-app-421cfd10-b946-4415-a8c5-f9275a5aa0c9" data-elfsight-app-lazy></div>
           <div data-consent-placeholder class="bg-gray-50 px-6 py-10 text-center">
-            <p class="text-sm text-text-light max-w-md mx-auto mb-5">Le fil Instagram utilise le service Elfsight, susceptible de d&eacute;poser des cookies. Il ne se charge qu'avec votre accord.</p>
+            <p class="text-sm text-text-light max-w-md mx-auto mb-5">Vous avez d&eacute;sactiv&eacute; le fil Instagram (Elfsight) dans vos pr&eacute;f&eacute;rences de confidentialit&eacute;.</p>
             <div class="flex flex-wrap items-center justify-center gap-3">
-              <button type="button" data-consent-allow class="inline-flex items-center gap-2 bg-brand text-white px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand-dark transition-colors">Autoriser et afficher</button>
+              <button type="button" data-rallumer="elfsight" class="inline-flex items-center gap-2 bg-brand text-white px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand-dark transition-colors">R&eacute;afficher le fil</button>
               <a href="https://www.instagram.com/chiringuitovias/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-brand/30 text-brand px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand/10 transition-colors">Voir @chiringuitovias</a>
             </div>
           </div>
@@ -1920,9 +1920,9 @@
       </template>
       <div data-consent-placeholder class="rounded-2xl border border-white/15 bg-white/5 px-6 py-8 text-center">
         <p class="text-sm text-white/85 mb-1 font-semibold">&#128205; Plage de Farinette &middot; 34450 Vias-Plage</p>
-        <p class="text-xs text-white/60 max-w-md mx-auto mb-4">La carte interactive utilise Google Maps, susceptible de d&eacute;poser des cookies. Elle ne se charge qu'avec votre accord.</p>
+        <p class="text-xs text-white/60 max-w-md mx-auto mb-4">Vous avez d&eacute;sactiv&eacute; la carte Google Maps dans vos pr&eacute;f&eacute;rences de confidentialit&eacute;.</p>
         <div class="flex flex-wrap items-center justify-center gap-3">
-          <button type="button" data-consent-allow class="inline-flex items-center gap-2 bg-white text-brand-dark px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-white/90 transition-colors">Autoriser et afficher la carte</button>
+          <button type="button" data-rallumer="maps" class="inline-flex items-center gap-2 bg-white text-brand-dark px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-white/90 transition-colors">R&eacute;afficher la carte</button>
           <a href="https://maps.google.com/?q=Chiringuito+Plage+Priv%C3%A9e+Vias+Plage+de+Farinette+34450" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-white/30 text-white px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-white/10 transition-colors">Ouvrir dans Google Maps</a>
         </div>
       </div>
@@ -1935,7 +1935,7 @@
         <nav class="flex flex-wrap items-center gap-x-4 gap-y-1" aria-label="Liens l&eacute;gaux">
           <a href="/mentions-legales/" class="hover:text-white/70 underline decoration-white/20 underline-offset-2 transition-colors">Mentions l&eacute;gales</a>
           <a href="/confidentialite/" class="hover:text-white/70 underline decoration-white/20 underline-offset-2 transition-colors">Confidentialit&eacute;</a>
-          <button type="button" onclick="window.openConsentBanner && window.openConsentBanner()" class="hover:text-white/70 underline decoration-white/20 underline-offset-2 transition-colors">G&eacute;rer les cookies</button>
+          <a href="#gererCookies" id="gererCookies" class="hover:text-white/70 underline decoration-white/20 underline-offset-2 transition-colors">Pr&eacute;f&eacute;rences de confidentialit&eacute;</a>
         </nav>
         <a href="https://paper34.fr" target="_blank" rel="noopener noreferrer" title="Studio graphique Paper34 &agrave; Agde" class="group flex items-center gap-2 hover:text-white/60 transition-colors">
           R&eacute;alis&eacute; par
@@ -2023,62 +2023,132 @@
   </div>
 
   <!-- ============================================ -->
-  <!-- CONSENTEMENT COOKIES (CNIL : blocage reel des tiers Elfsight / Google Maps) -->
+  <!-- PREFERENCES DE CONFIDENTIALITE (modele opt-out Paper34 : pas de bandeau, -->
+  <!-- services actifs par defaut, panneau ouvert a la demande depuis le footer) -->
   <!-- ============================================ -->
-  <div id="consent-banner" class="fixed bottom-0 inset-x-0 z-[110] hidden px-4 pb-4 sm:px-6 sm:pb-6" role="dialog" aria-live="polite" aria-label="Gestion des cookies">
-    <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-2xl border border-gray-200 p-5 sm:p-6">
-      <p class="text-sm text-text leading-relaxed mb-4">
-        <strong class="text-gray-900">&#127850; Cookies&nbsp;:</strong> ce site n'utilise aucun cookie publicitaire. Certains contenus (avis clients, fil Instagram, carte Google Maps) proviennent de services tiers susceptibles de d&eacute;poser des cookies&nbsp;: ils ne se chargent qu'avec votre accord.
-        <a href="/confidentialite/" class="text-brand font-semibold underline underline-offset-2">En savoir plus</a>
-      </p>
-      <div class="flex flex-wrap gap-3 justify-end">
-        <button type="button" id="consent-deny" class="px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest border border-gray-300 text-text hover:border-gray-400 transition-colors">Continuer sans</button>
-        <button type="button" id="consent-grant" class="px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest bg-brand text-white hover:bg-brand-dark transition-colors">Accepter</button>
-      </div>
+  <div id="prefsPanel" class="fixed bottom-24 sm:bottom-5 right-5 z-[110] hidden w-[min(22rem,calc(100vw-2.5rem))] p-5 rounded-2xl bg-white border border-gray-200 shadow-2xl" role="dialog" aria-label="Pr&eacute;f&eacute;rences de confidentialit&eacute;">
+    <p class="font-semibold text-gray-900 mb-1">Pr&eacute;f&eacute;rences de confidentialit&eacute;</p>
+    <p class="text-sm text-text-light leading-relaxed mb-4">
+      Ces services externes enrichissent le site et peuvent d&eacute;poser des cookies. Vous pouvez les d&eacute;sactiver &agrave; tout moment.
+      <a href="/confidentialite/" class="underline underline-offset-4 text-brand hover:text-brand-dark">En savoir plus</a>
+    </p>
+    <ul class="text-sm text-text space-y-3 mb-4">
+      <li class="flex items-center justify-between gap-3">
+        <span>Avis clients &amp; fil Instagram <span class="text-text-light">(Elfsight)</span></span>
+        <button id="switchElfsight" type="button" role="switch" class="shrink-0 relative w-11 h-6 rounded-full border border-gray-300 transition-colors duration-300" aria-label="Activer ou d&eacute;sactiver les avis clients et le fil Instagram">
+          <span class="absolute top-0.5 left-0.5 w-4 h-4 rounded-full transition-transform duration-300"></span>
+        </button>
+      </li>
+      <li class="flex items-center justify-between gap-3">
+        <span>Carte <span class="text-text-light">(Google Maps)</span></span>
+        <button id="switchMaps" type="button" role="switch" class="shrink-0 relative w-11 h-6 rounded-full border border-gray-300 transition-colors duration-300" aria-label="Activer ou d&eacute;sactiver la carte">
+          <span class="absolute top-0.5 left-0.5 w-4 h-4 rounded-full transition-transform duration-300"></span>
+        </button>
+      </li>
+    </ul>
+    <div class="flex flex-wrap gap-2">
+      <button id="prefsClose" type="button" class="px-4 py-2 text-text-light text-sm rounded-full hover:text-brand transition-colors">Fermer</button>
     </div>
   </div>
 
   <script>
-    // Gestionnaire de consentement : rien ne se charge avant accord ("granted").
-    // Refus ("denied") : les encadres restent, avec un bouton "Autoriser" par bloc.
+    // Choix assume par le studio : avis, Instagram et carte se chargent sans action
+    // du visiteur ; le refus est memorise dans le navigateur (cle chiringuito-off-<service>).
     (function () {
-      const KEY = 'chir_consent_tiers'; // "granted" | "denied"
-      const banner = document.getElementById('consent-banner');
-      const slots = document.querySelectorAll('[data-consent-slot]');
+      var OFF_ELFSIGHT = 'chiringuito-off-elfsight';
+      var OFF_MAPS = 'chiringuito-off-maps';
 
-      function lire() { try { return localStorage.getItem(KEY); } catch { return null; } }
-      function ecrire(v) { try { localStorage.setItem(KEY, v); } catch {} }
+      function coupe(c) { try { return localStorage.getItem(c) === 'off'; } catch (e) { return false; } }
+      function couper(c) { try { localStorage.setItem(c, 'off'); } catch (e) {} }
+      function rallumer(c) { try { localStorage.removeItem(c); } catch (e) {} }
+      function purgerElfsight() {
+        try { // la pastille Elfsight doit revenir meme si le visiteur l'avait fermee
+          [localStorage, sessionStorage].forEach(function (s) {
+            Object.keys(s).forEach(function (k) { if (/elfsight|eapps/i.test(k)) s.removeItem(k); });
+          });
+        } catch (e) {}
+      }
 
-      function chargerTiers() {
-        // 1. iframes en attente (avis, carte)
-        slots.forEach((slot) => {
-          const tpl = slot.querySelector('template[data-consent-embed]');
-          const ph = slot.querySelector('[data-consent-placeholder]');
+      // Monte les iframes en attente (<template>) d'un service et retire son encadre de repli
+      function monter(service) {
+        document.querySelectorAll('[data-consent-slot="' + service + '"]').forEach(function (slot) {
+          var tpl = slot.querySelector('template[data-consent-embed]');
+          var ph = slot.querySelector('[data-consent-placeholder]');
           if (tpl) { slot.appendChild(tpl.content.cloneNode(true)); tpl.remove(); }
           if (ph) ph.remove();
         });
-        // 2. script Elfsight (avis + Instagram)
-        if (!document.querySelector('script[src*="static.elfsight.com"]')) {
-          const s = document.createElement('script');
-          s.src = 'https://static.elfsight.com/platform/platform.js';
-          s.defer = true;
-          document.body.appendChild(s);
-        }
       }
 
-      function fermer() { banner.classList.add('hidden'); }
-      function decider(v) { ecrire(v); fermer(); if (v === 'granted') chargerTiers(); }
+      /* --- Avis + Instagram (Elfsight) --- */
+      function chargerElfsight() {
+        monter('avis'); monter('instagram');
+        if (document.querySelector('script[src*="static.elfsight.com"]')) return;
+        purgerElfsight();
+        var s = document.createElement('script');
+        s.src = 'https://static.elfsight.com/platform/platform.js';
+        s.defer = true;
+        document.body.appendChild(s);
+      }
+      /* --- Carte (Google Maps) --- */
+      function chargerMaps() { monter('maps'); }
 
-      document.getElementById('consent-grant').addEventListener('click', () => decider('granted'));
-      document.getElementById('consent-deny').addEventListener('click', () => decider('denied'));
-      // Boutons "Autoriser et afficher" des encadres : accord global
-      document.querySelectorAll('[data-consent-allow]').forEach((b) => b.addEventListener('click', () => decider('granted')));
-      // Lien "Gerer les cookies" du footer : rouvre la banniere
-      window.openConsentBanner = () => banner.classList.remove('hidden');
+      // Chargement par defaut, sauf refus memorise
+      if (!coupe(OFF_ELFSIGHT)) chargerElfsight();
+      if (!coupe(OFF_MAPS)) chargerMaps();
 
-      const etat = lire();
-      if (etat === 'granted') chargerTiers();
-      else if (etat !== 'denied') banner.classList.remove('hidden');
+      // Boutons des encadres de repli : reactivation sur place
+      document.querySelectorAll('[data-rallumer]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var svc = b.getAttribute('data-rallumer');
+          if (svc === 'elfsight') { rallumer(OFF_ELFSIGHT); chargerElfsight(); }
+          else { rallumer(OFF_MAPS); chargerMaps(); }
+          majSwitches();
+        });
+      });
+
+      /* --- Panneau de preferences (jamais affiche spontanement) --- */
+      var panneau = document.getElementById('prefsPanel');
+      function peindre(btn, actif) {
+        if (!btn) return;
+        btn.setAttribute('aria-checked', actif ? 'true' : 'false');
+        btn.style.background = actif ? '#009BA4' : 'transparent';
+        btn.style.borderColor = actif ? '#009BA4' : '#D1D5DB';
+        var pion = btn.firstElementChild;
+        if (pion) {
+          pion.style.transform = actif ? 'translateX(20px)' : 'translateX(0)';
+          pion.style.background = actif ? '#FFFFFF' : '#9CA3AF';
+        }
+      }
+      var swElf = document.getElementById('switchElfsight');
+      var swMaps = document.getElementById('switchMaps');
+      function majSwitches() { peindre(swElf, !coupe(OFF_ELFSIGHT)); peindre(swMaps, !coupe(OFF_MAPS)); }
+      majSwitches();
+
+      // Couper exige un rechargement : un script tiers deja execute ne se retire pas
+      function basculer(cle, etaitActif) {
+        if (etaitActif) {
+          couper(cle);
+          if (cle === OFF_ELFSIGHT) purgerElfsight();
+          window.location.reload();
+        } else {
+          rallumer(cle);
+          majSwitches();
+          if (cle === OFF_ELFSIGHT) chargerElfsight(); else chargerMaps();
+        }
+      }
+      if (swElf) swElf.addEventListener('click', function () { basculer(OFF_ELFSIGHT, !coupe(OFF_ELFSIGHT)); });
+      if (swMaps) swMaps.addEventListener('click', function () { basculer(OFF_MAPS, !coupe(OFF_MAPS)); });
+
+      function ouvrirPanneau() { if (panneau) { majSwitches(); panneau.classList.remove('hidden'); } }
+      function fermerPanneau() { if (panneau) panneau.classList.add('hidden'); }
+      var gerer = document.getElementById('gererCookies');
+      if (gerer) gerer.addEventListener('click', function (e) { e.preventDefault(); ouvrirPanneau(); });
+      if (window.location.hash === '#gererCookies') ouvrirPanneau();
+      var close = document.getElementById('prefsClose');
+      if (close) close.addEventListener('click', fermerPanneau);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && panneau && !panneau.classList.contains('hidden')) fermerPanneau();
+      });
     })();
   </script>
 
