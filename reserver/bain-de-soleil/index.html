@@ -22,37 +22,8 @@
   <!-- Polices auto-hebergees (conformite CNIL - aucun CDN de polices tiers) -->
   <link rel="preload" href="/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin/>
   <link rel="stylesheet" href="/fonts/fonts.css"/>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { theme: { extend: { colors: { brand: '#009BA4', 'brand-dark': '#007A82', text: '#575756', 'text-light': '#8A8A89' }, fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], display: ['Parisienne', 'cursive'] } } } }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebPage",
-        "@id": "https://www.chiringuito-vias.fr/reserver/bain-de-soleil/#webpage",
-        "url": "https://www.chiringuito-vias.fr/reserver/bain-de-soleil/",
-        "name": "R&eacute;server votre bain de soleil au Chiringuito Vias-Plage",
-        "description": "R&eacute;servation de transat sur la plage priv&eacute;e du Chiringuito Vias-Plage.",
-        "inLanguage": "fr-FR",
-        "isPartOf": {"@type": "WebSite", "name": "Chiringuito Vias-Plage", "url": "https://www.chiringuito-vias.fr/"},
-        "about": {"@type": "Restaurant", "name": "Chiringuito Vias-Plage", "url": "https://www.chiringuito-vias.fr/"}
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Accueil",        "item": "https://www.chiringuito-vias.fr/"},
-          {"@type": "ListItem", "position": 2, "name": "R&eacute;server",       "item": "https://www.chiringuito-vias.fr/reserver/"},
-          {"@type": "ListItem", "position": 3, "name": "Un bain de soleil","item": "https://www.chiringuito-vias.fr/reserver/bain-de-soleil/"}
-        ]
-      }
-    ]
-  }
-  </script>
+  <!-- Tailwind compile en build (css/tailwind.css) - plus de Play CDN au chargement -->
+  <link rel="stylesheet" href="/css/tailwind.css"/>
 </head>
 
 <body class="bg-white text-text font-sans antialiased">

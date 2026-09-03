@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Chiringuito Vias-Plage : plage priv&eacute;e, restaurant &amp; bar face &agrave; la M&eacute;diterran&eacute;e depuis 2015. Cuisine m&eacute;diterran&eacute;enne, transats, soir&eacute;es DJ. R&eacute;servez en ligne."/>
+  <meta name="description" content="Restaurant de plage &amp; plage priv&eacute;e &agrave; Vias-Plage (34450) : cuisine m&eacute;diterran&eacute;enne face &agrave; la mer, transats, bar &amp; soir&eacute;es DJ. R&eacute;servez en ligne."/>
   <meta name="keywords" content="chiringuito, chiringuito vias, vias plage, plage priv&eacute;e vias, restaurant plage vias, bar plage vias, transats vias, plage farinette, 34450, restaurant m&eacute;diterran&eacute;en h&eacute;rault, plage priv&eacute;e h&eacute;rault, beach club vias, chiringuito plage, restaurant bord de mer occitanie"/>
   <meta name="theme-color" content="#009BA4"/>
   <meta name="author" content="Chiringuito Vias-Plage"/>
@@ -16,7 +16,7 @@
   <meta property="og:type" content="restaurant"/>
   <meta property="og:url" content="https://www.chiringuito-vias.fr/"/>
   <meta property="og:title" content="Chiringuito | Plage Priv&eacute;e &amp; Restaurant &agrave; Vias-Plage"/>
-  <meta property="og:description" content="Plage priv&eacute;e, restaurant &amp; bar face &agrave; la M&eacute;diterran&eacute;e. Cuisine raffin&eacute;e les pieds dans le sable depuis 2015. R&eacute;servez en ligne."/>
+  <meta property="og:description" content="Restaurant de plage &amp; plage priv&eacute;e &agrave; Vias-Plage. Cuisine m&eacute;diterran&eacute;enne face &agrave; la mer, transats, soir&eacute;es DJ. R&eacute;servez en ligne."/>
   <meta property="og:image" content="https://www.chiringuito-vias.fr/images/og-chiringuito.jpg"/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
@@ -26,7 +26,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Chiringuito | Plage Priv&eacute;e &amp; Restaurant &agrave; Vias-Plage"/>
-  <meta name="twitter:description" content="Plage priv&eacute;e, restaurant &amp; bar face &agrave; la M&eacute;diterran&eacute;e. Cuisine raffin&eacute;e les pieds dans le sable."/>
+  <meta name="twitter:description" content="Restaurant de plage &amp; plage priv&eacute;e &agrave; Vias-Plage. Cuisine m&eacute;diterran&eacute;enne face &agrave; la mer, transats, soir&eacute;es DJ. R&eacute;servez en ligne."/>
   <meta name="twitter:image" content="https://www.chiringuito-vias.fr/images/og-chiringuito.jpg"/>
 
   <!-- Geo -->
@@ -543,26 +543,8 @@
   <link rel="stylesheet" href="/fonts/fonts.css"/>
 
   <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: '#009BA4',
-            'brand-dark': '#007A82',
-            'brand-light': '#00B8C4',
-            text: '#575756',
-            'text-light': '#8A8A89',
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            display: ['Parisienne', 'cursive'],
-          },
-        },
-      },
-    }
-  </script>
+  <!-- Tailwind compile en build (css/tailwind.css) - plus de Play CDN au chargement -->
+  <link rel="stylesheet" href="/css/tailwind.css"/>
 
   <style>
     /* Lenis smooth scroll */
@@ -700,6 +682,10 @@
       50% { filter: drop-shadow(0 0 25px rgba(255,255,255,0.15)) drop-shadow(0 0 60px rgba(0,155,164,0.1)); }
     }
     #hero-logo { animation: glow-pulse 3s ease-in-out infinite; }
+
+    /* FAQ : masque le triangle natif de <summary> (Safari) — l'ancienne classe
+       arbitraire [&::-webkit-details-marker]:hidden n'est pas compilable depuis le HTML */
+    #faq summary::-webkit-details-marker { display: none; }
 
     /* CTA hero (Closing Party) : glow violet nocturne */
     @keyframes hero-cta-glow {
@@ -938,7 +924,7 @@
         </p>
 
         <div class="text-sm md:text-base text-text leading-relaxed tracking-wide reveal">
-          <p class="mb-4">Depuis 2015, le Chiringuito est devenu le rendez-vous incontournable de Vias-Plage. Pour cette <strong class="text-brand font-semibold">11&egrave;me saison</strong>, toute l'&eacute;quipe vous retrouve avec la m&ecirc;me passion : vous offrir un moment d'exception les pieds dans le sable.</p>
+          <p class="mb-4">Depuis 2015, le Chiringuito &mdash; restaurant de plage et plage priv&eacute;e sur la plage de Farinette &mdash; est devenu le rendez-vous incontournable de Vias-Plage. Pour cette <strong class="text-brand font-semibold">11&egrave;me saison</strong>, toute l'&eacute;quipe vous retrouve avec la m&ecirc;me passion : vous offrir un moment d'exception les pieds dans le sable.</p>
           <p class="mb-4">Une cuisine m&eacute;diterran&eacute;enne g&eacute;n&eacute;reuse, port&eacute;e par des produits frais et de saison. Des vins r&eacute;gionaux soigneusement s&eacute;lectionn&eacute;s. Des desserts enti&egrave;rement faits maison.</p>
           <p class="text-text-light">D&eacute;tente absolue sur nos bains de soleil en bois naturel, face &agrave; la M&eacute;diterran&eacute;e. En famille, entre amis ou en amoureux. Ici, le temps s'arr&ecirc;te.</p>
         </div>
@@ -1717,7 +1703,7 @@
 
         <div class="space-y-3">
           <details class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal">
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900 [&amp;::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900">
               O&ugrave; se trouve le Chiringuito et comment y acc&eacute;der&nbsp;?
               <svg class="w-5 h-5 text-brand shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
@@ -1725,7 +1711,7 @@
           </details>
 
           <details class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal">
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900 [&amp;::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900">
               Y a-t-il un parking &agrave; proximit&eacute;&nbsp;?
               <svg class="w-5 h-5 text-brand shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
@@ -1733,7 +1719,7 @@
           </details>
 
           <details class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal">
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900 [&amp;::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900">
               Les chiens sont-ils accept&eacute;s&nbsp;?
               <svg class="w-5 h-5 text-brand shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
@@ -1741,7 +1727,7 @@
           </details>
 
           <details class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal">
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900 [&amp;::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900">
               Faut-il r&eacute;server&nbsp;?
               <svg class="w-5 h-5 text-brand shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
@@ -1749,7 +1735,7 @@
           </details>
 
           <details class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal">
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900 [&amp;::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900">
               Quels sont les horaires&nbsp;?
               <svg class="w-5 h-5 text-brand shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
@@ -1757,7 +1743,7 @@
           </details>
 
           <details class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal">
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900 [&amp;::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900">
               Combien co&ucirc;te un transat &agrave; la plage priv&eacute;e&nbsp;?
               <svg class="w-5 h-5 text-brand shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
@@ -1765,7 +1751,7 @@
           </details>
 
           <details class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal">
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900 [&amp;::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900">
               Les soir&eacute;es sont-elles ouvertes &agrave; tous&nbsp;?
               <svg class="w-5 h-5 text-brand shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
@@ -1773,7 +1759,7 @@
           </details>
 
           <details class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal">
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900 [&amp;::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900">
               Quel type de cuisine est servi&nbsp;?
               <svg class="w-5 h-5 text-brand shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
@@ -1781,7 +1767,7 @@
           </details>
 
           <details class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal">
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900 [&amp;::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900">
               Y a-t-il un menu enfant&nbsp;?
               <svg class="w-5 h-5 text-brand shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
@@ -1789,7 +1775,7 @@
           </details>
 
           <details class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal">
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900 [&amp;::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900">
               Quels moyens de paiement sont accept&eacute;s&nbsp;?
               <svg class="w-5 h-5 text-brand shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
@@ -1797,7 +1783,7 @@
           </details>
 
           <details class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal">
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900 [&amp;::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900">
               L'&eacute;tablissement est-il accessible PMR et poussettes&nbsp;?
               <svg class="w-5 h-5 text-brand shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
@@ -1805,7 +1791,7 @@
           </details>
 
           <details class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal">
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900 [&amp;::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900">
               Peut-on privatiser le Chiringuito&nbsp;?
               <svg class="w-5 h-5 text-brand shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
@@ -1813,7 +1799,7 @@
           </details>
 
           <details class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal">
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900 [&amp;::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-base font-semibold text-gray-900">
               Que se passe-t-il en cas de pluie&nbsp;?
               <svg class="w-5 h-5 text-brand shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
