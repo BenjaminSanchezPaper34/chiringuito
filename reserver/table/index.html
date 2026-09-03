@@ -22,46 +22,8 @@
   <!-- Polices auto-hebergees (conformite CNIL - aucun CDN de polices tiers) -->
   <link rel="preload" href="/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin/>
   <link rel="stylesheet" href="/fonts/fonts.css"/>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { theme: { extend: { colors: { brand: '#009BA4', 'brand-dark': '#007A82', text: '#575756', 'text-light': '#8A8A89' }, fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], display: ['Parisienne', 'cursive'] } } } }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebPage",
-        "@id": "https://www.chiringuito-vias.fr/reserver/table/#webpage",
-        "url": "https://www.chiringuito-vias.fr/reserver/table/",
-        "name": "R&eacute;server votre table au Chiringuito Vias-Plage",
-        "description": "R&eacute;servation de table au restaurant Chiringuito Vias-Plage via Zenchef.",
-        "inLanguage": "fr-FR",
-        "isPartOf": {"@type": "WebSite", "name": "Chiringuito Vias-Plage", "url": "https://www.chiringuito-vias.fr/"},
-        "about": {"@type": "Restaurant", "name": "Chiringuito Vias-Plage", "url": "https://www.chiringuito-vias.fr/"}
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Accueil",  "item": "https://www.chiringuito-vias.fr/"},
-          {"@type": "ListItem", "position": 2, "name": "R&eacute;server", "item": "https://www.chiringuito-vias.fr/reserver/"},
-          {"@type": "ListItem", "position": 3, "name": "Une table","item": "https://www.chiringuito-vias.fr/reserver/table/"}
-        ]
-      },
-      {
-        "@type": "ReserveAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://bookings.zenchef.com/results?rid=360974&pid=1001",
-          "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
-        },
-        "result": {"@type": "FoodEstablishmentReservation", "name": "R&eacute;servation table Chiringuito Vias-Plage"}
-      }
-    ]
-  }
-  </script>
+  <!-- Tailwind compile en build (css/tailwind.css) - plus de Play CDN au chargement -->
+  <link rel="stylesheet" href="/css/tailwind.css"/>
 </head>
 
 <body class="bg-white text-text font-sans antialiased">
