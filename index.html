@@ -3432,7 +3432,8 @@
       const row = document.getElementById('soireesRow');
       const next = row && row.querySelector('[data-next-event]');
       if (!row || !next || window.matchMedia('(min-width: 768px)').matches) return;
-      row.scrollLeft = next.offsetLeft - (row.clientWidth - next.clientWidth) / 2;
+      const r = row.getBoundingClientRect(), c = next.getBoundingClientRect();
+      row.scrollLeft += (c.left - r.left) - (r.width - c.width) / 2;
     })();
 
     initMarquee('artistsMarquee', 'artistsRow', { direction: 1, tile: '.artist-tile' });
