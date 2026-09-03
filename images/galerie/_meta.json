@@ -1,0 +1,254 @@
+[
+ {
+  "i": 1,
+  "slug": "salon-de-plage-couple-transats-face-mer-vias",
+  "alt": "Un couple installé sur les canapés de plage du Chiringuito, face à la mer",
+  "theme": "plage",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 2,
+  "slug": "terrasse-restaurant-vue-mer-vias-plage",
+  "alt": "La terrasse du restaurant face à la Méditerranée, entre bananiers et fauteuils blancs",
+  "theme": "lieu",
+  "w": 1600,
+  "h": 900,
+  "orient": "paysage"
+ },
+ {
+  "i": 3,
+  "slug": "dorade-grillee-frites-restaurant-plage-vias",
+  "alt": "Dorade grillée, frites maison et tapas — la cuisine du Chiringuito",
+  "theme": "cuisine",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 4,
+  "slug": "terrasse-fleurie-restaurant-plage-farinette",
+  "alt": "La terrasse fleurie du restaurant, pleine à l'heure du déjeuner",
+  "theme": "lieu",
+  "w": 1600,
+  "h": 1066,
+  "orient": "paysage"
+ },
+ {
+  "i": 5,
+  "slug": "detente-canapes-plage-privee-vias",
+  "alt": "Détente sur les canapés de la plage privée",
+  "theme": "ambiance",
+  "w": 1600,
+  "h": 1280,
+  "orient": "paysage"
+ },
+ {
+  "i": 6,
+  "slug": "plateau-huitres-restaurant-vias-plage",
+  "alt": "Plateau d'huîtres sur glace, citron et vinaigre à l'échalote",
+  "theme": "cuisine",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 7,
+  "slug": "gambas-sauce-curry-restaurant-plage-vias",
+  "alt": "Gambas rôties, sauce curry et riz — plat signature du Chiringuito",
+  "theme": "cuisine",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 8,
+  "slug": "dejeuner-terrasse-pergola-vias-plage",
+  "alt": "Déjeuner sous la pergola, la mer en toile de fond",
+  "theme": "lieu",
+  "w": 1600,
+  "h": 1066,
+  "orient": "paysage"
+ },
+ {
+  "i": 9,
+  "slug": "saint-jacques-riz-noir-restaurant-vias",
+  "alt": "Noix de Saint-Jacques snackées, riz noir et sauce curry",
+  "theme": "cuisine",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 10,
+  "slug": "filet-de-poisson-assiette-chiringuito-vias",
+  "alt": "Filet de poisson du jour et ses légumes, servi dans l'assiette Chiringuito",
+  "theme": "cuisine",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 11,
+  "slug": "parasols-balinais-plage-privee-vias",
+  "alt": "Parasols balinais et palissade blanche de la plage privée",
+  "theme": "plage",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 12,
+  "slug": "service-vin-terrasse-restaurant-vias-plage",
+  "alt": "Service du vin en terrasse, face à la mer",
+  "theme": "ambiance",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 13,
+  "slug": "cocktail-vert-bar-de-plage-vias",
+  "alt": "Cocktail frais au bar de plage du Chiringuito",
+  "theme": "bar",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 14,
+  "slug": "dessert-ananas-roti-caramel-chiringuito",
+  "alt": "Ananas rôti, caramel et chantilly — dessert maison",
+  "theme": "cuisine",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 15,
+  "slug": "allee-plage-privee-guirlandes-transats-vias",
+  "alt": "L'allée de la plage privée, guirlandes et transats en bois",
+  "theme": "plage",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 16,
+  "slug": "cocktail-au-bar-plage-privee-vias",
+  "alt": "Un cocktail au bar, les pieds dans le sable",
+  "theme": "bar",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 17,
+  "slug": "parasols-plage-privee-ciel-bleu-vias-plage",
+  "alt": "Parasols balinais sous le ciel bleu de Vias-Plage",
+  "theme": "plage",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 18,
+  "slug": "coeur-plage-de-farinette-chiringuito-vias",
+  "alt": "Le cœur du Chiringuito sur la plage de Farinette, face à l'établissement",
+  "theme": "lieu",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 19,
+  "slug": "spritz-ciel-bleu-bar-plage-vias",
+  "alt": "Spritz au soleil, ciel bleu de l'Hérault",
+  "theme": "bar",
+  "w": 1066,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 20,
+  "slug": "couple-transat-coucher-de-soleil-vias-plage",
+  "alt": "Fin de journée sur un transat, face à la mer, à l'heure bleue",
+  "theme": "ambiance",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 21,
+  "slug": "terrasse-restaurant-soir-guirlandes-vias-plage",
+  "alt": "La terrasse du restaurant le soir, sous les guirlandes",
+  "theme": "ambiance",
+  "w": 1600,
+  "h": 1066,
+  "orient": "paysage"
+ },
+ {
+  "i": 22,
+  "slug": "dejeuner-entre-amies-parasol-vue-mer-vias",
+  "alt": "Déjeuner entre amies sous le parasol, vue sur la mer",
+  "theme": "ambiance",
+  "w": 1200,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 23,
+  "slug": "preparation-mojitos-bar-plage-vias",
+  "alt": "Préparation des mojitos au bar : citron vert, menthe et glace pilée",
+  "theme": "bar",
+  "w": 1200,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 24,
+  "slug": "salade-fraiche-vue-plage-vias",
+  "alt": "Salade fraîche servie face à la plage et aux baigneurs",
+  "theme": "cuisine",
+  "w": 1200,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 25,
+  "slug": "entree-vegetale-chiringuito-vias-plage",
+  "alt": "L'entrée végétale du Chiringuito, fauteuil en rotin et plantes suspendues",
+  "theme": "lieu",
+  "w": 1280,
+  "h": 1600,
+  "orient": "portrait"
+ },
+ {
+  "i": 26,
+  "slug": "vue-aerienne-plage-de-farinette-vias-drone",
+  "alt": "La plage de Farinette et le Chiringuito vus du ciel",
+  "theme": "vue-du-ciel",
+  "w": 1600,
+  "h": 1199,
+  "orient": "paysage"
+ },
+ {
+  "i": 27,
+  "slug": "terrasse-plage-privee-soir-vue-drone-vias",
+  "alt": "La terrasse et la plage privée à la tombée du soir, vues du ciel",
+  "theme": "vue-du-ciel",
+  "w": 1600,
+  "h": 1199,
+  "orient": "paysage"
+ },
+ {
+  "i": 28,
+  "slug": "chiringuito-vias-plage-vue-aerienne-coucher-de-soleil",
+  "alt": "Le Chiringuito et la mer au coucher du soleil, vue aérienne",
+  "theme": "vue-du-ciel",
+  "w": 1600,
+  "h": 1066,
+  "orient": "paysage"
+ }
+]

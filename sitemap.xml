@@ -151,4 +151,122 @@
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
+  <url>
+    <loc>https://www.chiringuito-vias.fr/galerie/</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/salon-de-plage-couple-transats-face-mer-vias.webp</image:loc>
+      <image:title>Un couple installé sur les canapés de plage du Chiringuito, face à la mer</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/terrasse-restaurant-vue-mer-vias-plage.webp</image:loc>
+      <image:title>La terrasse du restaurant face à la Méditerranée, entre bananiers et fauteuils blancs</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/dorade-grillee-frites-restaurant-plage-vias.webp</image:loc>
+      <image:title>Dorade grillée, frites maison et tapas — la cuisine du Chiringuito</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/terrasse-fleurie-restaurant-plage-farinette.webp</image:loc>
+      <image:title>La terrasse fleurie du restaurant, pleine à l&#x27;heure du déjeuner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/detente-canapes-plage-privee-vias.webp</image:loc>
+      <image:title>Détente sur les canapés de la plage privée</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/plateau-huitres-restaurant-vias-plage.webp</image:loc>
+      <image:title>Plateau d&#x27;huîtres sur glace, citron et vinaigre à l&#x27;échalote</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/gambas-sauce-curry-restaurant-plage-vias.webp</image:loc>
+      <image:title>Gambas rôties, sauce curry et riz — plat signature du Chiringuito</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/dejeuner-terrasse-pergola-vias-plage.webp</image:loc>
+      <image:title>Déjeuner sous la pergola, la mer en toile de fond</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/saint-jacques-riz-noir-restaurant-vias.webp</image:loc>
+      <image:title>Noix de Saint-Jacques snackées, riz noir et sauce curry</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/filet-de-poisson-assiette-chiringuito-vias.webp</image:loc>
+      <image:title>Filet de poisson du jour et ses légumes, servi dans l&#x27;assiette Chiringuito</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/parasols-balinais-plage-privee-vias.webp</image:loc>
+      <image:title>Parasols balinais et palissade blanche de la plage privée</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/service-vin-terrasse-restaurant-vias-plage.webp</image:loc>
+      <image:title>Service du vin en terrasse, face à la mer</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/cocktail-vert-bar-de-plage-vias.webp</image:loc>
+      <image:title>Cocktail frais au bar de plage du Chiringuito</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/dessert-ananas-roti-caramel-chiringuito.webp</image:loc>
+      <image:title>Ananas rôti, caramel et chantilly — dessert maison</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/allee-plage-privee-guirlandes-transats-vias.webp</image:loc>
+      <image:title>L&#x27;allée de la plage privée, guirlandes et transats en bois</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/cocktail-au-bar-plage-privee-vias.webp</image:loc>
+      <image:title>Un cocktail au bar, les pieds dans le sable</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/parasols-plage-privee-ciel-bleu-vias-plage.webp</image:loc>
+      <image:title>Parasols balinais sous le ciel bleu de Vias-Plage</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/coeur-plage-de-farinette-chiringuito-vias.webp</image:loc>
+      <image:title>Le cœur du Chiringuito sur la plage de Farinette, face à l&#x27;établissement</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/spritz-ciel-bleu-bar-plage-vias.webp</image:loc>
+      <image:title>Spritz au soleil, ciel bleu de l&#x27;Hérault</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/couple-transat-coucher-de-soleil-vias-plage.webp</image:loc>
+      <image:title>Fin de journée sur un transat, face à la mer, à l&#x27;heure bleue</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/terrasse-restaurant-soir-guirlandes-vias-plage.webp</image:loc>
+      <image:title>La terrasse du restaurant le soir, sous les guirlandes</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/dejeuner-entre-amies-parasol-vue-mer-vias.webp</image:loc>
+      <image:title>Déjeuner entre amies sous le parasol, vue sur la mer</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/preparation-mojitos-bar-plage-vias.webp</image:loc>
+      <image:title>Préparation des mojitos au bar : citron vert, menthe et glace pilée</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/salade-fraiche-vue-plage-vias.webp</image:loc>
+      <image:title>Salade fraîche servie face à la plage et aux baigneurs</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/entree-vegetale-chiringuito-vias-plage.webp</image:loc>
+      <image:title>L&#x27;entrée végétale du Chiringuito, fauteuil en rotin et plantes suspendues</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/vue-aerienne-plage-de-farinette-vias-drone.webp</image:loc>
+      <image:title>La plage de Farinette et le Chiringuito vus du ciel</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/terrasse-plage-privee-soir-vue-drone-vias.webp</image:loc>
+      <image:title>La terrasse et la plage privée à la tombée du soir, vues du ciel</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.chiringuito-vias.fr/images/galerie/chiringuito-vias-plage-vue-aerienne-coucher-de-soleil.webp</image:loc>
+      <image:title>Le Chiringuito et la mer au coucher du soleil, vue aérienne</image:title>
+    </image:image>
+  </url>
 </urlset>
