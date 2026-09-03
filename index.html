@@ -1619,17 +1619,18 @@
           <p class="text-sm md:text-base text-text-light tracking-wide reveal max-w-2xl mx-auto">Les acteurs locaux qui font vivre la plage et les traditions du territoire &agrave; nos c&ocirc;t&eacute;s.</p>
         </div>
 
-        <!-- Grille centree : les tuiles s'ajoutent simplement a la suite -->
+        <!-- Grille centree : chaque tuile est un lien direct (Instagram en priorite) -->
         <div id="partnersGrid" class="flex flex-wrap justify-center gap-5 md:gap-6 reveal">
 
-          <button type="button" class="artist-tile" data-artist-name="Biou y Toros" data-artist-style="Partenaire" data-artist-event="Partenaire &middot; traditions camarguaises &amp; espagnoles" data-artist-gradient="linear-gradient(165deg, #3B1D12 0%, #7A2E1C 50%, #C8552B 100%)" data-artist-instagram="https://www.instagram.com/biousytoros/" aria-label="Voir Biou y Toros">
+          <!-- Tuile partenaire = lien direct (Instagram privilegie), pas de modale -->
+          <a href="https://www.instagram.com/biousytoros/" target="_blank" rel="noopener noreferrer" class="artist-tile block" aria-label="Biou y Toros sur Instagram (nouvel onglet)">
             <div class="artist-bg" style="background: linear-gradient(165deg, #3B1D12 0%, #7A2E1C 50%, #C8552B 100%);"></div>
             <div class="artist-info">
               <span class="artist-style">Partenaire</span>
               <h3 class="artist-name">Biou y Toros</h3>
               <p class="artist-event">Traditions camarguaises &amp; espagnoles</p>
             </div>
-          </button>
+          </a>
 
         </div>
       </div>
@@ -2819,11 +2820,6 @@
       track.addEventListener('touchstart', () => pauseAuto(2500), { passive: true });
       track.addEventListener('wheel', () => pauseAuto(2500), { passive: true });
 
-      // Grille partenaires : meme modale, ouverture au clic
-      document.querySelectorAll('#partnersGrid .artist-tile').forEach((t) => {
-        t.addEventListener('click', () => openArtistModal(t));
-      });
-
       // Pause auto on hover (desktop pointer) — soft brake / soft resume
       if (window.matchMedia('(hover: hover)').matches) {
         track.addEventListener('mouseenter', () => { setPaused(true); });
@@ -2871,8 +2867,6 @@
       // We resolve this once at startup; the order matches the carousel.
       const artistTiles = Array.from(row.querySelectorAll('.artist-tile'));
       let currentArtistIndex = 0;
-      // Famille active pour prev/next : le carrousel, ou la grille partenaires
-      let activeTiles = artistTiles;
 
       // Note : pas de slideshow auto dans le modal — la card s'ouvre, l'user
       // navigue manuellement (clic chevrons, swipe, fleches clavier) puis
@@ -2910,16 +2904,8 @@
 
       function openArtistModal(tile) {
         if (!modal || !modalArticle) return;
-        const grid = tile.closest('#partnersGrid');
-        activeTiles = grid ? Array.from(grid.querySelectorAll('.artist-tile')) : artistTiles;
-        const idx = activeTiles.indexOf(tile);
+        const idx = artistTiles.indexOf(tile);
         if (idx !== -1) currentArtistIndex = idx;
-        // Chevrons inutiles quand la famille n'a qu'un membre
-        const seul = activeTiles.length < 2;
-        ['artist-modal-prev', 'artist-modal-next'].forEach((id) => {
-          const b = document.getElementById(id);
-          if (b) b.classList.toggle('hidden', seul);
-        });
         renderArtistInModal(tile);
         // Two-step show : remove `hidden` first so the element is rendered,
         // then on the next frame add `is-open` so opacity/transform transition
@@ -2936,10 +2922,10 @@
       // Cycle to prev (-1) or next (+1) artist within the open modal. Wraps
       // around (last → first, first → last). Uses a quick crossfade for polish.
       function navigateArtist(direction) {
-        if (!activeTiles.length || !modalArticle) return;
-        const total = activeTiles.length;
+        if (!artistTiles.length || !modalArticle) return;
+        const total = artistTiles.length;
         currentArtistIndex = (currentArtistIndex + direction + total) % total;
-        const nextTile = activeTiles[currentArtistIndex];
+        const nextTile = artistTiles[currentArtistIndex];
         // Quick fade out / swap / fade in
         modalArticle.style.transition = 'opacity 0.15s ease-out';
         modalArticle.style.opacity = '0';
