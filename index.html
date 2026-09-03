@@ -2714,6 +2714,7 @@
       let startScroll = 0;
       let moved = 0;
       let startTile = null;
+      let startPointerType = '';
       const TAP_THRESHOLD = 5; // px below which a press counts as a tap (not drag)
 
       track.addEventListener('pointerdown', (e) => {
@@ -2723,6 +2724,7 @@
         startX = e.clientX;
         startScroll = track.scrollLeft;
         startTile = e.target.closest('.artist-tile');
+        startPointerType = e.pointerType;
         setPaused(true);
         // Show grabbing cursor only on non-touch (visual feedback for desktop)
         if (e.pointerType !== 'touch') {
@@ -2745,8 +2747,15 @@
         if (!isDown) return;
         isDown = false;
         track.classList.remove('is-dragging');
-        // Un tap laisse le lien natif de la tuile s'ouvrir (nouvel onglet) ;
-        // un glisser ne doit pas declencher de clic (voir le garde ci-dessous)
+        // Tap a la souris/stylet : pendant l'appui les tuiles sont en
+        // pointer-events:none (classe is-dragging), le clic natif n'atteint donc
+        // jamais le lien -> on l'ouvre ici, depuis le relachement (geste
+        // utilisateur, accepte par les bloqueurs de popup). Au doigt, la classe
+        // n'est pas posee : le clic natif du lien fait le travail.
+        if (moved < TAP_THRESHOLD && startTile && startPointerType !== 'touch') {
+          const href = startTile.getAttribute('href');
+          if (href) window.open(href, '_blank', 'noopener');
+        }
         startTile = null;
         pauseAuto(2500);
       }
