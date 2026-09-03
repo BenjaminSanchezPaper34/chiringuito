@@ -1097,6 +1097,9 @@
     .marquee-track.is-dragging { cursor: grabbing; }
     .marquee-track.is-dragging .artist-tile { pointer-events: none; }
     .marquee-track.is-dragging .gal-tile { pointer-events: none; }
+    /* Rangees a glisser sur mobile (soirees, partenaires) : sans barre de defilement */
+    .hscroll { -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .hscroll::-webkit-scrollbar { display: none; }
     /* Galerie photos : bande d'images a hauteur fixe, largeur naturelle */
     .gal-tile { position: relative; flex-shrink: 0; height: 300px; border-radius: 1.25rem; overflow: hidden; margin: 0; background: #15212B; box-shadow: 0 12px 30px -12px rgba(0,0,0,.45); }
     .gal-tile img { display: block; height: 100%; width: auto; user-select: none; -webkit-user-drag: none; }
@@ -1866,10 +1869,10 @@
         </div>
 
         <!-- Cards grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+        <div id="soireesRow" class="hscroll flex md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none -mx-6 px-6 md:mx-0 md:px-0 pb-2 md:pb-0">
 
           <!-- Opening Party (terminee) -->
-          <article class="soiree-card group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(165deg, #FFF8F0 0%, #FFE9D4 50%, #FFC98A 100%);">
+          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(165deg, #FFF8F0 0%, #FFE9D4 50%, #FFC98A 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
@@ -1894,7 +1897,7 @@
           </article>
 
           <!-- Coachella Party -->
-          <article class="soiree-card group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(165deg, #F0FFF4 0%, #C6F6D5 40%, #FBBF77 100%);">
+          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(165deg, #F0FFF4 0%, #C6F6D5 40%, #FBBF77 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge -->
               <div class="flex items-center justify-between mb-8">
@@ -1919,7 +1922,7 @@
           </article>
 
           <!-- Reggaeton Fiesta -->
-          <article class="soiree-card group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(160deg, #0A2A8C 0%, #2056C7 40%, #E4002B 100%);">
+          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(160deg, #0A2A8C 0%, #2056C7 40%, #E4002B 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
@@ -1944,7 +1947,7 @@
           </article>
 
           <!-- Aperol Pop-Up -->
-          <article class="soiree-card group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(160deg, #FF9E2C 0%, #FF6A13 48%, #E63E00 100%);">
+          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(160deg, #FF9E2C 0%, #FF6A13 48%, #E63E00 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
@@ -1969,7 +1972,7 @@
           </article>
 
           <!-- Closing Party (5e card : centree sur sa rangee, largeur d'une card normale) -->
-          <article class="soiree-card group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal md:col-span-2 md:w-[calc(50%-0.75rem)] md:mx-auto" style="background: linear-gradient(165deg, #1E1B4B 0%, #3730A3 50%, #6D28D9 100%);">
+          <article data-next-event class="soiree-card snap-center shrink-0 w-[85vw] md:shrink group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal md:col-span-2 md:w-[calc(50%-0.75rem)] md:mx-auto" style="background: linear-gradient(165deg, #1E1B4B 0%, #3730A3 50%, #6D28D9 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge -->
               <div class="flex items-center justify-between mb-8">
@@ -1993,6 +1996,8 @@
           </article>
 
         </div>
+
+        <p class="md:hidden text-center text-xs text-text-light mt-4 tracking-wide">&larr; Glissez pour revoir les soir&eacute;es pass&eacute;es</p>
 
         <!-- Newsletter incentive (replaces footnote) -->
         <div class="mt-14 md:mt-16 reveal">
@@ -2183,10 +2188,10 @@
         </div>
 
         <!-- Grille centree : chaque tuile est un lien direct (Instagram en priorite) -->
-        <div id="partnersGrid" class="flex flex-wrap justify-center gap-5 md:gap-6 reveal">
+        <div id="partnersGrid" class="hscroll flex md:flex-wrap justify-start md:justify-center gap-5 md:gap-6 overflow-x-auto md:overflow-visible snap-x md:snap-none -mx-6 px-6 md:mx-0 md:px-0 pb-2 md:pb-0 reveal">
 
           <!-- Tuile partenaire = lien direct (Instagram privilegie), pas de modale -->
-          <a href="https://www.instagram.com/biousytoros/" target="_blank" rel="noopener noreferrer" class="artist-tile block" aria-label="Bious y Toros sur Instagram (nouvel onglet)">
+          <a href="https://www.instagram.com/biousytoros/" target="_blank" rel="noopener noreferrer" class="artist-tile block snap-center" aria-label="Bious y Toros sur Instagram (nouvel onglet)">
             <div class="artist-bg" style="background-image: url('images/partenaires/bious-y-toros.webp'); background-size: cover; background-position: center;"></div>
             <div class="artist-info">
               <span class="artist-style">Partenaire</span>
@@ -2196,7 +2201,7 @@
           </a>
 
           <!-- Lacoste Beziers : pas de reseaux -> lien vers la page boutique (nouvel onglet) -->
-          <a href="https://www.lacoste.com/fr/stores/france/b%C3%A9ziers/b%C3%A9ziers-5555" target="_blank" rel="noopener noreferrer" class="artist-tile block" aria-label="Boutique Lacoste B&eacute;ziers (nouvel onglet)">
+          <a href="https://www.lacoste.com/fr/stores/france/b%C3%A9ziers/b%C3%A9ziers-5555" target="_blank" rel="noopener noreferrer" class="artist-tile block snap-center" aria-label="Boutique Lacoste B&eacute;ziers (nouvel onglet)">
             <div class="artist-bg" style="background-image: url('images/partenaires/lacoste-beziers.webp'); background-size: cover; background-position: center;"></div>
             <div class="artist-info">
               <span class="artist-style">Partenaire</span>
@@ -2205,7 +2210,7 @@
             </div>
           </a>
 
-          <a href="https://www.instagram.com/maisonalaryk/" target="_blank" rel="noopener noreferrer" class="artist-tile block" aria-label="Maison Alaryk sur Instagram (nouvel onglet)">
+          <a href="https://www.instagram.com/maisonalaryk/" target="_blank" rel="noopener noreferrer" class="artist-tile block snap-center" aria-label="Maison Alaryk sur Instagram (nouvel onglet)">
             <div class="artist-bg" style="background-image: url('images/partenaires/maison-alaryk.webp'); background-size: cover; background-position: center;"></div>
             <div class="artist-info">
               <span class="artist-style">Partenaire</span>
@@ -3422,8 +3427,17 @@
 
     }
 
+    // Mobile : la rangee des soirees s'ouvre sur la prochaine soiree, les passees restent a gauche
+    (function () {
+      const row = document.getElementById('soireesRow');
+      const next = row && row.querySelector('[data-next-event]');
+      if (!row || !next || window.matchMedia('(min-width: 768px)').matches) return;
+      const r = row.getBoundingClientRect(), c = next.getBoundingClientRect();
+      row.scrollLeft += (c.left - r.left) - (r.width - c.width) / 2;
+    })();
+
     initMarquee('artistsMarquee', 'artistsRow', { direction: 1, tile: '.artist-tile' });
-    initMarquee('galleryMarquee', 'galleryRow', { direction: -1, tile: '.gal-tile' });
+    initMarquee('galleryMarquee', 'galleryRow', { direction: 1, tile: '.gal-tile' });
   </script>
 
   <!-- ───────── Instagram section : live stats from metrics.json ───────── -->
