@@ -1233,6 +1233,9 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   </style>
+  <!-- Mesure d'audience Vercel Web Analytics (sans cookie, exemptee de consentement) + evenements maison -->
+  <script defer src="/js/analytics-events.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
 <body class="bg-white text-text font-sans antialiased overflow-x-hidden">
@@ -3400,7 +3403,10 @@
         // n'est pas posee : le clic natif du lien fait le travail.
         if (moved < TAP_THRESHOLD && startTile && startPointerType !== 'touch') {
           const href = startTile.getAttribute('href');
-          if (href) window.open(href, '_blank', 'noopener'); // tuiles sans lien (galerie) : rien
+          if (href) {
+            if (window.chirTrack) window.chirTrack('instagram', { cible: (href.split('instagram.com/')[1] || '').split(/[/?]/)[0] });
+            window.open(href, '_blank', 'noopener');
+          } // tuiles sans lien (galerie) : rien
         }
         startTile = null;
         pauseAuto(2500);
