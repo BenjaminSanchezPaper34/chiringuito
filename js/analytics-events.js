@@ -11,6 +11,7 @@
   function classify(a) {
     var href = a.getAttribute('href') || '';
     if (/^tel:/i.test(href)) return ['tel'];
+    if (/^sms:/i.test(href)) return ['reservation', { type: 'closing-sms' }];
     if (/bookings\.zenchef\.com/i.test(href)) {
       var type = /rid=360996/.test(href) ? 'transat' : (/rid=360974/.test(href) ? 'table' : 'autre');
       return ['reservation', { type: type }];
