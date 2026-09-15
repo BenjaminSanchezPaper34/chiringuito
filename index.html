@@ -3291,20 +3291,29 @@
       // We duplicate the row 3 times: [A][B][C] and keep scrollLeft inside the middle copy [B].
       // When user scrolls past B, we wrap by adjusting scrollLeft by ±rowWidth instantly (no animation).
       // This gives infinite illusion in both directions, no matter the input (auto, drag, swipe, wheel).
-      const cloneA = row.cloneNode(true);
-      const cloneC = row.cloneNode(true);
-      [cloneA, cloneC].forEach((c) => {
-        c.setAttribute('aria-hidden', 'true');
-        c.querySelectorAll(TILE).forEach((b) => b.setAttribute('tabindex', '-1'));
-      });
-      track.insertBefore(cloneA, row);
-      track.appendChild(cloneC);
-
       let rowWidth = 0;
       const measure = () => { rowWidth = row.getBoundingClientRect().width; };
-      measure();
-      // Start scroll position at the middle copy
-      track.scrollLeft = rowWidth;
+
+      // Les deux copies triplent le nombre de tuiles (28 photos -> 84 images).
+      // On ne les cree qu'a l'approche de la section : tant que la galerie est
+      // loin sous la ligne de flottaison, le navigateur n'a ni a telecharger ni
+      // a decoder les photos des copies.
+      let built = false;
+      function buildClones() {
+        if (built) return;
+        built = true;
+        const cloneA = row.cloneNode(true);
+        const cloneC = row.cloneNode(true);
+        [cloneA, cloneC].forEach((c) => {
+          c.setAttribute('aria-hidden', 'true');
+          c.querySelectorAll(TILE).forEach((b) => b.setAttribute('tabindex', '-1'));
+        });
+        track.insertBefore(cloneA, row);
+        track.appendChild(cloneC);
+        measure();
+        // Start scroll position at the middle copy
+        track.scrollLeft = rowWidth;
+      }
 
       window.addEventListener('resize', () => {
         const ratio = rowWidth ? track.scrollLeft / rowWidth : 1;
@@ -3343,6 +3352,10 @@
         resumeTimer = setTimeout(() => setPaused(false), durationMs);
       }
 
+      // La boucle ne tourne que quand le carrousel est a l'ecran et l'onglet
+      // actif : ecrire scrollLeft a chaque frame sur un conteneur de 84 tuiles
+      // coute cher, et ne sert a rien hors champ.
+      let rafId = null;
       function rafLoop() {
         currentSpeed += (targetSpeed - currentSpeed) * SPEED_LERP;
         // Snap to zero below a tiny threshold so we eventually really stop
@@ -3350,9 +3363,24 @@
         if (currentSpeed !== 0 && rowWidth) {
           track.scrollLeft += currentSpeed;
         }
-        requestAnimationFrame(rafLoop);
+        rafId = requestAnimationFrame(rafLoop);
       }
-      rafLoop();
+      function startLoop() { if (rafId === null && !reducedMotion) rafLoop(); }
+      function stopLoop() {
+        if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+        currentSpeed = 0;
+      }
+
+      let onScreen = false;
+      new IntersectionObserver((entries) => {
+        onScreen = entries[0].isIntersecting;
+        if (onScreen) { buildClones(); startLoop(); } else { stopLoop(); }
+      }, { rootMargin: '400px 0px' }).observe(track);
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopLoop();
+        else if (onScreen) startLoop();
+      });
 
       // ── Pointer interaction (drag for mouse, tap-to-open for everyone)
       // We deliberately AVOID setPointerCapture + the native click event,
