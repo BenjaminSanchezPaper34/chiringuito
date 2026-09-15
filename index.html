@@ -1880,7 +1880,7 @@
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 backdrop-blur-sm text-[10px] font-semibold uppercase tracking-widest text-orange-800/70">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 text-[10px] font-semibold uppercase tracking-widest text-orange-800/70">
                   <span class="w-1.5 h-1.5 rounded-full bg-orange-800/40"></span>
                   Termin&eacute;e
                 </span>
@@ -1905,7 +1905,7 @@
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge -->
               <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 backdrop-blur-sm text-[10px] font-semibold uppercase tracking-widest text-green-800/70">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 text-[10px] font-semibold uppercase tracking-widest text-green-800/70">
                   <span class="w-1.5 h-1.5 rounded-full bg-green-800/40"></span>
                   Termin&eacute;e
                 </span>
@@ -1930,7 +1930,7 @@
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-[10px] font-semibold uppercase tracking-widest text-white/70">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-[10px] font-semibold uppercase tracking-widest text-white/70">
                   <span class="w-1.5 h-1.5 rounded-full bg-white/40"></span>
                   Termin&eacute;e
                 </span>
@@ -1955,7 +1955,7 @@
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-[10px] font-semibold uppercase tracking-widest text-white/70">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-[10px] font-semibold uppercase tracking-widest text-white/70">
                   <span class="w-1.5 h-1.5 rounded-full bg-white/40"></span>
                   Termin&eacute;e
                 </span>
@@ -1975,12 +1975,16 @@
             </div>
           </article>
 
-          <!-- Closing Party (5e card : centree sur sa rangee, largeur d'une card normale) -->
+          <!-- Closing Party (5e card : centree sur sa rangee, largeur d'une card normale)
+               Pas de backdrop-blur sur les badges de cette section : le fond derriere
+               est un degrade lisse ou un aplat, le flou ne produit aucun pixel different
+               mais force un recalcul a chaque frame - d'autant plus que la pastille
+               animate-pulse ci-dessous vit a l'interieur du badge. -->
           <article data-next-event class="soiree-card snap-center shrink-0 w-[85vw] md:shrink group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal md:col-span-2 md:w-[calc(50%-0.75rem)] md:mx-auto" style="background: linear-gradient(165deg, #1E1B4B 0%, #3730A3 50%, #6D28D9 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge -->
               <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-[10px] font-semibold uppercase tracking-widest text-white/95">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 border border-white/30 text-[10px] font-semibold uppercase tracking-widest text-white/95">
                   <span class="w-1.5 h-1.5 rounded-full bg-purple-200 animate-pulse"></span>
                   Prochaine soir&eacute;e
                 </span>
@@ -2005,7 +2009,7 @@
 
         <!-- Newsletter incentive (replaces footnote) -->
         <div class="mt-14 md:mt-16 reveal">
-          <div class="max-w-2xl mx-auto bg-white/70 backdrop-blur-sm border border-brand/15 rounded-3xl px-6 py-8 md:px-10 md:py-9 text-center shadow-sm">
+          <div class="max-w-2xl mx-auto bg-white/70 border border-brand/15 rounded-3xl px-6 py-8 md:px-10 md:py-9 text-center shadow-sm">
             <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand/10 text-brand mb-4">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
             </span>
