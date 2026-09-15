@@ -1078,15 +1078,14 @@
        elle se battait avec le reveal GSAP sur le meme element. */
     /* Une seule bande laterale a toutes les tailles, meme systeme que le mobile.
        Largeur fixe sur ecran large ; l'id en selecteur passe devant w-[85vw]. */
+    /* Espaceurs en tete et en queue pour que la premiere et la derniere carte
+       puissent etre centrees dans la bande pleine largeur : une moitie d'ecran
+       moins une demi-carte moins l'ecart entre cartes. */
+    #soireesRow::before, #soireesRow::after { content: ''; flex: 0 0 calc(7.5vw - 1rem); }
+    #soireesRow.is-dragging .soiree-card { pointer-events: none; }
     @media (min-width: 768px) {
       #soireesRow .soiree-card { width: 380px; }
-      /* Espaceurs en tete et en queue pour que la premiere et la derniere carte
-         puissent etre centrees : 50 % du contenu moins une demi-carte moins
-         l'ecart (gap-6), le padding px-6 fait le reste. */
-      #soireesRow::before, #soireesRow::after { content: ''; flex: 0 0 calc(50% - 190px - 1.5rem); }
-      #soireesRow { cursor: grab; }
-      #soireesRow.is-dragging { cursor: grabbing; }
-      #soireesRow.is-dragging .soiree-card { pointer-events: none; }
+      #soireesRow::before, #soireesRow::after { flex-basis: calc(50vw - 190px - 1.5rem); }
     }
 
     /* ───────── Artist carousel (infinite, scrollable both ways) ───────── */
@@ -1886,10 +1885,15 @@
         </div>
 
         <!-- Cards grid -->
-        <div id="soireesRow" class="hscroll flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory -mx-6 px-6 pb-2">
+      </div>
+
+      <!-- Bande pleine largeur, meme habillage que les photos et les DJ : fondu sur
+           les bords (marquee-mask), defilement libre sans accroche, glisser a la souris. -->
+      <div class="relative z-10 marquee-mask -mx-6">
+        <div id="soireesRow" class="marquee-track gap-4 md:gap-6">
 
           <!-- Opening Party (terminee) -->
-          <article class="soiree-card snap-center shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(165deg, #FFF8F0 0%, #FFE9D4 50%, #FFC98A 100%);">
+          <article class="soiree-card shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(165deg, #FFF8F0 0%, #FFE9D4 50%, #FFC98A 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
@@ -1914,7 +1918,7 @@
           </article>
 
           <!-- Coachella Party -->
-          <article class="soiree-card snap-center shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(165deg, #F0FFF4 0%, #C6F6D5 40%, #FBBF77 100%);">
+          <article class="soiree-card shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(165deg, #F0FFF4 0%, #C6F6D5 40%, #FBBF77 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge -->
               <div class="flex items-center justify-between mb-8">
@@ -1939,7 +1943,7 @@
           </article>
 
           <!-- Reggaeton Fiesta -->
-          <article class="soiree-card snap-center shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(160deg, #0A2A8C 0%, #2056C7 40%, #E4002B 100%);">
+          <article class="soiree-card shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(160deg, #0A2A8C 0%, #2056C7 40%, #E4002B 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
@@ -1964,7 +1968,7 @@
           </article>
 
           <!-- Aperol Pop-Up -->
-          <article class="soiree-card snap-center shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(160deg, #FF9E2C 0%, #FF6A13 48%, #E63E00 100%);">
+          <article class="soiree-card shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(160deg, #FF9E2C 0%, #FF6A13 48%, #E63E00 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
@@ -1993,7 +1997,7 @@
                est un degrade lisse ou un aplat, le flou ne produit aucun pixel different
                mais force un recalcul a chaque frame - d'autant plus que la pastille
                animate-pulse ci-dessous vit a l'interieur du badge. -->
-          <article data-next-event class="soiree-card snap-center shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(165deg, #1E1B4B 0%, #3730A3 50%, #6D28D9 100%);">
+          <article data-next-event class="soiree-card shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(165deg, #1E1B4B 0%, #3730A3 50%, #6D28D9 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge -->
               <div class="flex items-center justify-between mb-8">
@@ -2017,7 +2021,9 @@
           </article>
 
         </div>
+      </div>
 
+      <div class="max-w-6xl mx-auto relative">
         <p class="text-center text-xs text-text-light mt-4 tracking-wide">&larr; Glissez pour revoir les soir&eacute;es pass&eacute;es</p>
 
         <!-- Newsletter incentive (replaces footnote) -->
