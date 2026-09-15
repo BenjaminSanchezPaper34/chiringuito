@@ -3371,11 +3371,14 @@
         currentSpeed = 0;
       }
 
+      // 1200 px d'anticipation : les photos ont le temps d'arriver et d'etre
+      // decodees avant que la section entre dans le champ, sans rien charger
+      // tant qu'on est en haut de page (la galerie est 3600 px plus bas).
       let onScreen = false;
       new IntersectionObserver((entries) => {
         onScreen = entries[0].isIntersecting;
         if (onScreen) { buildClones(); startLoop(); } else { stopLoop(); }
-      }, { rootMargin: '400px 0px' }).observe(track);
+      }, { rootMargin: '1200px 0px' }).observe(track);
 
       document.addEventListener('visibilitychange', () => {
         if (document.hidden) stopLoop();
