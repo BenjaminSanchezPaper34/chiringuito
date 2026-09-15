@@ -1071,10 +1071,11 @@
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
     /* Soiree cards lift on hover */
-    .soiree-card { transform: translateY(0); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s; }
-    @media (hover: hover) {
-      .soiree-card:hover { transform: translateY(-6px); }
-    }
+    /* Pas d'effet de survol sur les cartes soirees : la transition d'ombre
+       (50 px de flou, repeinte a chaque frame) faisait saccader le defilement
+       sur ordinateur des que le curseur survolait la section. Meme rendu que
+       sur mobile, qui n'a jamais eu de survol. La transition-all a saute avec :
+       elle se battait avec le reveal GSAP sur le meme element. */
 
     /* ───────── Artist carousel (infinite, scrollable both ways) ───────── */
     .marquee-mask {
@@ -1876,11 +1877,11 @@
         <div id="soireesRow" class="hscroll flex md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none -mx-6 px-6 md:mx-0 md:px-0 pb-2 md:pb-0">
 
           <!-- Opening Party (terminee) -->
-          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(165deg, #FFF8F0 0%, #FFE9D4 50%, #FFC98A 100%);">
+          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(165deg, #FFF8F0 0%, #FFE9D4 50%, #FFC98A 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 backdrop-blur-sm text-[10px] font-semibold uppercase tracking-widest text-orange-800/70">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 text-[10px] font-semibold uppercase tracking-widest text-orange-800/70">
                   <span class="w-1.5 h-1.5 rounded-full bg-orange-800/40"></span>
                   Termin&eacute;e
                 </span>
@@ -1901,11 +1902,11 @@
           </article>
 
           <!-- Coachella Party -->
-          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(165deg, #F0FFF4 0%, #C6F6D5 40%, #FBBF77 100%);">
+          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(165deg, #F0FFF4 0%, #C6F6D5 40%, #FBBF77 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge -->
               <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 backdrop-blur-sm text-[10px] font-semibold uppercase tracking-widest text-green-800/70">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 text-[10px] font-semibold uppercase tracking-widest text-green-800/70">
                   <span class="w-1.5 h-1.5 rounded-full bg-green-800/40"></span>
                   Termin&eacute;e
                 </span>
@@ -1926,11 +1927,11 @@
           </article>
 
           <!-- Reggaeton Fiesta -->
-          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(160deg, #0A2A8C 0%, #2056C7 40%, #E4002B 100%);">
+          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(160deg, #0A2A8C 0%, #2056C7 40%, #E4002B 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-[10px] font-semibold uppercase tracking-widest text-white/70">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-[10px] font-semibold uppercase tracking-widest text-white/70">
                   <span class="w-1.5 h-1.5 rounded-full bg-white/40"></span>
                   Termin&eacute;e
                 </span>
@@ -1951,11 +1952,11 @@
           </article>
 
           <!-- Aperol Pop-Up -->
-          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal" style="background: linear-gradient(160deg, #FF9E2C 0%, #FF6A13 48%, #E63E00 100%);">
+          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(160deg, #FF9E2C 0%, #FF6A13 48%, #E63E00 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-[10px] font-semibold uppercase tracking-widest text-white/70">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-[10px] font-semibold uppercase tracking-widest text-white/70">
                   <span class="w-1.5 h-1.5 rounded-full bg-white/40"></span>
                   Termin&eacute;e
                 </span>
@@ -1975,12 +1976,16 @@
             </div>
           </article>
 
-          <!-- Closing Party (5e card : centree sur sa rangee, largeur d'une card normale) -->
-          <article data-next-event class="soiree-card snap-center shrink-0 w-[85vw] md:shrink group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 reveal md:col-span-2 md:w-[calc(50%-0.75rem)] md:mx-auto" style="background: linear-gradient(165deg, #1E1B4B 0%, #3730A3 50%, #6D28D9 100%);">
+          <!-- Closing Party (5e card : centree sur sa rangee, largeur d'une card normale)
+               Pas de backdrop-blur sur les badges de cette section : le fond derriere
+               est un degrade lisse ou un aplat, le flou ne produit aucun pixel different
+               mais force un recalcul a chaque frame - d'autant plus que la pastille
+               animate-pulse ci-dessous vit a l'interieur du badge. -->
+          <article data-next-event class="soiree-card snap-center shrink-0 w-[85vw] md:shrink group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal md:col-span-2 md:w-[calc(50%-0.75rem)] md:mx-auto" style="background: linear-gradient(165deg, #1E1B4B 0%, #3730A3 50%, #6D28D9 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge -->
               <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-[10px] font-semibold uppercase tracking-widest text-white/95">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 border border-white/30 text-[10px] font-semibold uppercase tracking-widest text-white/95">
                   <span class="w-1.5 h-1.5 rounded-full bg-purple-200 animate-pulse"></span>
                   Prochaine soir&eacute;e
                 </span>
@@ -2005,7 +2010,7 @@
 
         <!-- Newsletter incentive (replaces footnote) -->
         <div class="mt-14 md:mt-16 reveal">
-          <div class="max-w-2xl mx-auto bg-white/70 backdrop-blur-sm border border-brand/15 rounded-3xl px-6 py-8 md:px-10 md:py-9 text-center shadow-sm">
+          <div class="max-w-2xl mx-auto bg-white/70 border border-brand/15 rounded-3xl px-6 py-8 md:px-10 md:py-9 text-center shadow-sm">
             <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand/10 text-brand mb-4">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
             </span>
@@ -3291,20 +3296,29 @@
       // We duplicate the row 3 times: [A][B][C] and keep scrollLeft inside the middle copy [B].
       // When user scrolls past B, we wrap by adjusting scrollLeft by ±rowWidth instantly (no animation).
       // This gives infinite illusion in both directions, no matter the input (auto, drag, swipe, wheel).
-      const cloneA = row.cloneNode(true);
-      const cloneC = row.cloneNode(true);
-      [cloneA, cloneC].forEach((c) => {
-        c.setAttribute('aria-hidden', 'true');
-        c.querySelectorAll(TILE).forEach((b) => b.setAttribute('tabindex', '-1'));
-      });
-      track.insertBefore(cloneA, row);
-      track.appendChild(cloneC);
-
       let rowWidth = 0;
       const measure = () => { rowWidth = row.getBoundingClientRect().width; };
-      measure();
-      // Start scroll position at the middle copy
-      track.scrollLeft = rowWidth;
+
+      // Les deux copies triplent le nombre de tuiles (28 photos -> 84 images).
+      // On ne les cree qu'a l'approche de la section : tant que la galerie est
+      // loin sous la ligne de flottaison, le navigateur n'a ni a telecharger ni
+      // a decoder les photos des copies.
+      let built = false;
+      function buildClones() {
+        if (built) return;
+        built = true;
+        const cloneA = row.cloneNode(true);
+        const cloneC = row.cloneNode(true);
+        [cloneA, cloneC].forEach((c) => {
+          c.setAttribute('aria-hidden', 'true');
+          c.querySelectorAll(TILE).forEach((b) => b.setAttribute('tabindex', '-1'));
+        });
+        track.insertBefore(cloneA, row);
+        track.appendChild(cloneC);
+        measure();
+        // Start scroll position at the middle copy
+        track.scrollLeft = rowWidth;
+      }
 
       window.addEventListener('resize', () => {
         const ratio = rowWidth ? track.scrollLeft / rowWidth : 1;
@@ -3343,6 +3357,10 @@
         resumeTimer = setTimeout(() => setPaused(false), durationMs);
       }
 
+      // La boucle ne tourne que quand le carrousel est a l'ecran et l'onglet
+      // actif : ecrire scrollLeft a chaque frame sur un conteneur de 84 tuiles
+      // coute cher, et ne sert a rien hors champ.
+      let rafId = null;
       function rafLoop() {
         currentSpeed += (targetSpeed - currentSpeed) * SPEED_LERP;
         // Snap to zero below a tiny threshold so we eventually really stop
@@ -3350,9 +3368,34 @@
         if (currentSpeed !== 0 && rowWidth) {
           track.scrollLeft += currentSpeed;
         }
-        requestAnimationFrame(rafLoop);
+        rafId = requestAnimationFrame(rafLoop);
       }
-      rafLoop();
+      function startLoop() { if (rafId === null && !reducedMotion) rafLoop(); }
+      function stopLoop() {
+        if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+        currentSpeed = 0;
+      }
+
+      // Deux marges distinctes, parce que les deux besoins n'ont rien a voir :
+      //  - construire et precharger : 1200 px d'avance, pour que les photos
+      //    soient arrivees et decodees avant que la section entre dans le champ ;
+      //  - animer : 0 px, strictement tant que le carrousel est visible. Faire
+      //    defiler un conteneur de 84 tuiles coute cher a chaque frame, et ca ne
+      //    sert a rien quand l'utilisateur regarde deja la section suivante.
+      new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) buildClones();
+      }, { rootMargin: '1200px 0px' }).observe(track);
+
+      let onScreen = false;
+      new IntersectionObserver((entries) => {
+        onScreen = entries[0].isIntersecting;
+        if (onScreen) { buildClones(); startLoop(); } else { stopLoop(); }
+      }).observe(track);
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopLoop();
+        else if (onScreen) startLoop();
+      });
 
       // ── Pointer interaction (drag for mouse, tap-to-open for everyone)
       // We deliberately AVOID setPointerCapture + the native click event,
