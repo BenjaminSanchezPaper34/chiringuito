@@ -34,6 +34,7 @@
       'white-space:pre', 'pointer-events:none', 'max-width:92vw',
       'box-shadow:0 8px 24px -8px rgba(0,0,0,.6)'
     ].join(';');
+    boite.textContent = 'SONDE PERF — prete\nfais defiler toute la page doucement';
     document.body.appendChild(boite);
 
     var precedent = performance.now();
