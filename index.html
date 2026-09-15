@@ -1080,6 +1080,10 @@
        Largeur fixe sur ecran large ; l'id en selecteur passe devant w-[85vw]. */
     @media (min-width: 768px) {
       #soireesRow .soiree-card { width: 380px; }
+      /* Espaceurs en tete et en queue pour que la premiere et la derniere carte
+         puissent etre centrees : 50 % du contenu moins une demi-carte moins
+         l'ecart (gap-6), le padding px-6 fait le reste. */
+      #soireesRow::before, #soireesRow::after { content: ''; flex: 0 0 calc(50% - 190px - 1.5rem); }
       #soireesRow { cursor: grab; }
       #soireesRow.is-dragging { cursor: grabbing; }
       #soireesRow.is-dragging .soiree-card { pointer-events: none; }
