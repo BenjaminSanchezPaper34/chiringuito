@@ -1236,6 +1236,8 @@
   </style>
   <!-- Mesure d'audience Vercel Web Analytics (sans cookie, exemptee de consentement) + evenements maison -->
   <script defer src="/js/analytics-events.js"></script>
+  <!-- Sonde de performance temporaire : ne se charge qu'avec ?perf=1, a retirer apres diagnostic -->
+  <script>if (location.search.indexOf('perf=1') > -1) { var _p = document.createElement('script'); _p.src = '/js/perf-probe.js'; _p.defer = true; document.head.appendChild(_p); }</script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
