@@ -1076,6 +1076,14 @@
        sur ordinateur des que le curseur survolait la section. Meme rendu que
        sur mobile, qui n'a jamais eu de survol. La transition-all a saute avec :
        elle se battait avec le reveal GSAP sur le meme element. */
+    /* Une seule bande laterale a toutes les tailles, meme systeme que le mobile.
+       Largeur fixe sur ecran large ; l'id en selecteur passe devant w-[85vw]. */
+    @media (min-width: 768px) {
+      #soireesRow .soiree-card { width: 380px; }
+      #soireesRow { cursor: grab; }
+      #soireesRow.is-dragging { cursor: grabbing; }
+      #soireesRow.is-dragging .soiree-card { pointer-events: none; }
+    }
 
     /* ───────── Artist carousel (infinite, scrollable both ways) ───────── */
     .marquee-mask {
@@ -1874,10 +1882,10 @@
         </div>
 
         <!-- Cards grid -->
-        <div id="soireesRow" class="hscroll flex md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none -mx-6 px-6 md:mx-0 md:px-0 pb-2 md:pb-0">
+        <div id="soireesRow" class="hscroll flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory -mx-6 px-6 pb-2">
 
           <!-- Opening Party (terminee) -->
-          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(165deg, #FFF8F0 0%, #FFE9D4 50%, #FFC98A 100%);">
+          <article class="soiree-card snap-center shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(165deg, #FFF8F0 0%, #FFE9D4 50%, #FFC98A 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
@@ -1902,7 +1910,7 @@
           </article>
 
           <!-- Coachella Party -->
-          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(165deg, #F0FFF4 0%, #C6F6D5 40%, #FBBF77 100%);">
+          <article class="soiree-card snap-center shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(165deg, #F0FFF4 0%, #C6F6D5 40%, #FBBF77 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge -->
               <div class="flex items-center justify-between mb-8">
@@ -1927,7 +1935,7 @@
           </article>
 
           <!-- Reggaeton Fiesta -->
-          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(160deg, #0A2A8C 0%, #2056C7 40%, #E4002B 100%);">
+          <article class="soiree-card snap-center shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(160deg, #0A2A8C 0%, #2056C7 40%, #E4002B 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
@@ -1952,7 +1960,7 @@
           </article>
 
           <!-- Aperol Pop-Up -->
-          <article class="soiree-card snap-center shrink-0 w-[85vw] md:shrink md:w-auto group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(160deg, #FF9E2C 0%, #FF6A13 48%, #E63E00 100%);">
+          <article class="soiree-card snap-center shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(160deg, #FF9E2C 0%, #FF6A13 48%, #E63E00 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge : terminee -->
               <div class="flex items-center justify-between mb-8">
@@ -1981,7 +1989,7 @@
                est un degrade lisse ou un aplat, le flou ne produit aucun pixel different
                mais force un recalcul a chaque frame - d'autant plus que la pastille
                animate-pulse ci-dessous vit a l'interieur du badge. -->
-          <article data-next-event class="soiree-card snap-center shrink-0 w-[85vw] md:shrink group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal md:col-span-2 md:w-[calc(50%-0.75rem)] md:mx-auto" style="background: linear-gradient(165deg, #1E1B4B 0%, #3730A3 50%, #6D28D9 100%);">
+          <article data-next-event class="soiree-card snap-center shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(165deg, #1E1B4B 0%, #3730A3 50%, #6D28D9 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge -->
               <div class="flex items-center justify-between mb-8">
@@ -2006,7 +2014,7 @@
 
         </div>
 
-        <p class="md:hidden text-center text-xs text-text-light mt-4 tracking-wide">&larr; Glissez pour revoir les soir&eacute;es pass&eacute;es</p>
+        <p class="text-center text-xs text-text-light mt-4 tracking-wide">&larr; Glissez pour revoir les soir&eacute;es pass&eacute;es</p>
 
         <!-- Newsletter incentive (replaces footnote) -->
         <div class="mt-14 md:mt-16 reveal">
@@ -3481,9 +3489,39 @@
     (function () {
       const row = document.getElementById('soireesRow');
       const next = row && row.querySelector('[data-next-event]');
-      if (!row || !next || window.matchMedia('(min-width: 768px)').matches) return;
+      if (!row || !next) return;
       const r = row.getBoundingClientRect(), c = next.getBoundingClientRect();
       row.scrollLeft += (c.left - r.left) - (r.width - c.width) / 2;
+    })();
+
+    // Soirees : glisser a la souris sur la bande (le doigt garde le defilement
+    // natif). Pas de boucle d'animation, juste les evenements pointeur ; le
+    // snap est suspendu pendant le geste pour ne pas lutter contre la main.
+    (function () {
+      const row = document.getElementById('soireesRow');
+      if (!row) return;
+      let down = false, startX = 0, startScroll = 0, moved = 0;
+      row.addEventListener('pointerdown', (e) => {
+        if (e.button > 0 || e.pointerType === 'touch') return;
+        down = true; moved = 0; startX = e.clientX; startScroll = row.scrollLeft;
+        row.style.scrollSnapType = 'none';
+        row.classList.add('is-dragging');
+      });
+      row.addEventListener('pointermove', (e) => {
+        if (!down) return;
+        const dx = e.clientX - startX;
+        moved = Math.abs(dx);
+        row.scrollLeft = startScroll - dx;
+      });
+      const end = () => {
+        if (!down) return;
+        down = false;
+        row.classList.remove('is-dragging');
+        row.style.scrollSnapType = '';
+      };
+      ['pointerup', 'pointercancel', 'pointerleave'].forEach((ev) => row.addEventListener(ev, end));
+      // un glisser ne doit pas declencher le lien sous le curseur au relachement
+      row.addEventListener('click', (e) => { if (moved > 5) { e.preventDefault(); e.stopPropagation(); } }, true);
     })();
 
     initMarquee('artistsMarquee', 'artistsRow', { direction: 1, tile: '.artist-tile' });
