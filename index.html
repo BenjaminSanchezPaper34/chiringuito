@@ -3375,14 +3375,21 @@
         currentSpeed = 0;
       }
 
-      // 1200 px d'anticipation : les photos ont le temps d'arriver et d'etre
-      // decodees avant que la section entre dans le champ, sans rien charger
-      // tant qu'on est en haut de page (la galerie est 3600 px plus bas).
+      // Deux marges distinctes, parce que les deux besoins n'ont rien a voir :
+      //  - construire et precharger : 1200 px d'avance, pour que les photos
+      //    soient arrivees et decodees avant que la section entre dans le champ ;
+      //  - animer : 0 px, strictement tant que le carrousel est visible. Faire
+      //    defiler un conteneur de 84 tuiles coute cher a chaque frame, et ca ne
+      //    sert a rien quand l'utilisateur regarde deja la section suivante.
+      new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) buildClones();
+      }, { rootMargin: '1200px 0px' }).observe(track);
+
       let onScreen = false;
       new IntersectionObserver((entries) => {
         onScreen = entries[0].isIntersecting;
         if (onScreen) { buildClones(); startLoop(); } else { stopLoop(); }
-      }, { rootMargin: '1200px 0px' }).observe(track);
+      }).observe(track);
 
       document.addEventListener('visibilitychange', () => {
         if (document.hidden) stopLoop();
