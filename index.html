@@ -316,7 +316,7 @@
       {
         "@type": "Event",
         "name": "Closing Party 2026 - Chiringuito Vias",
-        "description": "Closing Party du Chiringuito Vias-Plage le dimanche 27 septembre 2026 : cloture de saison des midi et jusqu'au bout de la nuit, cocktails et spectacle au coucher du soleil, les pieds dans le sable. Entree libre, sans reservation. Reservation de table ou d'espace VIP par message a Gael au 06 46 47 29 45, en indiquant nom, prenom et nombre de convives.",
+        "description": "Closing Party du Chiringuito Vias-Plage le dimanche 27 septembre 2026 : cloture de saison des midi et jusqu'au bout de la nuit, guitares gitanes avec les Gypsies, cocktails et spectacle au coucher du soleil, les pieds dans le sable. Entree libre, sans reservation. Reservation de table ou d'espace VIP par message a Gael au 06 46 47 29 45, en indiquant nom, prenom et nombre de convives.",
         "startDate": "2026-09-27T12:00:00+02:00",
         "endDate": "2026-09-28T02:00:00+02:00",
         "eventStatus": "https://schema.org/EventScheduled",
@@ -1208,10 +1208,10 @@
        arbitraire [&::-webkit-details-marker]:hidden n'est pas compilable depuis le HTML */
     #faq summary::-webkit-details-marker { display: none; }
 
-    /* CTA hero (Closing Party) : glow violet nocturne */
+    /* CTA hero (Closing Party) : halo dore, journee de fin de saison */
     @keyframes hero-cta-glow {
-      0%, 100% { box-shadow: 0 8px 24px rgba(109,40,217,0.35), 0 0 0 0 rgba(168,85,247,0); }
-      50%      { box-shadow: 0 10px 30px rgba(109,40,217,0.50), 0 0 26px 4px rgba(168,85,247,0.32); }
+      0%, 100% { box-shadow: 0 8px 24px rgba(224,150,60,0.35), 0 0 0 0 rgba(245,185,92,0); }
+      50%      { box-shadow: 0 10px 30px rgba(224,150,60,0.50), 0 0 26px 4px rgba(245,185,92,0.38); }
     }
     .hero-glow-cta { animation: hero-cta-glow 2.8s ease-in-out infinite; }
     @media (prefers-reduced-motion: reduce) { .hero-glow-cta { animation: none; } }
@@ -1382,15 +1382,15 @@
 
         <!-- CTA hero : Closing Party - dimanche 27 septembre (gradient violet + glow).
              Reservation table / espace VIP par message a Gael (SMS pre-rempli). -->
-        <a href="sms:+33646472945?&amp;body=Bonjour%20Ga%C3%ABl%2C%20je%20souhaite%20r%C3%A9server%20pour%20la%20Closing%20Party%20du%20dimanche%2027%20septembre.%0ANom%20%3A%20%0APr%C3%A9nom%20%3A%20%0ANombre%20de%20convives%20%3A%20%0AJe%20r%C3%A9serve%20%28une%20table%20OU%20l%27espace%20VIP%29%20%3A%20" aria-label="Reserver une table ou l'espace VIP pour la Closing Party du dimanche 27 septembre, qui demarre des midi, par message a Gael" class="hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-indigo-500 via-purple-600 to-fuchsia-500 text-white px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
-          <span class="text-lg leading-none">&#x1F319;</span>
+        <a href="sms:+33646472945?&amp;body=Bonjour%20Ga%C3%ABl%2C%20je%20souhaite%20r%C3%A9server%20pour%20la%20Closing%20Party%20du%20dimanche%2027%20septembre.%0ANom%20%3A%20%0APr%C3%A9nom%20%3A%20%0ANombre%20de%20convives%20%3A%20%0AJe%20r%C3%A9serve%20%28une%20table%20OU%20l%27espace%20VIP%29%20%3A%20" aria-label="Reserver une table ou l'espace VIP pour la Closing Party du dimanche 27 septembre, qui demarre des midi, par message a Gael" class="hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-[#7FDCE6] via-[#38C6D4] to-[#F5B95C] text-teal-900 px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
+          <span class="text-lg leading-none">&#x1F3B8;</span>
           <!-- Mobile : l'action d'abord, la soiree ensuite -->
           <span class="sm:hidden">Closing &middot; R&eacute;sa table ou VIP</span>
           <!-- Desktop : soiree + action separees par un filet -->
           <span class="hidden sm:inline-flex items-center gap-3">
             <span>Closing Party &middot; dimanche 27 septembre d&egrave;s midi</span>
-            <span class="w-px h-4 bg-white/40" aria-hidden="true"></span>
-            <span class="text-white/90">R&eacute;server table ou VIP</span>
+            <span class="w-px h-4 bg-teal-900/30" aria-hidden="true"></span>
+            <span class="text-teal-900/80">R&eacute;server table ou VIP</span>
           </span>
           <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
         </a>
@@ -1997,28 +1997,28 @@
                est un degrade lisse ou un aplat, le flou ne produit aucun pixel different
                mais force un recalcul a chaque frame - d'autant plus que la pastille
                animate-pulse ci-dessous vit a l'interieur du badge. -->
-          <article data-next-event class="soiree-card shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(165deg, #1E1B4B 0%, #3730A3 50%, #6D28D9 100%);">
+          <article data-next-event class="soiree-card shrink-0 w-[85vw] group relative bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="background: linear-gradient(165deg, #E9FAFB 0%, #9FE3EA 42%, #F5C177 100%);">
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge -->
               <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 border border-white/30 text-[10px] font-semibold uppercase tracking-widest text-white/95">
-                  <span class="w-1.5 h-1.5 rounded-full bg-purple-200 animate-pulse"></span>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 text-[10px] font-semibold uppercase tracking-widest text-teal-800">
+                  <span class="w-1.5 h-1.5 rounded-full bg-teal-700 animate-pulse"></span>
                   Prochaine soir&eacute;e
                 </span>
-                <span class="text-5xl md:text-6xl leading-none transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">&#x1F319;</span>
+                <span class="text-5xl md:text-6xl leading-none transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">&#x1F3B8;</span>
               </div>
               <!-- Date -->
-              <p class="text-xs font-medium tracking-[0.25em] uppercase text-purple-200/90 mb-1 whitespace-nowrap">Dimanche 27 septembre</p>
-              <h3 class="font-display text-3xl md:text-4xl text-white leading-tight mb-2 whitespace-nowrap">Closing Party</h3>
+              <p class="text-xs font-medium tracking-[0.25em] uppercase text-teal-900/80 mb-1 whitespace-nowrap">Dimanche 27 septembre</p>
+              <h3 class="font-display text-3xl md:text-4xl text-teal-900 leading-tight mb-2 whitespace-nowrap">Closing Party</h3>
               <!-- Beaucoup de monde croyait a une soiree : l'horaire est annonce en clair, avant le reste. -->
-              <p class="text-sm font-semibold text-white mb-3">&#x2600;&#xFE0F; D&egrave;s midi, jusqu'au bout de la nuit</p>
-              <p class="text-sm text-purple-100/80 leading-relaxed mb-8 flex-1">Cl&ocirc;ture de saison le <strong class="text-white">dimanche 27 septembre</strong>&nbsp;: on ouvre au d&eacute;jeuner et on ne s'arr&ecirc;te plus, jusqu'aux cocktails et au spectacle du coucher de soleil. Entr&eacute;e libre, sans r&eacute;servation. Table ou espace VIP&nbsp;: r&eacute;servez par message aupr&egrave;s de Ga&euml;l en indiquant vos nom, pr&eacute;nom et nombre de convives.</p>
+              <p class="text-sm font-semibold text-teal-900 mb-3">&#x2600;&#xFE0F; D&egrave;s midi, jusqu'au bout de la nuit</p>
+              <p class="text-sm text-teal-900/80 leading-relaxed mb-8 flex-1">Cl&ocirc;ture de saison le <strong class="text-teal-900">dimanche 27 septembre</strong>&nbsp;: on ouvre au d&eacute;jeuner et on ne s'arr&ecirc;te plus, guitares gitanes avec les Gypsies, cocktails et spectacle au coucher du soleil. Entr&eacute;e libre, sans r&eacute;servation. Table ou espace VIP&nbsp;: r&eacute;servez par message aupr&egrave;s de Ga&euml;l en indiquant vos nom, pr&eacute;nom et nombre de convives.</p>
               <!-- CTA : reservation table / espace VIP par SMS pre-rempli a Gael -->
-              <a href="sms:+33646472945?&amp;body=Bonjour%20Ga%C3%ABl%2C%20je%20souhaite%20r%C3%A9server%20pour%20la%20Closing%20Party%20du%20dimanche%2027%20septembre.%0ANom%20%3A%20%0APr%C3%A9nom%20%3A%20%0ANombre%20de%20convives%20%3A%20%0AJe%20r%C3%A9serve%20%28une%20table%20OU%20l%27espace%20VIP%29%20%3A%20" class="inline-flex items-center justify-center gap-2 w-full bg-white text-[#4C1D95] px-5 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:gap-3 hover:scale-[1.02] shadow-md hover:shadow-lg transition-all duration-300">
+              <a href="sms:+33646472945?&amp;body=Bonjour%20Ga%C3%ABl%2C%20je%20souhaite%20r%C3%A9server%20pour%20la%20Closing%20Party%20du%20dimanche%2027%20septembre.%0ANom%20%3A%20%0APr%C3%A9nom%20%3A%20%0ANombre%20de%20convives%20%3A%20%0AJe%20r%C3%A9serve%20%28une%20table%20OU%20l%27espace%20VIP%29%20%3A%20" class="inline-flex items-center justify-center gap-2 w-full bg-teal-900 text-white px-5 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:gap-3 hover:bg-teal-800 shadow-md hover:shadow-lg transition-all duration-300">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
                 &Eacute;crire &agrave; Ga&euml;l
               </a>
-              <p class="text-[10px] text-purple-200/70 text-center mt-3 tracking-widest uppercase">Nom, pr&eacute;nom, nombre de convives &middot; <a href="tel:+33646472945" class="text-white font-semibold hover:underline whitespace-nowrap">06 46 47 29 45</a></p>
+              <p class="text-[10px] text-teal-900/60 text-center mt-3 tracking-widest uppercase">Nom, pr&eacute;nom, nombre de convives &middot; <a href="tel:+33646472945" class="text-teal-900 font-semibold hover:underline whitespace-nowrap">06 46 47 29 45</a></p>
             </div>
           </article>
 
