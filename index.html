@@ -2253,7 +2253,7 @@
     </section>
 
     <!-- ============================================ -->
-    <!-- AVIS (Elfsight Google Reviews) -->
+    <!-- AVIS (temoignages verifies Zenchef, rendus en dur) -->
     <!-- ============================================ -->
     <section id="avis" class="py-20 md:py-28 px-6 bg-white relative">
       <div class="max-w-5xl mx-auto">
@@ -2264,6 +2264,14 @@
 
         <!-- Avis Zenchef en dur : texte indexable et citable par les IA, sans script tiers.
              Regenere par `node scripts/update-reviews.mjs`. -->
+        <!-- Chiffres maintenus par scripts/update-metrics.mjs — ne pas editer a la main. -->
+        <div class="reveal text-center mb-10">
+          <!-- AVIS-CHIFFRES:START -->
+          <p class="text-4xl md:text-5xl font-bold text-gray-900 leading-none">4,5 <span class="text-2xl md:text-3xl text-text-light font-semibold">/ 5</span> <span aria-hidden="true">&#11088;</span></p>
+          <p class="text-sm text-text-light mt-3">6&nbsp;636 avis sur Google, TripAdvisor et Facebook</p>
+          <!-- AVIS-CHIFFRES:END -->
+        </div>
+
 <!-- AVIS-ZENCHEF:START -->
         <!-- Genere par scripts/update-reviews.mjs — ne pas editer a la main. -->
         <div class="reveal mb-12">
@@ -2303,17 +2311,16 @@
         </div>
         <!-- AVIS-ZENCHEF:END -->
 
-        <!-- Elfsight Avis Widget : charge uniquement apres consentement (CNIL) -->
-        <div class="reveal" data-consent-slot="avis">
-          <template data-consent-embed>
-            <iframe src="https://a4beb9c13c9e40c7a32b6ff37282c533.elf.site" width="100%" height="450" frameborder="0" loading="lazy" title="Avis clients Chiringuito Vias" style="border-radius: 16px;"></iframe>
-          </template>
-          <div data-consent-placeholder class="rounded-2xl border border-gray-200 bg-gray-50 px-6 py-10 text-center">
-            <p class="text-2xl font-bold text-gray-900 mb-1">4,5 / 5 <span aria-hidden="true">&#11088;</span></p>
-            <p class="text-sm text-text-light mb-5">Plus de 6&nbsp;600 avis sur Google, TripAdvisor et Facebook</p>
-            <p class="text-sm text-text-light max-w-md mx-auto mb-5">Vous avez d&eacute;sactiv&eacute; les avis clients (Elfsight) dans vos pr&eacute;f&eacute;rences de confidentialit&eacute;.</p>
-            <button type="button" data-rallumer="elfsight" class="inline-flex items-center gap-2 bg-brand text-white px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand-dark transition-colors">R&eacute;afficher les avis</button>
-          </div>
+        <!-- Plus d'iframe d'avis ici : elle faisait doublon avec les temoignages ci-dessus,
+             pesait 450 px, restait invisible de Google et des IA et imposait un interrupteur
+             de consentement. Elfsight reste charge pour le mur Instagram. -->
+        <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          <a href="https://www.google.com/maps/place/?q=place_id:ChIJazcpXeQXsRIRkwBwXjrxp1o" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center justify-center gap-2 w-full sm:w-auto border border-brand/30 text-brand px-7 py-3.5 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand/5 hover:border-brand/50 transition-all duration-300">
+            Lire les avis sur Google
+          </a>
+          <a href="https://search.google.com/local/writereview?placeid=ChIJazcpXeQXsRIRkwBwXjrxp1o" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-brand text-white px-7 py-3.5 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-brand-dark transition-all duration-300 shadow-md shadow-brand/20">
+            Laisser un avis
+          </a>
         </div>
       </div>
     </section>
@@ -2714,8 +2721,8 @@
     </p>
     <ul class="text-sm text-text space-y-3 mb-4">
       <li class="flex items-center justify-between gap-3">
-        <span>Avis clients &amp; fil Instagram <span class="text-text-light">(Elfsight)</span></span>
-        <button id="switchElfsight" type="button" role="switch" class="shrink-0 relative w-11 h-6 rounded-full border border-gray-300 transition-colors duration-300" aria-label="Activer ou d&eacute;sactiver les avis clients et le fil Instagram">
+        <span>Fil Instagram <span class="text-text-light">(Elfsight)</span></span>
+        <button id="switchElfsight" type="button" role="switch" class="shrink-0 relative w-11 h-6 rounded-full border border-gray-300 transition-colors duration-300" aria-label="Activer ou d&eacute;sactiver le fil Instagram">
           <span class="absolute top-0.5 left-0.5 w-4 h-4 rounded-full transition-transform duration-300"></span>
         </button>
       </li>

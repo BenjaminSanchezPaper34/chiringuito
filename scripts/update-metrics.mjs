@@ -718,6 +718,18 @@ async function main() {
       idx = idx
         .replace(/("aggregateRating":[^}]*"ratingValue": ")[0-9.]+(")/s, `$1${kpis.averageRating.toFixed(1)}$2`)
         .replace(/("aggregateRating":[^}]*"ratingCount": ")\d+(")/s, `$1${kpis.totalReviews}$2`);
+
+      // Les memes chiffres, mais visibles : la barre de preuve en tete de la section
+      // avis. Ils etaient ecrits en dur et se perimaient sans que personne le voie.
+      const noteFr = kpis.averageRating.toFixed(1).replace('.', ',');
+      const nbFr = frNum(kpis.totalReviews);
+      const barre = `<!-- AVIS-CHIFFRES:START -->
+          <p class="text-4xl md:text-5xl font-bold text-gray-900 leading-none">${noteFr} <span class="text-2xl md:text-3xl text-text-light font-semibold">/ 5</span> <span aria-hidden="true">&#11088;</span></p>
+          <p class="text-sm text-text-light mt-3">${nbFr.replace(/ /g, '&nbsp;')} avis sur Google, TripAdvisor et Facebook</p>
+          <!-- AVIS-CHIFFRES:END -->`;
+      if (idx.includes('<!-- AVIS-CHIFFRES:START -->')) {
+        idx = idx.replace(/<!-- AVIS-CHIFFRES:START -->[\s\S]*?<!-- AVIS-CHIFFRES:END -->/, barre);
+      }
       await fs.writeFile(INDEX_PATH, idx, 'utf8');
       console.log('index.html sync -> aggregateRating mis a jour');
     }
