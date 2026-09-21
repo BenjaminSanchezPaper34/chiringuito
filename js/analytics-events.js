@@ -22,7 +22,9 @@
     if (/tiktok\.com/i.test(href)) return ['tiktok'];
     if (/shotgun\.live|ypl\.me|yurplan/i.test(href)) return ['billetterie'];
     if (/paper34\.fr\/galerie\//i.test(href)) return ['galerie', { album: href.split('/galerie/')[1] || '' }];
-    if (/tripadvisor|search\.google\.com\/local\/reviews|g\.page/i.test(href)) return ['avis'];
+    // Deposer un avis est une action a part : c'est elle qui nourrit la fiche Google.
+    if (/writereview/i.test(href)) return ['avis', { action: 'depot' }];
+    if (/tripadvisor|search\.google\.com\/local\/reviews|place_id|g\.page/i.test(href)) return ['avis', { action: 'lecture' }];
     return null;
   }
 
