@@ -1318,23 +1318,23 @@
     <!-- Mobile overlay : un seul bloc centre verticalement (plus de justify-between qui
          etirait l'ecran), hauteur dynamique + safe areas, scrollable sur les petits ecrans -->
     <div id="mobile-menu" data-lenis-prevent class="fixed inset-0 z-[75] overflow-y-auto overscroll-contain opacity-0 pointer-events-none transition-opacity duration-300" style="background: linear-gradient(165deg, #009BA4 0%, #007A82 50%, #005F66 100%);">
-      <div class="min-h-full flex flex-col items-center justify-center gap-8 px-8 pt-[calc(env(safe-area-inset-top)+5.5rem)] pb-[calc(env(safe-area-inset-bottom)+2.5rem)]">
+      <div class="min-h-full flex flex-col items-center justify-center gap-8 [@media(max-height:700px)]:gap-5 px-8 pt-[calc(env(safe-area-inset-top)+5.5rem)] [@media(max-height:700px)]:pt-[calc(env(safe-area-inset-top)+4.5rem)] pb-[calc(env(safe-area-inset-bottom)+2.5rem)] [@media(max-height:700px)]:pb-[calc(env(safe-area-inset-bottom)+1.5rem)]">
 
         <!-- Logo -->
-        <img src="images/logo-blanc-chiringuito.svg" alt="Chiringuito" class="h-20 opacity-90" width="166" height="80"/>
+        <img src="images/logo-blanc-chiringuito.svg" alt="Chiringuito" class="h-20 [@media(max-height:700px)]:h-16 opacity-90" width="166" height="80"/>
 
         <!-- Navigation (cibles tactiles >= 44 px) -->
         <nav class="flex flex-col items-center gap-1">
-          <a href="#accueil" class="mobile-nav-link block px-4 py-2.5 text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Accueil</a>
-          <a href="#menu" class="mobile-nav-link block px-4 py-2.5 text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Menu</a>
-          <a href="#plage" class="mobile-nav-link block px-4 py-2.5 text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Plage</a>
-          <a href="#soirees" class="mobile-nav-link block px-4 py-2.5 text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Dansez</a>
-          <a href="#avis" class="mobile-nav-link block px-4 py-2.5 text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Avis</a>
-          <a href="#contact" class="mobile-nav-link block px-4 py-2.5 text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Contact</a>
+          <a href="#accueil" class="mobile-nav-link block px-4 py-2.5 [@media(max-height:700px)]:py-1.5 text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Accueil</a>
+          <a href="#menu" class="mobile-nav-link block px-4 py-2.5 [@media(max-height:700px)]:py-1.5 text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Menu</a>
+          <a href="#plage" class="mobile-nav-link block px-4 py-2.5 [@media(max-height:700px)]:py-1.5 text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Plage</a>
+          <a href="#soirees" class="mobile-nav-link block px-4 py-2.5 [@media(max-height:700px)]:py-1.5 text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Dansez</a>
+          <a href="#avis" class="mobile-nav-link block px-4 py-2.5 [@media(max-height:700px)]:py-1.5 text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Avis</a>
+          <a href="#contact" class="mobile-nav-link block px-4 py-2.5 [@media(max-height:700px)]:py-1.5 text-lg font-light tracking-[0.3em] uppercase text-white/90 hover:text-white transition-colors">Contact</a>
         </nav>
 
         <!-- Bas : reservation + reseaux + infos -->
-        <div class="flex flex-col items-center gap-5">
+        <div class="flex flex-col items-center gap-5 [@media(max-height:700px)]:gap-4">
           <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" class="saison-ouverte mobile-nav-link inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 text-white px-6 py-3 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-white/25 transition-all duration-300">
             R&eacute;server une table
           </a>
