@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr-FR">
+<html data-saison="hiver" lang="fr-FR">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -36,6 +36,12 @@
   </header>
 
   <main class="max-w-2xl mx-auto px-5 py-12 md:py-16">
+    <!-- Bandeau d'hiver : visible seulement l'hiver (attribut data-saison de la balise racine) -->
+    <div class="saison-hiver mb-8 rounded-2xl border border-brand/20 bg-brand/5 px-5 py-4 text-center">
+      <p class="text-base text-text"><strong>Le Chiringuito est ferm&eacute; pour l'hiver.</strong> Les r&eacute;servations de transats reprendront avec la saison 2027.</p>
+      <a href="/#newsletter" class="inline-block mt-2 text-sm font-semibold text-brand hover:text-brand-dark">M'avertir de la r&eacute;ouverture &rarr;</a>
+    </div>
+
     <p class="text-center text-xs font-semibold tracking-[0.3em] uppercase text-brand mb-3">Plage de Farinette &middot; Vias-Plage</p>
     <h1 class="font-display text-5xl md:text-6xl text-brand text-center mb-4 tracking-normal">R&eacute;server votre bain de soleil</h1>
     <p class="text-center text-text-light text-base md:text-lg mb-10 max-w-md mx-auto leading-relaxed">Plage priv&eacute;e, transats en bois naturel face &agrave; la M&eacute;diterran&eacute;e. R&eacute;servation conseill&eacute;e en juillet/ao&ucirc;t.</p>
@@ -54,7 +60,7 @@
     </div>
 
     <div class="text-center mb-10">
-      <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-brand text-white hover:bg-brand-dark px-10 py-4 rounded-full text-sm font-bold uppercase tracking-widest transition-all shadow-lg hover:shadow-xl hover:scale-[1.02]">
+      <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="saison-ouverte inline-flex items-center gap-3 bg-brand text-white hover:bg-brand-dark px-10 py-4 rounded-full text-sm font-bold uppercase tracking-widest transition-all shadow-lg hover:shadow-xl hover:scale-[1.02]">
         R&eacute;server sur Zenchef &rarr;
       </a>
       <p class="text-text-light text-xs mt-3 tracking-wide">Paiement s&eacute;curis&eacute; &middot; confirmation imm&eacute;diate</p>
