@@ -16,6 +16,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PAGES = [
   'index.html',
+  'reserver/index.html',
   'reserver/table/index.html',
   'reserver/bain-de-soleil/index.html',
   'carte/index.html',
