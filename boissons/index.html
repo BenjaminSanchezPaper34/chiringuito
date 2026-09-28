@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr-FR">
+<html data-saison="hiver" lang="fr-FR">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -94,6 +94,12 @@
   </nav>
 
   <main class="max-w-3xl mx-auto px-5 py-8">
+    <!-- Bandeau d'hiver : visible seulement l'hiver (attribut data-saison de la balise racine) -->
+    <div class="saison-hiver mb-8 rounded-2xl border border-brand/20 bg-brand/5 px-5 py-4 text-center">
+      <p class="text-base text-text"><strong>Le Chiringuito est ferm&eacute; pour l'hiver.</strong> La carte ci-dessous est celle de la saison 2026.</p>
+      <a href="/#newsletter" class="inline-block mt-2 text-sm font-semibold text-brand hover:text-brand-dark">M'avertir de la r&eacute;ouverture &rarr;</a>
+    </div>
+
 
     <!-- COCKTAILS -->
     <section class="menu-category" data-category="cocktails">
@@ -336,10 +342,10 @@
 
     <!-- CTAs reservation (memes que le hero) -->
     <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-      <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-brand/15 backdrop-blur-md border border-brand/25 text-brand px-7 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-widest hover:bg-brand/25 hover:border-brand/40 transition-all duration-300">
+      <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" class="saison-ouverte inline-flex items-center gap-2 bg-brand/15 backdrop-blur-md border border-brand/25 text-brand px-7 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-widest hover:bg-brand/25 hover:border-brand/40 transition-all duration-300">
         R&eacute;server votre table
       </a>
-      <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-brand/15 backdrop-blur-md border border-brand/25 text-brand px-7 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-widest hover:bg-brand/25 hover:border-brand/40 transition-all duration-300">
+      <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="saison-ouverte inline-flex items-center gap-2 bg-brand/15 backdrop-blur-md border border-brand/25 text-brand px-7 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-widest hover:bg-brand/25 hover:border-brand/40 transition-all duration-300">
         R&eacute;server votre transat
       </a>
     </div>

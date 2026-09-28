@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── Mode saison ─────────────────────────────────────────────────────────
+   Un seul interrupteur : l'attribut data-saison sur la balise <html> de chaque
+   page, « hiver » ou « ouvert ». Tout élément marqué .saison-ouverte disparaît
+   l'hiver, tout élément marqué .saison-hiver n'apparaît que l'hiver.
+   Bascule de toutes les pages d'un coup : node scripts/saison.mjs hiver|ouvert */
+[data-saison="hiver"] .saison-ouverte { display: none !important; }
+:root:not([data-saison="hiver"]) .saison-hiver { display: none !important; }

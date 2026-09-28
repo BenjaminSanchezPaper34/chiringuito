@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr-FR" class="scroll-smooth">
+<html data-saison="hiver" lang="fr-FR" class="scroll-smooth">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -467,7 +467,7 @@
         "name": "Quels sont les horaires ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Pendant la saison (jusqu'\u00e0 fin septembre), le Chiringuito est ouvert tous les jours de 8h \u00e0 1h : service au restaurant midi et soir, et carte continue l'apr\u00e8s-midi (salades, planches, glaces, gaufres)."
+          "text": "La saison 2026 s'est achev\u00e9e avec la Closing Party du 27 septembre : le Chiringuito est ferm\u00e9 pour l'hiver, et la date de r\u00e9ouverture de la saison 2027 est annonc\u00e9e en priorit\u00e9 via la newsletter. En saison, il est ouvert tous les jours de 8h \u00e0 1h : service au restaurant midi et soir, et carte continue l'apr\u00e8s-midi (salades, planches, glaces, gaufres)."
         }
       },
       {
@@ -1275,7 +1275,7 @@
   <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- Bouton reserver flottant (mobile) -->
-  <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" id="floatingCta" class="fixed bottom-5 right-5 z-50 md:hidden bg-brand/15 backdrop-blur-md text-brand border border-brand/25 h-11 px-4 rounded-full flex items-center justify-center gap-2 shadow-md shadow-brand/10 hover:bg-brand/25 hover:scale-105 transition-all duration-300 opacity-0 translate-y-4" aria-label="R&eacute;server une table" style="pointer-events: none;">
+  <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" id="floatingCta" class="saison-ouverte fixed bottom-5 right-5 z-50 md:hidden bg-brand/15 backdrop-blur-md text-brand border border-brand/25 h-11 px-4 rounded-full flex items-center justify-center gap-2 shadow-md shadow-brand/10 hover:bg-brand/25 hover:scale-105 transition-all duration-300 opacity-0 translate-y-4" aria-label="R&eacute;server une table" style="pointer-events: none;">
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
     <span class="text-xs font-semibold uppercase tracking-wider">R&eacute;server</span>
   </a>
@@ -1301,7 +1301,7 @@
       </a>
 
       <!-- CTA Reserver desktop (apparait au scroll avec le logo) -->
-      <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" id="nav-cta-desktop" class="hidden md:inline-flex relative z-10 px-5 py-2 bg-white/15 backdrop-blur-md text-white border border-white/25 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-white/25 hover:border-white/40 transition-all duration-300" style="opacity: 0; pointer-events: none; transition: opacity 0.3s ease;">R&eacute;server</a>
+      <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" id="nav-cta-desktop" class="saison-ouverte hidden md:inline-flex relative z-10 px-5 py-2 bg-white/15 backdrop-blur-md text-white border border-white/25 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-white/25 hover:border-white/40 transition-all duration-300" style="opacity: 0; pointer-events: none; transition: opacity 0.3s ease;">R&eacute;server</a>
 
       <!-- Desktop links (centered) -->
       <div class="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
@@ -1380,9 +1380,22 @@
           <span class="opacity-70">Vias-Plage</span>
         </div>
 
+        <!-- CTA hero d'hiver : la saison est finie, on transforme les visites en inscrits pour la
+             reouverture (la liste qui alimente la campagne d'ouverture). -->
+        <button type="button" onclick="window.openNewsletterPopup && window.openNewsletterPopup()" aria-label="Saison 2026 terminee : s'inscrire a la newsletter pour etre averti de la reouverture" class="saison-hiver hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-[#7FDCE6] via-[#38C6D4] to-[#F5B95C] text-teal-900 px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
+          <span class="text-lg leading-none">&#x1F30A;</span>
+          <span class="sm:hidden">R&eacute;ouverture 2027 &middot; M'avertir</span>
+          <span class="hidden sm:inline-flex items-center gap-3">
+            <span>Saison 2026 termin&eacute;e &middot; merci&nbsp;!</span>
+            <span class="w-px h-4 bg-teal-900/30" aria-hidden="true"></span>
+            <span class="text-teal-900/80">M'avertir de la r&eacute;ouverture</span>
+          </span>
+          <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+        </button>
+
         <!-- CTA hero : Closing Party - dimanche 27 septembre (gradient violet + glow).
              Reservation table / espace VIP par message a Gael (SMS pre-rempli). -->
-        <a href="sms:+33646472945?&amp;body=Bonjour%20Ga%C3%ABl%2C%20je%20souhaite%20r%C3%A9server%20pour%20la%20Closing%20Party%20du%20dimanche%2027%20septembre.%0ANom%20%3A%20%0APr%C3%A9nom%20%3A%20%0ANombre%20de%20convives%20%3A%20%0AJe%20r%C3%A9serve%20%28une%20table%20OU%20l%27espace%20VIP%29%20%3A%20" aria-label="Reserver une table ou l'espace VIP pour la Closing Party du dimanche 27 septembre, qui demarre des midi, par message a Gael" class="hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-[#7FDCE6] via-[#38C6D4] to-[#F5B95C] text-teal-900 px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
+        <a href="sms:+33646472945?&amp;body=Bonjour%20Ga%C3%ABl%2C%20je%20souhaite%20r%C3%A9server%20pour%20la%20Closing%20Party%20du%20dimanche%2027%20septembre.%0ANom%20%3A%20%0APr%C3%A9nom%20%3A%20%0ANombre%20de%20convives%20%3A%20%0AJe%20r%C3%A9serve%20%28une%20table%20OU%20l%27espace%20VIP%29%20%3A%20" aria-label="Reserver une table ou l'espace VIP pour la Closing Party du dimanche 27 septembre, qui demarre des midi, par message a Gael" class="saison-ouverte hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-[#7FDCE6] via-[#38C6D4] to-[#F5B95C] text-teal-900 px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
           <span class="text-lg leading-none">&#x1F3B8;</span>
           <!-- Mobile : l'action d'abord, la soiree ensuite -->
           <span class="sm:hidden">Closing &middot; R&eacute;sa table ou VIP</span>
@@ -1395,8 +1408,8 @@
           <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
         </a>
 
-        <!-- Reservation CTAs -->
-        <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-4">
+        <!-- Reservation CTAs (masques l'hiver) -->
+        <div class="saison-ouverte flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-4">
           <a href="https://bookings.zenchef.com/results?rid=360974&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 text-white px-7 py-3 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-widest hover:bg-white/25 hover:border-white/40 transition-all duration-300">
             R&eacute;server votre table
           </a>
@@ -1702,8 +1715,16 @@
           Photos du Chiringuito a integrer ici
         </div> -->
 
-        <!-- CTA -->
-        <div class="text-center mt-12 reveal">
+        <!-- CTA d'hiver : les transats reviennent avec la saison -->
+        <div class="saison-hiver text-center mt-12 reveal">
+          <p class="text-base text-text-light mb-5">Les transats reviennent avec la saison 2027.</p>
+          <button type="button" onclick="window.openNewsletterPopup && window.openNewsletterPopup()" class="magnetic-btn inline-flex items-center gap-3 bg-brand/15 backdrop-blur-md text-brand border border-brand/25 px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand/25 hover:border-brand/40 transition-all duration-300">
+            M'avertir de la r&eacute;ouverture
+          </button>
+        </div>
+
+        <!-- CTA de saison -->
+        <div class="saison-ouverte text-center mt-12 reveal">
           <a href="https://bookings.zenchef.com/results?rid=360996&pid=1001" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-3 bg-brand/15 backdrop-blur-md text-brand border border-brand/25 px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-brand/25 hover:border-brand/40 transition-all duration-300">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
             R&eacute;server votre transat
@@ -2001,24 +2022,22 @@
             <div class="relative p-8 md:p-9 h-full flex flex-col">
               <!-- Status badge -->
               <div class="flex items-center justify-between mb-8">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 text-[10px] font-semibold uppercase tracking-widest text-teal-800">
-                  <span class="w-1.5 h-1.5 rounded-full bg-teal-700 animate-pulse"></span>
-                  Prochain rendez-vous
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 text-[10px] font-semibold uppercase tracking-widest text-teal-800/70">
+                  <span class="w-1.5 h-1.5 rounded-full bg-teal-800/40"></span>
+                  Termin&eacute;e
                 </span>
                 <span class="text-5xl md:text-6xl leading-none transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">&#x1F3B8;</span>
               </div>
               <!-- Date -->
               <p class="text-xs font-medium tracking-[0.25em] uppercase text-teal-900/80 mb-1 whitespace-nowrap">Dimanche 27 septembre</p>
               <h3 class="font-display text-3xl md:text-4xl text-teal-900 leading-tight mb-2 whitespace-nowrap">Closing Party</h3>
-              <!-- Beaucoup de monde croyait a une soiree : l'horaire est annonce en clair, avant le reste. -->
-              <p class="text-sm font-semibold text-teal-900 mb-3">&#x2600;&#xFE0F; D&egrave;s midi, jusqu'au bout de la nuit</p>
-              <p class="text-sm text-teal-900/80 leading-relaxed mb-8 flex-1">Cl&ocirc;ture de saison le <strong class="text-teal-900">dimanche 27 septembre</strong>&nbsp;: on ouvre au d&eacute;jeuner et on ne s'arr&ecirc;te plus, guitares gitanes avec les Gypsies, cocktails et spectacle au coucher du soleil. Entr&eacute;e libre, sans r&eacute;servation. Table ou espace VIP&nbsp;: r&eacute;servez par message aupr&egrave;s de Ga&euml;l en indiquant vos nom, pr&eacute;nom et nombre de convives.</p>
-              <!-- CTA : reservation table / espace VIP par SMS pre-rempli a Gael -->
-              <a href="sms:+33646472945?&amp;body=Bonjour%20Ga%C3%ABl%2C%20je%20souhaite%20r%C3%A9server%20pour%20la%20Closing%20Party%20du%20dimanche%2027%20septembre.%0ANom%20%3A%20%0APr%C3%A9nom%20%3A%20%0ANombre%20de%20convives%20%3A%20%0AJe%20r%C3%A9serve%20%28une%20table%20OU%20l%27espace%20VIP%29%20%3A%20" class="inline-flex items-center justify-center gap-2 w-full bg-teal-900 text-white px-5 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:gap-3 hover:bg-teal-800 shadow-md hover:shadow-lg transition-all duration-300">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-                &Eacute;crire &agrave; Ga&euml;l
-              </a>
-              <p class="text-[10px] text-teal-900/60 text-center mt-3 tracking-widest uppercase">Nom, pr&eacute;nom, nombre de convives &middot; <a href="tel:+33646472945" class="text-teal-900 font-semibold hover:underline whitespace-nowrap">06 46 47 29 45</a></p>
+              <p class="text-sm text-teal-900/80 leading-relaxed mb-8 flex-1">Cl&ocirc;ture de saison le <strong class="text-teal-900">dimanche 27 septembre</strong>&nbsp;: de midi jusqu'au bout de la nuit, guitares gitanes avec les Gypsies, cocktails et spectacle au coucher du soleil. Merci &agrave; tous, &agrave; l'ann&eacute;e prochaine&nbsp;!</p>
+              <!-- Galerie en preparation : remplacer par le lien paper34.fr/galerie/chiringuito-closing des qu'elle existe -->
+              <span class="inline-flex items-center justify-center gap-2 w-full bg-white/60 text-teal-800/70 px-5 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest cursor-default">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                Photos tr&egrave;s bient&ocirc;t
+              </span>
+              <p class="text-[10px] text-teal-900/60 text-center mt-3 tracking-widest uppercase">Galerie en pr&eacute;paration</p>
             </div>
           </article>
 
@@ -2029,7 +2048,7 @@
         <p class="text-center text-xs text-text-light mt-4 tracking-wide">&larr; Glissez pour revoir les soir&eacute;es pass&eacute;es</p>
 
         <!-- Newsletter incentive (replaces footnote) -->
-        <div class="mt-14 md:mt-16 reveal">
+        <div id="newsletter" class="mt-14 md:mt-16 reveal scroll-mt-24">
           <div class="max-w-2xl mx-auto bg-white/70 border border-brand/15 rounded-3xl px-6 py-8 md:px-10 md:py-9 text-center shadow-sm">
             <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand/10 text-brand mb-4">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
@@ -2477,7 +2496,7 @@
               Quels sont les horaires&nbsp;?
               <svg class="w-5 h-5 text-brand shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
-            <p class="px-6 pb-5 text-base text-text-light leading-relaxed">Pendant la saison (jusqu'&agrave; fin septembre), le Chiringuito est ouvert tous les jours de 8h &agrave; 1h&nbsp;: service au restaurant midi et soir, et carte continue l'apr&egrave;s-midi (salades, planches, glaces, gaufres).</p>
+            <p class="px-6 pb-5 text-base text-text-light leading-relaxed">La saison 2026 s'est achev&eacute;e avec la Closing Party du 27 septembre&nbsp;: le Chiringuito est ferm&eacute; pour l'hiver, et la date de r&eacute;ouverture de la saison 2027 est annonc&eacute;e en priorit&eacute; via la newsletter. En saison, il est ouvert tous les jours de 8h &agrave; 1h&nbsp;: service au restaurant midi et soir, et carte continue l'apr&egrave;s-midi (salades, planches, glaces, gaufres).</p>
           </details>
 
           <details class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal">
@@ -2583,9 +2602,11 @@
 
         <!-- Hours card -->
         <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
-          <div class="text-2xl mb-3" style="font-family: 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#9728;&#xFE0F;</div>
-          <p class="text-white font-medium mb-1">Ouvert 7j/7</p>
-          <p class="text-white/60 text-sm">08h00 - 01h00</p>
+          <div class="text-2xl mb-3" style="font-family: 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;"><span class="saison-ouverte">&#9728;&#xFE0F;</span><span class="saison-hiver">&#x1F30A;</span></div>
+          <p class="saison-ouverte text-white font-medium mb-1">Ouvert 7j/7</p>
+          <p class="saison-ouverte text-white/60 text-sm">08h00 - 01h00</p>
+          <p class="saison-hiver text-white font-medium mb-1">Ferm&eacute; pour l'hiver</p>
+          <p class="saison-hiver text-white/60 text-sm">R&eacute;ouverture saison 2027</p>
         </div>
 
         <!-- Contact card -->
@@ -3915,5 +3936,12 @@
     })();
   </script>
 
+  <script>
+    // Les liens « M'avertir de la reouverture » des sous-pages pointent vers /#newsletter :
+    // on ouvre directement la fenetre d'inscription.
+    window.addEventListener('load', function () {
+      if (location.hash === '#newsletter' && window.openNewsletterPopup) setTimeout(window.openNewsletterPopup, 400);
+    });
+  </script>
 </body>
 </html>
