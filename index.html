@@ -1392,24 +1392,17 @@
           <span class="opacity-70">Vias-Plage</span>
         </div>
 
-        <!-- CTA hero d'hiver : la saison est finie, on transforme les visites en inscrits pour la
-             reouverture (la liste qui alimente la campagne d'ouverture). -->
-        <button type="button" onclick="window.openNewsletterPopup && window.openNewsletterPopup()" aria-label="Saison 2026 terminee : s'inscrire a la newsletter pour etre averti de la reouverture" class="saison-hiver hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-[#7FDCE6] via-[#38C6D4] to-[#F5B95C] text-teal-900 px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
-          <span class="text-lg leading-none">&#x1F30A;</span>
-          <span class="sm:hidden">R&eacute;ouverture 2027 &middot; M'avertir</span>
+        <!-- CTA hero d'hiver : la saison est finie, on renvoie vers la galerie du Closing.
+             (Variante newsletter : bouton onclick=openNewsletterPopup, cf. historique git.) -->
+        <a href="https://www.paper34.fr/galerie/chiringuito-closing" target="_blank" rel="noopener noreferrer" aria-label="Saison 2026 terminee : voir les photos de la Closing Party" class="saison-hiver hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-[#7FDCE6] via-[#38C6D4] to-[#F5B95C] text-teal-900 px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
+          <span class="text-lg leading-none">&#x1F4F8;</span>
+          <span class="sm:hidden">Voir les photos du Closing</span>
           <span class="hidden sm:inline-flex items-center gap-3">
             <span>Saison 2026 termin&eacute;e &middot; merci&nbsp;!</span>
             <span class="w-px h-4 bg-teal-900/30" aria-hidden="true"></span>
-            <span class="text-teal-900/80">M'avertir de la r&eacute;ouverture</span>
+            <span class="text-teal-900/80">Voir les photos du Closing</span>
           </span>
-          <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-        </button>
-
-        <!-- CTA hero d'hiver n.2 : la galerie du Closing (cliquable, telechargement libre) -->
-        <a href="https://www.paper34.fr/galerie/chiringuito-closing" target="_blank" rel="noopener noreferrer" class="saison-hiver magnetic-btn inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 text-white px-7 py-3 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-white/25 hover:border-white/40 hover:-translate-y-1 transition-all duration-300 mb-6">
-          <span class="text-base leading-none">&#x1F4F8;</span>
-          Photos du Closing
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
 
         <!-- CTA hero : Closing Party - dimanche 27 septembre (gradient violet + glow).
