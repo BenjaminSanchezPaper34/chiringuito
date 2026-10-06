@@ -4103,7 +4103,14 @@
       }
       if (!('IntersectionObserver' in window)) { els.forEach(show); return; }
       var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          show(e.target); io.unobserve(e.target);
+          // section atteinte : on remplit tout le reste (copies du bandeau comprises) peu apres
+          if (!window.__artistsAll) { window.__artistsAll = setTimeout(function () {
+            document.querySelectorAll('.artist-bg[data-bg]').forEach(show); io.disconnect();
+          }, 1500); }
+        });
       }, { rootMargin: '200px 600px' });
       els.forEach(function (el) { io.observe(el); });
     })();
