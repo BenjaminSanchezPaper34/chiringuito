@@ -9,6 +9,11 @@
       "source": "/concours/(.*)",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/assets/depliant-a4-chiringuito.pdf",
+      "destination": "/carte/",
+      "permanent": true
     }
   ],
   "headers": [
