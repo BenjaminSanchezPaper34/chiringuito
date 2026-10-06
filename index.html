@@ -4089,30 +4089,33 @@
     })();
   </script>
 
-  <!-- Photos d'artistes : fonds charges a l'approche (200 px avant l'ecran) -->
+  <!-- Photos d'artistes : chargees a l'approche de la section, puis TOUTES decodees avant d'etre
+       appliquees d'un coup (original + copies du bandeau) : pas d'effet de rechargement au tour suivant (iOS). -->
   <script>
     (function () {
-      var els = document.querySelectorAll('.artist-bg[data-bg]');
-      // le bandeau defilant clone les vignettes : on remplit l'original ET toutes ses copies
-      function show(el) {
-        var url = el.dataset.bg;
-        if (!url) return;
-        document.querySelectorAll('.artist-bg[data-bg="' + url + '"]').forEach(function (c) {
-          c.style.backgroundImage = "url('" + url + "')"; c.removeAttribute('data-bg');
+      var section = document.getElementById('artistes');
+      if (!section) return;
+      var done = false;
+      function fill() {
+        if (done) return; done = true;
+        var urls = [];
+        document.querySelectorAll('.artist-bg[data-bg]').forEach(function (el) {
+          if (urls.indexOf(el.dataset.bg) < 0) urls.push(el.dataset.bg);
+        });
+        Promise.all(urls.map(function (u) {
+          var img = new Image(); img.src = u;
+          return (img.decode ? img.decode() : Promise.resolve()).catch(function () {});
+        })).then(function () {
+          document.querySelectorAll('.artist-bg[data-bg]').forEach(function (el) {
+            el.style.backgroundImage = "url('" + el.dataset.bg + "')"; el.removeAttribute('data-bg');
+          });
         });
       }
-      if (!('IntersectionObserver' in window)) { els.forEach(show); return; }
+      if (!('IntersectionObserver' in window)) { fill(); return; }
       var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (!e.isIntersecting) return;
-          show(e.target); io.unobserve(e.target);
-          // section atteinte : on remplit tout le reste (copies du bandeau comprises) peu apres
-          if (!window.__artistsAll) { window.__artistsAll = setTimeout(function () {
-            document.querySelectorAll('.artist-bg[data-bg]').forEach(show); io.disconnect();
-          }, 1500); }
-        });
-      }, { rootMargin: '200px 600px' });
-      els.forEach(function (el) { io.observe(el); });
+        if (entries.some(function (e) { return e.isIntersecting; })) { fill(); io.disconnect(); }
+      }, { rootMargin: '1200px 0px' });
+      io.observe(section);
     })();
   </script>
 </body>
