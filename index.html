@@ -1039,8 +1039,120 @@
 
   <!-- Google Fonts -->
   <!-- Polices auto-hebergees (conformite CNIL - aucun CDN de polices tiers) -->
+  <link rel="preload" href="/images/logo-blanc-chiringuito.svg" as="image" fetchpriority="high"/>
   <link rel="preload" href="/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin/>
-  <link rel="stylesheet" href="/fonts/fonts.css"/>
+  <!-- fonts.css inline : evite une requete bloquante au rendu (source : /fonts/fonts.css) -->
+  <style>
+/* Polices auto-hebergees (CNIL) - Inter 300-700 + Parisienne, latin + latin-ext */
+/* Inter 300 latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(/fonts/inter-300-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Inter 300 latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(/fonts/inter-300-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Inter 400 latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/inter-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Inter 400 latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/inter-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Inter 500 latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/inter-500-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Inter 500 latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/inter-500-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Inter 600 latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/inter-600-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Inter 600 latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/inter-600-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Inter 700 latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/fonts/inter-700-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Inter 700 latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/fonts/inter-700-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Parisienne 400 latin-ext */
+@font-face {
+  font-family: 'Parisienne';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/parisienne-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Parisienne 400 latin */
+@font-face {
+  font-family: 'Parisienne';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/parisienne-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+  </style>
 
   <!-- Tailwind CSS -->
   <!-- Tailwind compile en build (css/tailwind.css) - plus de Play CDN au chargement -->
@@ -1262,10 +1374,10 @@
 
   <!-- Decorative parallax elements (desktop only, sur le hero) -->
   <div class="hidden md:block fixed -top-2 -left-1 z-[55] pointer-events-none" id="deco-left-fixed" aria-hidden="true">
-    <img src="images/plantesgauche.webp" alt="" class="md:w-56 lg:w-64 xl:w-80 drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]" width="351" height="532"/>
+    <img src="images/plantesgauche-420.webp" srcset="images/plantesgauche-420.webp 420w, images/plantesgauche.webp 700w" sizes="(min-width: 1280px) 320px, (min-width: 1024px) 256px, 224px" loading="lazy" decoding="async" alt="" class="md:w-56 lg:w-64 xl:w-80 drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]" width="351" height="532"/>
   </div>
   <div class="hidden md:block fixed -top-2 -right-1 z-[55] pointer-events-none" id="deco-right-fixed" aria-hidden="true">
-    <img src="images/plantesdroite.webp" alt="" class="md:w-56 lg:w-64 xl:w-80 drop-shadow-[-4px_4px_12px_rgba(0,0,0,0.15)]" width="350" height="532"/>
+    <img src="images/plantesdroite-420.webp" srcset="images/plantesdroite-420.webp 420w, images/plantesdroite.webp 700w" sizes="(min-width: 1280px) 320px, (min-width: 1024px) 256px, 224px" loading="lazy" decoding="async" alt="" class="md:w-56 lg:w-64 xl:w-80 drop-shadow-[-4px_4px_12px_rgba(0,0,0,0.15)]" width="350" height="532"/>
   </div>
   <div class="hidden md:block fixed -top-2 right-28 lg:right-36 xl:right-44 z-[55] pointer-events-none" id="deco-macrame-fixed" aria-hidden="true">
     <img src="images/macrame.webp" alt="" class="md:w-24 lg:w-28 xl:w-32 drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]" width="141" height="348"/>
@@ -1381,7 +1493,7 @@
       <!-- Content -->
       <div id="hero-content" class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
         <h1 class="sr-only">Chiringuito - Plage Priv&eacute;e, Restaurant &amp; Bar &agrave; Vias-Plage (34450)</h1>
-        <img src="images/logo-blanc-chiringuito.svg" alt="Chiringuito Vias-Plage - Plage priv&eacute;e, restaurant et bar face &agrave; la M&eacute;diterran&eacute;e" class="w-48 md:w-72 lg:w-80 mb-8" id="hero-logo" width="320" height="200"/>
+        <img src="images/logo-blanc-chiringuito.svg" alt="Chiringuito Vias-Plage - Plage priv&eacute;e, restaurant et bar face &agrave; la M&eacute;diterran&eacute;e" class="w-48 md:w-72 lg:w-80 mb-8" id="hero-logo" fetchpriority="high" width="320" height="200"/>
         <p id="hero-tagline" class="text-white/80 text-xs md:text-sm tracking-[0.35em] uppercase font-light mb-4">Restaurant &middot; Bar &middot; Plage priv&eacute;e</p>
 
         <!-- Mini chip meteo (alimente par JS, cache par defaut tant qu'on n'a pas la donnee) -->
@@ -1394,7 +1506,7 @@
 
         <!-- CTA hero d'hiver : la saison est finie, on renvoie vers la galerie du Closing.
              (Variante newsletter : bouton onclick=openNewsletterPopup, cf. historique git.) -->
-        <a href="https://www.paper34.fr/galerie/chiringuito-closing" target="_blank" rel="noopener noreferrer" aria-label="Saison 2026 terminee : voir les photos de la Closing Party" class="saison-hiver hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-[#7FDCE6] via-[#38C6D4] to-[#F5B95C] text-teal-900 px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
+        <a href="https://www.paper34.fr/galerie/chiringuito-closing" target="_blank" rel="noopener noreferrer" class="saison-hiver hero-glow-cta magnetic-btn inline-flex items-center gap-2.5 bg-gradient-to-r from-[#7FDCE6] via-[#38C6D4] to-[#F5B95C] text-teal-900 px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 mb-6">
           <span class="text-lg leading-none">&#x1F4F8;</span>
           <span class="sm:hidden">Voir les photos du Closing</span>
           <span class="hidden sm:inline-flex items-center gap-3">
@@ -1458,10 +1570,10 @@
     <section id="bienvenue" class="py-16 md:py-24 px-6 relative overflow-hidden">
       <!-- Plantes decoratives mobile only -->
       <div class="md:hidden absolute -top-4 -left-2 pointer-events-none" id="deco-left" aria-hidden="true">
-        <img src="images/plantesgauche.webp" alt="" class="w-52 drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]" width="351" height="532"/>
+        <img src="images/plantesgauche-420.webp" srcset="images/plantesgauche-420.webp 420w, images/plantesgauche.webp 700w" sizes="(min-width: 1280px) 320px, (min-width: 1024px) 256px, 224px" loading="lazy" decoding="async" alt="" class="w-52 drop-shadow-[4px_4px_12px_rgba(0,0,0,0.15)]" width="351" height="532"/>
       </div>
       <div class="md:hidden absolute -top-4 -right-2 pointer-events-none" id="deco-right" aria-hidden="true">
-        <img src="images/plantesdroite.webp" alt="" class="w-52 drop-shadow-[-4px_4px_12px_rgba(0,0,0,0.15)]" width="350" height="532"/>
+        <img src="images/plantesdroite-420.webp" srcset="images/plantesdroite-420.webp 420w, images/plantesdroite.webp 700w" sizes="(min-width: 1280px) 320px, (min-width: 1024px) 256px, 224px" loading="lazy" decoding="async" alt="" class="w-52 drop-shadow-[-4px_4px_12px_rgba(0,0,0,0.15)]" width="350" height="532"/>
       </div>
 
       <div class="relative z-10 max-w-3xl mx-auto text-center">
@@ -1941,12 +2053,12 @@
               <h3 class="font-display text-3xl md:text-4xl text-orange-900 leading-tight mb-3 whitespace-nowrap">Opening Party</h3>
               <p class="text-sm text-orange-900/70 leading-relaxed mb-8 flex-1">Lancement de saison avec <strong class="text-orange-950">Bon Entendeur</strong> en t&ecirc;te d'affiche. Une nuit inoubliable face mer&nbsp;: merci &agrave; tous&nbsp;!</p>
               <!-- CTA : galerie photos de la soiree (Paper34) -->
-              <a href="https://www.paper34.fr/galerie/chiringuito-opening" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-white text-orange-600 px-5 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:gap-3 hover:scale-[1.02] shadow-md hover:shadow-lg transition-all duration-300">
+              <a href="https://www.paper34.fr/galerie/chiringuito-opening" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-white text-orange-600 px-5 py-3.5 rounded-full text-sm font-bold uppercase tracking-widest hover:gap-3 hover:scale-[1.02] shadow-md hover:shadow-lg transition-all duration-300">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                 Voir les photos
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
-              <p class="text-[10px] text-orange-900/60 text-center mt-3 tracking-widest uppercase">Galerie compl&egrave;te &middot; t&eacute;l&eacute;chargement libre</p>
+              <p class="text-xs text-orange-900/60 text-center mt-3 tracking-widest uppercase">Galerie compl&egrave;te &middot; t&eacute;l&eacute;chargement libre</p>
             </div>
           </article>
 
@@ -1966,12 +2078,12 @@
               <h3 class="font-display text-3xl md:text-4xl text-green-900 leading-tight mb-3 whitespace-nowrap">Coachella Party</h3>
               <p class="text-sm text-green-900/70 leading-relaxed mb-8 flex-1">Festival face mer pour la <strong class="text-green-950">F&ecirc;te de la Musique</strong>&nbsp;: tenues color&eacute;es et grand DJ set nocturne jusqu'au bout de la nuit. Une soir&eacute;e endiabl&eacute;e&nbsp;: merci &agrave; tous&nbsp;!</p>
               <!-- CTA : galerie photos de la soiree (Paper34) -->
-              <a href="https://www.paper34.fr/galerie/chiringuito-coachella" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-white text-green-700 px-5 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:gap-3 hover:scale-[1.02] shadow-md hover:shadow-lg transition-all duration-300">
+              <a href="https://www.paper34.fr/galerie/chiringuito-coachella" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-white text-green-700 px-5 py-3.5 rounded-full text-sm font-bold uppercase tracking-widest hover:gap-3 hover:scale-[1.02] shadow-md hover:shadow-lg transition-all duration-300">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                 Voir les photos
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
-              <p class="text-[10px] text-green-900/60 text-center mt-3 tracking-widest uppercase">Galerie compl&egrave;te &middot; t&eacute;l&eacute;chargement libre</p>
+              <p class="text-xs text-green-900/60 text-center mt-3 tracking-widest uppercase">Galerie compl&egrave;te &middot; t&eacute;l&eacute;chargement libre</p>
             </div>
           </article>
 
@@ -1991,12 +2103,12 @@
               <h3 class="font-display text-3xl md:text-4xl text-white leading-tight mb-3 whitespace-nowrap">Reggaeton Fiesta</h3>
               <p class="text-sm text-white/85 leading-relaxed mb-8 flex-1"><strong class="text-white">Show Live Bad Bunny Tribute</strong>, DJ sets 100% reggaeton &amp; latino et perreo jusqu'au bout de la nuit. Une fiesta de folie&nbsp;: &iexcl;gracias a todos!</p>
               <!-- CTA : galerie photos de la soiree (Paper34) -->
-              <a href="https://www.paper34.fr/galerie/chiringuito-reggaeton" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-white text-[#E4002B] px-5 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:gap-3 hover:scale-[1.02] shadow-md hover:shadow-lg transition-all duration-300">
+              <a href="https://www.paper34.fr/galerie/chiringuito-reggaeton" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-white text-[#E4002B] px-5 py-3.5 rounded-full text-sm font-bold uppercase tracking-widest hover:gap-3 hover:scale-[1.02] shadow-md hover:shadow-lg transition-all duration-300">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                 Voir les photos
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
-              <p class="text-[10px] text-white/60 text-center mt-3 tracking-widest uppercase">Galerie compl&egrave;te &middot; t&eacute;l&eacute;chargement libre</p>
+              <p class="text-xs text-white/60 text-center mt-3 tracking-widest uppercase">Galerie compl&egrave;te &middot; t&eacute;l&eacute;chargement libre</p>
             </div>
           </article>
 
@@ -2016,12 +2128,12 @@
               <h3 class="font-display text-3xl md:text-4xl text-white leading-tight mb-3 whitespace-nowrap">Aperol Pop-Up</h3>
               <p class="text-sm text-white/90 leading-relaxed mb-8 flex-1">L'Aperol Pop-Up s'est install&eacute; au Chiringuito avec <strong class="text-white">Joachim Pastor</strong> et <strong class="text-white">Chambre Noire</strong> aux platines. Spritz face mer et animations exclusives&nbsp;: salud &agrave; tous&nbsp;!</p>
               <!-- CTA : galerie photos de la soiree (Paper34) -->
-              <a href="https://www.paper34.fr/galerie/chiringuito-aperol" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-white text-[#E63E00] px-5 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:gap-3 hover:scale-[1.02] shadow-md hover:shadow-lg transition-all duration-300">
+              <a href="https://www.paper34.fr/galerie/chiringuito-aperol" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-white text-[#E63E00] px-5 py-3.5 rounded-full text-sm font-bold uppercase tracking-widest hover:gap-3 hover:scale-[1.02] shadow-md hover:shadow-lg transition-all duration-300">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                 Voir les photos
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
-              <p class="text-[10px] text-white/60 text-center mt-3 tracking-widest uppercase">Galerie compl&egrave;te &middot; t&eacute;l&eacute;chargement libre</p>
+              <p class="text-xs text-white/60 text-center mt-3 tracking-widest uppercase">Galerie compl&egrave;te &middot; t&eacute;l&eacute;chargement libre</p>
             </div>
           </article>
 
@@ -2379,7 +2491,7 @@
         <!-- Live stats : layout editorial sans cartes (numbers + thin accent line) -->
         <!-- Reels autoplay -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 reveal">
-          <a href="https://www.instagram.com/reel/DPg8LQVCi5C/" target="_blank" rel="noopener noreferrer" class="block rounded-2xl overflow-hidden aspect-[9/16] relative group">
+          <a href="https://www.instagram.com/reel/DPg8LQVCi5C/" target="_blank" rel="noopener noreferrer" aria-label="Voir le reel sur Instagram (nouvel onglet)" class="block rounded-2xl overflow-hidden aspect-[9/16] relative group">
             <video class="w-full h-full object-cover" playsinline loop muted preload="none" data-lazy-video poster="assets/reels/reel-1-thumb.jpg">
               <source data-src="assets/reels/reel-1.mp4" type="video/mp4"/>
             </video>
@@ -2387,7 +2499,7 @@
               <svg class="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
             </div>
           </a>
-          <a href="https://www.instagram.com/reel/DOse3qoCt_I/" target="_blank" rel="noopener noreferrer" class="block rounded-2xl overflow-hidden aspect-[9/16] relative group">
+          <a href="https://www.instagram.com/reel/DOse3qoCt_I/" target="_blank" rel="noopener noreferrer" aria-label="Voir le reel sur Instagram (nouvel onglet)" class="block rounded-2xl overflow-hidden aspect-[9/16] relative group">
             <video class="w-full h-full object-cover" playsinline loop muted preload="none" data-lazy-video poster="assets/reels/reel-2-thumb.jpg">
               <source data-src="assets/reels/reel-2.mp4" type="video/mp4"/>
             </video>
@@ -2395,7 +2507,7 @@
               <svg class="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
             </div>
           </a>
-          <a href="https://www.instagram.com/reel/DOV95w1iiks/" target="_blank" rel="noopener noreferrer" class="block rounded-2xl overflow-hidden aspect-[9/16] relative group">
+          <a href="https://www.instagram.com/reel/DOV95w1iiks/" target="_blank" rel="noopener noreferrer" aria-label="Voir le reel sur Instagram (nouvel onglet)" class="block rounded-2xl overflow-hidden aspect-[9/16] relative group">
             <video class="w-full h-full object-cover" playsinline loop muted preload="none" data-lazy-video poster="assets/reels/reel-3-thumb.jpg">
               <source data-src="assets/reels/reel-3.mp4" type="video/mp4"/>
             </video>
