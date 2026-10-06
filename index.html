@@ -1483,8 +1483,6 @@
       <!-- Video differee : le poster s'affiche immediatement (LCP), la video n'est chargee qu'apres
            le chargement complet de la page (script en fin de body). Jamais en reduced-motion / economie de donnees. -->
       <video id="hero-video" class="absolute inset-0 w-full h-full object-cover" playsinline loop muted preload="none" poster="assets/hero-poster.webp" style="background: white;">
-        <source data-src="assets/mainvideomobile-chiringuito.mp4" type="video/mp4" media="(max-width: 768px)"/>
-        <source data-src="assets/mainvideo-chiringuito.mp4" type="video/mp4"/>
       </video>
 
       <!-- Voile uniforme pour attenuer le HDR -->
@@ -2217,7 +2215,7 @@
           <div class="marquee-row" id="artistsRow">
 
             <a href="https://www.instagram.com/bon_entendeur/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Bon Entendeur sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/bon-entendeur.webp'); background-size: cover; background-position: center;"></div>
+              <div class="artist-bg" data-bg="images/artistes/bon-entendeur.webp" style="background-size: cover; background-position: center;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Bon Entendeur</h3>
                 <p class="artist-event">Opening &middot; 6 juin 2026</p>
@@ -2225,7 +2223,7 @@
             </a>
 
             <a href="https://www.instagram.com/carlimusic_ofc/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Carli sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/carli-2026.webp'); background-size: cover; background-position: center;"></div>
+              <div class="artist-bg" data-bg="images/artistes/carli-2026.webp" style="background-size: cover; background-position: center;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Carli</h3>
                 <p class="artist-event">Coachella &middot; 21 juin 2026</p>
@@ -2233,7 +2231,7 @@
             </a>
 
             <a href="https://www.instagram.com/j.lauww/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="JLauww sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/jlauww.webp'); background-size: cover; background-position: center;"></div>
+              <div class="artist-bg" data-bg="images/artistes/jlauww.webp" style="background-size: cover; background-position: center;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">JLauww</h3>
                 <p class="artist-event">Reggaeton &middot; 11 juillet 2026</p>
@@ -2241,7 +2239,7 @@
             </a>
 
             <a href="https://www.instagram.com/therealdjwill/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="DJ Will sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/dj-will.webp'); background-size: cover; background-position: center;"></div>
+              <div class="artist-bg" data-bg="images/artistes/dj-will.webp" style="background-size: cover; background-position: center;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">DJ Will</h3>
                 <p class="artist-event">Reggaeton &middot; 11 juillet 2026</p>
@@ -2249,7 +2247,7 @@
             </a>
 
             <a href="https://www.instagram.com/luislabori/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Luis Labori sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/luis-labori.webp'); background-size: cover; background-position: center;"></div>
+              <div class="artist-bg" data-bg="images/artistes/luis-labori.webp" style="background-size: cover; background-position: center;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Luis Labori</h3>
                 <p class="artist-event">Reggaeton &middot; 11 juillet 2026</p>
@@ -2257,7 +2255,7 @@
             </a>
 
             <a href="https://www.instagram.com/yann_muller/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Yann Muller sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/yann-muller-opening-2025.webp'); background-size: cover; background-position: center 30%;"></div>
+              <div class="artist-bg" data-bg="images/artistes/yann-muller-opening-2025.webp" style="background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Yann Muller</h3>
                 <p class="artist-event">Opening &middot; 2025</p>
@@ -2265,7 +2263,7 @@
             </a>
 
             <a href="https://www.instagram.com/patricksebastienofficiel/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Patrick S&eacute;bastien sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/patrick-sebastien.webp'); background-size: cover; background-position: center 25%;"></div>
+              <div class="artist-bg" data-bg="images/artistes/patrick-sebastien.webp" style="background-size: cover; background-position: center 25%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Patrick S&eacute;bastien</h3>
                 <p class="artist-event">Invit&eacute; d'honneur</p>
@@ -2273,7 +2271,7 @@
             </a>
 
             <a href="https://www.instagram.com/djseven.off/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="7even sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/7even.webp'); background-size: cover; background-position: center 30%;"></div>
+              <div class="artist-bg" data-bg="images/artistes/7even.webp" style="background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">7even</h3>
                 <p class="artist-event">La star de la maison</p>
@@ -2281,7 +2279,7 @@
             </a>
 
             <a href="https://www.instagram.com/morezan.music/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Morezan sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/morezan.webp'); background-size: cover; background-position: center 35%;"></div>
+              <div class="artist-bg" data-bg="images/artistes/morezan.webp" style="background-size: cover; background-position: center 35%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Morezan</h3>
                 <p class="artist-event">Toutes les grandes soir&eacute;es</p>
@@ -2289,7 +2287,7 @@
             </a>
 
             <a href="https://www.instagram.com/lunaamusicfr/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Lunaa sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/lunaa-closing-2025.webp'); background-size: cover; background-position: center 30%;"></div>
+              <div class="artist-bg" data-bg="images/artistes/lunaa-closing-2025.webp" style="background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Lunaa</h3>
                 <p class="artist-event">Closing &middot; 2025</p>
@@ -2297,7 +2295,7 @@
             </a>
 
             <a href="https://www.instagram.com/maxdee.ofc/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Maxdee sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/maxdee-closing-2025.webp'); background-size: cover; background-position: center 30%;"></div>
+              <div class="artist-bg" data-bg="images/artistes/maxdee-closing-2025.webp" style="background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Maxdee</h3>
                 <p class="artist-event">Closing &middot; 2025</p>
@@ -2305,7 +2303,7 @@
             </a>
 
             <a href="https://www.instagram.com/maxxbaty/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Maxx Baty sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/maxx-baty.webp'); background-size: cover; background-position: center 35%;"></div>
+              <div class="artist-bg" data-bg="images/artistes/maxx-baty.webp" style="background-size: cover; background-position: center 35%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Maxx Baty</h3>
                 <p class="artist-event">Ami de la maison</p>
@@ -2313,7 +2311,7 @@
             </a>
 
             <a href="https://www.instagram.com/demsko2.1/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Demsko sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/demsko.webp'); background-size: cover; background-position: center 30%;"></div>
+              <div class="artist-bg" data-bg="images/artistes/demsko.webp" style="background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Demsko</h3>
                 <p class="artist-event">Habitu&eacute; de la maison</p>
@@ -2321,7 +2319,7 @@
             </a>
 
             <a href="https://www.instagram.com/wallacenegao/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Wallace Neg&atilde;o sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/wallace-negao.webp'); background-size: cover; background-position: center 30%;"></div>
+              <div class="artist-bg" data-bg="images/artistes/wallace-negao.webp" style="background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Wallace Neg&atilde;o</h3>
                 <p class="artist-event">Invit&eacute; live</p>
@@ -2329,7 +2327,7 @@
             </a>
 
             <a href="https://www.instagram.com/ladies_sax/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Ladies &amp; Sax sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/ladies-sax-opening-2024.webp'); background-size: cover; background-position: center 30%;"></div>
+              <div class="artist-bg" data-bg="images/artistes/ladies-sax-opening-2024.webp" style="background-size: cover; background-position: center 30%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Ladies &amp; Sax</h3>
                 <p class="artist-event">Opening &middot; 2024</p>
@@ -2337,7 +2335,7 @@
             </a>
 
             <a href="https://www.instagram.com/camillecombal/" target="_blank" rel="noopener noreferrer" draggable="false" class="artist-tile block" aria-label="Camille Combal sur Instagram (nouvel onglet)">
-              <div class="artist-bg" style="background-image: url('images/artistes/camille-combal.webp'); background-size: cover; background-position: center 25%;"></div>
+              <div class="artist-bg" data-bg="images/artistes/camille-combal.webp" style="background-size: cover; background-position: center 25%;"></div>
               <div class="artist-info">
                 <h3 class="artist-name">Camille Combal</h3>
                 <p class="artist-event">28 juin 2019</p>
@@ -2367,7 +2365,7 @@
 
           <!-- Tuile partenaire = lien direct (Instagram privilegie), pas de modale -->
           <a href="https://www.instagram.com/biousytoros/" target="_blank" rel="noopener noreferrer" class="artist-tile block snap-center" aria-label="Bious y Toros sur Instagram (nouvel onglet)">
-            <div class="artist-bg" style="background-image: url('images/partenaires/bious-y-toros.webp'); background-size: cover; background-position: center;"></div>
+            <div class="artist-bg" data-bg="images/partenaires/bious-y-toros.webp" style="background-size: cover; background-position: center;"></div>
             <div class="artist-info">
               <span class="artist-style">Partenaire</span>
               <h3 class="artist-name">Bious y Toros</h3>
@@ -2377,7 +2375,7 @@
 
           <!-- Lacoste Beziers : pas de reseaux -> lien vers la page boutique (nouvel onglet) -->
           <a href="https://www.lacoste.com/fr/stores/france/b%C3%A9ziers/b%C3%A9ziers-5555" target="_blank" rel="noopener noreferrer" class="artist-tile block snap-center" aria-label="Boutique Lacoste B&eacute;ziers (nouvel onglet)">
-            <div class="artist-bg" style="background-image: url('images/partenaires/lacoste-beziers.webp'); background-size: cover; background-position: center;"></div>
+            <div class="artist-bg" data-bg="images/partenaires/lacoste-beziers.webp" style="background-size: cover; background-position: center;"></div>
             <div class="artist-info">
               <span class="artist-style">Partenaire</span>
               <h3 class="artist-name">Lacoste B&eacute;ziers</h3>
@@ -2386,7 +2384,7 @@
           </a>
 
           <a href="https://www.instagram.com/maisonalaryk/" target="_blank" rel="noopener noreferrer" class="artist-tile block snap-center" aria-label="Maison Alaryk sur Instagram (nouvel onglet)">
-            <div class="artist-bg" style="background-image: url('images/partenaires/maison-alaryk.webp'); background-size: cover; background-position: center;"></div>
+            <div class="artist-bg" data-bg="images/partenaires/maison-alaryk.webp" style="background-size: cover; background-position: center;"></div>
             <div class="artist-info">
               <span class="artist-style">Partenaire</span>
               <h3 class="artist-name">Maison Alaryk</h3>
@@ -4080,13 +4078,41 @@
       var saveData = navigator.connection && navigator.connection.saveData;
       if (reduce || saveData) return; // le poster reste affiche
       function start() {
-        v.querySelectorAll('source[data-src]').forEach(function (s) { s.src = s.dataset.src; });
-        v.load();
+        // une seule video : le navigateur ne trie pas toujours les <source media>, il en chargeait deux
+        var mobile = window.matchMedia('(max-width: 768px)').matches;
+        v.src = mobile ? 'assets/mainvideomobile-chiringuito.mp4' : 'assets/mainvideo-chiringuito.mp4';
         var p = v.play();
         if (p && p.catch) p.catch(function () {});
       }
       function later() { (window.requestIdleCallback || function (f) { setTimeout(f, 300); })(start, { timeout: 2000 }); }
       if (document.readyState === 'complete') later(); else window.addEventListener('load', later, { once: true });
+    })();
+  </script>
+
+  <!-- Photos d'artistes : fonds charges a l'approche (200 px avant l'ecran) -->
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.artist-bg[data-bg]');
+      // le bandeau defilant clone les vignettes : on remplit l'original ET toutes ses copies
+      function show(el) {
+        var url = el.dataset.bg;
+        if (!url) return;
+        document.querySelectorAll('.artist-bg[data-bg="' + url + '"]').forEach(function (c) {
+          c.style.backgroundImage = "url('" + url + "')"; c.removeAttribute('data-bg');
+        });
+      }
+      if (!('IntersectionObserver' in window)) { els.forEach(show); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          show(e.target); io.unobserve(e.target);
+          // section atteinte : on remplit tout le reste (copies du bandeau comprises) peu apres
+          if (!window.__artistsAll) { window.__artistsAll = setTimeout(function () {
+            document.querySelectorAll('.artist-bg[data-bg]').forEach(show); io.disconnect();
+          }, 1500); }
+        });
+      }, { rootMargin: '200px 600px' });
+      els.forEach(function (el) { io.observe(el); });
     })();
   </script>
 </body>
