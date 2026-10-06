@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "update:metrics": "node scripts/update-metrics.mjs",
-    "update:reviews": "node scripts/update-reviews.mjs"
+    "update:reviews": "node scripts/update-reviews.mjs",
+    "build:css": "node scripts/inline-css.mjs --reset && tailwindcss -c tailwind.config.js -i css/tailwind.src.css -o css/tailwind.css --minify && node scripts/inline-css.mjs"
   },
   "dependencies": {
     "google-auth-library": "^9.15.1"
