@@ -12,4 +12,3 @@ npm-debug.log*
 
 # Lockfile : tracked si on veut des installs reproductibles dans la CI.
 # Garder package-lock.json si genere par npm install. Pas besoin de l'ignorer.
-.vercel
