@@ -1039,6 +1039,7 @@
 
   <!-- Google Fonts -->
   <!-- Polices auto-hebergees (conformite CNIL - aucun CDN de polices tiers) -->
+  <link rel="preload" href="/assets/hero-poster.webp" as="image" fetchpriority="high"/>
   <link rel="preload" href="/images/logo-blanc-chiringuito.svg" as="image" fetchpriority="high"/>
   <link rel="preload" href="/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin/>
   <!-- fonts.css inline : evite une requete bloquante au rendu (source : /fonts/fonts.css) -->
@@ -1479,9 +1480,11 @@
     <!-- ============================================ -->
     <section id="accueil" class="relative h-screen overflow-hidden">
       <!-- Video background -->
-      <video id="hero-video" class="absolute inset-0 w-full h-full object-cover" playsinline autoplay loop muted preload="auto" poster="assets/hero-poster.webp" style="background: white;">
-        <source src="assets/mainvideomobile-chiringuito.mp4" type="video/mp4" media="(max-width: 768px)"/>
-        <source src="assets/mainvideo-chiringuito.mp4" type="video/mp4"/>
+      <!-- Video differee : le poster s'affiche immediatement (LCP), la video n'est chargee qu'apres
+           le chargement complet de la page (script en fin de body). Jamais en reduced-motion / economie de donnees. -->
+      <video id="hero-video" class="absolute inset-0 w-full h-full object-cover" playsinline loop muted preload="none" poster="assets/hero-poster.webp" style="background: white;">
+        <source data-src="assets/mainvideomobile-chiringuito.mp4" type="video/mp4" media="(max-width: 768px)"/>
+        <source data-src="assets/mainvideo-chiringuito.mp4" type="video/mp4"/>
       </video>
 
       <!-- Voile uniforme pour attenuer le HDR -->
@@ -4066,6 +4069,25 @@
     window.addEventListener('load', function () {
       if (location.hash === '#newsletter' && window.openNewsletterPopup) setTimeout(window.openNewsletterPopup, 400);
     });
+  </script>
+
+  <!-- Hero : chargement differe de la video (apres window load + temps libre) -->
+  <script>
+    (function () {
+      var v = document.getElementById('hero-video');
+      if (!v) return;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var saveData = navigator.connection && navigator.connection.saveData;
+      if (reduce || saveData) return; // le poster reste affiche
+      function start() {
+        v.querySelectorAll('source[data-src]').forEach(function (s) { s.src = s.dataset.src; });
+        v.load();
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {});
+      }
+      function later() { (window.requestIdleCallback || function (f) { setTimeout(f, 300); })(start, { timeout: 2000 }); }
+      if (document.readyState === 'complete') later(); else window.addEventListener('load', later, { once: true });
+    })();
   </script>
 </body>
 </html>
