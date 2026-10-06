@@ -4093,7 +4093,14 @@
   <script>
     (function () {
       var els = document.querySelectorAll('.artist-bg[data-bg]');
-      function show(el) { el.style.backgroundImage = "url('" + el.dataset.bg + "')"; el.removeAttribute('data-bg'); }
+      // le bandeau defilant clone les vignettes : on remplit l'original ET toutes ses copies
+      function show(el) {
+        var url = el.dataset.bg;
+        if (!url) return;
+        document.querySelectorAll('.artist-bg[data-bg="' + url + '"]').forEach(function (c) {
+          c.style.backgroundImage = "url('" + url + "')"; c.removeAttribute('data-bg');
+        });
+      }
       if (!('IntersectionObserver' in window)) { els.forEach(show); return; }
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
